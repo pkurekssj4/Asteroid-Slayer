@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cuxhn4t3yhpkw"]
 
-[ext_resource type="Script" uid="uid://4rqtve8dcxpp" path="res://cannon/particles.gd" id="1_futul"]
+[ext_resource type="Script" uid="uid://4rqtve8dcxpp" path="res://structures/cannon/particles.gd" id="1_futul"]
 
 [sub_resource type="Gradient" id="Gradient_futul"]
 offsets = PackedFloat32Array(0.06716418, 0.42537314, 0.6268657, 0.76119405)

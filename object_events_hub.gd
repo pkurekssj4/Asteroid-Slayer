@@ -161,7 +161,7 @@ func resolve_damage(area_owner: Area2D, intruder: Area2D) -> float:
 	return area_owner.collision_parameters.damage
 
 func damage_object(damage: float, attacker: Area2D, victim: Area2D) -> void:
-	if game.is_player(attacker.source) and !game.is_player(victim):
+	if game.is_player(attacker) and !game.is_player(victim):
 		var fever_progress: float
 		if victim.durability_points - damage <= 0.0: fever_progress = victim.durability_points
 		else: fever_progress = damage

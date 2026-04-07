@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://v08k58pusj15"]
+[gd_scene format=3 uid="uid://v08k58pusj15"]
 
-[ext_resource type="Script" uid="uid://4rqtve8dcxpp" path="res://cannon/particles.gd" id="1_y3plg"]
+[ext_resource type="Script" uid="uid://4rqtve8dcxpp" path="res://structures/cannon/particles.gd" id="1_y3plg"]
 
 [sub_resource type="Curve" id="Curve_y3plg"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.237762, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

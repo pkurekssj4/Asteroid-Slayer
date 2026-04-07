@@ -5,7 +5,7 @@ const EVENT_MESSAGE = preload("res://event_message.tscn")
 const MESSAGE_BOX = preload("res://ui/message_box/message_box.tscn")
 const TOOLTIP_SCENE = preload("res://tooltip_ingame.tscn")
 const FIREWORK = preload("res://firework.tscn")
-const STRUCTURE_BAR = preload("res://structure_bar.tscn")
+const STRUCTURE_BAR = preload("res://structures/structure_bar.tscn")
 
 const DISPLAY_HIERARCHY: Dictionary = {
 	"projectiles": [10], 
@@ -153,7 +153,7 @@ func _on_asteroid_spawn_delay_timeout():
 
 func create_chain_reaction_counter():
 	var new_chain_reaction_counter = Node.new()
-	new_chain_reaction_counter.set_script(preload("res://asteroids/chain_reaction_counter.gd"))
+	new_chain_reaction_counter.set_script(preload("res://chain_reaction_counter.gd"))
 	get_tree().current_scene.call_deferred("add_child", new_chain_reaction_counter)
 	return new_chain_reaction_counter
 
@@ -837,8 +837,10 @@ func update_durability_bar(structure: Area2D, data_dict: Dictionary, damage_take
 	structure.durability_bar.update_value(new_value, damage_taken)
 
 func is_player(object: Area2D) -> bool:
+	# W przypadku gracza źrodłem zawsze jest ktoraś ze struktur, więc to nie moze byc grac jesli obiekt nie istnieje.
+	# Inne obiekty np asteroidy same dla siebie są źródłami.
 	if !is_instance_valid(object.source): return false 
-	if object in structures_list: return true
+	if object.source in structures_list: return true
 	else: return false
 
 func add_new_object(add: bool, object: Variant) -> void:

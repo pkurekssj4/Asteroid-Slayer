@@ -11,7 +11,7 @@ var destroy_threshold: float = 0.7
 
 func _ready():
 	durability_points = (scale.x - destroy_threshold) * 1000
-	source = get_parent()
+	source = parent
 	
 func _process(_delta):
 	if is_instance_valid(parent): global_position = parent.global_position

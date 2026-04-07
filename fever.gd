@@ -51,15 +51,15 @@ func start_fever() -> void:
 	fever_meter.material = shader_material
 	progress_bar_manager.create_progress_bar("Fever", "fuchsia", GlobalScript.current_data.fever.duration)
 	if cannon.is_reloading:
-		if reloading_timer.time_left <= GlobalScript.current_data.cannon.additive_stats.reload_time:
+		if reloading_timer.time_left <= GlobalScript.current_data.structures.cannon.additive_statistics.fever.reload_time:
 			reloading_timer.stop()
 			cannon.reload_finished()
 			var forced: bool = false
 			cannon.reloading_bar.cancel(forced)
 		else:
-			reloading_timer.start(GlobalScript.current_data.cannon.additive_stats.reload_time)
+			reloading_timer.start(GlobalScript.current_data.structures.cannon.additive_statistics.fever.reload_time)
 			var progress_bar_timer: Timer = cannon.reloading_bar.get_node("DurationTimer")
-			progress_bar_timer.start(progress_bar_timer - GlobalScript.current_data.cannon.additive_stats.reload_time)
+			progress_bar_timer.start(progress_bar_timer.time_left - GlobalScript.current_data.structures.cannon.additive_statistics.fever.reload_time)
 	
 func end_fever() -> void:
 	current_damage = 0.0

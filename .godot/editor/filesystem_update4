@@ -5,3 +5,7 @@ res://shaders/gravity_well_waving.gdshader
 res://shaders/ending_text_waving.gdshader
 res://shaders/fever_progress_bar.gdshader
 res://shaders/main_menu_fractals_waving.gdshader
+res://game.gd
+res://object_events_hub.gd
+res://fever.gd
+res://asteroids/asteroid_shield.gd

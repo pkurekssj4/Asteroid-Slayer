@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxnj0vwfuid7a"]
+[gd_scene format=3 uid="uid://bxnj0vwfuid7a"]
 
 [ext_resource type="Script" uid="uid://dhbwbbdfwa0ok" path="res://upgrade_console/upgrade.gd" id="1_fihbd"]
-[ext_resource type="Texture2D" uid="uid://v1c8s6l8ipef" path="res://gravity_well_round_icon.png" id="3_sxb3a"]
+[ext_resource type="Texture2D" uid="uid://v1c8s6l8ipef" path="res://abilities/gravity_well_round_icon.png" id="3_sxb3a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fihbd"]
 radius = 25.0

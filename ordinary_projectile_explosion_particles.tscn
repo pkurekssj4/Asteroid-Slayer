@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bvr752nuvrypv"]
 
-[ext_resource type="Script" uid="uid://4rqtve8dcxpp" path="res://cannon/particles.gd" id="1_ol1if"]
+[ext_resource type="Script" uid="uid://4rqtve8dcxpp" path="res://structures/cannon/particles.gd" id="1_ol1if"]
 
 [sub_resource type="Curve" id="Curve_cu186"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.017361112, 1), 11.059376, 0.0, 0, 0]

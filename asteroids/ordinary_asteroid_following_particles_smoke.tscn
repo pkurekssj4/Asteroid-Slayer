@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://c2y1rqwed7ypg"]
+
+[ext_resource type="Texture2D" uid="uid://ddatmsohks8h0" path="res://gas_element.png" id="1_47giw"]
+[ext_resource type="Script" uid="uid://4rqtve8dcxpp" path="res://structures/cannon/particles.gd" id="2_47giw"]
+
+[sub_resource type="Gradient" id="Gradient_47giw"]
+offsets = PackedFloat32Array(0, 0.23115578, 0.7788945, 0.9748744)
+colors = PackedColorArray(0.38170362, 0.38170308, 0.38170326, 0.39215687, 0.7371929, 0.737193, 0.7371927, 0.3137255, 0.90359825, 0.90359825, 0.9035982, 0.23529412, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m75xi"]
+gradient = SubResource("Gradient_47giw")
+
+[sub_resource type="Curve" id="Curve_iidau"]
+_data = [Vector2(0, 0.5393259), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_plrjl"]
+curve = SubResource("Curve_iidau")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iidau"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(50, 25, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, -5, 0)
+tangential_accel_min = -5.000002
+tangential_accel_max = 4.9999976
+scale_curve = SubResource("CurveTexture_plrjl")
+color_ramp = SubResource("GradientTexture1D_m75xi")
+turbulence_enabled = true
+
+[node name="OrdinaryAsteroidFollowingParticlesSmoke" type="GPUParticles2D" unique_id=748114822]
+amount = 150
+texture = ExtResource("1_47giw")
+lifetime = 2.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_iidau")
+script = ExtResource("2_47giw")

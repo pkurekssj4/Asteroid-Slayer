@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://p8i7gf8ujvyh"]
+[gd_scene format=3 uid="uid://p8i7gf8ujvyh"]
 
 [ext_resource type="Script" uid="uid://dhbwbbdfwa0ok" path="res://upgrade_console/upgrade.gd" id="1_y6q5s"]
-[ext_resource type="Texture2D" uid="uid://c65vgpvgojwpp" path="res://plasma_barrage_round_icon.png" id="3_m52l3"]
+[ext_resource type="Texture2D" uid="uid://c65vgpvgojwpp" path="res://abilities/plasma_barrage_round_icon.png" id="3_m52l3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5r3ou"]
 radius = 25.0

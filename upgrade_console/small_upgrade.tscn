@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1jnxtxm4m1sv"]
+[gd_scene format=3 uid="uid://b1jnxtxm4m1sv"]
 
-[ext_resource type="Texture2D" uid="uid://dcvh684nee7ht" path="res://cannon/basic_explosion_mask.png" id="1_qh0is"]
+[ext_resource type="Texture2D" uid="uid://dcvh684nee7ht" path="res://structures/cannon/basic_explosion_mask.png" id="1_qh0is"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6e5fu"]
 bg_color = Color(0.205117, 0.205117, 0.205117, 1)

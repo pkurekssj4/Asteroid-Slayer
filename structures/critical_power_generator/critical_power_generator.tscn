@@ -1,0 +1,157 @@
+[gd_scene format=3 uid="uid://dpkenvot4iipa"]
+
+[ext_resource type="Texture2D" uid="uid://c4wef2l3wnojj" path="res://structures/critical_power_generator/animation_sprites/1.png" id="1_qbg6u"]
+[ext_resource type="Script" uid="uid://7l3pbhfoc8nd" path="res://structures/regular_structure_script.gd" id="1_yy35r"]
+[ext_resource type="Texture2D" uid="uid://ck7drbtymrheb" path="res://structures/critical_power_generator/animation_sprites/2.png" id="2_j82qh"]
+[ext_resource type="Texture2D" uid="uid://dx02oerkeltk3" path="res://structures/critical_power_generator/animation_sprites/3.png" id="3_vtgwr"]
+[ext_resource type="Texture2D" uid="uid://ca75y20jsff82" path="res://structures/critical_power_generator/animation_sprites/4.png" id="4_gi254"]
+[ext_resource type="Texture2D" uid="uid://gplsu84b7ywd" path="res://structures/critical_power_generator/animation_sprites/5.png" id="5_je8ly"]
+[ext_resource type="Texture2D" uid="uid://b2ocx76wcv84i" path="res://structures/critical_power_generator/animation_sprites/6.png" id="6_tje1i"]
+[ext_resource type="Texture2D" uid="uid://cwpqxayfjxasp" path="res://structures/critical_power_generator/animation_sprites/7.png" id="7_mhy1c"]
+[ext_resource type="Texture2D" uid="uid://b40pe25yakgxi" path="res://structures/critical_power_generator/animation_sprites/8.png" id="8_ahpwb"]
+[ext_resource type="Texture2D" uid="uid://by88lg3q5ygyf" path="res://structures/critical_power_generator/animation_sprites/9.png" id="9_lpun7"]
+[ext_resource type="Texture2D" uid="uid://ls5oys1bp2t2" path="res://structures/critical_power_generator/animation_sprites/10.png" id="10_7sop3"]
+[ext_resource type="Texture2D" uid="uid://bffdvf5wcm7hi" path="res://structures/critical_power_generator/animation_sprites/11.png" id="11_x5cbe"]
+[ext_resource type="Texture2D" uid="uid://dnqc5x4ktiwnd" path="res://structures/critical_power_generator/animation_sprites/12.png" id="12_j3slr"]
+[ext_resource type="Texture2D" uid="uid://6yypbcxu82hu" path="res://structures/critical_power_generator/animation_sprites/13.png" id="13_gjsk4"]
+[ext_resource type="Texture2D" uid="uid://dcx56jfpld7sa" path="res://structures/critical_power_generator/animation_sprites/14.png" id="14_l6ppl"]
+[ext_resource type="Texture2D" uid="uid://ce3vi3adwh316" path="res://structures/critical_power_generator/animation_sprites/15.png" id="15_6vwkk"]
+[ext_resource type="Texture2D" uid="uid://dsyly7nuyasfs" path="res://structures/critical_power_generator/animation_sprites/16.png" id="16_blsa5"]
+[ext_resource type="Texture2D" uid="uid://bcrhdl4gp501o" path="res://structures/critical_power_generator/animation_sprites/17.png" id="17_5ff76"]
+[ext_resource type="Texture2D" uid="uid://b0uldqprib2oa" path="res://structures/critical_power_generator/animation_sprites/18.png" id="18_kge2t"]
+[ext_resource type="Texture2D" uid="uid://cdr40m7q7ncuq" path="res://structures/critical_power_generator/animation_sprites/19.png" id="19_kwgab"]
+[ext_resource type="Texture2D" uid="uid://ctskox5v5wwpe" path="res://structures/critical_power_generator/animation_sprites/20.png" id="20_47kwf"]
+[ext_resource type="Texture2D" uid="uid://6aru6gu60gm3" path="res://structures/critical_power_generator/animation_sprites/21.png" id="21_rcyu8"]
+[ext_resource type="Texture2D" uid="uid://f3nvabo326pu" path="res://structures/critical_power_generator/animation_sprites/22.png" id="22_xsc63"]
+[ext_resource type="Texture2D" uid="uid://b1ndwbuaikyjh" path="res://structures/critical_power_generator/animation_sprites/23.png" id="23_lwlo3"]
+[ext_resource type="Texture2D" uid="uid://bxl3apr5e1rk3" path="res://structures/critical_power_generator/animation_sprites/24.png" id="24_q25nf"]
+[ext_resource type="Texture2D" uid="uid://3srtdl411joh" path="res://structures/critical_power_generator/animation_sprites/25.png" id="25_tl02b"]
+[ext_resource type="Texture2D" uid="uid://dbkkpht1admrd" path="res://structures/critical_power_generator/animation_sprites/26.png" id="26_g6apn"]
+[ext_resource type="Texture2D" uid="uid://dd1o7nphj2i1f" path="res://structures/critical_power_generator/animation_sprites/27.png" id="27_vs0j6"]
+[ext_resource type="Texture2D" uid="uid://c6n1s50cj5dq5" path="res://structures/critical_power_generator/animation_sprites/28.png" id="28_lqxtv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lpikp"]
+animations = [{
+"frames": [{
+"duration": 25.0,
+"texture": ExtResource("1_qbg6u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_j82qh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vtgwr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gi254")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_je8ly")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tje1i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_mhy1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ahpwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_lpun7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7sop3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_x5cbe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_j3slr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_gjsk4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_l6ppl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_6vwkk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_blsa5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_5ff76")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_kge2t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_kwgab")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_47kwf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_rcyu8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_xsc63")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_lwlo3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_q25nf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_tl02b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_g6apn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_vs0j6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_lqxtv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_se15y"]
+size = Vector2(45, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0seo5"]
+size = Vector2(45, 44)
+
+[node name="CriticalPowerGenerator" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_yy35r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.45, 0.45)
+sprite_frames = SubResource("SpriteFrames_lpikp")
+autoplay = "default"
+frame_progress = 0.559617
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 4)
+shape = SubResource("RectangleShape2D_se15y")
+
+[node name="TooltipTrigger" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TooltipTrigger"]
+position = Vector2(-0.5, 4)
+shape = SubResource("RectangleShape2D_0seo5")
+
+[connection signal="mouse_entered" from="TooltipTrigger" to="." method="_on_tooltip_trigger_mouse_entered"]
