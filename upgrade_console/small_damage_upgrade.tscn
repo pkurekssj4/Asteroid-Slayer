@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0njdm1ss3pmr"]
+
+[ext_resource type="Script" uid="uid://dhbwbbdfwa0ok" path="res://upgrade_console/upgrade.gd" id="1_011a7"]
+[ext_resource type="PackedScene" uid="uid://b1jnxtxm4m1sv" path="res://upgrade_console/small_upgrade.tscn" id="1_sp75c"]
+[ext_resource type="Texture2D" uid="uid://pxtmhsdgr8ua" path="res://upgrade_console/damage_and_critical_damage_icon.png" id="2_30nsu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_011a7"]
+radius = 16.0
+
+[node name="SmallDamageUpgrade" type="Area2D"]
+monitoring = false
+monitorable = false
+script = ExtResource("1_011a7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_011a7")
+
+[node name="SmallUpgrade" parent="." instance=ExtResource("1_sp75c")]
+modulate = Color(0.58776, 0.72, 0.3024, 1)
+
+[node name="DamageIcon" type="Sprite2D" parent="."]
+position = Vector2(0, 0.545)
+scale = Vector2(0.345, 0.345)
+texture = ExtResource("2_30nsu")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

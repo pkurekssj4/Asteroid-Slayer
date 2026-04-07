@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dq6861eq8ba47"]
+
+[ext_resource type="Script" uid="uid://dhbwbbdfwa0ok" path="res://upgrade_console/upgrade.gd" id="1_8edr1"]
+[ext_resource type="PackedScene" uid="uid://o6cef3ih65uv" path="res://upgrade_console/medium_upgrade.tscn" id="1_srvo8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_srvo8"]
+radius = 20.0998
+
+[node name="MediumCapacityUpgrade" type="Area2D"]
+script = ExtResource("1_8edr1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_srvo8")
+
+[node name="MediumUpgrade" parent="." instance=ExtResource("1_srvo8")]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -13.0
+offset_top = -33.0
+offset_right = 27.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 45
+text = "+"
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

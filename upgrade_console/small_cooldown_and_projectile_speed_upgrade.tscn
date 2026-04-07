@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyclva73wwcl3"]
+
+[ext_resource type="PackedScene" uid="uid://b1jnxtxm4m1sv" path="res://upgrade_console/small_upgrade.tscn" id="1_7jj2q"]
+[ext_resource type="Script" uid="uid://dhbwbbdfwa0ok" path="res://upgrade_console/upgrade.gd" id="1_u3d4k"]
+[ext_resource type="Texture2D" uid="uid://h4wby8dq5f4t" path="res://upgrade_console/cooldown_and_projectile_speed_icon.png" id="3_u3d4k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u3d4k"]
+radius = 16.1555
+
+[node name="SmallCooldownUpgrade" type="Area2D"]
+script = ExtResource("1_u3d4k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u3d4k")
+
+[node name="SmallUpgrade" parent="." instance=ExtResource("1_7jj2q")]
+modulate = Color(0.517881, 0.575369, 0.836609, 1)
+
+[node name="CooldownAndProjectileSpeedIcon" type="Sprite2D" parent="."]
+position = Vector2(3.8147e-06, 9.53674e-07)
+scale = Vector2(0.365, 0.365)
+texture = ExtResource("3_u3d4k")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

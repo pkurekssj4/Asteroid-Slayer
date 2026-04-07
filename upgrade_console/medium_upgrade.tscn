@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://o6cef3ih65uv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d0di8"]
+bg_color = Color(0.219501, 0.219501, 0.219501, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g535m"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(0.321728, 0.321728, 0.321728, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[node name="MediumUpgrade" type="Node2D"]
+
+[node name="CircleShadow" type="Panel" parent="."]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d0di8")
+
+[node name="Circle" type="Panel" parent="."]
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g535m")

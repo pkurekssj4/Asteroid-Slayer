@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://24qmhxt0ucek"]
+
+[ext_resource type="Texture2D" uid="uid://c3fp6n575jtb" path="res://clouds/cloud3.png" id="1_kywam"]
+[ext_resource type="Script" uid="uid://cirv5lx23wasi" path="res://clouds/cloud.gd" id="1_nrdv1"]
+
+[node name="Cloud1" type="Node2D"]
+script = ExtResource("1_nrdv1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.470588)
+texture = ExtResource("1_kywam")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-3, 1.5)
+scale = Vector2(6.6, 4.55)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://b6rwmsoqj0mc5"]
+
+[ext_resource type="Script" uid="uid://4rqtve8dcxpp" path="res://cannon/particles.gd" id="1_cvjrj"]
+
+[sub_resource type="Gradient" id="Gradient_x0xdl"]
+offsets = PackedFloat32Array(0.0737705, 0.28140703, 0.50753766, 1)
+colors = PackedColorArray(4.415934, 4.415934, 4.415934, 1, 2.0412412, 2.04124, 2.0412395, 1, 0.820094, 0.820094, 0.820094, 1, 0.06453333, 0.024000002, 0.1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_omtbp"]
+gradient = SubResource("Gradient_x0xdl")
+
+[sub_resource type="Curve" id="Curve_krbmu"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(0.11111111, 5), 0.0, 0.0, 0, 0, Vector2(0.23555556, 0.6179776), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_0gw7o"]
+curve = SubResource("Curve_krbmu")
+
+[sub_resource type="Curve" id="Curve_ueafw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.48, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_p6xgk"]
+curve = SubResource("Curve_ueafw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mjbxm"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(5, 5, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = 99.99999
+radial_accel_curve = SubResource("CurveTexture_0gw7o")
+scale_min = 0.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_p6xgk")
+color = Color(0.901704, 0.896116, 0.914283, 1)
+color_ramp = SubResource("GradientTexture1D_omtbp")
+hue_variation_min = -0.01
+hue_variation_max = 0.00999998
+
+[node name="AsteroidShieldDamageParticles" type="GPUParticles2D" unique_id=644735240 groups=["VFX"]]
+z_index = 10
+emitting = false
+amount = 75
+lifetime = 1.5
+one_shot = true
+speed_scale = 1.3
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_mjbxm")
+script = ExtResource("1_cvjrj")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
+[connection signal="ready" from="." to="." method="_on_ready"]

@@ -1,0 +1,7 @@
+res://game.tscn
+res://shaders/message_box_border_animation.gdshader
+res://shaders/asteroid_flashing.gdshader
+res://shaders/gravity_well_waving.gdshader
+res://shaders/ending_text_waving.gdshader
+res://shaders/fever_progress_bar.gdshader
+res://shaders/main_menu_fractals_waving.gdshader

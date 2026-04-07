@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cieqthkl4frbc"]
+
+[ext_resource type="Script" uid="uid://dhbwbbdfwa0ok" path="res://upgrade_console/upgrade.gd" id="1_6y08b"]
+[ext_resource type="PackedScene" uid="uid://d2kqqcryipmbn" path="res://upgrade_console/big_upgrade.tscn" id="1_fsaew"]
+[ext_resource type="Texture2D" uid="uid://2pxa2ccv81pp" path="res://upgrade_console/critical_strike_icon.png" id="2_ybtai"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ybtai"]
+radius = 25.1794
+
+[node name="BigCriticalHitChanceUpgrade" type="Area2D"]
+script = ExtResource("1_6y08b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ybtai")
+
+[node name="BigUpgrade" parent="." instance=ExtResource("1_fsaew")]
+modulate = Color(0.317647, 0.435294, 0.458824, 1)
+
+[node name="CriticalStrikeIcon" type="Sprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_ybtai")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

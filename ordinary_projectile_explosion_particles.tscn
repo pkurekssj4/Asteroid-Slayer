@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bvr752nuvrypv"]
+
+[ext_resource type="Script" uid="uid://4rqtve8dcxpp" path="res://cannon/particles.gd" id="1_ol1if"]
+
+[sub_resource type="Curve" id="Curve_cu186"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.017361112, 1), 11.059376, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ol1if"]
+curve = SubResource("Curve_cu186")
+
+[sub_resource type="Curve" id="Curve_resrx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mqx1k"]
+curve = SubResource("Curve_resrx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cu186"]
+lifetime_randomness = 1.0
+emission_shape_scale = Vector3(20, 20, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 49.999977
+radial_velocity_curve = SubResource("CurveTexture_ol1if")
+gravity = Vector3(0, -1, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_mqx1k")
+
+[node name="OrdinaryProjectileExplosionParticles" type="GPUParticles2D" unique_id=1877643574 groups=["VFX"]]
+z_index = 11
+emitting = false
+amount = 35
+lifetime = 2.0
+one_shot = true
+speed_scale = 1.2
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_cu186")
+script = ExtResource("1_ol1if")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1jnxtxm4m1sv"]
+
+[ext_resource type="Texture2D" uid="uid://dcvh684nee7ht" path="res://cannon/basic_explosion_mask.png" id="1_qh0is"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6e5fu"]
+bg_color = Color(0.205117, 0.205117, 0.205117, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qh0is"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 33
+corner_radius_top_right = 33
+corner_radius_bottom_right = 33
+corner_radius_bottom_left = 33
+
+[node name="SmallUpgrade" type="Node2D"]
+
+[node name="Shadow" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.270222, 0.270222, 0.270222, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_qh0is")
+
+[node name="Upgrade" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_qh0is")
+
+[node name="PanelShadow" type="Panel" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6e5fu")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 14.0
+offset_bottom = 14.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qh0is")

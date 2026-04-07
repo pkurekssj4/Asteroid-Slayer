@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://iyw0xo8uxjv"]
+
+[ext_resource type="Texture2D" uid="uid://rvlqs4u35oeu" path="res://upgrade_console/slow_icon.png" id="1_b5gjk"]
+[ext_resource type="Script" uid="uid://4rqtve8dcxpp" path="res://cannon/particles.gd" id="2_b5gjk"]
+
+[sub_resource type="Gradient" id="Gradient_b5gjk"]
+offsets = PackedFloat32Array(0.00990099, 0.2920792, 0.33663365, 0.63366336, 0.990099)
+colors = PackedColorArray(0.35000002, 0.5233332, 1, 1, 4.928589e-05, 0.5125709, 0.9560085, 1, 0.58186585, 0.7624114, 0.9996974, 1, 0.08471746, 0.36266813, 1, 1, 0.62, 0.73399997, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r7mov"]
+gradient = SubResource("Gradient_b5gjk")
+
+[sub_resource type="Curve" id="Curve_jm214"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.27192983, 0.22471917), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mkcvm"]
+curve = SubResource("Curve_jm214")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_msivp"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(70, 70, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 0.1200001
+gravity = Vector3(0, -40, 0)
+linear_accel_min = -32.34
+linear_accel_max = -17.300001
+radial_accel_min = -9.740002
+radial_accel_max = 6.049998
+scale_curve = SubResource("CurveTexture_mkcvm")
+color_ramp = SubResource("GradientTexture1D_r7mov")
+
+[node name="FollowingSnowParticles" type="GPUParticles2D" groups=["VFX"]]
+amount = 20
+texture = ExtResource("1_b5gjk")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_msivp")
+script = ExtResource("2_b5gjk")

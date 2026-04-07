@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://cn8fxdyxiwmwi"]
+
+[ext_resource type="Script" uid="uid://cr31vjtoqkiy7" path="res://cannon/explosion.gd" id="1_1d5br"]
+
+[sub_resource type="Gradient" id="Gradient_phk1f"]
+offsets = PackedFloat32Array(0, 0.627376)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xr7cg"]
+gradient = SubResource("Gradient_phk1f")
+width = 400
+height = 400
+fill = 1
+fill_from = Vector2(0.508547, 0.491453)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_buh44"]
+offsets = PackedFloat32Array(0, 0.640625, 0.710084)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ot3xp"]
+gradient = SubResource("Gradient_buh44")
+width = 300
+height = 300
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k2tox"]
+radius = 150.0
+
+[node name="RoundExplosion" type="Area2D" groups=["explosions"]]
+z_index = 10
+collision_layer = 32
+collision_mask = 9
+input_pickable = false
+monitorable = false
+script = ExtResource("1_1d5br")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 0.09380996)
+energy = 0.3
+texture = SubResource("GradientTexture2D_xr7cg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6.198883e-06)
+texture = SubResource("GradientTexture2D_ot3xp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k2tox")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

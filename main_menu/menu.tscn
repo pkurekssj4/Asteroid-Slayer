@@ -1,0 +1,964 @@
+[gd_scene format=3 uid="uid://c4b0gtk37a3k8"]
+
+[ext_resource type="Script" uid="uid://yglqdi3w6t0" path="res://main_menu/menu.gd" id="1_5fi80"]
+[ext_resource type="Texture2D" uid="uid://dwx1y0mtijr6i" path="res://main_menu/fractals.png" id="2_60yap"]
+[ext_resource type="Shader" uid="uid://k63ntutxklce" path="res://shaders/main_menu_fractals_waving.gdshader" id="2_gunmo"]
+[ext_resource type="Texture2D" uid="uid://3bhit4vecc32" path="res://asteroids/asteroid8.png" id="3_m0xcc"]
+[ext_resource type="AudioStream" uid="uid://bwk7v3oscc858" path="res://audio/sounds/menu_background_music.mp3" id="4_5ggxs"]
+[ext_resource type="Texture2D" uid="uid://c88r7k2cbwa52" path="res://asteroids/asteroid10.png" id="4_nmk5o"]
+[ext_resource type="Texture2D" uid="uid://cwttpomt81ijk" path="res://asteroids/asteroid11.png" id="6_h4cj3"]
+[ext_resource type="Texture2D" uid="uid://bbsbutpo1kifj" path="res://main_menu/control.png" id="7_gueie"]
+[ext_resource type="Texture2D" uid="uid://pk2tmn28vdm0" path="res://asteroids/asteroid12.png" id="7_l6dqw"]
+[ext_resource type="Texture2D" uid="uid://owkosdusguh3" path="res://main_menu/title.png" id="8_aruof"]
+[ext_resource type="AudioStream" uid="uid://cntrp2crutub0" path="res://audio/sounds/launch_game.wav" id="9_gunmo"]
+[ext_resource type="Texture2D" uid="uid://ckbfkddokrq6o" path="res://main_menu/stars.png" id="9_lpnkw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pgdkw"]
+shader = ExtResource("2_gunmo")
+shader_parameter/amplitude_x = 300.0
+shader_parameter/frequency_x = 20.0
+shader_parameter/speed_x = 0.1
+shader_parameter/amplitude_y = 200.0
+shader_parameter/frequency_y = 1.0
+shader_parameter/speed_y = 0.05
+shader_parameter/u_time = 0.0
+
+[sub_resource type="Curve" id="Curve_gueie"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_aruof"]
+curve = SubResource("Curve_gueie")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nmk5o"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-1062, 0, 0)
+emission_shape_scale = Vector3(1, 714, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(7.9, 0, 0)
+initial_velocity_max = 80.0
+angular_velocity_min = -18.46
+angular_velocity_max = 69.02
+gravity = Vector3(13, 0, 0)
+radial_accel_min = 1.2999977
+radial_accel_max = 1.2999977
+tangential_accel_min = -2.2351742e-06
+tangential_accel_max = 0.99999774
+scale_min = 0.099999994
+scale_max = 0.14999999
+scale_curve = SubResource("CurveTexture_aruof")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l6dqw"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-1062, 0, 0)
+emission_shape_scale = Vector3(1, 714, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(7.9, 0, 0)
+spread = 180.0
+initial_velocity_max = 133.93
+angular_velocity_min = -18.46
+angular_velocity_max = 69.02
+gravity = Vector3(130, -5, 0)
+radial_accel_min = 1.87
+radial_accel_max = 13.0
+tangential_accel_min = -3.0
+tangential_accel_max = -3.0
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_aruof")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h4cj3"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-1062, 0, 0)
+emission_shape_scale = Vector3(1, 800, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(7.9, 0, 0)
+spread = 180.0
+initial_velocity_max = 40.829998
+angular_velocity_min = -74.48001
+angular_velocity_max = 44.689983
+gravity = Vector3(1000, -5, 0)
+tangential_accel_min = -3.0
+tangential_accel_max = -3.0
+scale_min = 0.59999996
+scale_max = 0.79999995
+scale_curve = SubResource("CurveTexture_aruof")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ri7u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wlgun"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rqvkv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5yr53"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bf86v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4thgf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8rw73"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ntc77"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g8lk5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3cfdy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a7fg8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0f427"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6vxam"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_owkx4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kug40"]
+
+[sub_resource type="Animation" id="Animation_ruvte"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExitButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.745098, 0.745098, 0.745098, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OptionsButton:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.745098, 0.745098, 0.745098, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NewGameButton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LoadGameButton:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../SaveSlotsContainer/SaveSlot1:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../SaveSlotsContainer/SaveSlot2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../SaveSlotsContainer/SaveSlot3:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../OverwriteContainer/YesOrNoContainer/NoButton:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../OverwriteContainer/YesOrNoContainer/YesButton:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../SaveSlotsContainer/BackFromSaveSlotsButton:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t5w5c"]
+resource_name = "back_from_difficulty"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DifficultyContainer/BackFromDifficultyButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.96666706),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.317647, 0.317647, 0.317647, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wqga6"]
+resource_name = "back_from_save_slots"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SaveSlotsContainer/BackFromSaveSlotsButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.317647, 0.317647, 0.317647, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ekvbh"]
+resource_name = "easy"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DifficultyContainer/EasyButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.96666706),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.317647, 0.317647, 0.317647, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3q5bq"]
+resource_name = "exit"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExitButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.318019, 0.31802, 0.318019, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h4cj3"]
+resource_name = "hard"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DifficultyContainer/HardButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9333337),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.317647, 0.317647, 0.317647, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_w2eou"]
+resource_name = "hardcore"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DifficultyContainer/HardcoreButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9333337),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.317647, 0.317647, 0.317647, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_l35q7"]
+resource_name = "load"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LoadGameButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333334, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.317647, 0.317647, 0.317647, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_l6dqw"]
+resource_name = "medium"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DifficultyContainer/MediumButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.317647, 0.317647, 0.317647, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_16t53"]
+resource_name = "new"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NewGameButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.96666664),
+"transitions": PackedFloat32Array(1.03526, 1),
+"update": 0,
+"values": [Color(0.317647, 0.317647, 0.317647, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jtdhs"]
+resource_name = "no"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../OverwriteContainer/YesOrNoContainer/NoButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.317647, 0.317647, 0.317647, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pdbfg"]
+resource_name = "options"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OptionsButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.317647, 0.317647, 0.317647, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2j56o"]
+resource_name = "slot1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SaveSlotsContainer/SaveSlot1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.317647, 0.317647, 0.317647, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8ut63"]
+resource_name = "slot2"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SaveSlotsContainer/SaveSlot2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.317647, 0.317647, 0.317647, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kj0ob"]
+resource_name = "slot3"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SaveSlotsContainer/SaveSlot3:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.317647, 0.317647, 0.317647, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_supq3"]
+resource_name = "yes"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../OverwriteContainer/YesOrNoContainer/YesButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.317647, 0.317647, 0.317647, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tsflt"]
+_data = {
+&"RESET": SubResource("Animation_ruvte"),
+&"back_from_difficulty": SubResource("Animation_t5w5c"),
+&"back_from_save_slots": SubResource("Animation_wqga6"),
+&"easy": SubResource("Animation_ekvbh"),
+&"exit": SubResource("Animation_3q5bq"),
+&"hard": SubResource("Animation_h4cj3"),
+&"hardcore": SubResource("Animation_w2eou"),
+&"load": SubResource("Animation_l35q7"),
+&"medium": SubResource("Animation_l6dqw"),
+&"new": SubResource("Animation_16t53"),
+&"no": SubResource("Animation_jtdhs"),
+&"options": SubResource("Animation_pdbfg"),
+&"slot1": SubResource("Animation_2j56o"),
+&"slot2": SubResource("Animation_8ut63"),
+&"slot3": SubResource("Animation_kj0ob"),
+&"yes": SubResource("Animation_supq3")
+}
+
+[sub_resource type="Animation" id="Animation_wbohv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeOffSolid:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_edavd"]
+resource_name = "fade_off"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeOffSolid:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rbwg7"]
+_data = {
+&"RESET": SubResource("Animation_wbohv"),
+&"fade_off": SubResource("Animation_edavd")
+}
+
+[node name="Menu" type="Control" unique_id=589032183]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5fi80")
+metadata/_edit_use_anchors_ = true
+
+[node name="Fractals" type="Sprite2D" parent="." unique_id=829568936]
+z_index = 2
+material = SubResource("ShaderMaterial_pgdkw")
+position = Vector2(1025, 533)
+texture = ExtResource("2_60yap")
+
+[node name="Stars" type="Sprite2D" parent="." unique_id=1057099304]
+self_modulate = Color(1.353256, 1.353256, 1.353256, 1)
+z_index = 2
+position = Vector2(960, 540)
+texture = ExtResource("9_lpnkw")
+
+[node name="AsteroidsVeryFarDistance" type="GPUParticles2D" parent="." unique_id=1792482346]
+z_index = 2
+position = Vector2(760, 586)
+amount = 5
+texture = ExtResource("3_m0xcc")
+lifetime = 35.0
+preprocess = 20.0
+process_material = SubResource("ParticleProcessMaterial_nmk5o")
+
+[node name="AsteroidsVeryFarDistance2" type="GPUParticles2D" parent="." unique_id=265342606]
+z_index = 2
+position = Vector2(488, 482)
+amount = 5
+texture = ExtResource("6_h4cj3")
+lifetime = 35.0
+preprocess = 20.0
+process_material = SubResource("ParticleProcessMaterial_nmk5o")
+
+[node name="AsteroidsFarDistance" type="GPUParticles2D" parent="." unique_id=412012061]
+z_index = 3
+position = Vector2(576, 586)
+amount = 15
+texture = ExtResource("3_m0xcc")
+lifetime = 25.0
+process_material = SubResource("ParticleProcessMaterial_nmk5o")
+
+[node name="AsteroidsMediumDistance" type="GPUParticles2D" parent="." unique_id=495542631]
+z_index = 4
+position = Vector2(568, 594)
+amount = 10
+texture = ExtResource("4_nmk5o")
+lifetime = 20.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_l6dqw")
+
+[node name="AsteroidsClosest" type="GPUParticles2D" parent="." unique_id=1501700997]
+z_index = 6
+position = Vector2(568, 594)
+amount = 1
+texture = ExtResource("4_nmk5o")
+lifetime = 8.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_h4cj3")
+
+[node name="AsteroidsClosest2" type="GPUParticles2D" parent="." unique_id=529392623]
+z_index = 6
+position = Vector2(-72, 594)
+amount = 2
+texture = ExtResource("7_l6dqw")
+lifetime = 10.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_h4cj3")
+
+[node name="Title" type="Sprite2D" parent="." unique_id=116110667]
+z_index = 5
+position = Vector2(960, 276)
+texture = ExtResource("8_aruof")
+
+[node name="MainMenuContainer" type="VBoxContainer" parent="." unique_id=1408440799]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = -68.0
+offset_right = 46.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoadGameButton" type="Button" parent="MainMenuContainer" unique_id=1504758223]
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ri7u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wlgun")
+text = "Load game"
+
+[node name="NewGameButton" type="Button" parent="MainMenuContainer" unique_id=1952416603]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"FlatButton"
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_rqvkv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5yr53")
+text = "New game"
+
+[node name="OptionsButton" type="Button" parent="MainMenuContainer" unique_id=1698524261]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_bf86v")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4thgf")
+text = "Options
+"
+
+[node name="ExitButton" type="Button" parent="MainMenuContainer" unique_id=2002979973]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8rw73")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ntc77")
+text = "Quit
+"
+
+[node name="SaveSlotsContainer" type="VBoxContainer" parent="." unique_id=752016778]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.5
+offset_top = -75.5
+offset_right = 70.5
+offset_bottom = 145.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="SaveSlotsContainer" unique_id=1820860893]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Please choose save slot"
+
+[node name="EmptyLabel" type="Label" parent="SaveSlotsContainer" unique_id=1928307666]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="SaveSlot1" type="Button" parent="SaveSlotsContainer" unique_id=598564652]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g8lk5")
+text = "Empty slot"
+flat = true
+
+[node name="SaveSlot2" type="Button" parent="SaveSlotsContainer" unique_id=1233033354]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3cfdy")
+text = "Empty slot"
+flat = true
+
+[node name="SaveSlot3" type="Button" parent="SaveSlotsContainer" unique_id=1122504921]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a7fg8")
+text = "Empty slot"
+flat = true
+
+[node name="EmptyLabel2" type="Label" parent="SaveSlotsContainer" unique_id=1600685284]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BackFromSaveSlotsButton" type="Button" parent="SaveSlotsContainer" unique_id=1566755955]
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0f427")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6vxam")
+text = "Back"
+
+[node name="OverwriteContainer" type="VBoxContainer" parent="." unique_id=752136785]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -227.5
+offset_top = -53.0
+offset_right = 187.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="OverwriteContainer" unique_id=1901672881]
+layout_mode = 2
+text = "Do you really want to overwrite this slot on first save?"
+
+[node name="YesOrNoContainer" type="HBoxContainer" parent="OverwriteContainer" unique_id=1269502891]
+layout_mode = 2
+
+[node name="YesButton" type="Button" parent="OverwriteContainer/YesOrNoContainer" unique_id=226624142]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../NoButton")
+theme_override_styles/focus = SubResource("StyleBoxTexture_owkx4")
+text = "yes"
+flat = true
+
+[node name="NoButton" type="Button" parent="OverwriteContainer/YesOrNoContainer" unique_id=1127725902]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_neighbor_right = NodePath("../YesButton")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kug40")
+text = "no"
+flat = true
+
+[node name="DifficultyContainer" type="VBoxContainer" parent="." unique_id=137334218]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.5
+offset_top = -20.0
+offset_right = 207.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="DifficultyContainer" unique_id=2086262832]
+layout_mode = 2
+text = "Please choose difficulty of the game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmptyLabel" type="Label" parent="DifficultyContainer" unique_id=2071510829]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="EasyButton" type="Button" parent="DifficultyContainer" unique_id=1564996557]
+modulate = Color(0.317647, 0.317647, 0.317647, 1)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../NoButton")
+theme_override_styles/focus = SubResource("StyleBoxTexture_owkx4")
+text = "Easy"
+flat = true
+
+[node name="MediumButton" type="Button" parent="DifficultyContainer" unique_id=552432875]
+modulate = Color(0.317647, 0.317647, 0.317647, 1)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../NoButton")
+theme_override_styles/focus = SubResource("StyleBoxTexture_owkx4")
+text = "Medium"
+flat = true
+
+[node name="HardButton" type="Button" parent="DifficultyContainer" unique_id=1252237789]
+modulate = Color(0.317647, 0.317647, 0.317647, 1)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../NoButton")
+theme_override_styles/focus = SubResource("StyleBoxTexture_owkx4")
+text = "Hard"
+flat = true
+
+[node name="HardcoreButton" type="Button" parent="DifficultyContainer" unique_id=1155599424]
+modulate = Color(0.317647, 0.317647, 0.317647, 1)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../NoButton")
+theme_override_styles/focus = SubResource("StyleBoxTexture_owkx4")
+text = "Hardcore"
+flat = true
+
+[node name="EmptyLabel2" type="Label" parent="DifficultyContainer" unique_id=651887256]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BackFromDifficultyButton" type="Button" parent="DifficultyContainer" unique_id=884604432]
+modulate = Color(0.317647, 0.317647, 0.317647, 1)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../NoButton")
+theme_override_styles/focus = SubResource("StyleBoxTexture_owkx4")
+text = "Back"
+flat = true
+
+[node name="HighlightButtonAnimation" type="AnimationPlayer" parent="." unique_id=130295955]
+root_node = NodePath("../MainMenuContainer")
+libraries/ = SubResource("AnimationLibrary_tsflt")
+
+[node name="LaunchGameSound" type="AudioStreamPlayer" parent="." unique_id=1989833420]
+stream = ExtResource("9_gunmo")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=2100515720]
+stream = ExtResource("4_5ggxs")
+
+[node name="Navigation" type="Control" parent="." unique_id=1999217818]
+z_index = 5
+anchors_preset = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 39.0
+offset_bottom = 39.0
+
+[node name="Sprite" type="Sprite2D" parent="Navigation" unique_id=1306657622]
+position = Vector2(1704, 983)
+texture = ExtResource("7_gueie")
+
+[node name="EscLabel" type="Label" parent="Navigation/Sprite" unique_id=818563324]
+offset_left = 42.0
+offset_top = 26.0
+offset_right = 82.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 11
+text = "ESC"
+
+[node name="EnterLabel" type="Label" parent="Navigation/Sprite" unique_id=1475701592]
+offset_left = 23.0
+offset_top = -8.0
+offset_right = 63.0
+offset_bottom = 14.0
+theme_override_font_sizes/font_size = 11
+text = "Enter"
+
+[node name="Labels" type="VBoxContainer" parent="Navigation" unique_id=1048135885]
+layout_mode = 0
+offset_left = 1775.0
+offset_top = 937.0
+offset_right = 1838.0
+offset_bottom = 1052.0
+theme_override_constants/separation = 12
+
+[node name="Navigate" type="Label" parent="Navigation/Labels" unique_id=1020235064]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "navigate"
+
+[node name="Confirm" type="Label" parent="Navigation/Labels" unique_id=1859101439]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "confirm"
+
+[node name="Back" type="Label" parent="Navigation/Labels" unique_id=1599046714]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "back
+"
+
+[node name="FadeOffSolid" type="ColorRect" parent="." unique_id=180816772]
+modulate = Color(1, 1, 1, 0)
+z_index = 7
+layout_mode = 0
+offset_left = -41.0
+offset_top = -23.000002
+offset_right = 21.0
+offset_bottom = 40.0
+scale = Vector2(32.16, 18.12)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="FadeOffAnimation" type="AnimationPlayer" parent="." unique_id=1191672571]
+libraries/ = SubResource("AnimationLibrary_rbwg7")
+
+[connection signal="focus_entered" from="MainMenuContainer/LoadGameButton" to="." method="_on_load_game_button_focus_entered"]
+[connection signal="mouse_entered" from="MainMenuContainer/LoadGameButton" to="." method="_on_load_game_button_mouse_entered"]
+[connection signal="pressed" from="MainMenuContainer/LoadGameButton" to="." method="_on_load_game_button_pressed"]
+[connection signal="focus_entered" from="MainMenuContainer/NewGameButton" to="." method="_on_new_game_button_focus_entered"]
+[connection signal="mouse_entered" from="MainMenuContainer/NewGameButton" to="." method="_on_new_game_button_mouse_entered"]
+[connection signal="pressed" from="MainMenuContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="focus_entered" from="MainMenuContainer/OptionsButton" to="." method="_on_options_button_focus_entered"]
+[connection signal="mouse_entered" from="MainMenuContainer/OptionsButton" to="." method="_on_options_button_mouse_entered"]
+[connection signal="focus_entered" from="MainMenuContainer/ExitButton" to="." method="_on_exit_button_focus_entered"]
+[connection signal="mouse_entered" from="MainMenuContainer/ExitButton" to="." method="_on_exit_button_mouse_entered"]
+[connection signal="pressed" from="MainMenuContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="focus_entered" from="SaveSlotsContainer/SaveSlot1" to="." method="_on_save_slot_1_focus_entered"]
+[connection signal="mouse_entered" from="SaveSlotsContainer/SaveSlot1" to="." method="_on_save_slot_1_mouse_entered"]
+[connection signal="pressed" from="SaveSlotsContainer/SaveSlot1" to="." method="_on_save_slot_1_pressed"]
+[connection signal="focus_entered" from="SaveSlotsContainer/SaveSlot2" to="." method="_on_save_slot_2_focus_entered"]
+[connection signal="mouse_entered" from="SaveSlotsContainer/SaveSlot2" to="." method="_on_save_slot_2_mouse_entered"]
+[connection signal="pressed" from="SaveSlotsContainer/SaveSlot2" to="." method="_on_save_slot_2_pressed"]
+[connection signal="focus_entered" from="SaveSlotsContainer/SaveSlot3" to="." method="_on_save_slot_3_focus_entered"]
+[connection signal="mouse_entered" from="SaveSlotsContainer/SaveSlot3" to="." method="_on_save_slot_3_mouse_entered"]
+[connection signal="pressed" from="SaveSlotsContainer/SaveSlot3" to="." method="_on_save_slot_3_pressed"]
+[connection signal="focus_entered" from="SaveSlotsContainer/BackFromSaveSlotsButton" to="." method="_on_back_from_save_slots_button_focus_entered"]
+[connection signal="mouse_entered" from="SaveSlotsContainer/BackFromSaveSlotsButton" to="." method="_on_back_from_save_slots_button_mouse_entered"]
+[connection signal="pressed" from="SaveSlotsContainer/BackFromSaveSlotsButton" to="." method="_on_back_from_save_slots_button_pressed"]
+[connection signal="focus_entered" from="OverwriteContainer/YesOrNoContainer/YesButton" to="." method="_on_yes_button_focus_entered"]
+[connection signal="mouse_entered" from="OverwriteContainer/YesOrNoContainer/YesButton" to="." method="_on_yes_button_mouse_entered"]
+[connection signal="pressed" from="OverwriteContainer/YesOrNoContainer/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="focus_entered" from="OverwriteContainer/YesOrNoContainer/NoButton" to="." method="_on_no_button_focus_entered"]
+[connection signal="mouse_entered" from="OverwriteContainer/YesOrNoContainer/NoButton" to="." method="_on_no_button_mouse_entered"]
+[connection signal="pressed" from="OverwriteContainer/YesOrNoContainer/NoButton" to="." method="_on_no_button_pressed"]
+[connection signal="focus_entered" from="DifficultyContainer/EasyButton" to="." method="_on_easy_button_focus_entered"]
+[connection signal="mouse_entered" from="DifficultyContainer/EasyButton" to="." method="_on_easy_button_mouse_entered"]
+[connection signal="pressed" from="DifficultyContainer/EasyButton" to="." method="_on_easy_button_pressed"]
+[connection signal="focus_entered" from="DifficultyContainer/MediumButton" to="." method="_on_medium_button_focus_entered"]
+[connection signal="mouse_entered" from="DifficultyContainer/MediumButton" to="." method="_on_medium_button_mouse_entered"]
+[connection signal="pressed" from="DifficultyContainer/MediumButton" to="." method="_on_medium_button_pressed"]
+[connection signal="focus_entered" from="DifficultyContainer/HardButton" to="." method="_on_hard_button_focus_entered"]
+[connection signal="mouse_entered" from="DifficultyContainer/HardButton" to="." method="_on_hard_button_mouse_entered"]
+[connection signal="pressed" from="DifficultyContainer/HardButton" to="." method="_on_hard_button_pressed"]
+[connection signal="focus_entered" from="DifficultyContainer/HardcoreButton" to="." method="_on_hardcore_button_focus_entered"]
+[connection signal="mouse_entered" from="DifficultyContainer/HardcoreButton" to="." method="_on_hardcore_button_mouse_entered"]
+[connection signal="pressed" from="DifficultyContainer/HardcoreButton" to="." method="_on_hardcore_button_pressed"]
+[connection signal="focus_entered" from="DifficultyContainer/BackFromDifficultyButton" to="." method="_on_back_from_difficulty_button_focus_entered"]
+[connection signal="mouse_entered" from="DifficultyContainer/BackFromDifficultyButton" to="." method="_on_back_from_difficulty_button_mouse_entered"]
+[connection signal="pressed" from="DifficultyContainer/BackFromDifficultyButton" to="." method="_on_back_from_difficulty_button_pressed"]

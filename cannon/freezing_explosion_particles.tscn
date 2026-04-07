@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkwm6stvs4kg6"]
+
+[ext_resource type="Script" uid="uid://4rqtve8dcxpp" path="res://cannon/particles.gd" id="1_sd8wo"]
+[ext_resource type="Texture2D" uid="uid://rvlqs4u35oeu" path="res://upgrade_console/slow_icon.png" id="1_wvr8m"]
+
+[sub_resource type="Curve" id="Curve_diepl"]
+_data = [Vector2(0, -1024), 0.0, 0.0, 0, 0, Vector2(1e-05, 0.428571), 0.0, 0.0, 0, 0, Vector2(0.993421, 0.725275), 0.0, 0.0, 0, 0, Vector2(1, -978.989), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_fv1du"]
+curve = SubResource("Curve_diepl")
+
+[sub_resource type="Curve" id="Curve_goa32"]
+_data = [Vector2(0.0172414, 0), 0.0, 0.0, 0, 0, Vector2(0.230263, 0.494505), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ti66r"]
+curve = SubResource("Curve_goa32")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2pwjh"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(3, 3, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(3, 3, 1)
+emission_ring_height = 6.0
+emission_ring_radius = 2.0
+emission_ring_inner_radius = 4.0
+emission_ring_cone_angle = 90.0
+angle_min = -114.1
+angle_max = 217.3
+angle_curve = SubResource("CurveTexture_fv1du")
+direction = Vector3(0, 0, 0)
+orbit_velocity_min = -0.20299992
+orbit_velocity_max = 0.2130001
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = 4.1699977
+scale_min = 0.0
+scale_max = 0.79999995
+scale_curve = SubResource("CurveTexture_ti66r")
+turbulence_noise_strength = 20.0
+turbulence_noise_scale = 3.062
+
+[node name="FrozenExplosionParticles" type="GPUParticles2D" groups=["VFX"]]
+z_index = 10
+amount = 10
+texture = ExtResource("1_wvr8m")
+lifetime = 2.0
+explosiveness = 0.3
+process_material = SubResource("ParticleProcessMaterial_2pwjh")
+script = ExtResource("1_sd8wo")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="finished" from="." to="." method="_on_finished"]
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

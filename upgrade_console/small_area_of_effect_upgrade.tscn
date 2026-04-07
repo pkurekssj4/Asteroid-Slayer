@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://0cme7jbhsch5"]
+
+[ext_resource type="Script" uid="uid://dhbwbbdfwa0ok" path="res://upgrade_console/upgrade.gd" id="1_i0xho"]
+[ext_resource type="PackedScene" uid="uid://b1jnxtxm4m1sv" path="res://upgrade_console/small_upgrade.tscn" id="1_uxugh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uxugh"]
+radius = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxugh"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0xho"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[node name="SmallAreaOfEffectUpgrade" type="Area2D"]
+script = ExtResource("1_i0xho")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uxugh")
+
+[node name="SmallUpgrade" parent="." instance=ExtResource("1_uxugh")]
+modulate = Color(1, 0.672496, 0.986905, 1)
+
+[node name="PanelShadow" type="Panel" parent="."]
+offset_left = -11.0
+offset_top = -11.0
+offset_right = 11.0
+offset_bottom = 11.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uxugh")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -9.0
+offset_top = -9.0
+offset_right = 9.0
+offset_bottom = 9.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i0xho")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

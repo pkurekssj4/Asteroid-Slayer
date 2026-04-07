@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7rx830bhkfda"]
+
+[ext_resource type="Script" uid="uid://fmjifxqwwiq6" path="res://tooltip_ingame.gd" id="1_0pst3"]
+
+[node name="Tooltip" type="CharacterBody2D"]
+show_behind_parent = true
+z_index = 5
+script = ExtResource("1_0pst3")
+
+[node name="Background" type="ColorRect" parent="."]
+texture_filter = 1
+offset_right = 325.0
+offset_bottom = 112.0
+color = Color(0.092397, 0.0923971, 0.0923971, 1)
+
+[node name="Name" type="RichTextLabel" parent="."]
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 322.0
+offset_bottom = 109.0
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Name"
+
+[node name="Status" type="RichTextLabel" parent="."]
+offset_top = 2.0
+offset_right = 320.0
+offset_bottom = 109.0
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Status"
+horizontal_alignment = 2
+
+[node name="Activator" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Activator" to="." method="_on_activator_timeout"]

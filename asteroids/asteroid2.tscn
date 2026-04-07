@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://yfqb766k4jmo"]
+
+[ext_resource type="Script" uid="uid://cixmuwd75s027" path="res://asteroids/asteroid.gd" id="1_v4328"]
+[ext_resource type="Texture2D" uid="uid://dy8sqbdjs7grb" path="res://asteroids/asteroid2.png" id="2_1yxpi"]
+
+[node name="Asteroid" type="Area2D" groups=["asteroids"]]
+collision_mask = 24
+script = ExtResource("1_v4328")
+
+[node name="Asteroid" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_1yxpi")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1.00001, -1.90735e-06)
+scale = Vector2(5.3, 4.2)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(18, -26, 24, -12, 38, 0, 52, 6, 54, 10, 48, 28, 36, 34, 16, 36, -14, 42, -22, 36, -30, 26, -42, 20, -50, 18, -52, 8, -46, -6, -30, -20, -16, -32, -12, -42, -2, -42, 8, -36)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

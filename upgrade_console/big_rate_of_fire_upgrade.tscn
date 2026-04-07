@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://v80aebol7j4b"]
+
+[ext_resource type="PackedScene" uid="uid://d2kqqcryipmbn" path="res://upgrade_console/big_upgrade.tscn" id="1_dhleb"]
+[ext_resource type="Script" uid="uid://dhbwbbdfwa0ok" path="res://upgrade_console/upgrade.gd" id="1_qdn6e"]
+[ext_resource type="Texture2D" uid="uid://bxh0vfvw5bqhe" path="res://upgrade_console/rate_of_fire_icon.png" id="2_6ivqx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qdn6e"]
+radius = 25.02
+
+[node name="BigRateOfFireUpgrade" type="Area2D"]
+script = ExtResource("1_qdn6e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qdn6e")
+
+[node name="BigUpgrade" parent="." instance=ExtResource("1_dhleb")]
+modulate = Color(0.741176, 0.752941, 0.611765, 1)
+
+[node name="RateOfFireIcon" type="Sprite2D" parent="."]
+position = Vector2(0.25, -2)
+scale = Vector2(0.615, 0.615)
+texture = ExtResource("2_6ivqx")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

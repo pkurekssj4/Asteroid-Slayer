@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://hobswi7ajcd1"]
+
+[ext_resource type="Script" uid="uid://dkvn3d28yvwkh" path="res://progress_bar.gd" id="1_chwcf"]
+
+[node name="ProgressBar" type="ProgressBar" unique_id=1356527832]
+z_index = 11
+offset_left = -174.0
+offset_right = 175.0
+offset_bottom = 23.0
+step = 0.001
+value = 100.0
+show_percentage = false
+script = ExtResource("1_chwcf")
+
+[node name="TimeLeft" type="Label" parent="." unique_id=30934828]
+layout_mode = 0
+offset_top = -2.35
+offset_right = 345.0
+offset_bottom = 24.65
+theme_override_font_sizes/font_size = 12
+text = "0.0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Destination" type="Label" parent="." unique_id=710810398]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -2.35
+offset_right = 349.0
+offset_bottom = 24.65
+theme_override_font_sizes/font_size = 12
+text = "Destination"
+vertical_alignment = 1
+
+[node name="DurationTimer" type="Timer" parent="." unique_id=408534735]
+one_shot = true

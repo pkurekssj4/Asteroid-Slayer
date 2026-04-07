@@ -1,0 +1,15 @@
+CanvasLayer
+Node
+ColorRect
+GPUParticles2D
+RichTextLabel
+Label
+HBoxContainer
+TextureRect
+Sprite2D
+HSplitContainer
+Control
+VBoxContainer
+PointLight2D
+ProgressBar
+AudioStreamPlayer

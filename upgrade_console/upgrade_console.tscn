@@ -1,0 +1,3135 @@
+[gd_scene format=3 uid="uid://cu4ym8ir5d6ci"]
+
+[ext_resource type="Script" uid="uid://btv16bto3necn" path="res://upgrade_console/upgrade_console.gd" id="1_i62da"]
+[ext_resource type="AudioStream" uid="uid://cilhmcw7p6bos" path="res://upgrade_console/ok.mp3" id="2_sirxy"]
+[ext_resource type="Texture2D" uid="uid://dobya57pevlpv" path="res://upgrade_console/arrows.png" id="2_tt3g8"]
+[ext_resource type="AudioStream" uid="uid://bqjj68xjne2xn" path="res://upgrade_console/nok.mp3" id="3_je2i2"]
+[ext_resource type="AudioStream" uid="uid://b2r00smfl1ifs" path="res://upgrade_console/upgrade_console_ambient.mp3" id="5_wvds4"]
+[ext_resource type="AudioStream" uid="uid://pkn07tsa6mkp" path="res://upgrade_console/atmosphere.wav" id="6_wgcu2"]
+[ext_resource type="Texture2D" uid="uid://ns2g5msfgl6f" path="res://upgrade_console/grid_alpha_mask.png" id="7_5868r"]
+[ext_resource type="Texture2D" uid="uid://b7k62fevlnkip" path="res://upgrade_console/background_grid_alpha.png" id="7_h555c"]
+[ext_resource type="AudioStream" uid="uid://cuwxpdvct4um0" path="res://upgrade_console/tree_change.mp3" id="11_nqhre"]
+[ext_resource type="PackedScene" uid="uid://dodyn8owydtvb" path="res://upgrade_console/medium_damage_upgrade.tscn" id="14_fqao0"]
+[ext_resource type="PackedScene" uid="uid://dedqrhfafmjg5" path="res://upgrade_console/medium_area_of_effect_upgrade.tscn" id="15_yckb5"]
+[ext_resource type="PackedScene" uid="uid://3cdeu6o12muo" path="res://upgrade_console/big_area_of_effect_upgrade.tscn" id="17_jm1iu"]
+[ext_resource type="PackedScene" uid="uid://dx02j3hwf8lkn" path="res://upgrade_console/big_damage_upgrade.tscn" id="18_64xfg"]
+[ext_resource type="PackedScene" uid="uid://c1kh26da3864s" path="res://upgrade_console/medium_critical_hit_damage_upgrade.tscn" id="23_h555c"]
+[ext_resource type="PackedScene" uid="uid://cgpm2x7ehj3sp" path="res://upgrade_console/big_projectile_speed_upgrade.tscn" id="27_4ipy7"]
+[ext_resource type="PackedScene" uid="uid://3pygy86elxdt" path="res://upgrade_console/medium_reload_time_upgrade.tscn" id="30_fiuok"]
+[ext_resource type="PackedScene" uid="uid://dq6861eq8ba47" path="res://upgrade_console/medium_capacity_upgrade.tscn" id="31_kegdq"]
+[ext_resource type="AudioStream" uid="uid://k2pjpao6weit" path="res://upgrade_console/openhatch.mp3" id="34_1kwoy"]
+[ext_resource type="PackedScene" uid="uid://v80aebol7j4b" path="res://upgrade_console/big_rate_of_fire_upgrade.tscn" id="34_jcdrn"]
+[ext_resource type="Texture2D" uid="uid://ca5es1l3e44vq" path="res://resource_icons/nano_core.png" id="36_64xfg"]
+[ext_resource type="Texture2D" uid="uid://brist3esqc6q8" path="res://resource_icons/common_shard.png" id="36_by5ii"]
+[ext_resource type="Texture2D" uid="uid://br2ehtg00h2sv" path="res://resource_icons/resource_credit.png" id="36_yckb5"]
+[ext_resource type="PackedScene" uid="uid://dubg41mpjcjtd" path="res://upgrade_console/small_critical_hit_chance_upgrade.tscn" id="37_ofvpo"]
+[ext_resource type="Texture2D" uid="uid://dcfthi00eostr" path="res://resource_icons/celestial_shard.png" id="37_os3sd"]
+[ext_resource type="PackedScene" uid="uid://bxsedpi3cdd8v" path="res://upgrade_console/balancing_upgrade.tscn" id="38_2qmec"]
+[ext_resource type="PackedScene" uid="uid://coxmghm8jno04" path="res://upgrade_console/small_rate_of_fire_upgrade.tscn" id="38_4l4m1"]
+[ext_resource type="Texture2D" uid="uid://cufyy0uk2wlm1" path="res://resource_icons/astral_shard.png" id="38_fc8vu"]
+[ext_resource type="Texture2D" uid="uid://dbweqdopp2rau" path="res://upgrade_console/hatch_upper.png" id="38_jm1iu"]
+[ext_resource type="Texture2D" uid="uid://dllwkqxxak158" path="res://resource_icons/ethereal_shard.png" id="39_1t0gf"]
+[ext_resource type="PackedScene" uid="uid://rhqr43g4f800" path="res://upgrade_console/small_critical_hit_damage_upgrade.tscn" id="39_52vcs"]
+[ext_resource type="Texture2D" uid="uid://d3fvt1p2isj3u" path="res://upgrade_console/hatch_lower.png" id="39_64xfg"]
+[ext_resource type="AudioStream" uid="uid://cntrp2crutub0" path="res://audio/sounds/launch_game.wav" id="41_64xfg"]
+[ext_resource type="Script" uid="uid://cexw8g7u31igu" path="res://upgrade_console/specialisation_plus.gd" id="41_jm1iu"]
+[ext_resource type="Texture2D" uid="uid://dcvh684nee7ht" path="res://cannon/basic_explosion_mask.png" id="42_8p46x"]
+[ext_resource type="PackedScene" uid="uid://c4qn031ghc348" path="res://small_reload_time_upgrade.tscn" id="43_bk27f"]
+[ext_resource type="PackedScene" uid="uid://p8i7gf8ujvyh" path="res://upgrade_console/plasma_barrage_initial_upgrade.tscn" id="43_bpd2l"]
+[ext_resource type="PackedScene" uid="uid://bwifgtgci1lt2" path="res://upgrade_console/medium_extra_resources_upgrade.tscn" id="43_lljwl"]
+[ext_resource type="PackedScene" uid="uid://ccdv5ef0au5rf" path="res://upgrade_console/medium_critical_hit_chance_upgrade.tscn" id="44_c3jep"]
+[ext_resource type="PackedScene" uid="uid://duju418ll7bwa" path="res://upgrade_console/big_critical_hit_damage_upgrade.tscn" id="46_8p46x"]
+[ext_resource type="PackedScene" uid="uid://cieqthkl4frbc" path="res://upgrade_console/big_critical_hit_chance_upgrade.tscn" id="47_8p46x"]
+[ext_resource type="PackedScene" uid="uid://hq7wkhijaitp" path="res://upgrade_console/medium_rate_of_fire_upgrade.tscn" id="48_wvds4"]
+[ext_resource type="PackedScene" uid="uid://de53xcwpw4vu0" path="res://upgrade_console/medium_projectile_speed_upgrade.tscn" id="49_wgcu2"]
+[ext_resource type="PackedScene" uid="uid://b0njdm1ss3pmr" path="res://upgrade_console/small_damage_upgrade.tscn" id="50_4ipy7"]
+[ext_resource type="PackedScene" uid="uid://w0tieyq6xbvo" path="res://upgrade_console/small_pull_force_upgrade.tscn" id="50_lr6ya"]
+[ext_resource type="PackedScene" uid="uid://0cme7jbhsch5" path="res://upgrade_console/small_area_of_effect_upgrade.tscn" id="51_jcdrn"]
+[ext_resource type="PackedScene" uid="uid://bonufuidmt5fw" path="res://upgrade_console/stasis_field_initial_upgrade.tscn" id="51_ofvpo"]
+[ext_resource type="PackedScene" uid="uid://bsms8tsuwnveb" path="res://upgrade_console/orbital_strike_initial_upgrade.tscn" id="52_4l4m1"]
+[ext_resource type="PackedScene" uid="uid://dyclva73wwcl3" path="res://upgrade_console/small_cooldown_and_projectile_speed_upgrade.tscn" id="52_fiuok"]
+[ext_resource type="PackedScene" uid="uid://7d4fgniqen4m" path="res://upgrade_console/big_special_upgrade.tscn" id="52_ltgbh"]
+[ext_resource type="PackedScene" uid="uid://bpq52kmtx0cna" path="res://upgrade_console/small_duration_upgrade.tscn" id="53_kegdq"]
+[ext_resource type="PackedScene" uid="uid://bxnj0vwfuid7a" path="res://upgrade_console/gravity_well_initial_upgrade.tscn" id="54_4l4m1"]
+[ext_resource type="PackedScene" uid="uid://wv4lq04ttwaq" path="res://upgrade_console/big_capacity_upgrade.tscn" id="54_ltgbh"]
+[ext_resource type="PackedScene" uid="uid://j45k4hddq1p7" path="res://upgrade_console/small_slow_upgrade.tscn" id="54_r7who"]
+[ext_resource type="PackedScene" uid="uid://0s15psjdy5rg" path="res://upgrade_console/big_reload_time_upgrade.tscn" id="55_ltgbh"]
+[ext_resource type="PackedScene" uid="uid://c28dn6d7u3m6g" path="res://upgrade_console/small_additional_projectile_or_capacity_upgrade.tscn" id="56_lr6ya"]
+
+[sub_resource type="Environment" id="Environment_6d8u0"]
+background_mode = 3
+tonemap_mode = 1
+tonemap_exposure = 2.0
+glow_enabled = true
+glow_levels/1 = 1.0
+glow_levels/2 = 1.0
+glow_levels/4 = 1.0
+glow_intensity = 2.0
+glow_blend_mode = 4
+
+[sub_resource type="Gradient" id="Gradient_3p1cc"]
+offsets = PackedFloat32Array(0, 0.308081, 0.626263, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0.576, 0.96, 1, 0.619467, 0.276, 0.92, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xfj1c"]
+gradient = SubResource("Gradient_3p1cc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m32pu"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 800, 0)
+emission_shape_scale = Vector3(1800, 500, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, -350, 0)
+scale_max = 11.1
+color = Color(0.886275, 1, 1, 1)
+color_ramp = SubResource("GradientTexture1D_xfj1c")
+turbulence_enabled = true
+turbulence_noise_strength = 0.05
+turbulence_noise_scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rpfqn"]
+bg_color = Color(0, 0, 0, 0.3529412)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qc1n"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yckb5"]
+radius = 23.7697
+
+[sub_resource type="Animation" id="Animation_64xfg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jm1iu"]
+resource_name = "blinking"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.244776, 0.244776, 0.244776, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_64xfg"]
+_data = {
+&"RESET": SubResource("Animation_64xfg"),
+&"blinking": SubResource("Animation_jm1iu")
+}
+
+[sub_resource type="Animation" id="Animation_lr6ya"]
+length = 0.001
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blessings:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ltgbh"]
+resource_name = "default"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blessings:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.188235)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lr6ya"]
+_data = {
+&"RESET": SubResource("Animation_lr6ya"),
+&"default": SubResource("Animation_ltgbh")
+}
+
+[sub_resource type="Animation" id="Animation_ccncu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fadeOffSolid:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6p18r"]
+resource_name = "fade_off"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fadeOffSolid:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4i26q"]
+_data = {
+&"RESET": SubResource("Animation_ccncu"),
+&"fade_off": SubResource("Animation_6p18r")
+}
+
+[node name="UpgradeMenu" type="Control" unique_id=449593326]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_i62da")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1934143882]
+environment = SubResource("Environment_6d8u0")
+
+[node name="Background" type="Control" parent="." unique_id=1988366218]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=1272276845]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.187176, 0.187176, 0.187176, 1)
+metadata/_edit_lock_ = true
+
+[node name="GridAlphaMask" type="Sprite2D" parent="Background" unique_id=986008655]
+position = Vector2(2639.6633, 493.92346)
+rotation = 0.349066
+scale = Vector2(0.36418426, 1)
+texture = ExtResource("7_5868r")
+metadata/_edit_lock_ = true
+
+[node name="BackgroundGridAlpha" type="Sprite2D" parent="Background" unique_id=1498162973]
+modulate = Color(9.62615e-07, 0.5286468, 0.79321027, 1)
+position = Vector2(960, 540)
+texture = ExtResource("7_h555c")
+metadata/_edit_lock_ = true
+
+[node name="Arrows" type="Sprite2D" parent="Background" unique_id=1833529802]
+modulate = Color(1, 1, 1, 0.298039)
+self_modulate = Color(1, 1, 1, 0.470588)
+position = Vector2(1006, 921)
+scale = Vector2(2.25194, 2.14236)
+texture = ExtResource("2_tt3g8")
+metadata/_edit_lock_ = true
+
+[node name="BackgroundParticles" type="GPUParticles2D" parent="Background" unique_id=995010591]
+position = Vector2(995.897, 510.267)
+scale = Vector2(1.47991, 1.51455)
+amount = 31
+lifetime = 30.0
+preprocess = 15.0
+process_material = SubResource("ParticleProcessMaterial_m32pu")
+metadata/_edit_lock_ = true
+
+[node name="UpgradeConsole" type="Label" parent="." unique_id=782383716]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 33.0
+offset_right = 1918.0
+offset_bottom = 75.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Upgrade Console"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="CurentTree" type="Label" parent="." unique_id=885642917]
+layout_mode = 0
+offset_left = 48.0
+offset_top = -38.0
+offset_right = 835.0
+offset_bottom = 156.0
+theme_override_colors/font_color = Color(0.29, 0.29, 0.29, 0.462745)
+theme_override_font_sizes/font_size = 110
+text = "CANNON"
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_lock_ = true
+
+[node name="UpgradeTrees" type="Control" parent="." unique_id=863790450]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
+
+[node name="Cannon" type="Control" parent="UpgradeTrees" unique_id=632973608]
+z_index = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Damage" type="Control" parent="UpgradeTrees/Cannon" unique_id=397269839]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CannonSmallUpgrade0Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=694256074 instance=ExtResource("50_4ipy7")]
+position = Vector2(896, 476)
+
+[node name="CannonSmallUpgrade1Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=45932497 instance=ExtResource("50_4ipy7")]
+position = Vector2(896, 428)
+
+[node name="CannonSmallUpgrade2Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=82354055 instance=ExtResource("50_4ipy7")]
+position = Vector2(872, 380)
+
+[node name="CannonSmallUpgrade3Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=97804772 instance=ExtResource("50_4ipy7")]
+position = Vector2(872, 332)
+
+[node name="CannonSmallUpgrade4Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=1745457317 instance=ExtResource("50_4ipy7")]
+position = Vector2(872, 284)
+
+[node name="CannonSmallUpgrade5AreaOfEffect" parent="UpgradeTrees/Cannon/Damage" unique_id=1559889025 instance=ExtResource("51_jcdrn")]
+position = Vector2(920, 380)
+
+[node name="CannonSmallUpgrade6AreaOfEffect" parent="UpgradeTrees/Cannon/Damage" unique_id=684004201 instance=ExtResource("51_jcdrn")]
+position = Vector2(920, 332)
+
+[node name="CannonSmallUpgrade7AreaOfEffect" parent="UpgradeTrees/Cannon/Damage" unique_id=27669606 instance=ExtResource("51_jcdrn")]
+position = Vector2(920, 284)
+
+[node name="CannonSmallUpgrade8Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=1589868249 instance=ExtResource("50_4ipy7")]
+position = Vector2(896, 236)
+
+[node name="CannonSmallUpgrade9Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=337477915 instance=ExtResource("50_4ipy7")]
+position = Vector2(896, 188)
+
+[node name="CannonMediumUpgrade10SynapticPruning" parent="UpgradeTrees/Cannon/Damage" unique_id=1918421768 instance=ExtResource("38_2qmec")]
+position = Vector2(952, 188)
+
+[node name="CannonSmallUpgrade11Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=438766553 instance=ExtResource("50_4ipy7")]
+position = Vector2(848, 188)
+
+[node name="CannonMediumUpgrade12AreaOfEffect" parent="UpgradeTrees/Cannon/Damage" unique_id=2071599995 instance=ExtResource("15_yckb5")]
+position = Vector2(792, 236)
+
+[node name="CannonMediumUpgrade13FullerPurse" parent="UpgradeTrees/Cannon/Damage" unique_id=1646467537 instance=ExtResource("43_lljwl")]
+position = Vector2(792, 188)
+
+[node name="CannonMediumUpgrade14Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=2014059344 instance=ExtResource("14_fqao0")]
+position = Vector2(792, 140)
+
+[node name="CannonSmallUpgrade15AreaOfEffect" parent="UpgradeTrees/Cannon/Damage" unique_id=88946127 instance=ExtResource("51_jcdrn")]
+position = Vector2(736, 188)
+
+[node name="CannonSmallUpgrade16AreaOfEffect" parent="UpgradeTrees/Cannon/Damage" unique_id=212446189 instance=ExtResource("51_jcdrn")]
+position = Vector2(688, 188)
+
+[node name="CannonSmallUpgrade17AreaOfEffect" parent="UpgradeTrees/Cannon/Damage" unique_id=832057342 instance=ExtResource("51_jcdrn")]
+position = Vector2(640, 188)
+
+[node name="CannonMediumUpgrade18ImpressiveDedication" parent="UpgradeTrees/Cannon/Damage" unique_id=677666493 instance=ExtResource("38_2qmec")]
+position = Vector2(584, 188)
+
+[node name="CannonSmallUpgrade19AreaOfEffect" parent="UpgradeTrees/Cannon/Damage" unique_id=600112157 instance=ExtResource("51_jcdrn")]
+position = Vector2(640, 236)
+
+[node name="CannonMediumUpgrade20Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=1673051402 instance=ExtResource("14_fqao0")]
+position = Vector2(592, 292)
+
+[node name="CannonMediumUpgrade21FullerPurse" parent="UpgradeTrees/Cannon/Damage" unique_id=459848627 instance=ExtResource("43_lljwl")]
+position = Vector2(640, 292)
+
+[node name="CannonMediumUpgrade22AreaOfEffect" parent="UpgradeTrees/Cannon/Damage" unique_id=47087976 instance=ExtResource("15_yckb5")]
+position = Vector2(688, 292)
+
+[node name="CannonSmallUpgrade23Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=1989218377 instance=ExtResource("50_4ipy7")]
+position = Vector2(640, 348)
+
+[node name="CannonSmallUpgrade24Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=494189404 instance=ExtResource("50_4ipy7")]
+position = Vector2(640, 396)
+
+[node name="CannonMediumUpgrade25HeavyCalibration" parent="UpgradeTrees/Cannon/Damage" unique_id=1676307084 instance=ExtResource("38_2qmec")]
+position = Vector2(696, 396)
+
+[node name="CannonSmallUpgrade26Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=1889789067 instance=ExtResource("50_4ipy7")]
+position = Vector2(592, 396)
+
+[node name="CannonSmallUpgrade27Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=1258592093 instance=ExtResource("50_4ipy7")]
+position = Vector2(544, 396)
+
+[node name="CannonSmallUpgrade28Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=1199857911 instance=ExtResource("50_4ipy7")]
+position = Vector2(496, 436)
+
+[node name="CannonMediumUpgrade29Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=314114628 instance=ExtResource("14_fqao0")]
+position = Vector2(448, 460)
+
+[node name="CannonBigUpgrade30Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=1133105614 instance=ExtResource("18_64xfg")]
+position = Vector2(384, 460)
+
+[node name="CannonMediumUpgrade31FullerPurse" parent="UpgradeTrees/Cannon/Damage" unique_id=1139373276 instance=ExtResource("43_lljwl")]
+position = Vector2(385, 396)
+
+[node name="CannonMediumUpgrade32ReclaimedRoots" parent="UpgradeTrees/Cannon/Damage" unique_id=188995460 instance=ExtResource("38_2qmec")]
+position = Vector2(448, 396)
+
+[node name="CannonMediumUpgrade33Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=436746112 instance=ExtResource("14_fqao0")]
+position = Vector2(320, 460)
+
+[node name="CannonSmallUpgrade34Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=757238650 instance=ExtResource("50_4ipy7")]
+position = Vector2(272, 428)
+
+[node name="CannonSmallUpgrade35Damage" parent="UpgradeTrees/Cannon/Damage" unique_id=1517183147 instance=ExtResource("50_4ipy7")]
+position = Vector2(224, 428)
+
+[node name="CannonBigUpgrade36ExposedWeakness" parent="UpgradeTrees/Cannon/Damage" unique_id=392595842 instance=ExtResource("52_ltgbh")]
+position = Vector2(160, 428)
+
+[node name="CannonSmallUpgrade37AreaOfEffect" parent="UpgradeTrees/Cannon/Damage" unique_id=14440981 instance=ExtResource("51_jcdrn")]
+position = Vector2(496, 356)
+
+[node name="CannonMediumUpgrade38AreaOfEffect" parent="UpgradeTrees/Cannon/Damage" unique_id=1694920278 instance=ExtResource("15_yckb5")]
+position = Vector2(448, 332)
+
+[node name="CannonBigUpgrade39AreaOfEffect" parent="UpgradeTrees/Cannon/Damage" unique_id=1198575820 instance=ExtResource("17_jm1iu")]
+position = Vector2(384, 332)
+
+[node name="CannonMediumUpgrade40FearlessPioneer" parent="UpgradeTrees/Cannon/Damage" unique_id=809232155 instance=ExtResource("38_2qmec")]
+position = Vector2(320, 396)
+
+[node name="CannonMediumUpgrade41AreaOfEffect" parent="UpgradeTrees/Cannon/Damage" unique_id=1245456263 instance=ExtResource("15_yckb5")]
+position = Vector2(320, 332)
+
+[node name="CannonSmallUpgrade42AreaOfEffect" parent="UpgradeTrees/Cannon/Damage" unique_id=1772593678 instance=ExtResource("51_jcdrn")]
+position = Vector2(272, 356)
+
+[node name="CannonSmallUpgrade43AreaOfEffect" parent="UpgradeTrees/Cannon/Damage" unique_id=891639395 instance=ExtResource("51_jcdrn")]
+position = Vector2(224, 356)
+
+[node name="CannonBigUpgrade44WideInnovation" parent="UpgradeTrees/Cannon/Damage" unique_id=77580385 instance=ExtResource("52_ltgbh")]
+position = Vector2(160, 356)
+
+[node name="Critical" type="Control" parent="UpgradeTrees/Cannon" unique_id=300436168]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CannonSmallUpgrade0CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=1048939799 instance=ExtResource("37_ofvpo")]
+position = Vector2(1024, 476)
+
+[node name="CannonSmallUpgrade1CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=775079031 instance=ExtResource("37_ofvpo")]
+position = Vector2(1072, 476)
+
+[node name="CannonSmallUpgrade2CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=1511503733 instance=ExtResource("37_ofvpo")]
+position = Vector2(1120, 476)
+
+[node name="CannonSmallUpgrade3CriticalHitDamage" parent="UpgradeTrees/Cannon/Critical" unique_id=135954066 instance=ExtResource("39_52vcs")]
+position = Vector2(1120, 436)
+
+[node name="CannonSmallUpgrade4CriticalHitDamage" parent="UpgradeTrees/Cannon/Critical" unique_id=1487404211 instance=ExtResource("39_52vcs")]
+position = Vector2(1120, 516)
+
+[node name="CannonSmallUpgrade5CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=1720842938 instance=ExtResource("37_ofvpo")]
+position = Vector2(1168, 476)
+
+[node name="CannonSmallUpgrade6CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=678584492 instance=ExtResource("37_ofvpo")]
+position = Vector2(1216, 476)
+
+[node name="CannonMediumUpgrade7CriticalGambit" parent="UpgradeTrees/Cannon/Critical" unique_id=1570735519 instance=ExtResource("38_2qmec")]
+position = Vector2(1216, 524)
+
+[node name="CannonSmallUpgrade8CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=1351251124 instance=ExtResource("37_ofvpo")]
+position = Vector2(1264, 476)
+
+[node name="CannonMediumUpgrade9RelevantShift" parent="UpgradeTrees/Cannon/Critical" unique_id=1690980964 instance=ExtResource("38_2qmec")]
+position = Vector2(1320, 452)
+
+[node name="CannonMediumUpgrade10CriticalHitDamage" parent="UpgradeTrees/Cannon/Critical" unique_id=1033750958 instance=ExtResource("23_h555c")]
+position = Vector2(1320, 500)
+
+[node name="CannonSmallUpgrade11CriticalHitDamage" parent="UpgradeTrees/Cannon/Critical" unique_id=621667970 instance=ExtResource("39_52vcs")]
+position = Vector2(1376, 476)
+
+[node name="CannonSmallUpgrade12CriticalHitDamage" parent="UpgradeTrees/Cannon/Critical" unique_id=1098314878 instance=ExtResource("39_52vcs")]
+position = Vector2(1424, 476)
+
+[node name="CannonSmallUpgrade13CriticalHitDamage" parent="UpgradeTrees/Cannon/Critical" unique_id=193175098 instance=ExtResource("39_52vcs")]
+position = Vector2(1472, 476)
+
+[node name="CannonSmallUpgrade14CriticalHitDamage" parent="UpgradeTrees/Cannon/Critical" unique_id=493317196 instance=ExtResource("39_52vcs")]
+position = Vector2(1520, 476)
+
+[node name="CannonBigUpgrade15CriticalHitDamage" parent="UpgradeTrees/Cannon/Critical" unique_id=1265457295 instance=ExtResource("46_8p46x")]
+position = Vector2(1576, 444)
+
+[node name="CannonMediumUpgrade16ApexExploration" parent="UpgradeTrees/Cannon/Critical" unique_id=660576794 instance=ExtResource("38_2qmec")]
+position = Vector2(1576, 380)
+
+[node name="CannonSmallUpgrade17CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=1359871467 instance=ExtResource("37_ofvpo")]
+position = Vector2(1632, 388)
+
+[node name="CannonSmallUpgrade18CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=1420453567 instance=ExtResource("37_ofvpo")]
+position = Vector2(1680, 412)
+
+[node name="CannonSmallUpgrade19CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=2037556263 instance=ExtResource("37_ofvpo")]
+position = Vector2(1728, 435)
+
+[node name="CannonBigUpgrade20SealedFate" parent="UpgradeTrees/Cannon/Critical" unique_id=1263622183 instance=ExtResource("52_ltgbh")]
+position = Vector2(1784, 476)
+
+[node name="CannonBigUpgrade21CriticalHitDamage" parent="UpgradeTrees/Cannon/Critical" unique_id=2125462972 instance=ExtResource("46_8p46x")]
+position = Vector2(1576, 508)
+
+[node name="CannonMediumUpgrade22AmplifiedConnection" parent="UpgradeTrees/Cannon/Critical" unique_id=255519574 instance=ExtResource("43_lljwl")]
+position = Vector2(1664, 476)
+
+[node name="CannonMediumUpgrade23NadirExpansion" parent="UpgradeTrees/Cannon/Critical" unique_id=566853032 instance=ExtResource("38_2qmec")]
+position = Vector2(1576, 572)
+
+[node name="CannonSmallUpgrade24CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=1360641123 instance=ExtResource("37_ofvpo")]
+position = Vector2(1632, 564)
+
+[node name="CannonSmallUpgrade25CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=890587085 instance=ExtResource("37_ofvpo")]
+position = Vector2(1680, 540)
+
+[node name="CannonSmallUpgrade26CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=808952624 instance=ExtResource("37_ofvpo")]
+position = Vector2(1728, 515)
+
+[node name="CannonSmallUpgrade27CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=1342640286 instance=ExtResource("37_ofvpo")]
+position = Vector2(1216, 428)
+
+[node name="CannonSmallUpgrade28CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=1882803712 instance=ExtResource("37_ofvpo")]
+position = Vector2(1216, 380)
+
+[node name="CannonMediumUpgrade29CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=1373430475 instance=ExtResource("44_c3jep")]
+position = Vector2(1168, 324)
+
+[node name="CannonMediumUpgrade30FullerPurse" parent="UpgradeTrees/Cannon/Critical" unique_id=1712998402 instance=ExtResource("43_lljwl")]
+position = Vector2(1216, 324)
+
+[node name="CannonMediumUpgrade31CriticalHitDamage" parent="UpgradeTrees/Cannon/Critical" unique_id=243151229 instance=ExtResource("23_h555c")]
+position = Vector2(1264, 324)
+
+[node name="CannonSmallUpgrade32CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=1738044343 instance=ExtResource("37_ofvpo")]
+position = Vector2(1216, 268)
+
+[node name="CannonMediumUpgrade33CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=1959492483 instance=ExtResource("44_c3jep")]
+position = Vector2(1216, 212)
+
+[node name="CannonMediumUpgrade34DevilsBargain" parent="UpgradeTrees/Cannon/Critical" unique_id=1837413714 instance=ExtResource("38_2qmec")]
+position = Vector2(1160, 212)
+
+[node name="CannonSmallUpgrade35CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=1396772112 instance=ExtResource("37_ofvpo")]
+position = Vector2(1272, 212)
+
+[node name="CannonSmallUpgrade36CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=1374532394 instance=ExtResource("37_ofvpo")]
+position = Vector2(1320, 212)
+
+[node name="CannonMediumUpgrade37CriticalHitDamage" parent="UpgradeTrees/Cannon/Critical" unique_id=131009327 instance=ExtResource("23_h555c")]
+position = Vector2(1376, 164)
+
+[node name="CannonMediumUpgrade38AmplifiedConnection" parent="UpgradeTrees/Cannon/Critical" unique_id=1789662341 instance=ExtResource("43_lljwl")]
+position = Vector2(1376, 212)
+
+[node name="CannonMediumUpgrade39CriticalHitChanceUpgrade" parent="UpgradeTrees/Cannon/Critical" unique_id=780962554 instance=ExtResource("44_c3jep")]
+position = Vector2(1376, 260)
+
+[node name="CannonSmallUpgrade40CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=1824461170 instance=ExtResource("37_ofvpo")]
+position = Vector2(1432, 212)
+
+[node name="CannonSmallUpgrade41CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=721687320 instance=ExtResource("37_ofvpo")]
+position = Vector2(1480, 212)
+
+[node name="CannonMediumUpgrade42CalculatedDemolition" parent="UpgradeTrees/Cannon/Critical" unique_id=1652618740 instance=ExtResource("38_2qmec")]
+position = Vector2(1480, 268)
+
+[node name="CannonSmallUpgrade43CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=1911385002 instance=ExtResource("37_ofvpo")]
+position = Vector2(1528, 212)
+
+[node name="CannonBigUpgrade44CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=54488833 instance=ExtResource("47_8p46x")]
+position = Vector2(1592, 212)
+
+[node name="CannonMediumUpgrade45CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=1298766687 instance=ExtResource("44_c3jep")]
+position = Vector2(1656, 212)
+
+[node name="CannonMediumUpgrade46CriticalHitChance" parent="UpgradeTrees/Cannon/Critical" unique_id=505235289 instance=ExtResource("44_c3jep")]
+position = Vector2(1712, 212)
+
+[node name="CannonBigUpgrade47ImminentExecution" parent="UpgradeTrees/Cannon/Critical" unique_id=438587053 instance=ExtResource("52_ltgbh")]
+position = Vector2(1776, 212)
+
+[node name="CannonMediumUpgrade48CriticalHitDamage" parent="UpgradeTrees/Cannon/Critical" unique_id=495381015 instance=ExtResource("23_h555c")]
+position = Vector2(1656, 148)
+
+[node name="CannonSmallUpgrade49CriticalHitDamage" parent="UpgradeTrees/Cannon/Critical" unique_id=1049041569 instance=ExtResource("39_52vcs")]
+position = Vector2(1712, 156)
+
+[node name="CannonMediumUpgrade50CriticalHitDamage" parent="UpgradeTrees/Cannon/Critical" unique_id=2138541536 instance=ExtResource("23_h555c")]
+position = Vector2(1656, 276)
+
+[node name="CannonSmallUpgrade51CriticalHitDamage" parent="UpgradeTrees/Cannon/Critical" unique_id=1921546314 instance=ExtResource("39_52vcs")]
+position = Vector2(1712, 268)
+
+[node name="Capacity" type="Control" parent="UpgradeTrees/Cannon" unique_id=1982248529]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CannonSmallUpgrade0Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=2017719549 instance=ExtResource("56_lr6ya")]
+position = Vector2(896, 604)
+
+[node name="CannonSmallUpgrade1Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=652811589 instance=ExtResource("56_lr6ya")]
+position = Vector2(848, 579)
+
+[node name="CannonSmallUpgrade2Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=738264619 instance=ExtResource("56_lr6ya")]
+position = Vector2(800, 580)
+
+[node name="CannonSmallUpgrade3ReloadTime" parent="UpgradeTrees/Cannon/Capacity" unique_id=348534843 instance=ExtResource("43_bk27f")]
+position = Vector2(848, 628)
+
+[node name="CannonSmallUpgrade4ReloadTime" parent="UpgradeTrees/Cannon/Capacity" unique_id=1454955852 instance=ExtResource("43_bk27f")]
+position = Vector2(800, 628)
+
+[node name="CannonSmallUpgrade5Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=1042920878 instance=ExtResource("56_lr6ya")]
+position = Vector2(752, 604)
+
+[node name="CannonSmallUpgrade6Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=16909984 instance=ExtResource("56_lr6ya")]
+position = Vector2(704, 604)
+
+[node name="CannonMediumUpgrade7ReloadTime" parent="UpgradeTrees/Cannon/Capacity" unique_id=427605187 instance=ExtResource("30_fiuok")]
+position = Vector2(656, 580)
+
+[node name="CannonMediumUpgrade8Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=856274026 instance=ExtResource("31_kegdq")]
+position = Vector2(656, 628)
+
+[node name="CannonSmallUpgrade9ReloadTime" parent="UpgradeTrees/Cannon/Capacity" unique_id=1039515376 instance=ExtResource("43_bk27f")]
+position = Vector2(608, 604)
+
+[node name="CannonSmallUpgrade10ReloadTime" parent="UpgradeTrees/Cannon/Capacity" unique_id=576459446 instance=ExtResource("43_bk27f")]
+position = Vector2(560, 620)
+
+[node name="CannonMediumUpgrade11CriticalGambit" parent="UpgradeTrees/Cannon/Capacity" unique_id=219514635 instance=ExtResource("38_2qmec")]
+position = Vector2(504, 596)
+
+[node name="CannonMediumUpgrade12ReloadTime" parent="UpgradeTrees/Cannon/Capacity" unique_id=1524997954 instance=ExtResource("30_fiuok")]
+position = Vector2(504, 644)
+
+[node name="CannonMediumUpgrade13FullerPurse" parent="UpgradeTrees/Cannon/Capacity" unique_id=2000151996 instance=ExtResource("43_lljwl")]
+position = Vector2(576, 688)
+
+[node name="CannonSmallUpgrade14ReloadTime" parent="UpgradeTrees/Cannon/Capacity" unique_id=1005235154 instance=ExtResource("43_bk27f")]
+position = Vector2(448, 620)
+
+[node name="CannonSmallUpgrade15ReloadTime" parent="UpgradeTrees/Cannon/Capacity" unique_id=2123828679 instance=ExtResource("43_bk27f")]
+position = Vector2(400, 636)
+
+[node name="CannonMediumUpgrade16CriticalGambit" parent="UpgradeTrees/Cannon/Capacity" unique_id=1037926265 instance=ExtResource("38_2qmec")]
+position = Vector2(344, 612)
+
+[node name="CannonMediumUpgrade17ReloadTime" parent="UpgradeTrees/Cannon/Capacity" unique_id=79572282 instance=ExtResource("30_fiuok")]
+position = Vector2(344, 660)
+
+[node name="CannonMediumUpgrade18FullerPurse" parent="UpgradeTrees/Cannon/Capacity" unique_id=945911238 instance=ExtResource("43_lljwl")]
+position = Vector2(432, 688)
+
+[node name="CannonSmallUpgrade19Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=382468229 instance=ExtResource("56_lr6ya")]
+position = Vector2(288, 636)
+
+[node name="CannonSmallUpgrade20Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=333659160 instance=ExtResource("56_lr6ya")]
+position = Vector2(240, 652)
+
+[node name="CannonBigUpgrade21ReloadTime" parent="UpgradeTrees/Cannon/Capacity" unique_id=1503589363 instance=ExtResource("55_ltgbh")]
+position = Vector2(184, 652)
+
+[node name="CannonBigUpgrade22Euphoria" parent="UpgradeTrees/Cannon/Capacity" unique_id=1729145006 instance=ExtResource("52_ltgbh")]
+position = Vector2(120, 660)
+
+[node name="CannonSmallUpgrade23Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=2000894705 instance=ExtResource("56_lr6ya")]
+position = Vector2(656, 676)
+
+[node name="CannonSmallUpgrade24Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=1983251858 instance=ExtResource("56_lr6ya")]
+position = Vector2(656, 724)
+
+[node name="CannonSmallUpgrade25Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=1927689010 instance=ExtResource("56_lr6ya")]
+position = Vector2(656, 772)
+
+[node name="CannonMediumUpgrade26HolisticImbalance" parent="UpgradeTrees/Cannon/Capacity" unique_id=2124048115 instance=ExtResource("38_2qmec")]
+position = Vector2(712, 772)
+
+[node name="CannonSmallUpgrade27Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=1242294194 instance=ExtResource("56_lr6ya")]
+position = Vector2(608, 772)
+
+[node name="CannonSmallUpgrade28Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=1621190075 instance=ExtResource("56_lr6ya")]
+position = Vector2(560, 756)
+
+[node name="CannonMediumUpgrade29Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=1669259007 instance=ExtResource("31_kegdq")]
+position = Vector2(504, 732)
+
+[node name="CannonMediumUpgrade30MultipliedEnergyRedirection" parent="UpgradeTrees/Cannon/Capacity" unique_id=2115115996 instance=ExtResource("38_2qmec")]
+position = Vector2(504, 780)
+
+[node name="CannonSmallUpgrade31Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=1979841159 instance=ExtResource("56_lr6ya")]
+position = Vector2(448, 756)
+
+[node name="CannonSmallUpgrade32Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=1433805199 instance=ExtResource("56_lr6ya")]
+position = Vector2(400, 740)
+
+[node name="CannonMediumUpgrade33Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=1903845992 instance=ExtResource("31_kegdq")]
+position = Vector2(344, 716)
+
+[node name="CannonMediumUpgrade34CriticalGambit" parent="UpgradeTrees/Cannon/Capacity" unique_id=619850343 instance=ExtResource("38_2qmec")]
+position = Vector2(344, 764)
+
+[node name="CannonSmallUpgrade35ReloadTime" parent="UpgradeTrees/Cannon/Capacity" unique_id=2033032071 instance=ExtResource("43_bk27f")]
+position = Vector2(288, 740)
+
+[node name="CannonSmallUpgrade36ReloadTime" parent="UpgradeTrees/Cannon/Capacity" unique_id=303002232 instance=ExtResource("43_bk27f")]
+position = Vector2(240, 724)
+
+[node name="CannonBigUpgrade37Capacity" parent="UpgradeTrees/Cannon/Capacity" unique_id=1027189497 instance=ExtResource("54_ltgbh")]
+position = Vector2(184, 724)
+
+[node name="CannonBigUpgrade38WideInnovation" parent="UpgradeTrees/Cannon/Capacity" unique_id=249377507 instance=ExtResource("52_ltgbh")]
+position = Vector2(120, 716)
+
+[node name="Speed" type="Control" parent="UpgradeTrees/Cannon" unique_id=1032555313]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CannonSmallUpgrade0RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1720082072 instance=ExtResource("38_4l4m1")]
+position = Vector2(1024, 604)
+
+[node name="CannonSmallUpgrade1RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=23444226 instance=ExtResource("38_4l4m1")]
+position = Vector2(1000, 652)
+
+[node name="CannonSmallUpgrade2RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1368122082 instance=ExtResource("38_4l4m1")]
+position = Vector2(1000, 700)
+
+[node name="CannonSmallUpgrade3ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=870693737 instance=ExtResource("52_fiuok")]
+position = Vector2(1048, 652)
+
+[node name="CannonSmallUpgrade4ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=37212719 instance=ExtResource("52_fiuok")]
+position = Vector2(1048, 700)
+
+[node name="CannonSmallUpgrade5RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1698830296 instance=ExtResource("38_4l4m1")]
+position = Vector2(1024, 748)
+
+[node name="CannonSmallUpgrade6RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1065590025 instance=ExtResource("38_4l4m1")]
+position = Vector2(1024, 796)
+
+[node name="CannonMediumUpgrade7CriticalGambit" parent="UpgradeTrees/Cannon/Speed" unique_id=1399403857 instance=ExtResource("38_2qmec")]
+position = Vector2(968, 796)
+
+[node name="CannonSmallUpgrade8RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1893919616 instance=ExtResource("38_4l4m1")]
+position = Vector2(1072, 796)
+
+[node name="CannonMediumUpgrade9RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=578098195 instance=ExtResource("48_wvds4")]
+position = Vector2(1128, 748)
+
+[node name="CannonMediumUpgrade10FullerPurse" parent="UpgradeTrees/Cannon/Speed" unique_id=857586945 instance=ExtResource("43_lljwl")]
+position = Vector2(1128, 796)
+
+[node name="CannonMediumUpgrade11ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=675200346 instance=ExtResource("49_wgcu2")]
+position = Vector2(1128, 844)
+
+[node name="CannonSmallUpgrade12ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=1601943051 instance=ExtResource("52_fiuok")]
+position = Vector2(1184, 796)
+
+[node name="CannonSmallUpgrade13ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=1831894050 instance=ExtResource("52_fiuok")]
+position = Vector2(1232, 796)
+
+[node name="CannonSmallUpgrade14ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=2135303872 instance=ExtResource("52_fiuok")]
+position = Vector2(1264, 764)
+
+[node name="CannonSmallUpgrade15ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=1471329633 instance=ExtResource("52_fiuok")]
+position = Vector2(1296, 732)
+
+[node name="CannonMediumUpgrade16ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=116608002 instance=ExtResource("49_wgcu2")]
+position = Vector2(1336, 700)
+
+[node name="CannonMediumUpgrade17KineticTransfer" parent="UpgradeTrees/Cannon/Speed" unique_id=1252102276 instance=ExtResource("38_2qmec")]
+position = Vector2(1336, 772)
+
+[node name="CannonSmallUpgrade18ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=1576841673 instance=ExtResource("52_fiuok")]
+position = Vector2(1376, 732)
+
+[node name="CannonSmallUpgrade19ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=1125627833 instance=ExtResource("52_fiuok")]
+position = Vector2(1408, 764)
+
+[node name="CannonSmallUpgrade20RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1001405316 instance=ExtResource("38_4l4m1")]
+position = Vector2(1440, 796)
+
+[node name="CannonSmallUpgrade21RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=953342772 instance=ExtResource("38_4l4m1")]
+position = Vector2(1264, 828)
+
+[node name="CannonSmallUpgrade22RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1534422126 instance=ExtResource("38_4l4m1")]
+position = Vector2(1296, 860)
+
+[node name="CannonMediumUpgrade23RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1134609068 instance=ExtResource("48_wvds4")]
+position = Vector2(1336, 892)
+
+[node name="CannonMediumUpgrade24CriticalGambit" parent="UpgradeTrees/Cannon/Speed" unique_id=786607359 instance=ExtResource("38_2qmec")]
+position = Vector2(1336, 820)
+
+[node name="CannonSmallUpgrade25RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1861338165 instance=ExtResource("38_4l4m1")]
+position = Vector2(1376, 860)
+
+[node name="CannonSmallUpgrade26RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1646969432 instance=ExtResource("38_4l4m1")]
+position = Vector2(1408, 828)
+
+[node name="CannonSmallUpgrade27RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=911141607 instance=ExtResource("38_4l4m1")]
+position = Vector2(1488, 796)
+
+[node name="CannonSmallUpgrade28ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=366901936 instance=ExtResource("52_fiuok")]
+position = Vector2(1536, 772)
+
+[node name="CannonSmallUpgrade29ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=73197227 instance=ExtResource("52_fiuok")]
+position = Vector2(1552, 724)
+
+[node name="CannonMediumUpgrade30ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=702067470 instance=ExtResource("49_wgcu2")]
+position = Vector2(1608, 724)
+
+[node name="CannonMediumUpgrade31CriticalGambit" parent="UpgradeTrees/Cannon/Speed" unique_id=1473934501 instance=ExtResource("38_2qmec")]
+position = Vector2(1584, 668)
+
+[node name="CannonMediumUpgrade32FullerPurse" parent="UpgradeTrees/Cannon/Speed" unique_id=1282183875 instance=ExtResource("43_lljwl")]
+position = Vector2(1632, 668)
+
+[node name="CannonMediumUpgrade33ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=1860384479 instance=ExtResource("49_wgcu2")]
+position = Vector2(1664, 740)
+
+[node name="CannonBigUpgrade34ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=2110989508 instance=ExtResource("27_4ipy7")]
+position = Vector2(1728, 756)
+
+[node name="CannonBigUpgrade35WideInnovation" parent="UpgradeTrees/Cannon/Speed" unique_id=1965208989 instance=ExtResource("52_ltgbh")]
+position = Vector2(1792, 764)
+
+[node name="CannonSmallUpgrade36RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=958435386 instance=ExtResource("38_4l4m1")]
+position = Vector2(1536, 820)
+
+[node name="CannonSmallUpgrade37RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=2082168184 instance=ExtResource("38_4l4m1")]
+position = Vector2(1552, 868)
+
+[node name="CannonMediumUpgrade38RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=649999508 instance=ExtResource("48_wvds4")]
+position = Vector2(1608, 868)
+
+[node name="CannonMediumUpgrade39CriticalGambit" parent="UpgradeTrees/Cannon/Speed" unique_id=1772600522 instance=ExtResource("38_2qmec")]
+position = Vector2(1584, 924)
+
+[node name="CannonMediumUpgrade40FullerPurse" parent="UpgradeTrees/Cannon/Speed" unique_id=1248724402 instance=ExtResource("43_lljwl")]
+position = Vector2(1632, 924)
+
+[node name="CannonMediumUpgrade41RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=134788322 instance=ExtResource("48_wvds4")]
+position = Vector2(1664, 852)
+
+[node name="CannonBigUpgrade42RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=953344028 instance=ExtResource("34_jcdrn")]
+position = Vector2(1728, 836)
+
+[node name="CannonBigUpgrade43WideInnovation" parent="UpgradeTrees/Cannon/Speed" unique_id=656712165 instance=ExtResource("52_ltgbh")]
+position = Vector2(1792, 828)
+
+[node name="Base" type="Control" parent="UpgradeTrees" unique_id=1089336537]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LeftLaserTurret" type="Control" parent="UpgradeTrees/Base" unique_id=557597819]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LeftPulseBarrier" type="Control" parent="UpgradeTrees/Base" unique_id=331461931]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RightLaserTurret" type="Control" parent="UpgradeTrees/Base" unique_id=913020063]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RightPulseBarrier" type="Control" parent="UpgradeTrees/Base" unique_id=1167137533]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Abilities" type="Control" parent="UpgradeTrees" unique_id=1937599258]
+visible = false
+z_index = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Ability1" type="Control" parent="UpgradeTrees/Abilities" unique_id=2130126741]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="PlasmaBarrageBigUpgrade0Initial" parent="UpgradeTrees/Abilities/Ability1" unique_id=932186756 instance=ExtResource("43_bpd2l")]
+position = Vector2(880, 460)
+
+[node name="PlasmaBarrageSmallUpgrade1Damage" parent="UpgradeTrees/Abilities/Ability1" unique_id=767522040 instance=ExtResource("50_4ipy7")]
+position = Vector2(880, 396)
+
+[node name="PlasmaBarrageSmallUpgrade2Damage" parent="UpgradeTrees/Abilities/Ability1" unique_id=1092128267 instance=ExtResource("50_4ipy7")]
+position = Vector2(880, 348)
+
+[node name="PlasmaBarrageSmallUpgrade3Damage" parent="UpgradeTrees/Abilities/Ability1" unique_id=739861565 instance=ExtResource("50_4ipy7")]
+position = Vector2(880, 300)
+
+[node name="PlasmaBarrageSmallUpgrade4Projectiles" parent="UpgradeTrees/Abilities/Ability1" unique_id=298180719 instance=ExtResource("56_lr6ya")]
+position = Vector2(880, 252)
+
+[node name="PlasmaBarrageSmallUpgrade5AreaOfEffect" parent="UpgradeTrees/Abilities/Ability1" unique_id=423595479 instance=ExtResource("51_jcdrn")]
+position = Vector2(824, 324)
+
+[node name="PlasmaBarrageSmallUpgrade6AreaOfEffect" parent="UpgradeTrees/Abilities/Ability1" unique_id=639535684 instance=ExtResource("51_jcdrn")]
+position = Vector2(824, 276)
+
+[node name="PlasmaBarrageSmallUpgrade7Cooldown" parent="UpgradeTrees/Abilities/Ability1" unique_id=205683002 instance=ExtResource("52_fiuok")]
+position = Vector2(936, 324)
+
+[node name="PlasmaBarrageSmallUpgrade8Cooldown" parent="UpgradeTrees/Abilities/Ability1" unique_id=1029775255 instance=ExtResource("52_fiuok")]
+position = Vector2(936, 276)
+
+[node name="PlasmaBarrageSmallUpgrade9Damage" parent="UpgradeTrees/Abilities/Ability1" unique_id=653180049 instance=ExtResource("50_4ipy7")]
+position = Vector2(880, 204)
+
+[node name="PlasmaBarrageSmallUpgrade10Damage" parent="UpgradeTrees/Abilities/Ability1" unique_id=1468801777 instance=ExtResource("50_4ipy7")]
+position = Vector2(880, 156)
+
+[node name="PlasmaBarrageSmallUpgrade11Damage" parent="UpgradeTrees/Abilities/Ability1" unique_id=1338424700 instance=ExtResource("50_4ipy7")]
+position = Vector2(832, 156)
+
+[node name="PlasmaBarrageSmallUpgrade12Projectiles" parent="UpgradeTrees/Abilities/Ability1" unique_id=1355663999 instance=ExtResource("56_lr6ya")]
+position = Vector2(784, 156)
+
+[node name="PlasmaBarrageSmallUpgrade13Damage" parent="UpgradeTrees/Abilities/Ability1" unique_id=850166957 instance=ExtResource("50_4ipy7")]
+position = Vector2(736, 156)
+
+[node name="PlasmaBarrageSmallUpgrade14Damage" parent="UpgradeTrees/Abilities/Ability1" unique_id=299269600 instance=ExtResource("50_4ipy7")]
+position = Vector2(688, 156)
+
+[node name="PlasmaBarrageSmallUpgrade15Damage" parent="UpgradeTrees/Abilities/Ability1" unique_id=246232645 instance=ExtResource("50_4ipy7")]
+position = Vector2(640, 156)
+
+[node name="PlasmaBarrageSmallUpgrade16Projectiles" parent="UpgradeTrees/Abilities/Ability1" unique_id=550168767 instance=ExtResource("56_lr6ya")]
+position = Vector2(640, 204)
+
+[node name="PlasmaBarrageSmallUpgrade17AreaOfEffect" parent="UpgradeTrees/Abilities/Ability1" unique_id=753634862 instance=ExtResource("51_jcdrn")]
+position = Vector2(592, 252)
+
+[node name="PlasmaBarrageSmallUpgrade18AreaOfEffect" parent="UpgradeTrees/Abilities/Ability1" unique_id=1484653404 instance=ExtResource("51_jcdrn")]
+position = Vector2(544, 252)
+
+[node name="PlasmaBarrageSmallUpgrade19AreaOfEffect" parent="UpgradeTrees/Abilities/Ability1" unique_id=891180749 instance=ExtResource("51_jcdrn")]
+position = Vector2(568, 300)
+
+[node name="PlasmaBarrageSmallUpgrade20AreaOfEffect" parent="UpgradeTrees/Abilities/Ability1" unique_id=1812863234 instance=ExtResource("51_jcdrn")]
+position = Vector2(592, 348)
+
+[node name="PlasmaBarrageSmallUpgrade21Cooldown" parent="UpgradeTrees/Abilities/Ability1" unique_id=1795396577 instance=ExtResource("52_fiuok")]
+position = Vector2(688, 252)
+
+[node name="PlasmaBarrageSmallUpgrade22Cooldown" parent="UpgradeTrees/Abilities/Ability1" unique_id=786215216 instance=ExtResource("52_fiuok")]
+position = Vector2(736, 252)
+
+[node name="PlasmaBarrageSmallUpgrade23Cooldown" parent="UpgradeTrees/Abilities/Ability1" unique_id=173894534 instance=ExtResource("52_fiuok")]
+position = Vector2(712, 300)
+
+[node name="PlasmaBarrageSmallUpgrade24Cooldown" parent="UpgradeTrees/Abilities/Ability1" unique_id=1593410834 instance=ExtResource("52_fiuok")]
+position = Vector2(688, 348)
+
+[node name="PlasmaBarrageSmallUpgrade25Projectiles" parent="UpgradeTrees/Abilities/Ability1" unique_id=1189635028 instance=ExtResource("56_lr6ya")]
+position = Vector2(640, 396)
+
+[node name="PlasmaBarrageSmallUpgrade26Damage" parent="UpgradeTrees/Abilities/Ability1" unique_id=1878857435 instance=ExtResource("50_4ipy7")]
+position = Vector2(640, 444)
+
+[node name="PlasmaBarrageSmallUpgrade27Damage" parent="UpgradeTrees/Abilities/Ability1" unique_id=345764331 instance=ExtResource("50_4ipy7")]
+position = Vector2(592, 444)
+
+[node name="PlasmaBarrageSmallUpgrade28Damage" parent="UpgradeTrees/Abilities/Ability1" unique_id=112387846 instance=ExtResource("50_4ipy7")]
+position = Vector2(544, 444)
+
+[node name="PlasmaBarrageSmallUpgrade29Projectiles" parent="UpgradeTrees/Abilities/Ability1" unique_id=777237262 instance=ExtResource("56_lr6ya")]
+position = Vector2(496, 444)
+
+[node name="PlasmaBarrageSmallUpgrade30Damage" parent="UpgradeTrees/Abilities/Ability1" unique_id=851294111 instance=ExtResource("50_4ipy7")]
+position = Vector2(448, 444)
+
+[node name="PlasmaBarrageSmallUpgrade31Damage" parent="UpgradeTrees/Abilities/Ability1" unique_id=976823271 instance=ExtResource("50_4ipy7")]
+position = Vector2(400, 444)
+
+[node name="PlasmaBarrageSmallUpgrade32Damage" parent="UpgradeTrees/Abilities/Ability1" unique_id=1240299785 instance=ExtResource("50_4ipy7")]
+position = Vector2(352, 444)
+monitoring = true
+monitorable = true
+
+[node name="PlasmaBarrageSmallUpgrade33Projectiles" parent="UpgradeTrees/Abilities/Ability1" unique_id=908395921 instance=ExtResource("56_lr6ya")]
+position = Vector2(304, 444)
+
+[node name="PlasmaBarrageSmallUpgrade34AreaOfEffect" parent="UpgradeTrees/Abilities/Ability1" unique_id=847561519 instance=ExtResource("51_jcdrn")]
+position = Vector2(304, 396)
+
+[node name="PlasmaBarrageSmallUpgrade35AreaOfEffect" parent="UpgradeTrees/Abilities/Ability1" unique_id=1019794069 instance=ExtResource("51_jcdrn")]
+position = Vector2(304, 492)
+
+[node name="PlasmaBarrageBigUpgrade36Special" parent="UpgradeTrees/Abilities/Ability1" unique_id=375109082 instance=ExtResource("52_ltgbh")]
+position = Vector2(240, 444)
+
+[node name="Ability2" type="Control" parent="UpgradeTrees/Abilities" unique_id=1067017305]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="StasisFieldBigUpgrade0Initial" parent="UpgradeTrees/Abilities/Ability2" unique_id=322382599 instance=ExtResource("51_ofvpo")]
+position = Vector2(1040, 620)
+
+[node name="StasisFieldSmallUpgrade1Duration" parent="UpgradeTrees/Abilities/Ability2" unique_id=1408328422 instance=ExtResource("53_kegdq")]
+position = Vector2(1104, 620)
+
+[node name="StasisFieldSmallUpgrade2Duration" parent="UpgradeTrees/Abilities/Ability2" unique_id=1730828594 instance=ExtResource("53_kegdq")]
+position = Vector2(1152, 620)
+
+[node name="StasisFieldSmallUpgrade3Slow" parent="UpgradeTrees/Abilities/Ability2" unique_id=1369958704 instance=ExtResource("54_r7who")]
+position = Vector2(1200, 596)
+
+[node name="StasisFieldSmallUpgrade4Slow" parent="UpgradeTrees/Abilities/Ability2" unique_id=1397234607 instance=ExtResource("54_r7who")]
+position = Vector2(1248, 596)
+
+[node name="StasisFieldSmallUpgrade5Slow" parent="UpgradeTrees/Abilities/Ability2" unique_id=150984790 instance=ExtResource("54_r7who")]
+position = Vector2(1296, 596)
+
+[node name="StasisFieldSmallUpgrade6Cooldown" parent="UpgradeTrees/Abilities/Ability2" unique_id=1216567177 instance=ExtResource("52_fiuok")]
+position = Vector2(1200, 644)
+
+[node name="StasisFieldSmallUpgrade7Cooldown" parent="UpgradeTrees/Abilities/Ability2" unique_id=98666479 instance=ExtResource("52_fiuok")]
+position = Vector2(1248, 644)
+
+[node name="StasisFieldSmallUpgrade8Cooldown" parent="UpgradeTrees/Abilities/Ability2" unique_id=200334663 instance=ExtResource("52_fiuok")]
+position = Vector2(1296, 644)
+
+[node name="StasisFieldSmallUpgrade9Duration" parent="UpgradeTrees/Abilities/Ability2" unique_id=934454574 instance=ExtResource("53_kegdq")]
+position = Vector2(1344, 620)
+
+[node name="StasisFieldSmallUpgrade10Duration" parent="UpgradeTrees/Abilities/Ability2" unique_id=662374791 instance=ExtResource("53_kegdq")]
+position = Vector2(1392, 620)
+
+[node name="StasisFieldSmallUpgrade11Cooldown" parent="UpgradeTrees/Abilities/Ability2" unique_id=149896284 instance=ExtResource("52_fiuok")]
+position = Vector2(1440, 596)
+
+[node name="StasisFieldSmallUpgrade12Cooldown" parent="UpgradeTrees/Abilities/Ability2" unique_id=1297834840 instance=ExtResource("52_fiuok")]
+position = Vector2(1488, 596)
+
+[node name="StasisFieldSmallUpgrade13Cooldown" parent="UpgradeTrees/Abilities/Ability2" unique_id=163977632 instance=ExtResource("52_fiuok")]
+position = Vector2(1536, 596)
+
+[node name="StasisFieldSmallUpgrade14Slow" parent="UpgradeTrees/Abilities/Ability2" unique_id=1467061397 instance=ExtResource("54_r7who")]
+position = Vector2(1440, 644)
+
+[node name="StasisFieldSmallUpgrade15Slow" parent="UpgradeTrees/Abilities/Ability2" unique_id=135287192 instance=ExtResource("54_r7who")]
+position = Vector2(1488, 644)
+
+[node name="StasisFieldSmallUpgrade16Slow" parent="UpgradeTrees/Abilities/Ability2" unique_id=1175155503 instance=ExtResource("54_r7who")]
+position = Vector2(1536, 644)
+
+[node name="StasisFieldSmallUpgrade17Duration" parent="UpgradeTrees/Abilities/Ability2" unique_id=609228279 instance=ExtResource("53_kegdq")]
+position = Vector2(1584, 620)
+
+[node name="StasisFieldBigUpgrade18Special" parent="UpgradeTrees/Abilities/Ability2" unique_id=1715151089 instance=ExtResource("52_ltgbh")]
+position = Vector2(1648, 620)
+
+[node name="Ability3" type="Control" parent="UpgradeTrees/Abilities" unique_id=1554239170]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="GravityWellBigUpgrade0Initial" parent="UpgradeTrees/Abilities/Ability3" unique_id=144393316 instance=ExtResource("54_4l4m1")]
+position = Vector2(880, 620)
+
+[node name="GravityWellSmallUpgrade1ExplosionDuration" parent="UpgradeTrees/Abilities/Ability3" unique_id=672843174 instance=ExtResource("53_kegdq")]
+position = Vector2(816, 620)
+
+[node name="GravityWellSmallUpgrade2AreaOfEffect" parent="UpgradeTrees/Abilities/Ability3" unique_id=1967039737 instance=ExtResource("51_jcdrn")]
+position = Vector2(768, 620)
+
+[node name="GravityWellSmallUpgrade3AreaOfEffect" parent="UpgradeTrees/Abilities/Ability3" unique_id=828085297 instance=ExtResource("51_jcdrn")]
+position = Vector2(720, 620)
+
+[node name="GravityWellSmallUpgrade4AreaOfEffect" parent="UpgradeTrees/Abilities/Ability3" unique_id=293162074 instance=ExtResource("51_jcdrn")]
+position = Vector2(672, 620)
+
+[node name="GravityWellSmallUpgrade5Cooldown" parent="UpgradeTrees/Abilities/Ability3" unique_id=1634954635 instance=ExtResource("52_fiuok")]
+position = Vector2(768, 572)
+
+[node name="GravityWellSmallUpgrade6Cooldown" parent="UpgradeTrees/Abilities/Ability3" unique_id=949109761 instance=ExtResource("52_fiuok")]
+position = Vector2(720, 556)
+
+[node name="GravityWellSmallUpgrade7Cooldown" parent="UpgradeTrees/Abilities/Ability3" unique_id=2127837903 instance=ExtResource("52_fiuok")]
+position = Vector2(672, 572)
+
+[node name="GravityWellSmallUpgrade8SlowDuringPullForce" parent="UpgradeTrees/Abilities/Ability3" unique_id=1181538009 instance=ExtResource("54_r7who")]
+position = Vector2(768, 668)
+
+[node name="GravityWellSmallUpgrade9SlowDuringPullForce" parent="UpgradeTrees/Abilities/Ability3" unique_id=590442696 instance=ExtResource("54_r7who")]
+position = Vector2(720, 684)
+
+[node name="GravityWellSmallUpgrade10SlowDuringPullForce" parent="UpgradeTrees/Abilities/Ability3" unique_id=1641045957 instance=ExtResource("54_r7who")]
+position = Vector2(672, 668)
+
+[node name="GravityWellSmallUpgrade11ExplosionDuration" parent="UpgradeTrees/Abilities/Ability3" unique_id=529693088 instance=ExtResource("53_kegdq")]
+position = Vector2(624, 620)
+
+[node name="GravityWellSmallUpgrade12ExplosionDuration" parent="UpgradeTrees/Abilities/Ability3" unique_id=61769538 instance=ExtResource("53_kegdq")]
+position = Vector2(576, 620)
+
+[node name="GravityWellSmallUpgrade13AreaOfEffect" parent="UpgradeTrees/Abilities/Ability3" unique_id=259037956 instance=ExtResource("51_jcdrn")]
+position = Vector2(528, 620)
+
+[node name="GravityWellSmallUpgrade14AreaOfEffect" parent="UpgradeTrees/Abilities/Ability3" unique_id=1097175721 instance=ExtResource("51_jcdrn")]
+position = Vector2(480, 620)
+
+[node name="GravityWellSmallUpgrade15AreaOfEffect" parent="UpgradeTrees/Abilities/Ability3" unique_id=142601306 instance=ExtResource("51_jcdrn")]
+position = Vector2(432, 620)
+
+[node name="GravityWellSmallUpgrade16PullForce" parent="UpgradeTrees/Abilities/Ability3" unique_id=72067660 instance=ExtResource("50_lr6ya")]
+position = Vector2(528, 572)
+
+[node name="GravityWellSmallUpgrade17PullForce" parent="UpgradeTrees/Abilities/Ability3" unique_id=2045144690 instance=ExtResource("50_lr6ya")]
+position = Vector2(480, 556)
+
+[node name="GravityWellSmallUpgrade18PullForce" parent="UpgradeTrees/Abilities/Ability3" unique_id=790701575 instance=ExtResource("50_lr6ya")]
+position = Vector2(432, 572)
+
+[node name="GravityWellSmallUpgrade19Cooldown" parent="UpgradeTrees/Abilities/Ability3" unique_id=238610403 instance=ExtResource("52_fiuok")]
+position = Vector2(528, 668)
+
+[node name="GravityWellSmallUpgrade20Cooldown" parent="UpgradeTrees/Abilities/Ability3" unique_id=1160681272 instance=ExtResource("52_fiuok")]
+position = Vector2(480, 684)
+
+[node name="GravityWellSmallUpgrade21Cooldown" parent="UpgradeTrees/Abilities/Ability3" unique_id=2027445225 instance=ExtResource("52_fiuok")]
+position = Vector2(432, 668)
+
+[node name="GravityWellSmallUpgrade22ExplosionDuration" parent="UpgradeTrees/Abilities/Ability3" unique_id=1020367947 instance=ExtResource("53_kegdq")]
+position = Vector2(384, 620)
+
+[node name="GravityWellSmallUpgrade23SlowDuringPullForce" parent="UpgradeTrees/Abilities/Ability3" unique_id=1423887933 instance=ExtResource("54_r7who")]
+position = Vector2(336, 620)
+
+[node name="GravityWellSmallUpgrade24AreaOfEffect" parent="UpgradeTrees/Abilities/Ability3" unique_id=1091482534 instance=ExtResource("51_jcdrn")]
+position = Vector2(336, 572)
+
+[node name="GravityWellSmallUpgrade25PullForce" parent="UpgradeTrees/Abilities/Ability3" unique_id=1827760446 instance=ExtResource("50_lr6ya")]
+position = Vector2(336, 668)
+
+[node name="GravityWellSmallUpgrade26ExplosionDuration" parent="UpgradeTrees/Abilities/Ability3" unique_id=864215217 instance=ExtResource("53_kegdq")]
+position = Vector2(288, 620)
+
+[node name="GravityWellBigUpgrade27Special" parent="UpgradeTrees/Abilities/Ability3" unique_id=1165570951 instance=ExtResource("52_ltgbh")]
+position = Vector2(224, 620)
+
+[node name="Ability4" type="Control" parent="UpgradeTrees/Abilities" unique_id=857803587]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="OrbitalStrikeBigUpgrade0Initial" parent="UpgradeTrees/Abilities/Ability4" unique_id=529112649 instance=ExtResource("52_4l4m1")]
+position = Vector2(1040, 460)
+
+[node name="OrbitalStrikeSmallUpgrade1Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=124388832 instance=ExtResource("50_4ipy7")]
+position = Vector2(1040, 396)
+
+[node name="OrbitalStrikeSmallUpgrade2Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=1241593427 instance=ExtResource("50_4ipy7")]
+position = Vector2(1040, 348)
+
+[node name="OrbitalStrikeSmallUpgrade3Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=1908009850 instance=ExtResource("50_4ipy7")]
+position = Vector2(1088, 348)
+
+[node name="OrbitalStrikeSmallUpgrade4Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=1325756445 instance=ExtResource("50_4ipy7")]
+position = Vector2(1136, 348)
+
+[node name="OrbitalStrikeSmallUpgrade5Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=1162033601 instance=ExtResource("50_4ipy7")]
+position = Vector2(1184, 348)
+
+[node name="OrbitalStrikeSmallUpgrade6Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=1900220622 instance=ExtResource("50_4ipy7")]
+position = Vector2(1232, 348)
+
+[node name="OrbitalStrikeSmallUpgrade7Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=1961804816 instance=ExtResource("50_4ipy7")]
+position = Vector2(1280, 348)
+
+[node name="OrbitalStrikeSmallUpgrade8AreaOfEffect" parent="UpgradeTrees/Abilities/Ability4" unique_id=1853902461 instance=ExtResource("51_jcdrn")]
+position = Vector2(1160, 300)
+
+[node name="OrbitalStrikeSmallUpgrade9AreaOfEffect" parent="UpgradeTrees/Abilities/Ability4" unique_id=2117828339 instance=ExtResource("51_jcdrn")]
+position = Vector2(1208, 268)
+
+[node name="OrbitalStrikeSmallUpgrade10AreaOfEffect" parent="UpgradeTrees/Abilities/Ability4" unique_id=1975678514 instance=ExtResource("51_jcdrn")]
+position = Vector2(1256, 300)
+
+[node name="OrbitalStrikeSmallUpgrade11Cooldown" parent="UpgradeTrees/Abilities/Ability4" unique_id=1167876367 instance=ExtResource("52_fiuok")]
+position = Vector2(1160, 396)
+
+[node name="OrbitalStrikeSmallUpgrade12Cooldown" parent="UpgradeTrees/Abilities/Ability4" unique_id=846138307 instance=ExtResource("52_fiuok")]
+position = Vector2(1208, 428)
+
+[node name="OrbitalStrikeSmallUpgrade13Cooldown" parent="UpgradeTrees/Abilities/Ability4" unique_id=215075651 instance=ExtResource("52_fiuok")]
+position = Vector2(1256, 396)
+
+[node name="OrbitalStrikeSmallUpgrade14Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=344074402 instance=ExtResource("50_4ipy7")]
+position = Vector2(1328, 348)
+
+[node name="OrbitalStrikeSmallUpgrade15Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=1127420125 instance=ExtResource("50_4ipy7")]
+position = Vector2(1376, 348)
+
+[node name="OrbitalStrikeSmallUpgrade16Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=1162850926 instance=ExtResource("50_4ipy7")]
+position = Vector2(1376, 300)
+
+[node name="OrbitalStrikeSmallUpgrade17Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=491409593 instance=ExtResource("50_4ipy7")]
+position = Vector2(1376, 252)
+
+[node name="OrbitalStrikeSmallUpgrade18AreaOfEffect" parent="UpgradeTrees/Abilities/Ability4" unique_id=674148282 instance=ExtResource("51_jcdrn")]
+position = Vector2(1424, 276)
+
+[node name="OrbitalStrikeSmallUpgrade19AreaOfEffect" parent="UpgradeTrees/Abilities/Ability4" unique_id=1947398126 instance=ExtResource("51_jcdrn")]
+position = Vector2(1472, 300)
+
+[node name="OrbitalStrikeSmallUpgrade20AreaOfEffect" parent="UpgradeTrees/Abilities/Ability4" unique_id=749735642 instance=ExtResource("51_jcdrn")]
+position = Vector2(1520, 324)
+
+[node name="OrbitalStrikeSmallUpgrade21Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=1155981710 instance=ExtResource("50_4ipy7")]
+position = Vector2(1376, 396)
+
+[node name="OrbitalStrikeSmallUpgrade22Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=1493570674 instance=ExtResource("50_4ipy7")]
+position = Vector2(1376, 444)
+
+[node name="OrbitalStrikeSmallUpgrade23Cooldown" parent="UpgradeTrees/Abilities/Ability4" unique_id=531316525 instance=ExtResource("52_fiuok")]
+position = Vector2(1424, 420)
+
+[node name="OrbitalStrikeSmallUpgrade24Cooldown" parent="UpgradeTrees/Abilities/Ability4" unique_id=1474937596 instance=ExtResource("52_fiuok")]
+position = Vector2(1472, 396)
+
+[node name="OrbitalStrikeSmallUpgrade25Cooldown" parent="UpgradeTrees/Abilities/Ability4" unique_id=795268352 instance=ExtResource("52_fiuok")]
+position = Vector2(1520, 372)
+
+[node name="OrbitalStrikeSmallUpgrade26Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=1846350518 instance=ExtResource("50_4ipy7")]
+position = Vector2(1568, 348)
+
+[node name="OrbitalStrikeSmallUpgrade27Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=1149282318 instance=ExtResource("50_4ipy7")]
+position = Vector2(1616, 348)
+
+[node name="OrbitalStrikeSmallUpgrade28Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=1265819711 instance=ExtResource("50_4ipy7")]
+position = Vector2(1616, 300)
+
+[node name="OrbitalStrikeSmallUpgrade29Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=1586720542 instance=ExtResource("50_4ipy7")]
+position = Vector2(1584, 252)
+
+[node name="OrbitalStrikeSmallUpgrade30Damage" parent="UpgradeTrees/Abilities/Ability4" unique_id=1646757998 instance=ExtResource("50_4ipy7")]
+position = Vector2(1584, 204)
+
+[node name="OrbitalStrikeSmallUpgrade31AreaOfEffect" parent="UpgradeTrees/Abilities/Ability4" unique_id=434464164 instance=ExtResource("51_jcdrn")]
+position = Vector2(1648, 252)
+
+[node name="OrbitalStrikeSmallUpgrade32AreaOfEffect" parent="UpgradeTrees/Abilities/Ability4" unique_id=390070404 instance=ExtResource("51_jcdrn")]
+position = Vector2(1648, 204)
+
+[node name="OrbitalStrikeBigUpgrade33Special" parent="UpgradeTrees/Abilities/Ability4" unique_id=545882334 instance=ExtResource("52_ltgbh")]
+position = Vector2(1616, 140)
+
+[node name="Asteroids" type="Control" parent="UpgradeTrees" unique_id=2072167845]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Damage" type="Control" parent="UpgradeTrees/Asteroids" unique_id=1301802128]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Plasma" type="Control" parent="UpgradeTrees/Asteroids" unique_id=128538619]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Slow" type="Control" parent="UpgradeTrees/Asteroids" unique_id=1684340661]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Chromatic" type="Control" parent="UpgradeTrees/Asteroids" unique_id=840596259]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AsteroidsTreeDisabledPanel" type="Control" parent="." unique_id=1873906418]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+
+[node name="MainLabel" type="RichTextLabel" parent="AsteroidsTreeDisabledPanel" unique_id=748570115]
+clip_contents = false
+layout_mode = 0
+offset_top = 455.105
+offset_right = 1920.0
+offset_bottom = 525.1052
+theme_override_font_sizes/normal_font_size = 22
+text = " Dear Commander, we are still gathering information about asteroids. 
+The Tree should be ready to use in very near future."
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExaminationLabel" type="RichTextLabel" parent="AsteroidsTreeDisabledPanel" unique_id=1902973808]
+clip_contents = false
+layout_mode = 0
+offset_top = 543.24
+offset_right = 1920.0
+offset_bottom = 571.24
+theme_override_font_sizes/normal_font_size = 17
+text = "Estimated examination progress"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="AsteroidsTreeDisabledPanel" unique_id=444366627]
+layout_mode = 0
+offset_left = 710.0
+offset_top = 575.715
+offset_right = 1210.0
+offset_bottom = 617.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rpfqn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8qc1n")
+step = 1.0
+value = 10.0
+show_percentage = false
+
+[node name="SpecialisationPlus" type="Area2D" parent="." unique_id=223901730]
+z_index = 3
+script = ExtResource("41_jm1iu")
+metadata/_edit_lock_ = true
+
+[node name="BasicExplosionMask" type="Sprite2D" parent="SpecialisationPlus" unique_id=1692770659]
+position = Vector2(960, 540)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("42_8p46x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpecialisationPlus" unique_id=837722721]
+position = Vector2(960, 540)
+shape = SubResource("CircleShape2D_yckb5")
+
+[node name="BlinkingAnimation" type="AnimationPlayer" parent="SpecialisationPlus" unique_id=1519332288]
+libraries/ = SubResource("AnimationLibrary_64xfg")
+
+[node name="GodsBlessings" type="Control" parent="." unique_id=1587837237]
+visible = false
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 1
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GodsBlessings" unique_id=1967898657]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 104
+
+[node name="Day5" type="Control" parent="GodsBlessings/VBoxContainer" unique_id=878713854]
+layout_mode = 2
+
+[node name="Background" type="ColorRect" parent="GodsBlessings/VBoxContainer/Day5" unique_id=2023566091]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.0705882)
+
+[node name="DayLabel" type="RichTextLabel" parent="GodsBlessings/VBoxContainer/Day5" unique_id=412968847]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -142.875
+offset_top = -50.0
+offset_right = 157.125
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Day 5"
+scroll_active = false
+autowrap_mode = 2
+
+[node name="ReceiverLabel" type="RichTextLabel" parent="GodsBlessings/VBoxContainer/Day5" unique_id=921969308]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -24.5
+offset_right = 75.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Receiver"
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatisticLabel" type="RichTextLabel" parent="GodsBlessings/VBoxContainer/Day5" unique_id=640240151]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -33.5
+offset_right = 75.0
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Statistic"
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sounds" type="Control" parent="." unique_id=1421823466]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Ok" type="AudioStreamPlayer" parent="Sounds" unique_id=2054538428]
+stream = ExtResource("2_sirxy")
+volume_db = -2.229
+
+[node name="Nok" type="AudioStreamPlayer" parent="Sounds" unique_id=2001027793]
+stream = ExtResource("3_je2i2")
+
+[node name="LaunchGame" type="AudioStreamPlayer" parent="Sounds" unique_id=1669639425]
+stream = ExtResource("41_64xfg")
+
+[node name="Noise" type="AudioStreamPlayer" parent="Sounds" unique_id=56506434]
+stream = ExtResource("5_wvds4")
+
+[node name="Atmosphere" type="AudioStreamPlayer" parent="Sounds" unique_id=953041348]
+stream = ExtResource("6_wgcu2")
+
+[node name="HatchOpening" type="AudioStreamPlayer" parent="Sounds" unique_id=1026821851]
+stream = ExtResource("34_1kwoy")
+
+[node name="TreeChange" type="AudioStreamPlayer" parent="Sounds" unique_id=1124174107]
+stream = ExtResource("11_nqhre")
+
+[node name="Statistics" type="Control" parent="." unique_id=315839146]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
+
+[node name="Cannon" type="Control" parent="Statistics" unique_id=908534059]
+anchors_preset = 0
+offset_left = -10.0
+offset_top = 440.0
+offset_right = 30.0
+offset_bottom = 480.0
+mouse_filter = 2
+
+[node name="Background" type="ColorRect" parent="Statistics/Cannon" unique_id=2060851267]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 432.0
+offset_right = 394.0
+offset_bottom = 630.0
+color = Color(0, 0, 0, 0.298039)
+
+[node name="MainLabel" type="RichTextLabel" parent="Statistics/Cannon" unique_id=1628312288]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 404.0
+offset_right = 394.0
+offset_bottom = 434.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Cannon statistics"
+horizontal_alignment = 1
+
+[node name="Labels" type="Control" parent="Statistics/Cannon" unique_id=864375977]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Type" type="VBoxContainer" parent="Statistics/Cannon/Labels" unique_id=914499278]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 433.0
+offset_right = 258.0
+offset_bottom = 2175.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Cannon/Labels/Type" unique_id=1090374236]
+modulate = Color(0.509804, 1, 1, 1)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Type"
+fit_content = true
+
+[node name="AreaOfEffect" type="RichTextLabel" parent="Statistics/Cannon/Labels/Type" unique_id=1522224869]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Area of Effect"
+fit_content = true
+
+[node name="Capacity" type="RichTextLabel" parent="Statistics/Cannon/Labels/Type" unique_id=280394542]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Capacity"
+fit_content = true
+
+[node name="CriticalHitChance" type="RichTextLabel" parent="Statistics/Cannon/Labels/Type" unique_id=1609573802]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Critical Hit Chance"
+fit_content = true
+
+[node name="CriticalHitDamage" type="RichTextLabel" parent="Statistics/Cannon/Labels/Type" unique_id=420127382]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Critical Hit Damage"
+fit_content = true
+
+[node name="Damage" type="RichTextLabel" parent="Statistics/Cannon/Labels/Type" unique_id=623391272]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Damage"
+fit_content = true
+
+[node name="Speed" type="RichTextLabel" parent="Statistics/Cannon/Labels/Type" unique_id=2026126998]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Projectile Speed"
+fit_content = true
+
+[node name="RateOfFire" type="RichTextLabel" parent="Statistics/Cannon/Labels/Type" unique_id=1871327579]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Rate of Fire"
+fit_content = true
+
+[node name="ReloadTime" type="RichTextLabel" parent="Statistics/Cannon/Labels/Type" unique_id=141564180]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Reload Time"
+fit_content = true
+
+[node name="Initial" type="VBoxContainer" parent="Statistics/Cannon/Labels" unique_id=928523122]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 432.0
+offset_right = 202.0
+offset_bottom = 734.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Cannon/Labels/Initial" unique_id=180736014]
+modulate = Color(0.509804, 1, 1, 1)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Initial"
+fit_content = true
+
+[node name="AreaOfEffect" type="RichTextLabel" parent="Statistics/Cannon/Labels/Initial" unique_id=1512817203]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Capacity" type="RichTextLabel" parent="Statistics/Cannon/Labels/Initial" unique_id=260367228]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="CriticalHitChance" type="RichTextLabel" parent="Statistics/Cannon/Labels/Initial" unique_id=1419536040]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="CriticalHitDamage" type="RichTextLabel" parent="Statistics/Cannon/Labels/Initial" unique_id=1706453317]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Damage" type="RichTextLabel" parent="Statistics/Cannon/Labels/Initial" unique_id=2098900044]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="ProjectileSpeed" type="RichTextLabel" parent="Statistics/Cannon/Labels/Initial" unique_id=106754608]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="RateOfFire" type="RichTextLabel" parent="Statistics/Cannon/Labels/Initial" unique_id=380015552]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="ReloadTime" type="RichTextLabel" parent="Statistics/Cannon/Labels/Initial" unique_id=2116051643]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Current" type="VBoxContainer" parent="Statistics/Cannon/Labels" unique_id=1494091215]
+layout_mode = 0
+offset_left = 215.0
+offset_top = 432.0
+offset_right = 270.0
+offset_bottom = 734.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Cannon/Labels/Current" unique_id=740258942]
+modulate = Color(0.509804, 1, 1, 1)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Current"
+fit_content = true
+
+[node name="AreaOfEffect" type="RichTextLabel" parent="Statistics/Cannon/Labels/Current" unique_id=2137266242]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Capacity" type="RichTextLabel" parent="Statistics/Cannon/Labels/Current" unique_id=1202216534]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="CriticalHitChance" type="RichTextLabel" parent="Statistics/Cannon/Labels/Current" unique_id=1471036936]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="CriticalHitDamage" type="RichTextLabel" parent="Statistics/Cannon/Labels/Current" unique_id=659985493]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Damage" type="RichTextLabel" parent="Statistics/Cannon/Labels/Current" unique_id=880209824]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="ProjectileSpeed" type="RichTextLabel" parent="Statistics/Cannon/Labels/Current" unique_id=138709024]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="RateOfFire" type="RichTextLabel" parent="Statistics/Cannon/Labels/Current" unique_id=472862682]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="ReloadTime" type="RichTextLabel" parent="Statistics/Cannon/Labels/Current" unique_id=70201892]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Difference" type="VBoxContainer" parent="Statistics/Cannon/Labels" unique_id=135514000]
+layout_mode = 0
+offset_left = 287.0
+offset_top = 432.0
+offset_right = 419.0
+offset_bottom = 770.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Cannon/Labels/Difference" unique_id=278284118]
+modulate = Color(0.509804, 1, 1, 1)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Difference"
+fit_content = true
+
+[node name="AreaOfEffect" type="RichTextLabel" parent="Statistics/Cannon/Labels/Difference" unique_id=169399760]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Capacity" type="RichTextLabel" parent="Statistics/Cannon/Labels/Difference" unique_id=52191598]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="CriticalHitChance" type="RichTextLabel" parent="Statistics/Cannon/Labels/Difference" unique_id=634161664]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="CriticalHitDamage" type="RichTextLabel" parent="Statistics/Cannon/Labels/Difference" unique_id=243596917]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Damage" type="RichTextLabel" parent="Statistics/Cannon/Labels/Difference" unique_id=1532031575]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="ProjectileSpeed" type="RichTextLabel" parent="Statistics/Cannon/Labels/Difference" unique_id=1363713065]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="RateOfFire" type="RichTextLabel" parent="Statistics/Cannon/Labels/Difference" unique_id=855364991]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="ReloadTime" type="RichTextLabel" parent="Statistics/Cannon/Labels/Difference" unique_id=131695842]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Base" type="Control" parent="Statistics" unique_id=1928463114]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LeftLaser" type="Control" parent="Statistics/Base" unique_id=1611729807]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MainLabel" type="RichTextLabel" parent="Statistics/Base/LeftLaser" unique_id=1173677879]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Labels" type="Control" parent="Statistics/Base/LeftLaser" unique_id=118492632]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Type" type="Control" parent="Statistics/Base/LeftLaser/Labels" unique_id=1133373820]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LeftPulseBarrier" type="Control" parent="Statistics/Base" unique_id=1901015859]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MainLabel" type="RichTextLabel" parent="Statistics/Base/LeftPulseBarrier" unique_id=1350011309]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Labels" type="Control" parent="Statistics/Base/LeftPulseBarrier" unique_id=1858738118]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Type" type="Control" parent="Statistics/Base/LeftPulseBarrier/Labels" unique_id=1300251874]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Abilities" type="Control" parent="Statistics" unique_id=850899919]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="PlasmaBarrage" type="Control" parent="Statistics/Abilities" unique_id=1404663403]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="ColorRect" parent="Statistics/Abilities/PlasmaBarrage" unique_id=1365567661]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 904.0
+offset_right = 320.0
+offset_bottom = 1036.0
+color = Color(0.0338533, 0.0338533, 0.0338533, 0.508)
+
+[node name="MainLabel" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage" unique_id=504711859]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 873.0
+offset_right = 313.0
+offset_bottom = 903.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Plasma Barrage statistics"
+horizontal_alignment = 1
+
+[node name="Labels" type="Control" parent="Statistics/Abilities/PlasmaBarrage" unique_id=578470767]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Type" type="VBoxContainer" parent="Statistics/Abilities/PlasmaBarrage/Labels" unique_id=1719658173]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 905.0
+offset_right = 258.0
+offset_bottom = 1102.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Type" unique_id=1750263196]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Type"
+fit_content = true
+
+[node name="AreaOfEffect" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Type" unique_id=1520543980]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Area of Effect"
+fit_content = true
+
+[node name="Cooldown" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Type" unique_id=1068774117]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Cooldown"
+fit_content = true
+
+[node name="Damage" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Type" unique_id=317317523]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Damage"
+fit_content = true
+
+[node name="Projectiles" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Type" unique_id=312501741]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Projectiles"
+fit_content = true
+
+[node name="Initial" type="VBoxContainer" parent="Statistics/Abilities/PlasmaBarrage/Labels" unique_id=1931267879]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 905.0
+offset_right = 354.0
+offset_bottom = 1011.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Initial" unique_id=1907056952]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Initial"
+fit_content = true
+
+[node name="AreaOfEffect" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Initial" unique_id=1722855781]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Cooldown" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Initial" unique_id=1692587515]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Damage" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Initial" unique_id=243158541]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Projectiles" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Initial" unique_id=2033498836]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Current" type="VBoxContainer" parent="Statistics/Abilities/PlasmaBarrage/Labels" unique_id=940385791]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 905.0
+offset_right = 403.0
+offset_bottom = 1011.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Current" unique_id=1029496266]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Current"
+fit_content = true
+
+[node name="AreaOfEffect" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Current" unique_id=1291630971]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Cooldown" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Current" unique_id=1892042125]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Damage" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Current" unique_id=1846033288]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Projectiles" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Current" unique_id=984458354]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Difference" type="VBoxContainer" parent="Statistics/Abilities/PlasmaBarrage/Labels" unique_id=2137183840]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 905.0
+offset_right = 356.0
+offset_bottom = 1011.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Difference" unique_id=265844862]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Difference"
+fit_content = true
+
+[node name="AreaOfEffect" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Difference" unique_id=2013440108]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Cooldown" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Difference" unique_id=19204575]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Damage" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Difference" unique_id=2116142117]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Projectiles" type="RichTextLabel" parent="Statistics/Abilities/PlasmaBarrage/Labels/Difference" unique_id=1817116249]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="StasisField" type="Control" parent="Statistics/Abilities" unique_id=1066205513]
+anchors_preset = 0
+offset_left = 324.0
+offset_right = 364.0
+offset_bottom = 40.0
+
+[node name="Background" type="ColorRect" parent="Statistics/Abilities/StasisField" unique_id=1711435731]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 904.0
+offset_right = 309.0
+offset_bottom = 1036.0
+color = Color(0.0338533, 0.0338533, 0.0338533, 0.508)
+
+[node name="MainLabel" type="RichTextLabel" parent="Statistics/Abilities/StasisField" unique_id=946114233]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 873.0
+offset_right = 303.0
+offset_bottom = 903.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Stasis Field statistics"
+horizontal_alignment = 1
+
+[node name="Labels" type="Control" parent="Statistics/Abilities/StasisField" unique_id=669646830]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Type" type="VBoxContainer" parent="Statistics/Abilities/StasisField/Labels" unique_id=1449119451]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 905.0
+offset_right = 258.0
+offset_bottom = 1102.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Abilities/StasisField/Labels/Type" unique_id=2093670213]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Type"
+fit_content = true
+
+[node name="Cooldown" type="RichTextLabel" parent="Statistics/Abilities/StasisField/Labels/Type" unique_id=751630358]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Cooldown"
+fit_content = true
+
+[node name="Duration" type="RichTextLabel" parent="Statistics/Abilities/StasisField/Labels/Type" unique_id=749885213]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Duration"
+fit_content = true
+
+[node name="Slow" type="RichTextLabel" parent="Statistics/Abilities/StasisField/Labels/Type" unique_id=1659374314]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Slow"
+fit_content = true
+
+[node name="Initial" type="VBoxContainer" parent="Statistics/Abilities/StasisField/Labels" unique_id=1473491734]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 905.0
+offset_right = 338.0
+offset_bottom = 1011.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Abilities/StasisField/Labels/Initial" unique_id=1423183158]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Initial"
+fit_content = true
+
+[node name="Cooldown" type="RichTextLabel" parent="Statistics/Abilities/StasisField/Labels/Initial" unique_id=332937198]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Duration" type="RichTextLabel" parent="Statistics/Abilities/StasisField/Labels/Initial" unique_id=1129540556]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Slow" type="RichTextLabel" parent="Statistics/Abilities/StasisField/Labels/Initial" unique_id=1719874445]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Current" type="VBoxContainer" parent="Statistics/Abilities/StasisField/Labels" unique_id=1435777957]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 905.0
+offset_right = 388.0
+offset_bottom = 1011.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Abilities/StasisField/Labels/Current" unique_id=357840842]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Current"
+fit_content = true
+
+[node name="Cooldown" type="RichTextLabel" parent="Statistics/Abilities/StasisField/Labels/Current" unique_id=592487660]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Duration" type="RichTextLabel" parent="Statistics/Abilities/StasisField/Labels/Current" unique_id=345635164]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Slow" type="RichTextLabel" parent="Statistics/Abilities/StasisField/Labels/Current" unique_id=591554206]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Difference" type="VBoxContainer" parent="Statistics/Abilities/StasisField/Labels" unique_id=513487366]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 905.0
+offset_right = 340.0
+offset_bottom = 1011.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Abilities/StasisField/Labels/Difference" unique_id=1107632922]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Difference"
+fit_content = true
+
+[node name="Cooldown" type="RichTextLabel" parent="Statistics/Abilities/StasisField/Labels/Difference" unique_id=1930572083]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Duration" type="RichTextLabel" parent="Statistics/Abilities/StasisField/Labels/Difference" unique_id=27089341]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Slow" type="RichTextLabel" parent="Statistics/Abilities/StasisField/Labels/Difference" unique_id=1767726988]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="GravityWell" type="Control" parent="Statistics/Abilities" unique_id=1798672333]
+anchors_preset = 0
+offset_left = 637.0
+offset_right = 677.0
+offset_bottom = 40.0
+
+[node name="Background" type="ColorRect" parent="Statistics/Abilities/GravityWell" unique_id=175287424]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 904.0
+offset_right = 324.0
+offset_bottom = 1036.0
+color = Color(0.0338533, 0.0338533, 0.0338533, 0.508)
+
+[node name="MainLabel" type="RichTextLabel" parent="Statistics/Abilities/GravityWell" unique_id=1377638297]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 873.0
+offset_right = 316.0
+offset_bottom = 903.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Gravity Well statistics"
+horizontal_alignment = 1
+
+[node name="Labels" type="Control" parent="Statistics/Abilities/GravityWell" unique_id=1101510444]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Type" type="VBoxContainer" parent="Statistics/Abilities/GravityWell/Labels" unique_id=1376652943]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 905.0
+offset_right = 258.0
+offset_bottom = 1102.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Type" unique_id=1476367952]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Type"
+fit_content = true
+
+[node name="AreaOfEffect" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Type" unique_id=1630337095]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Area of Effect"
+fit_content = true
+
+[node name="Cooldown" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Type" unique_id=1762316887]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Cooldown"
+fit_content = true
+
+[node name="Duration" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Type" unique_id=2123806063]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Duration"
+fit_content = true
+
+[node name="PullForce" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Type" unique_id=84132473]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Pull Force"
+fit_content = true
+
+[node name="Slow" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Type" unique_id=1337538487]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Slow"
+fit_content = true
+
+[node name="Initial" type="VBoxContainer" parent="Statistics/Abilities/GravityWell/Labels" unique_id=723997438]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 905.0
+offset_right = 354.0
+offset_bottom = 1033.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Initial" unique_id=439088385]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Initial"
+fit_content = true
+
+[node name="AreaOfEffect" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Initial" unique_id=263946285]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Cooldown" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Initial" unique_id=7370312]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Duration" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Initial" unique_id=313171095]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="PullForce" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Initial" unique_id=17788037]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Slow" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Initial" unique_id=1596788194]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Current" type="VBoxContainer" parent="Statistics/Abilities/GravityWell/Labels" unique_id=903750169]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 905.0
+offset_right = 404.0
+offset_bottom = 1033.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Current" unique_id=1899007171]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Current"
+fit_content = true
+
+[node name="AreaOfEffect" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Current" unique_id=2052178498]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Cooldown" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Current" unique_id=1491713502]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Duration" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Current" unique_id=88187480]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="PullForce" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Current" unique_id=262406677]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Slow" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Current" unique_id=526226199]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Difference" type="VBoxContainer" parent="Statistics/Abilities/GravityWell/Labels" unique_id=1010082077]
+layout_mode = 0
+offset_left = 239.0
+offset_top = 905.0
+offset_right = 333.0
+offset_bottom = 1033.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Difference" unique_id=989745690]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Difference"
+fit_content = true
+
+[node name="AreaOfEffect" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Difference" unique_id=1782334268]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Cooldown" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Difference" unique_id=618066239]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Duration" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Difference" unique_id=406881500]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="PullForce" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Difference" unique_id=1907764624]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Slow" type="RichTextLabel" parent="Statistics/Abilities/GravityWell/Labels/Difference" unique_id=264771691]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="OrbitalStrike" type="Control" parent="Statistics/Abilities" unique_id=1442431724]
+anchors_preset = 0
+offset_left = 965.0
+offset_right = 1005.0
+offset_bottom = 40.0
+
+[node name="Background" type="ColorRect" parent="Statistics/Abilities/OrbitalStrike" unique_id=1661919534]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 904.0
+offset_right = 326.0
+offset_bottom = 1036.0
+color = Color(0.0338533, 0.0338533, 0.0338533, 0.508)
+
+[node name="MainLabel" type="RichTextLabel" parent="Statistics/Abilities/OrbitalStrike" unique_id=273367223]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 873.0
+offset_right = 342.0
+offset_bottom = 903.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Orbital Strike statistics"
+horizontal_alignment = 1
+
+[node name="Labels" type="Control" parent="Statistics/Abilities/OrbitalStrike" unique_id=1853784236]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Type" type="VBoxContainer" parent="Statistics/Abilities/OrbitalStrike/Labels" unique_id=240878169]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 905.0
+offset_right = 258.0
+offset_bottom = 1102.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Abilities/OrbitalStrike/Labels/Type" unique_id=204813128]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Type"
+fit_content = true
+
+[node name="AreaOfEffect" type="RichTextLabel" parent="Statistics/Abilities/OrbitalStrike/Labels/Type" unique_id=311951672]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Area of Effect"
+fit_content = true
+
+[node name="Cooldown" type="RichTextLabel" parent="Statistics/Abilities/OrbitalStrike/Labels/Type" unique_id=61884134]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Cooldown"
+fit_content = true
+
+[node name="Damage" type="RichTextLabel" parent="Statistics/Abilities/OrbitalStrike/Labels/Type" unique_id=2134047242]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Damage"
+fit_content = true
+
+[node name="Initial" type="VBoxContainer" parent="Statistics/Abilities/OrbitalStrike/Labels" unique_id=995195829]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 905.0
+offset_right = 354.0
+offset_bottom = 1011.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Abilities/OrbitalStrike/Labels/Initial" unique_id=1087872016]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Initial"
+fit_content = true
+
+[node name="AreaOfEffect" type="RichTextLabel" parent="Statistics/Abilities/OrbitalStrike/Labels/Initial" unique_id=697979276]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Cooldown" type="RichTextLabel" parent="Statistics/Abilities/OrbitalStrike/Labels/Initial" unique_id=509940354]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Damage" type="RichTextLabel" parent="Statistics/Abilities/OrbitalStrike/Labels/Initial" unique_id=52172215]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Current" type="VBoxContainer" parent="Statistics/Abilities/OrbitalStrike/Labels" unique_id=544224799]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 905.0
+offset_right = 404.0
+offset_bottom = 1011.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Abilities/OrbitalStrike/Labels/Current" unique_id=1018837873]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Current"
+fit_content = true
+
+[node name="AreaOfEffect" type="RichTextLabel" parent="Statistics/Abilities/OrbitalStrike/Labels/Current" unique_id=809938419]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Cooldown" type="RichTextLabel" parent="Statistics/Abilities/OrbitalStrike/Labels/Current" unique_id=86133654]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Damage" type="RichTextLabel" parent="Statistics/Abilities/OrbitalStrike/Labels/Current" unique_id=461600712]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Difference" type="VBoxContainer" parent="Statistics/Abilities/OrbitalStrike/Labels" unique_id=105811336]
+layout_mode = 0
+offset_left = 239.0
+offset_top = 905.0
+offset_right = 334.0
+offset_bottom = 1011.0
+
+[node name="Main" type="RichTextLabel" parent="Statistics/Abilities/OrbitalStrike/Labels/Difference" unique_id=1646096988]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Difference"
+fit_content = true
+
+[node name="AreaOfEffect" type="RichTextLabel" parent="Statistics/Abilities/OrbitalStrike/Labels/Difference" unique_id=2068383065]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Cooldown" type="RichTextLabel" parent="Statistics/Abilities/OrbitalStrike/Labels/Difference" unique_id=1528393741]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Damage" type="RichTextLabel" parent="Statistics/Abilities/OrbitalStrike/Labels/Difference" unique_id=733661394]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "-"
+fit_content = true
+
+[node name="Asteroids" type="Control" parent="Statistics" unique_id=2017653602]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ToxicAsteroid" type="Control" parent="Statistics/Asteroids" unique_id=1292205123]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MainLabel" type="RichTextLabel" parent="Statistics/Asteroids/ToxicAsteroid" unique_id=1310658396]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Labels" type="Control" parent="Statistics/Asteroids/ToxicAsteroid" unique_id=1578611782]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Type" type="Control" parent="Statistics/Asteroids/ToxicAsteroid/Labels" unique_id=368053992]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FreezingAsteroid" type="Control" parent="Statistics/Asteroids" unique_id=1314975449]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MainLabel" type="RichTextLabel" parent="Statistics/Asteroids/FreezingAsteroid" unique_id=651228959]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Labels" type="Control" parent="Statistics/Asteroids/FreezingAsteroid" unique_id=402126375]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Type" type="Control" parent="Statistics/Asteroids/FreezingAsteroid/Labels" unique_id=1701421598]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="UpgradeButtons" type="Control" parent="." unique_id=850162986]
+anchors_preset = 0
+offset_top = 30.0
+offset_right = 40.0
+offset_bottom = 70.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Cannon" type="Button" parent="UpgradeButtons" unique_id=48775201]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 80.0
+offset_right = 174.0
+offset_bottom = 131.0
+text = "Cannon"
+
+[node name="Blessings" type="Button" parent="UpgradeButtons" unique_id=1832794867]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 136.0
+offset_right = 174.0
+offset_bottom = 187.0
+text = "God's Blessings"
+
+[node name="BlessingsBlinkingAnimation" type="AnimationPlayer" parent="UpgradeButtons" unique_id=1693813483]
+libraries/ = SubResource("AnimationLibrary_lr6ya")
+
+[node name="Base" type="Button" parent="UpgradeButtons" unique_id=833408271]
+layout_mode = 0
+offset_left = 183.0
+offset_top = 80.0
+offset_right = 308.0
+offset_bottom = 131.0
+text = "Base"
+
+[node name="Abiliites" type="Button" parent="UpgradeButtons" unique_id=1062495424]
+layout_mode = 0
+offset_left = 319.0
+offset_top = 80.0
+offset_right = 444.0
+offset_bottom = 131.0
+text = "Abilities"
+
+[node name="Asteroids" type="Button" parent="UpgradeButtons" unique_id=1991679313]
+layout_mode = 0
+offset_left = 455.0
+offset_top = 80.0
+offset_right = 580.0
+offset_bottom = 131.0
+text = "Asteroids"
+
+[node name="NavigationButtons" type="Control" parent="." unique_id=361265356]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Done" type="Button" parent="NavigationButtons" unique_id=466539933]
+layout_mode = 0
+offset_left = 1842.0
+offset_top = 1024.0
+offset_right = 1905.0
+offset_bottom = 1068.0
+theme_override_font_sizes/font_size = 13
+text = "Done
+"
+
+[node name="Apply" type="Button" parent="NavigationButtons" unique_id=2056378317]
+layout_mode = 0
+offset_left = 1770.0
+offset_top = 1024.0
+offset_right = 1834.0
+offset_bottom = 1068.0
+theme_override_font_sizes/font_size = 13
+text = "Apply
+changes
+"
+
+[node name="Revert" type="Button" parent="NavigationButtons" unique_id=1792756517]
+layout_mode = 0
+offset_left = 1702.0
+offset_top = 1024.0
+offset_right = 1762.0
+offset_bottom = 1068.0
+theme_override_font_sizes/font_size = 13
+text = "Revert 
+changes"
+
+[node name="MainMenu" type="Button" parent="NavigationButtons" unique_id=2108243345]
+layout_mode = 0
+offset_left = 1626.0
+offset_top = 1024.0
+offset_right = 1695.0
+offset_bottom = 1068.0
+theme_override_font_sizes/font_size = 13
+text = "Main
+ menu"
+
+[node name="AddResources" type="Button" parent="NavigationButtons" unique_id=1165481759]
+layout_mode = 0
+offset_left = 1299.0
+offset_top = 1025.0
+offset_right = 1400.0
+offset_bottom = 1069.0
+theme_override_font_sizes/font_size = 13
+text = "Add Resources"
+
+[node name="SubstractResources" type="Button" parent="NavigationButtons" unique_id=1713140904]
+layout_mode = 0
+offset_left = 1404.0
+offset_top = 1026.0
+offset_right = 1540.0
+offset_bottom = 1070.0
+theme_override_font_sizes/font_size = 13
+text = "Substract Resources"
+
+[node name="ResetTrees" type="Button" parent="NavigationButtons" unique_id=68475991]
+layout_mode = 0
+offset_left = 1542.0
+offset_top = 1026.0
+offset_right = 1623.0
+offset_bottom = 1070.0
+theme_override_font_sizes/font_size = 13
+text = "Reset Trees"
+
+[node name="Score" type="Control" parent="." unique_id=1857027948]
+anchors_preset = 0
+offset_left = 639.0
+offset_top = -30.0
+offset_right = 679.0
+offset_bottom = 10.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="ResourceCredit" type="Sprite2D" parent="Score" unique_id=433090552]
+texture_filter = 1
+position = Vector2(1252, 51)
+scale = Vector2(0.405, 0.405)
+texture = ExtResource("36_yckb5")
+
+[node name="ResourceCreditsCount" type="Label" parent="Score" unique_id=704436646]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 37.0
+offset_right = 1237.0
+offset_bottom = 64.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="CommonShard" type="Sprite2D" parent="Score" unique_id=1788306942]
+position = Vector2(1251, 75)
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("36_by5ii")
+
+[node name="CommonShardsCount" type="Label" parent="Score" unique_id=1994282195]
+layout_mode = 0
+offset_left = 995.0
+offset_top = 61.0
+offset_right = 1237.0
+offset_bottom = 88.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="CelestialShard" type="Sprite2D" parent="Score" unique_id=719074193]
+position = Vector2(1251, 99)
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("37_os3sd")
+
+[node name="CelestialShardsCount" type="Label" parent="Score" unique_id=1749447109]
+layout_mode = 0
+offset_left = 1003.0
+offset_top = 85.0
+offset_right = 1237.0
+offset_bottom = 112.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="AstralShard" type="Sprite2D" parent="Score" unique_id=1973332290]
+position = Vector2(1251, 123)
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("38_fc8vu")
+
+[node name="AstralShardsCount" type="Label" parent="Score" unique_id=1840700865]
+layout_mode = 0
+offset_left = 1099.0
+offset_top = 109.0
+offset_right = 1237.0
+offset_bottom = 136.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="EtherealShard" type="Sprite2D" parent="Score" unique_id=746099218]
+position = Vector2(1251, 147)
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("39_1t0gf")
+
+[node name="EtherealShardsCount" type="Label" parent="Score" unique_id=542016260]
+layout_mode = 0
+offset_left = 1144.0
+offset_top = 133.0
+offset_right = 1237.0
+offset_bottom = 160.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="NanoCores" type="Sprite2D" parent="Score" unique_id=2141465061]
+position = Vector2(1252.42, 171)
+scale = Vector2(0.325, 0.325)
+texture = ExtResource("36_64xfg")
+
+[node name="NanoCoresCount" type="Label" parent="Score" unique_id=741167322]
+layout_mode = 0
+offset_left = 1175.0
+offset_top = 157.0
+offset_right = 1237.0
+offset_bottom = 184.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="Center" type="Label" parent="." unique_id=1967960603]
+visible = false
+layout_mode = 0
+offset_left = 960.0
+offset_top = 540.0
+offset_right = 961.0
+offset_bottom = 563.0
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="OpeningHatch" type="Control" parent="." unique_id=1361587663]
+visible = false
+z_index = 4
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
+
+[node name="Upper" type="Sprite2D" parent="OpeningHatch" unique_id=1878801491]
+z_index = 1
+position = Vector2(960, 540)
+texture = ExtResource("38_jm1iu")
+
+[node name="Lower" type="Sprite2D" parent="OpeningHatch" unique_id=712723692]
+z_index = 1
+position = Vector2(960, 540)
+texture = ExtResource("39_64xfg")
+
+[node name="ConsoleLog" type="Control" parent="." unique_id=151227057]
+visible = false
+anchors_preset = 0
+offset_left = 1761.0
+offset_top = 747.0
+offset_right = 1801.0
+offset_bottom = 787.0
+mouse_filter = 2
+
+[node name="madeBy" type="Label" parent="ConsoleLog" unique_id=567595092]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -60.0
+offset_right = 149.0
+offset_bottom = 21.0
+theme_override_colors/font_color = Color(0.99558, 0.99558, 0.99558, 1)
+theme_override_font_sizes/font_size = 13
+text = "Upgrading system made by Livrenn Group
+v2.3523"
+autowrap_mode = 2
+
+[node name="console" type="Label" parent="ConsoleLog" unique_id=931721256]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 150.0
+offset_bottom = 190.0
+theme_override_colors/font_color = Color(0, 0.996078, 0, 1)
+theme_override_font_sizes/font_size = 9
+text = "Log ID 3523468943247
+Time: Losowa godzina nocna(?)
+Date: (rzeczywista data +1 po kazdym dniu
+----------------------------------------------
+> Loading components...
+> Loading system state...
+> All systems nominal
+> Selected X (ID) upgrade
+> X (ID) upgrade confirmed
+> X (ID) upgrade deselected
+> Saving system state..."
+autowrap_mode = 2
+
+[node name="console_background" type="ColorRect" parent="ConsoleLog" unique_id=946597939]
+layout_mode = 0
+offset_right = 138.0
+offset_bottom = 206.0
+color = Color(0, 0, 0, 0.156863)
+
+[node name="fadeOff" type="AnimationPlayer" parent="." unique_id=1244969205]
+libraries/ = SubResource("AnimationLibrary_4i26q")
+
+[node name="fadeOffSolid" type="ColorRect" parent="." unique_id=1249121462]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 4
+layout_mode = 0
+offset_left = -47.0
+offset_top = -29.0
+offset_right = 1951.0
+offset_bottom = 1106.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[connection signal="input_event" from="SpecialisationPlus" to="SpecialisationPlus" method="_on_input_event"]
+[connection signal="mouse_entered" from="SpecialisationPlus" to="SpecialisationPlus" method="_on_mouse_entered"]
+[connection signal="pressed" from="UpgradeButtons/Cannon" to="." method="_on_cannon_pressed"]
+[connection signal="pressed" from="UpgradeButtons/Blessings" to="." method="_on_blessings_pressed"]
+[connection signal="pressed" from="UpgradeButtons/Abiliites" to="." method="_on_abiliites_pressed"]
+[connection signal="pressed" from="UpgradeButtons/Asteroids" to="." method="_on_asteroids_pressed"]
+[connection signal="pressed" from="NavigationButtons/Done" to="." method="_on_done_pressed"]
+[connection signal="pressed" from="NavigationButtons/Apply" to="." method="_on_done_pressed"]
+[connection signal="pressed" from="NavigationButtons/Revert" to="." method="_on_done_pressed"]
+[connection signal="pressed" from="NavigationButtons/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="NavigationButtons/AddResources" to="." method="_on_add_resources_pressed"]
+[connection signal="pressed" from="NavigationButtons/SubstractResources" to="." method="_on_substract_resources_pressed"]
+[connection signal="pressed" from="NavigationButtons/ResetTrees" to="." method="_on_reset_trees_pressed"]

@@ -1,0 +1,64 @@
+[gd_scene load_steps=11 format=3 uid="uid://bkrentnxhktlp"]
+
+[ext_resource type="Script" uid="uid://4rqtve8dcxpp" path="res://cannon/particles.gd" id="1_tm0bx"]
+
+[sub_resource type="Gradient" id="Gradient_icm01"]
+colors = PackedColorArray(0.393086, 0.393086, 0.393085, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g8ths"]
+gradient = SubResource("Gradient_icm01")
+
+[sub_resource type="Curve" id="Curve_12fp6"]
+_limits = [-1024.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0.255411, 0.417582), 0.0, 0.0, 0, 0, Vector2(0.402597, 0.714286), 0.0, 0.0, 0, 0, Vector2(0.645022, 0.681319), 0.0, 0.0, 0, 0, Vector2(0.800866, 0.340659), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_gkyil"]
+curve = SubResource("Curve_12fp6")
+
+[sub_resource type="Curve" id="Curve_qxftu"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.320346, 169.231), 0.0, 0.0, 0, 0, Vector2(0.380952, -6.59341), 0.0, 0.0, 0, 0, Vector2(0.614719, 173.626), -676.923, -676.923, 0, 0, Vector2(0.722944, 6.59341), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_mnvoe"]
+curve = SubResource("Curve_qxftu")
+
+[sub_resource type="Curve" id="Curve_u6066"]
+_limits = [0.0, 0.6, 0.0, 1.0]
+_data = [Vector2(0.0735931, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jwlis"]
+curve = SubResource("Curve_u6066")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rwtc7"]
+lifetime_randomness = 0.68
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(600, 20, 1)
+emission_shape = 4
+emission_color_texture = SubResource("CurveTexture_gkyil")
+emission_point_count = 4
+gravity = Vector3(0, -5, 0)
+linear_accel_curve = SubResource("CurveTexture_mnvoe")
+scale_min = 0.0
+scale_max = 2.5
+scale_curve = SubResource("CurveTexture_jwlis")
+color_ramp = SubResource("GradientTexture1D_g8ths")
+turbulence_enabled = true
+turbulence_noise_strength = 0.3
+turbulence_noise_scale = 3.0
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+self_modulate = Color(1, 1, 1, 0.235294)
+z_index = 2
+emitting = false
+amount = 50000
+process_material = SubResource("ParticleProcessMaterial_rwtc7")
+lifetime = 1.5
+one_shot = true
+speed_scale = 2.5
+script = ExtResource("1_tm0bx")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
+[connection signal="ready" from="." to="." method="_on_ready"]

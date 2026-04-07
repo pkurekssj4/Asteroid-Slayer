@@ -1,0 +1,170 @@
+[gd_scene format=3 uid="uid://dp06eoiibi5i4"]
+
+[ext_resource type="Script" uid="uid://bmu4cub6avw87" path="res://ui/message_box/message_box.gd" id="1_bv1x2"]
+[ext_resource type="StyleBox" uid="uid://dr855ur533prw" path="res://ui/secondary_background.tres" id="2_ltsmv"]
+[ext_resource type="Shader" uid="uid://bcwjlvguwqjyd" path="res://shaders/message_box_border_animation.gdshader" id="2_refn7"]
+[ext_resource type="StyleBox" uid="uid://dvqcalwap7rp5" path="res://ui/background.tres" id="3_cudyh"]
+[ext_resource type="Texture2D" uid="uid://b7p0ji38a8vhg" path="res://ui/message_box/grid.png" id="3_nj3xn"]
+[ext_resource type="AudioStream" uid="uid://bm75a8mkx2xg4" path="res://ui/message_box/message_unveiling.wav" id="4_nj3xn"]
+[ext_resource type="AudioStream" uid="uid://bre421oqq6vqi" path="res://audio/sounds/message.mp3" id="4_tlipc"]
+[ext_resource type="Theme" uid="uid://d1icjuesk3qr0" path="res://ui/button.tres" id="5_7n41a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_refn7"]
+shader = ExtResource("2_refn7")
+shader_parameter/time_speed = 0.5
+shader_parameter/wave_freq = 3.0
+shader_parameter/wave_amp = 0.999999977648
+shader_parameter/alpha_channel = 1.0
+shader_parameter/phase = 0.0
+shader_parameter/color_light = Vector3(0.2, 0.7, 1)
+shader_parameter/color_mid = Vector3(0, 0.3, 0.7)
+shader_parameter/color_dark = Vector3(0, 0.1, 0.5)
+
+[sub_resource type="Animation" id="Animation_8xui6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/StoryMessageGrid:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(235.00005, -218)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/StoryMessageGrid:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.22352941)]
+}
+
+[sub_resource type="Animation" id="Animation_refn7"]
+resource_name = "default"
+length = 15.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/StoryMessageGrid:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.06666666, 14.966666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(235, 524.34), Vector2(235, -234)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/StoryMessageGrid:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.033333335, 1.1333333, 13.966666, 14.966666),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.15294118), Color(1, 1, 1, 0.15294118), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0yyy5"]
+_data = {
+&"RESET": SubResource("Animation_8xui6"),
+&"default": SubResource("Animation_refn7")
+}
+
+[node name="StoryMessage" type="Control" unique_id=966801988]
+z_index = 23
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_bv1x2")
+
+[node name="Borders" type="Panel" parent="." unique_id=396872200]
+material = SubResource("ShaderMaterial_refn7")
+layout_mode = 0
+offset_right = 484.0
+offset_bottom = 281.0
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("2_ltsmv")
+
+[node name="Background" type="Panel" parent="." unique_id=2061144208]
+clip_contents = true
+layout_mode = 0
+offset_left = 6.102
+offset_top = 7.094
+offset_right = 476.958
+offset_bottom = 275.094
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("3_cudyh")
+
+[node name="GridAnimator" type="AnimationPlayer" parent="Background" unique_id=435039848]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_0yyy5")
+autoplay = &"default"
+speed_scale = 0.1
+
+[node name="StoryMessageGrid" type="Sprite2D" parent="Background" unique_id=1153642421]
+modulate = Color(1, 1, 1, 0.22352941)
+position = Vector2(235.00005, -218)
+texture = ExtResource("3_nj3xn")
+
+[node name="ContinueButton" type="Button" parent="." unique_id=1737391586]
+layout_mode = 0
+offset_left = 379.0
+offset_top = 239.0
+offset_right = 471.0
+offset_bottom = 270.0
+theme = ExtResource("5_7n41a")
+text = "Continue"
+
+[node name="Message" type="Label" parent="." unique_id=827522769]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 80.0
+offset_right = 459.0
+offset_bottom = 282.0
+theme_override_colors/font_color = Color(0.9160391, 0.94595236, 0.9459248, 1)
+theme_override_font_sizes/font_size = 13
+text = "Text"
+autowrap_mode = 3
+
+[node name="Sender" type="Label" parent="." unique_id=1907089379]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 40.0
+offset_right = 459.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0.9160391, 0.94595236, 0.9459248, 1)
+theme_override_font_sizes/font_size = 13
+text = "Incoming message from: Headquarter"
+autowrap_mode = 3
+
+[node name="Place" type="Label" parent="." unique_id=836792930]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 16.0
+offset_right = 459.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.9160391, 0.94595236, 0.9459248, 1)
+theme_override_font_sizes/font_size = 13
+text = "Oasis: Power Plant"
+autowrap_mode = 3
+
+[node name="MessageSound" type="AudioStreamPlayer" parent="." unique_id=1999554804]
+stream = ExtResource("4_tlipc")
+volume_db = -4.0
+
+[node name="MessageUnveiling" type="AudioStreamPlayer" parent="." unique_id=2105883412]
+stream = ExtResource("4_nj3xn")
+pitch_scale = 2.25
+
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]

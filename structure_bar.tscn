@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b77ynoy4jojf8"]
+
+[ext_resource type="Script" uid="uid://c75xxlk5gdq0y" path="res://structure_bar.gd" id="1_8s7k8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gr03"]
+bg_color = Color(0, 0, 0, 0)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_466h3"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="StructureBar" type="ProgressBar" unique_id=796178488]
+offset_right = 46.0
+offset_bottom = 1.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6gr03")
+theme_override_styles/fill = SubResource("StyleBoxFlat_466h3")
+step = 1.0
+value = 100.0
+show_percentage = false
+script = ExtResource("1_8s7k8")

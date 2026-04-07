@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bonufuidmt5fw"]
+
+[ext_resource type="Script" uid="uid://dhbwbbdfwa0ok" path="res://upgrade_console/upgrade.gd" id="1_mcgot"]
+[ext_resource type="Texture2D" uid="uid://bb0moqkobnmlb" path="res://stasis_field_round_icon.png" id="3_mcgot"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tpc5l"]
+radius = 25.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3chht"]
+bg_color = Color(0.208728, 0.102305, 0.0207798, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[node name="StasisFieldInitialUpgrade" type="Area2D"]
+script = ExtResource("1_mcgot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tpc5l")
+
+[node name="BigUpgradeCircleShadow" type="Panel" parent="."]
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3chht")
+
+[node name="StasisFieldIcon" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_mcgot")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://csuaw6hrgoyq4"]
+
+[ext_resource type="Script" uid="uid://ccnmy5g3ra5wb" path="res://firework.gd" id="1_80ye1"]
+[ext_resource type="AudioStream" uid="uid://s518xojf23k2" path="res://audio/sounds/firework_explosion.mp3" id="2_80ye1"]
+[ext_resource type="AudioStream" uid="uid://d0y2oew6xnn3w" path="res://audio/sounds/firework_launch.wav" id="3_skfqf"]
+
+[sub_resource type="Gradient" id="Gradient_80ye1"]
+offsets = PackedFloat32Array(0, 0.115702, 0.297521, 0.471074)
+colors = PackedColorArray(1, 0.257726, 0.126845, 1, 1, 0.360784, 0.109804, 1, 1, 0.811765, 0.27451, 1, 0.257331, 0.257179, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_skfqf"]
+gradient = SubResource("Gradient_80ye1")
+
+[sub_resource type="Curve" id="Curve_80ye1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_skfqf"]
+curve = SubResource("Curve_80ye1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_80ye1"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+gravity = Vector3(0, 100, 0)
+tangential_accel_min = -8.0
+tangential_accel_max = 8.0
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_skfqf")
+color_ramp = SubResource("GradientTexture1D_skfqf")
+
+[sub_resource type="Gradient" id="Gradient_skfqf"]
+colors = PackedColorArray(0.728823, 0.728822, 0.728821, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_otfov"]
+gradient = SubResource("Gradient_skfqf")
+
+[sub_resource type="Curve" id="Curve_otfov"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 200), 0.0, -444.566, 0, 0, Vector2(1, -191.011), 155.453, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4c2u5"]
+curve = SubResource("Curve_otfov")
+
+[sub_resource type="Curve" id="Curve_skfqf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_otfov"]
+curve = SubResource("Curve_skfqf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_skfqf"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(3, 3, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 9, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = 0.499998
+radial_accel_curve = SubResource("CurveTexture_4c2u5")
+scale_min = 0.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_otfov")
+color_ramp = SubResource("GradientTexture1D_otfov")
+
+[node name="Firework" type="Node2D"]
+script = ExtResource("1_80ye1")
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_80ye1")
+volume_db = 4.483
+pitch_scale = 0.66
+
+[node name="LaunchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_skfqf")
+volume_db = -8.0
+pitch_scale = 3.0
+
+[node name="TrailParticles" type="GPUParticles2D" parent="."]
+amount = 300
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_80ye1")
+
+[node name="ExplosionParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 400
+lifetime = 4.0
+one_shot = true
+speed_scale = 0.9
+explosiveness = 1.0
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_skfqf")
+
+[connection signal="finished" from="ExplosionParticles" to="." method="_on_explosion_particles_finished"]

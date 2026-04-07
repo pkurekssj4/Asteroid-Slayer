@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://5dvejj1i2pdt"]
+
+[ext_resource type="Texture2D" uid="uid://blwq3bmsec72d" path="res://clouds/cloud2.png" id="1_six74"]
+[ext_resource type="Script" uid="uid://cirv5lx23wasi" path="res://clouds/cloud.gd" id="1_tdpsq"]
+
+[node name="Cloud1" type="Node2D"]
+script = ExtResource("1_tdpsq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.513726)
+texture = ExtResource("1_six74")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1, -2)
+scale = Vector2(7.35, 4.525)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

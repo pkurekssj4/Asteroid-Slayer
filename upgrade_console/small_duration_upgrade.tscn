@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpq52kmtx0cna"]
+
+[ext_resource type="Script" uid="uid://dhbwbbdfwa0ok" path="res://upgrade_console/upgrade.gd" id="1_irqqh"]
+[ext_resource type="PackedScene" uid="uid://b1jnxtxm4m1sv" path="res://upgrade_console/small_upgrade.tscn" id="1_xwha8"]
+[ext_resource type="Texture2D" uid="uid://b6vbmbn2benni" path="res://upgrade_console/duration_and_reload_time_icon.png" id="2_x3cad"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x3cad"]
+radius = 16.0
+
+[node name="SmallDurationUpgrade" type="Area2D"]
+script = ExtResource("1_irqqh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x3cad")
+
+[node name="SmallUpgrade" parent="." instance=ExtResource("1_xwha8")]
+modulate = Color(1, 0.9475, 0.65, 1)
+
+[node name="DurationAndReloadIcon" type="Sprite2D" parent="."]
+scale = Vector2(0.37, 0.37)
+texture = ExtResource("2_x3cad")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

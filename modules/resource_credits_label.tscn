@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dlm4qdsaft5gu"]
+
+[ext_resource type="Script" uid="uid://dmq76x7vadt8o" path="res://modules/resource_credits_label.gd" id="1_iekia"]
+
+[sub_resource type="Gradient" id="Gradient_07oec"]
+offsets = PackedFloat32Array(0.34732825)
+colors = PackedColorArray(0.11858138, 0.11858138, 0.11858138, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1uv0g"]
+gradient = SubResource("Gradient_07oec")
+
+[node name="ResourceCreditsLabel" type="Node2D" unique_id=1782652364]
+script = ExtResource("1_iekia")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1098263146]
+position = Vector2(-7.748604e-07, 1.7881393e-06)
+scale = Vector2(0.18750001, 20.000004)
+texture = SubResource("GradientTexture1D_1uv0g")
+
+[node name="Label" type="RichTextLabel" parent="." unique_id=1606711958]
+clip_contents = false
+offset_left = -24.0
+offset_top = -10.0
+offset_right = 24.0
+offset_bottom = 10.0
+theme_override_font_sizes/normal_font_size = 14
+text = "0"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1

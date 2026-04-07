@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cbul5812ajhcm"]
+
+[ext_resource type="Script" uid="uid://bn1sd767bgxrn" path="res://asteroids/asteroid_shield.gd" id="1_8i8vx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_om0jy"]
+radius = 64.3817
+
+[sub_resource type="Gradient" id="Gradient_l1slc"]
+offsets = PackedFloat32Array(0.45849803, 0.48221344, 0.55731225)
+colors = PackedColorArray(0.34, 0.34, 0.34, 0.34117648, 1, 1, 1, 0.63529414, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4yrb3"]
+gradient = SubResource("Gradient_l1slc")
+width = 190
+height = 190
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="AsteroidShield" type="Area2D" unique_id=1329508237 groups=["shields"]]
+z_index = 10
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_8i8vx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1748696332]
+position = Vector2(0.105, 0.15)
+scale = Vector2(0.99, 0.99)
+shape = SubResource("CircleShape2D_om0jy")
+
+[node name="AsteroidShield" type="Sprite2D" parent="." unique_id=704176829]
+scale = Vector2(0.89, 0.89)
+texture = SubResource("GradientTexture2D_4yrb3")

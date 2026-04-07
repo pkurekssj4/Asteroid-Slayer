@@ -1,0 +1,356 @@
+[gd_scene load_steps=11 format=3 uid="uid://bdigv1x1r4d5o"]
+
+[ext_resource type="Script" uid="uid://dylpesyb11f3b" path="res://upgrade_console/specialisations/specialisations.gd" id="1_1n0wu"]
+[ext_resource type="StyleBox" uid="uid://dr855ur533prw" path="res://ui/secondary_background.tres" id="2_1iv8x"]
+[ext_resource type="StyleBox" uid="uid://dvqcalwap7rp5" path="res://ui/background.tres" id="2_1qxk1"]
+[ext_resource type="Shader" uid="uid://bcwjlvguwqjyd" path="res://shaders/message_box_border_animation.gdshader" id="2_h21no"]
+[ext_resource type="AudioStream" uid="uid://bhr50n3yl6324" path="res://upgrade_console/specialisations/new_specialisation.mp3" id="2_rpvm0"]
+[ext_resource type="Theme" uid="uid://d1icjuesk3qr0" path="res://ui/button.tres" id="4_yc4lr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6oeup"]
+shader = ExtResource("2_h21no")
+shader_parameter/time_speed = 0.5
+shader_parameter/wave_freq = 3.0
+shader_parameter/wave_amp = 0.999999977648
+shader_parameter/alpha_channel = 1.0
+shader_parameter/color_light = Vector3(0.2, 0.7, 1)
+shader_parameter/color_mid = Vector3(0, 0.3, 0.7)
+shader_parameter/color_dark = Vector3(0, 0.1, 0.5)
+
+[sub_resource type="Curve" id="Curve_rpvm0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.47541, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1iv8x"]
+curve = SubResource("Curve_rpvm0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rpvm0"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(42.715, -14.905, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 0.2000001
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 19.999977
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_1iv8x")
+hue_variation_min = -0.18000002
+hue_variation_max = -0.010000022
+turbulence_noise_strength = 20.0
+turbulence_noise_scale = 0.439
+
+[node name="Specialisations" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1n0wu")
+
+[node name="MainPanel" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Borders" type="Panel" parent="MainPanel"]
+material = SubResource("ShaderMaterial_6oeup")
+layout_mode = 0
+offset_left = -6.0
+offset_top = -7.0
+offset_right = 490.0
+offset_bottom = 279.0
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("2_1iv8x")
+
+[node name="Inside" type="Panel" parent="MainPanel"]
+clip_contents = true
+layout_mode = 0
+offset_right = 483.0
+offset_bottom = 273.0
+theme_override_styles/panel = ExtResource("2_1qxk1")
+
+[node name="FirstSpecialisationLabel" type="Label" parent="MainPanel/Inside"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 477.0
+offset_bottom = 25.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "First specialisation is free of charge. The cost of change is 25000 Resource Credits."
+vertical_alignment = 1
+
+[node name="YourSpecialisationLabel" type="Label" parent="MainPanel/Inside"]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 18.0
+offset_right = 156.0
+offset_bottom = 41.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Your specialisation: "
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="MainPanel/Inside"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 135.0
+offset_right = 477.0
+offset_bottom = 234.0
+theme_override_styles/panel = ExtResource("2_1iv8x")
+
+[node name="BonusLabel" type="Label" parent="MainPanel/Inside"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 140.0
+offset_right = 472.0
+offset_bottom = 228.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+autowrap_mode = 2
+
+[node name="CloseButton" type="Button" parent="MainPanel/Inside"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 239.0
+offset_right = 132.0
+offset_bottom = 270.0
+theme = ExtResource("4_yc4lr")
+text = "Close panel"
+
+[node name="ConfirmButton" type="Button" parent="MainPanel/Inside"]
+layout_mode = 0
+offset_left = 301.0
+offset_top = 239.0
+offset_right = 477.0
+offset_bottom = 270.0
+theme = ExtResource("4_yc4lr")
+text = "Change specialisation"
+
+[node name="SpecialisationsContainer1" type="HBoxContainer" parent="MainPanel/Inside"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 57.0
+offset_right = 428.0
+offset_bottom = 88.0
+
+[node name="StrategistButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer1"]
+layout_mode = 2
+theme = ExtResource("4_yc4lr")
+text = "Strategist"
+
+[node name="EngineerButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer1"]
+layout_mode = 2
+theme = ExtResource("4_yc4lr")
+text = "Engineer"
+
+[node name="CollectionerButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer1"]
+layout_mode = 2
+theme = ExtResource("4_yc4lr")
+text = "Collectioner"
+
+[node name="PyrotechnistButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer1"]
+layout_mode = 2
+theme = ExtResource("4_yc4lr")
+theme_override_font_sizes/font_size = 0
+text = "Pyrotechnist"
+
+[node name="SpecialisationsContainer2" type="HBoxContainer" parent="MainPanel/Inside"]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 96.0
+offset_right = 371.0
+offset_bottom = 127.0
+
+[node name="ExecutorButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer2"]
+layout_mode = 2
+theme = ExtResource("4_yc4lr")
+text = "Executor
+"
+
+[node name="GunslingerButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer2"]
+layout_mode = 2
+theme = ExtResource("4_yc4lr")
+text = "Gunslinger"
+
+[node name="SentinelButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer2"]
+layout_mode = 2
+theme = ExtResource("4_yc4lr")
+text = "Sentinel
+"
+
+[node name="SecondaryPanel" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Borders" type="Panel" parent="SecondaryPanel"]
+material = SubResource("ShaderMaterial_6oeup")
+layout_mode = 0
+offset_left = 25.0
+offset_top = 73.0
+offset_right = 456.0
+offset_bottom = 202.0
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("2_1iv8x")
+
+[node name="Background" type="Panel" parent="SecondaryPanel"]
+clip_contents = true
+layout_mode = 0
+offset_left = 30.0
+offset_top = 78.0
+offset_right = 451.0
+offset_bottom = 197.0
+theme_override_styles/panel = ExtResource("2_1qxk1")
+
+[node name="ConfirmationInside" type="Control" parent="SecondaryPanel"]
+visible = false
+anchors_preset = 0
+offset_left = 28.0
+offset_top = 80.0
+offset_right = 68.0
+offset_bottom = 120.0
+
+[node name="Label1" type="Label" parent="SecondaryPanel/ConfirmationInside"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 418.0
+offset_bottom = 29.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "You want to change your specialisation to: "
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="SecondaryPanel/ConfirmationInside"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 17.0
+offset_right = 419.0
+offset_bottom = 44.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "The cost of the operation is: 0 Resource Credits"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="SecondaryPanel/ConfirmationInside"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 50.0
+offset_right = 418.0
+offset_bottom = 77.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Are you absolutely sure about this decision?"
+horizontal_alignment = 1
+
+[node name="YesButton" type="Button" parent="SecondaryPanel/ConfirmationInside"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 82.0
+offset_right = 111.0
+offset_bottom = 113.0
+theme = ExtResource("4_yc4lr")
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="SecondaryPanel/ConfirmationInside"]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 81.0
+offset_right = 358.0
+offset_bottom = 113.0
+theme = ExtResource("4_yc4lr")
+text = "No
+"
+
+[node name="ChangingSpecialisationInside" type="Control" parent="SecondaryPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 73.0
+offset_right = 72.0
+offset_bottom = 113.0
+
+[node name="ProgressBar" type="ProgressBar" parent="SecondaryPanel/ChangingSpecialisationInside"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 70.0
+offset_right = 395.0
+offset_bottom = 97.0
+step = 0.1
+
+[node name="Label" type="Label" parent="SecondaryPanel/ChangingSpecialisationInside"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 25.0
+offset_right = 419.0
+offset_bottom = 62.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Rewiring neuro connections…
+"
+horizontal_alignment = 1
+
+[node name="SpecialisationChangedInside" type="Control" parent="SecondaryPanel"]
+visible = false
+anchors_preset = 0
+offset_left = 30.0
+offset_top = 80.0
+offset_right = 70.0
+offset_bottom = 120.0
+
+[node name="Label1" type="Label" parent="SecondaryPanel/SpecialisationChangedInside"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -8.0
+offset_right = 421.0
+offset_bottom = 29.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "
+Congratulations! Your new specialisation is:"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="SecondaryPanel/SpecialisationChangedInside"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 35.0
+offset_right = 421.0
+offset_bottom = 72.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Specialisation"
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="SecondaryPanel/SpecialisationChangedInside"]
+visible = false
+layout_mode = 0
+offset_left = 159.0
+offset_top = 75.0
+offset_right = 256.0
+offset_bottom = 106.0
+theme = ExtResource("4_yc4lr")
+text = "Continue"
+
+[node name="SpecialisationChangedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_rpvm0")
+
+[node name="SpecialisationChangedParticles" type="GPUParticles2D" parent="."]
+position = Vector2(239, 131)
+emitting = false
+amount = 3000
+lifetime = 6.0
+process_material = SubResource("ParticleProcessMaterial_rpvm0")
+
+[connection signal="pressed" from="MainPanel/Inside/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="MainPanel/Inside/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="MainPanel/Inside/SpecialisationsContainer1/StrategistButton" to="." method="_on_strategist_button_pressed"]
+[connection signal="pressed" from="MainPanel/Inside/SpecialisationsContainer1/EngineerButton" to="." method="_on_engineer_button_pressed"]
+[connection signal="pressed" from="MainPanel/Inside/SpecialisationsContainer1/CollectionerButton" to="." method="_on_collectioner_button_pressed"]
+[connection signal="pressed" from="MainPanel/Inside/SpecialisationsContainer1/PyrotechnistButton" to="." method="_on_pyrotechnist_button_pressed"]
+[connection signal="pressed" from="MainPanel/Inside/SpecialisationsContainer2/ExecutorButton" to="." method="_on_executor_button_pressed"]
+[connection signal="pressed" from="MainPanel/Inside/SpecialisationsContainer2/GunslingerButton" to="." method="_on_gunslinger_button_pressed"]
+[connection signal="pressed" from="MainPanel/Inside/SpecialisationsContainer2/SentinelButton" to="." method="_on_sentinel_button_pressed"]
+[connection signal="pressed" from="SecondaryPanel/ConfirmationInside/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="SecondaryPanel/ConfirmationInside/NoButton" to="." method="_on_no_button_pressed"]
+[connection signal="pressed" from="SecondaryPanel/SpecialisationChangedInside/ContinueButton" to="." method="_on_continue_button_pressed"]

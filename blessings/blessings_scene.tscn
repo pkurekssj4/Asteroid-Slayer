@@ -1,0 +1,773 @@
+[gd_scene format=3 uid="uid://bwb5d7y0fhu10"]
+
+[ext_resource type="Script" uid="uid://dmoyibukgta11" path="res://blessings/blessings_scene.gd" id="1_l688k"]
+[ext_resource type="Texture2D" uid="uid://ds6ugx8sq6l2m" path="res://blessings/eyes_animation_sprites/gods_eyes (1).png" id="2_q842a"]
+[ext_resource type="Texture2D" uid="uid://csem3i0hwn5j8" path="res://blessings/eyes_animation_sprites/gods_eyes (2).png" id="3_dsyjg"]
+[ext_resource type="Texture2D" uid="uid://c3cprax6yqnwg" path="res://blessings/eyes_animation_sprites/gods_eyes (3).png" id="4_vdeka"]
+[ext_resource type="Texture2D" uid="uid://k1nvq1kmtoav" path="res://blessings/eyes_animation_sprites/gods_eyes (4).png" id="5_41gx1"]
+[ext_resource type="Texture2D" uid="uid://b11hx6obroj2b" path="res://blessings/eyes_animation_sprites/gods_eyes (5).png" id="6_60wo5"]
+[ext_resource type="Texture2D" uid="uid://dqclbk6fvv18c" path="res://blessings/eyes_animation_sprites/gods_eyes (6).png" id="7_cwdny"]
+[ext_resource type="Texture2D" uid="uid://bt2xxgw0ds5oe" path="res://blessings/eyes_animation_sprites/gods_eyes (7).png" id="8_8ef6x"]
+[ext_resource type="Texture2D" uid="uid://dxcfy4o0fauoe" path="res://blessings/eyes_animation_sprites/gods_eyes (8).png" id="9_yprgp"]
+[ext_resource type="Texture2D" uid="uid://b817d3w1ngou8" path="res://blessings/eyes_animation_sprites/gods_eyes (9).png" id="10_8ifct"]
+[ext_resource type="Texture2D" uid="uid://cku2tmtvsep48" path="res://blessings/eyes_animation_sprites/gods_eyes (10).png" id="11_frun5"]
+[ext_resource type="Texture2D" uid="uid://dy3o4u71iv0qg" path="res://blessings/eyes_animation_sprites/gods_eyes (11).png" id="12_wy1bt"]
+[ext_resource type="Texture2D" uid="uid://na6nvitrkara" path="res://blessings/eyes_animation_sprites/gods_eyes (12).png" id="13_bmos8"]
+[ext_resource type="Texture2D" uid="uid://ja5tfq20a63g" path="res://blessings/eyes_animation_sprites/gods_eyes (13).png" id="14_2so0p"]
+[ext_resource type="Texture2D" uid="uid://li7aku4aywqp" path="res://blessings/eyes_animation_sprites/gods_eyes (14).png" id="15_pjtbg"]
+[ext_resource type="Texture2D" uid="uid://cyctxhcmkwm8q" path="res://blessings/eyes_animation_sprites/gods_eyes (15).png" id="16_qx2ce"]
+[ext_resource type="Texture2D" uid="uid://b28ssti28jwj7" path="res://blessings/eyes_animation_sprites/gods_eyes (16).png" id="17_uafh6"]
+[ext_resource type="Texture2D" uid="uid://ctm80avaaek22" path="res://blessings/eyes_animation_sprites/gods_eyes (17).png" id="18_afx00"]
+[ext_resource type="Texture2D" uid="uid://dvd155oml6m44" path="res://blessings/eyes_animation_sprites/gods_eyes (18).png" id="19_mdf8f"]
+[ext_resource type="Texture2D" uid="uid://ksbp15ddnyv3" path="res://blessings/eyes_animation_sprites/gods_eyes (19).png" id="20_oifw7"]
+[ext_resource type="Texture2D" uid="uid://mma4gj5x7xld" path="res://blessings/eyes_animation_sprites/gods_eyes (20).png" id="21_pvh45"]
+[ext_resource type="Texture2D" uid="uid://c2v2jgjwigawg" path="res://blessings/eyes_animation_sprites/gods_eyes (21).png" id="22_7heao"]
+[ext_resource type="Texture2D" uid="uid://c2xu17rq76n5d" path="res://blessings/eyes_animation_sprites/gods_eyes (22).png" id="23_jr5o1"]
+[ext_resource type="Texture2D" uid="uid://0et4ywn4wj52" path="res://blessings/eyes_animation_sprites/gods_eyes (23).png" id="24_e7wck"]
+[ext_resource type="Texture2D" uid="uid://dc127ytpoejp2" path="res://blessings/eyes_animation_sprites/gods_eyes (24).png" id="25_c3j30"]
+[ext_resource type="Texture2D" uid="uid://copngmjk1ajtc" path="res://blessings/eyes_animation_sprites/gods_eyes (25).png" id="26_7lbf3"]
+[ext_resource type="Texture2D" uid="uid://ce25v7o47vx7g" path="res://blessings/eyes_animation_sprites/gods_eyes (26).png" id="27_fpvpm"]
+[ext_resource type="Texture2D" uid="uid://c3fo800gynoih" path="res://blessings/eyes_animation_sprites/gods_eyes (27).png" id="28_k0kgm"]
+[ext_resource type="Texture2D" uid="uid://c31enwlv6q24r" path="res://blessings/eyes_animation_sprites/gods_eyes (28).png" id="29_ysu8q"]
+[ext_resource type="Texture2D" uid="uid://2cixkfutihry" path="res://blessings/eyes_animation_sprites/gods_eyes (29).png" id="30_r6r03"]
+[ext_resource type="Texture2D" uid="uid://23wx56hof6i2" path="res://blessings/eyes_animation_sprites/gods_eyes (30).png" id="31_mud8m"]
+[ext_resource type="Texture2D" uid="uid://1gslq3yh6u7y" path="res://blessings/eyes_animation_sprites/gods_eyes (31).png" id="32_hmwmp"]
+[ext_resource type="Texture2D" uid="uid://1586osi02nfv" path="res://blessings/eyes_animation_sprites/gods_eyes (32).png" id="33_6troi"]
+[ext_resource type="Texture2D" uid="uid://ceg6ftbdgjt0h" path="res://blessings/eyes_animation_sprites/gods_eyes (33).png" id="34_u3bcf"]
+[ext_resource type="Texture2D" uid="uid://dfs6bat8h4jvc" path="res://blessings/eyes_animation_sprites/gods_eyes (34).png" id="35_81d4o"]
+[ext_resource type="Texture2D" uid="uid://dlhewycemo771" path="res://blessings/eyes_animation_sprites/gods_eyes (35).png" id="36_ir6pg"]
+[ext_resource type="Texture2D" uid="uid://cr6gwi4khrmsy" path="res://blessings/eyes_animation_sprites/gods_eyes (36).png" id="37_bmg76"]
+[ext_resource type="Texture2D" uid="uid://8evtmntnu3jl" path="res://blessings/eyes_animation_sprites/gods_eyes (37).png" id="38_sap25"]
+[ext_resource type="Texture2D" uid="uid://cmdm0qcfwuykg" path="res://blessings/eyes_animation_sprites/gods_eyes (38).png" id="39_7s18y"]
+[ext_resource type="Texture2D" uid="uid://dwmu2b2q5lp6j" path="res://blessings/eyes_animation_sprites/gods_eyes (39).png" id="40_qknp8"]
+[ext_resource type="Texture2D" uid="uid://dnw3qktjpet3i" path="res://blessings/eyes_animation_sprites/gods_eyes (40).png" id="41_xysx0"]
+[ext_resource type="Texture2D" uid="uid://gt8iu8f4pi63" path="res://blessings/eyes_animation_sprites/gods_eyes (41).png" id="42_qg7nt"]
+[ext_resource type="Texture2D" uid="uid://buyysl6fcgbhc" path="res://blessings/eyes_animation_sprites/gods_eyes (42).png" id="43_wsbul"]
+[ext_resource type="Texture2D" uid="uid://cwmp63oypnaig" path="res://blessings/eyes_animation_sprites/gods_eyes (43).png" id="44_q5nhy"]
+[ext_resource type="Texture2D" uid="uid://i57e6cdllg6y" path="res://blessings/eyes_animation_sprites/gods_eyes (44).png" id="45_47g4x"]
+[ext_resource type="Texture2D" uid="uid://50r15fqp0ba5" path="res://blessings/eyes_animation_sprites/gods_eyes (45).png" id="46_sv1yf"]
+[ext_resource type="Texture2D" uid="uid://ya6hxcyypmck" path="res://blessings/eyes_animation_sprites/gods_eyes (46).png" id="47_muf3x"]
+[ext_resource type="Texture2D" uid="uid://bbodywvn1uyyd" path="res://blessings/eyes_animation_sprites/gods_eyes (47).png" id="48_23x8d"]
+[ext_resource type="Texture2D" uid="uid://ugqjsy6g3b54" path="res://blessings/eyes_animation_sprites/gods_eyes (48).png" id="49_dp7io"]
+[ext_resource type="Texture2D" uid="uid://cmrqqybuc6pv" path="res://blessings/eyes_animation_sprites/gods_eyes (49).png" id="50_5clyn"]
+[ext_resource type="Texture2D" uid="uid://blrwqdhgrmskc" path="res://blessings/eyes_animation_sprites/gods_eyes (50).png" id="51_v5qxo"]
+[ext_resource type="Texture2D" uid="uid://dda7hu0l7yxvt" path="res://blessings/eyes_animation_sprites/gods_eyes (51).png" id="52_q6cbk"]
+[ext_resource type="Texture2D" uid="uid://b0kutg1x3fsxt" path="res://blessings/eyes_animation_sprites/gods_eyes (52).png" id="53_1kasq"]
+[ext_resource type="Texture2D" uid="uid://r70p0blung3y" path="res://blessings/eyes_animation_sprites/gods_eyes (53).png" id="54_holl7"]
+[ext_resource type="Texture2D" uid="uid://cldt6s7jg4joq" path="res://blessings/eyes_animation_sprites/gods_eyes (54).png" id="55_jsd61"]
+[ext_resource type="Texture2D" uid="uid://fugrhc2oo2r3" path="res://blessings/eyes_animation_sprites/gods_eyes (55).png" id="56_jju08"]
+[ext_resource type="Texture2D" uid="uid://csjj8agiej05g" path="res://blessings/eyes_animation_sprites/gods_eyes (56).png" id="57_t8mfm"]
+[ext_resource type="Texture2D" uid="uid://dod5a4rohwmpf" path="res://blessings/eyes_animation_sprites/gods_eyes (57).png" id="58_rvvjj"]
+[ext_resource type="Texture2D" uid="uid://bqpux7w4hhi58" path="res://blessings/eyes_animation_sprites/gods_eyes (58).png" id="59_odiub"]
+[ext_resource type="Texture2D" uid="uid://cgnqrgsyp28lu" path="res://blessings/eyes_animation_sprites/gods_eyes (59).png" id="60_ugpsi"]
+[ext_resource type="Texture2D" uid="uid://7c5buvvd43ri" path="res://blessings/eyes_animation_sprites/gods_eyes (60).png" id="61_dbym0"]
+[ext_resource type="Texture2D" uid="uid://mylr4d7xrfv7" path="res://blessings/eyes_animation_sprites/gods_eyes (61).png" id="62_8wwob"]
+[ext_resource type="Texture2D" uid="uid://c86g3pbfeui6u" path="res://blessings/eyes_animation_sprites/gods_eyes (62).png" id="63_ggme3"]
+[ext_resource type="Texture2D" uid="uid://butmmvpt8x1iv" path="res://blessings/eyes_animation_sprites/gods_eyes (63).png" id="64_h4a1k"]
+[ext_resource type="Texture2D" uid="uid://bc6gvkee5gici" path="res://blessings/eyes_animation_sprites/gods_eyes (64).png" id="65_4fw5e"]
+[ext_resource type="Texture2D" uid="uid://3j7hx1t4ou6s" path="res://blessings/eyes_animation_sprites/gods_eyes (65).png" id="66_ruc56"]
+[ext_resource type="Texture2D" uid="uid://b4ub1oarhyh68" path="res://blessings/eyes_animation_sprites/gods_eyes (66).png" id="67_dl2cp"]
+[ext_resource type="Texture2D" uid="uid://bgbxvgsei5rp3" path="res://blessings/eyes_animation_sprites/gods_eyes (67).png" id="68_65tvy"]
+[ext_resource type="Texture2D" uid="uid://c8j4ycq6km0g6" path="res://blessings/eyes_animation_sprites/gods_eyes (68).png" id="69_u3koy"]
+[ext_resource type="Texture2D" uid="uid://sbdhh6h0bdc7" path="res://blessings/eyes_animation_sprites/gods_eyes (69).png" id="70_cwirp"]
+[ext_resource type="Texture2D" uid="uid://cdyyuquo74osg" path="res://blessings/eyes_animation_sprites/gods_eyes (70).png" id="71_820fq"]
+[ext_resource type="Texture2D" uid="uid://djc6ebhl0e8ts" path="res://blessings/eyes_animation_sprites/gods_eyes (71).png" id="72_jvxsx"]
+[ext_resource type="Texture2D" uid="uid://nk830mh6vndp" path="res://blessings/eyes_animation_sprites/gods_eyes (72).png" id="73_awggs"]
+[ext_resource type="Texture2D" uid="uid://eubkinwmpm8e" path="res://blessings/eyes_animation_sprites/gods_eyes (73).png" id="74_ki0td"]
+[ext_resource type="Texture2D" uid="uid://x2ke311kuicb" path="res://blessings/eyes_animation_sprites/gods_eyes (74).png" id="75_rq7kg"]
+[ext_resource type="Texture2D" uid="uid://0gjo2plhbdk7" path="res://blessings/eyes_animation_sprites/gods_eyes (75).png" id="76_x7gen"]
+[ext_resource type="Texture2D" uid="uid://bx48wq0x6gr3g" path="res://blessings/eyes_animation_sprites/gods_eyes (76).png" id="77_hd7om"]
+[ext_resource type="Texture2D" uid="uid://ge1l8pho51ny" path="res://blessings/eyes_animation_sprites/gods_eyes (77).png" id="78_k5js6"]
+[ext_resource type="Texture2D" uid="uid://btpywn57dtbst" path="res://blessings/eyes_animation_sprites/gods_eyes (78).png" id="79_tqwyi"]
+[ext_resource type="Texture2D" uid="uid://bksbml62fv72y" path="res://blessings/eyes_animation_sprites/gods_eyes (79).png" id="80_qvq5v"]
+[ext_resource type="Texture2D" uid="uid://bdgh3136jj070" path="res://blessings/eyes_animation_sprites/gods_eyes (80).png" id="81_d0nhw"]
+[ext_resource type="Texture2D" uid="uid://dwjxtrppnamcw" path="res://blessings/eyes_animation_sprites/gods_eyes (81).png" id="82_jlri1"]
+[ext_resource type="Texture2D" uid="uid://ct2lab8aesb26" path="res://blessings/eyes_animation_sprites/gods_eyes (82).png" id="83_kw8vm"]
+[ext_resource type="Texture2D" uid="uid://dmqsrylstpucc" path="res://blessings/eyes_animation_sprites/gods_eyes (83).png" id="84_t2560"]
+[ext_resource type="Texture2D" uid="uid://4pwqqh65yhhp" path="res://blessings/eyes_animation_sprites/gods_eyes (84).png" id="85_lyasu"]
+[ext_resource type="Texture2D" uid="uid://p4wm6ag5aob5" path="res://blessings/eyes_animation_sprites/gods_eyes (85).png" id="86_shl8j"]
+[ext_resource type="Texture2D" uid="uid://1k2ht5q35w4u" path="res://blessings/eyes_animation_sprites/gods_eyes (86).png" id="87_phtoa"]
+[ext_resource type="Texture2D" uid="uid://dpkx2bd6b1dna" path="res://blessings/eyes_animation_sprites/gods_eyes (87).png" id="88_6a4j0"]
+[ext_resource type="Texture2D" uid="uid://pvy3i14qlt0j" path="res://blessings/eyes_animation_sprites/gods_eyes (88).png" id="89_77h6t"]
+[ext_resource type="Texture2D" uid="uid://caf12bwpqhr5t" path="res://blessings/eyes_animation_sprites/gods_eyes (89).png" id="90_i3gs7"]
+[ext_resource type="Texture2D" uid="uid://doy7o5jm5cf4e" path="res://blessings/eyes_animation_sprites/gods_eyes (90).png" id="91_m3daw"]
+[ext_resource type="Texture2D" uid="uid://bcojmavhbkq1b" path="res://blessings/eyes_animation_sprites/gods_eyes (91).png" id="92_snjhp"]
+[ext_resource type="Texture2D" uid="uid://dq4fiixx1nioe" path="res://blessings/eyes_animation_sprites/gods_eyes (92).png" id="93_1lx73"]
+[ext_resource type="Texture2D" uid="uid://brceyosncalui" path="res://blessings/eyes_animation_sprites/gods_eyes (93).png" id="94_0n6ec"]
+[ext_resource type="Texture2D" uid="uid://b2pqplva5q7n0" path="res://blessings/eyes_animation_sprites/gods_eyes (94).png" id="95_shchi"]
+[ext_resource type="Texture2D" uid="uid://bt7wjtykg8qhm" path="res://blessings/eyes_animation_sprites/gods_eyes (95).png" id="96_hmgf0"]
+[ext_resource type="Texture2D" uid="uid://bi1xsui18bjsi" path="res://blessings/eyes_animation_sprites/gods_eyes (96).png" id="97_opx5v"]
+[ext_resource type="Texture2D" uid="uid://b44w2bijt0nlk" path="res://blessings/eyes_animation_sprites/gods_eyes (97).png" id="98_bhpef"]
+[ext_resource type="Texture2D" uid="uid://cl2wlu7uc7f8u" path="res://blessings/eyes_animation_sprites/gods_eyes (98).png" id="99_rta35"]
+[ext_resource type="Texture2D" uid="uid://dlvegjqdls27m" path="res://blessings/eyes_animation_sprites/gods_eyes (99).png" id="100_v15it"]
+[ext_resource type="Texture2D" uid="uid://dwtliorwketc0" path="res://blessings/eyes_animation_sprites/gods_eyes (100).png" id="101_h482g"]
+[ext_resource type="Texture2D" uid="uid://5h6s1p1tscgf" path="res://blessings/eyes_animation_sprites/gods_eyes (101).png" id="102_bwnnp"]
+[ext_resource type="Texture2D" uid="uid://bypx8m6ixwbqm" path="res://blessings/eyes_animation_sprites/gods_eyes (102).png" id="103_vgf4o"]
+[ext_resource type="Texture2D" uid="uid://qotxpxh0ekfw" path="res://blessings/eyes_animation_sprites/gods_eyes (103).png" id="104_3jee6"]
+[ext_resource type="Texture2D" uid="uid://ddntrlfmdtgue" path="res://blessings/eyes_animation_sprites/gods_eyes (104).png" id="105_g53uu"]
+[ext_resource type="Texture2D" uid="uid://24ogln0dfn30" path="res://blessings/eyes_animation_sprites/gods_eyes (105).png" id="106_r8nqf"]
+[ext_resource type="Texture2D" uid="uid://b3e15wpj2j4g4" path="res://blessings/eyes_animation_sprites/gods_eyes (106).png" id="107_s5if0"]
+[ext_resource type="Texture2D" uid="uid://b1fogf1t7yy0f" path="res://blessings/eyes_animation_sprites/gods_eyes (107).png" id="108_cwnpv"]
+[ext_resource type="Texture2D" uid="uid://cgv11smnhhx7y" path="res://blessings/eyes_animation_sprites/gods_eyes (108).png" id="109_71yiy"]
+[ext_resource type="Texture2D" uid="uid://b52hhi723fak7" path="res://blessings/eyes_animation_sprites/gods_eyes (109).png" id="110_rnd31"]
+[ext_resource type="Texture2D" uid="uid://ceq0en5n4isq0" path="res://blessings/eyes_animation_sprites/gods_eyes (110).png" id="111_w1d12"]
+[ext_resource type="Texture2D" uid="uid://bjcqyyedxaffe" path="res://blessings/eyes_animation_sprites/gods_eyes (111).png" id="112_lowsj"]
+[ext_resource type="Texture2D" uid="uid://bcfclx7bhcyjf" path="res://blessings/eyes_animation_sprites/gods_eyes (112).png" id="113_xphn2"]
+[ext_resource type="Texture2D" uid="uid://bjg5jtawmgxn6" path="res://blessings/eyes_animation_sprites/gods_eyes (113).png" id="114_pwwwb"]
+[ext_resource type="Texture2D" uid="uid://n341ow26mk5p" path="res://blessings/eyes_animation_sprites/gods_eyes (114).png" id="115_k83ww"]
+[ext_resource type="Texture2D" uid="uid://c8wediiqir5kq" path="res://blessings/eyes_animation_sprites/gods_eyes (115).png" id="116_ymyek"]
+[ext_resource type="Texture2D" uid="uid://dq3vmvw74ls8t" path="res://blessings/eyes_animation_sprites/gods_eyes (116).png" id="117_vnq3a"]
+[ext_resource type="Texture2D" uid="uid://d4gqugvjqjlhd" path="res://blessings/eyes_animation_sprites/gods_eyes (117).png" id="118_06kmj"]
+[ext_resource type="Texture2D" uid="uid://cef2thd4a70ax" path="res://blessings/eyes_animation_sprites/gods_eyes (118).png" id="119_kkgph"]
+[ext_resource type="Texture2D" uid="uid://deymrg5h2p185" path="res://blessings/eyes_animation_sprites/gods_eyes (119).png" id="120_1bgda"]
+[ext_resource type="Texture2D" uid="uid://cxlu0bw8rm88h" path="res://blessings/eyes_animation_sprites/gods_eyes (120).png" id="121_suetm"]
+[ext_resource type="Texture2D" uid="uid://k3t480wfbhuo" path="res://clouds/cloud6.png" id="122_0q84f"]
+[ext_resource type="AudioStream" uid="uid://cuxoqpdd4g2fr" path="res://blessings/blessing_highlight.mp3" id="123_dsyjg"]
+[ext_resource type="AudioStream" uid="uid://bwhm17do1vrcv" path="res://audio/sounds/god.mp3" id="123_q842a"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fgcpt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_q842a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dsyjg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vdeka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_41gx1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_60wo5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_cwdny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8ef6x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_yprgp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_8ifct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_frun5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_wy1bt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_bmos8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_2so0p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_pjtbg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_qx2ce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_uafh6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_afx00")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_mdf8f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_oifw7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_pvh45")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_7heao")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_jr5o1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_e7wck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_c3j30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_7lbf3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_fpvpm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_k0kgm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_ysu8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_r6r03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_mud8m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_hmwmp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_6troi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_u3bcf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_81d4o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_ir6pg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_bmg76")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_sap25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_7s18y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_qknp8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_xysx0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_qg7nt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_wsbul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_q5nhy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_47g4x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_sv1yf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_muf3x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_23x8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_dp7io")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_5clyn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_v5qxo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_q6cbk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_1kasq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_holl7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_jsd61")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_jju08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_t8mfm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_rvvjj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_odiub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_ugpsi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_dbym0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_8wwob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_ggme3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_h4a1k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_4fw5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_ruc56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_dl2cp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_65tvy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_u3koy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_cwirp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_820fq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_jvxsx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_awggs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_ki0td")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_rq7kg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_x7gen")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_hd7om")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_k5js6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_tqwyi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_qvq5v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_d0nhw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_jlri1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_kw8vm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_t2560")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_lyasu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_shl8j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_phtoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_6a4j0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_77h6t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_i3gs7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_m3daw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_snjhp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_1lx73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_0n6ec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_shchi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_hmgf0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_opx5v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_bhpef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_rta35")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_v15it")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_h482g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_bwnnp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_vgf4o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_3jee6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_g53uu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_r8nqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_s5if0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_cwnpv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_71yiy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_rnd31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_w1d12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_lowsj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_xphn2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_pwwwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_k83ww")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_ymyek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_vnq3a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_06kmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_kkgph")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_1bgda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_suetm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 40.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1rug3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ep2xr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rwgjm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qomou"]
+
+[sub_resource type="Animation" id="Animation_q842a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GodsEyesAnimation:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Clouds:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vdeka"]
+resource_name = "gods_blessings_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Clouds:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_41gx1"]
+resource_name = "gods_blessings_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Clouds:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l688k"]
+resource_name = "gods_eyes_in"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GodsEyesAnimation:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dsyjg"]
+resource_name = "gods_eyes_out"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GodsEyesAnimation:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dsyjg"]
+_data = {
+&"RESET": SubResource("Animation_q842a"),
+&"gods_blessings_in": SubResource("Animation_vdeka"),
+&"gods_blessings_out": SubResource("Animation_41gx1"),
+&"gods_eyes_in": SubResource("Animation_l688k"),
+&"gods_eyes_out": SubResource("Animation_dsyjg")
+}
+
+[node name="BlessingsScene" type="Node2D" unique_id=2027911280]
+z_index = 10
+script = ExtResource("1_l688k")
+
+[node name="GodsEyesAnimation" type="AnimatedSprite2D" parent="." unique_id=325909758]
+modulate = Color(1, 1, 1, 0)
+sprite_frames = SubResource("SpriteFrames_fgcpt")
+autoplay = "default"
+frame_progress = 0.986672
+
+[node name="GodsEyesAppearingSound" type="AudioStreamPlayer" parent="." unique_id=1548646958]
+stream = ExtResource("123_q842a")
+
+[node name="BlessingHighlightSound" type="AudioStreamPlayer" parent="." unique_id=17689798]
+stream = ExtResource("123_dsyjg")
+volume_db = -3.0
+
+[node name="Clouds" type="Node2D" parent="." unique_id=1369263552]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Cloud1" type="Sprite2D" parent="Clouds" unique_id=88300752]
+z_index = 2
+position = Vector2(-210.00003, 238)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("122_0q84f")
+
+[node name="Cloud1Label" type="RichTextLabel" parent="Clouds" unique_id=1410221584]
+z_index = 2
+offset_left = -287.99997
+offset_top = 184.0
+offset_right = -125.99997
+offset_bottom = 229.0
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Bonus Receiver
+"
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cloud1Description" type="Label" parent="Clouds" unique_id=1247365740]
+z_index = 2
+offset_left = -287.99997
+offset_top = 216.0
+offset_right = -125.99997
+offset_bottom = 261.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Description
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Cloud1Button" type="Button" parent="Clouds" unique_id=1667484745]
+z_index = 2
+offset_left = -270.99997
+offset_top = 203.0
+offset_right = -144.99994
+offset_bottom = 262.0
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1rug3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ep2xr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_rwgjm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qomou")
+
+[node name="Cloud2" type="Sprite2D" parent="Clouds" unique_id=383150288]
+z_index = 2
+position = Vector2(-2, 238)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("122_0q84f")
+
+[node name="Cloud2Label" type="RichTextLabel" parent="Clouds" unique_id=1151553185]
+z_index = 2
+offset_left = -80.0
+offset_top = 184.0
+offset_right = 82.0
+offset_bottom = 229.0
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Bonus Receiver
+"
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cloud2Description" type="Label" parent="Clouds" unique_id=558504866]
+z_index = 2
+offset_left = -80.0
+offset_top = 216.0
+offset_right = 82.0
+offset_bottom = 261.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Description
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Cloud2Button" type="Button" parent="Clouds" unique_id=1150656494]
+z_index = 2
+offset_left = -63.0
+offset_top = 203.0
+offset_right = 63.0
+offset_bottom = 262.0
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1rug3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ep2xr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_rwgjm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qomou")
+
+[node name="Cloud3" type="Sprite2D" parent="Clouds" unique_id=938670171]
+z_index = 2
+position = Vector2(205.99966, 238)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("122_0q84f")
+
+[node name="Cloud3Label" type="RichTextLabel" parent="Clouds" unique_id=1416953523]
+z_index = 2
+offset_left = 128.00018
+offset_top = 184.0
+offset_right = 290.00018
+offset_bottom = 229.0
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Bonus Receiver
+"
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cloud3Description" type="Label" parent="Clouds" unique_id=115550288]
+z_index = 2
+offset_left = 128.00018
+offset_top = 216.0
+offset_right = 290.00018
+offset_bottom = 261.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Description
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Cloud3Button" type="Button" parent="Clouds" unique_id=670590327]
+z_index = 2
+offset_left = 145.00018
+offset_top = 203.0
+offset_right = 271.00018
+offset_bottom = 262.0
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1rug3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ep2xr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_rwgjm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qomou")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1515582866]
+libraries/ = SubResource("AnimationLibrary_dsyjg")
+
+[node name="Timer" type="Timer" parent="." unique_id=1519934433]
+
+[connection signal="pressed" from="Clouds/Cloud1Button" to="." method="_on_cloud_1_button_pressed"]
+[connection signal="pressed" from="Clouds/Cloud2Button" to="." method="_on_cloud_2_button_pressed"]
+[connection signal="pressed" from="Clouds/Cloud3Button" to="." method="_on_cloud_3_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

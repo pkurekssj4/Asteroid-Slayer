@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2kqqcryipmbn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yya6r"]
+bg_color = Color(0.219501, 0.219501, 0.219501, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i48ic"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(0.321728, 0.321728, 0.321728, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[node name="BigUpgrade" type="Node2D"]
+
+[node name="CircleShadow" type="Panel" parent="."]
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yya6r")
+
+[node name="Circle" type="Panel" parent="."]
+offset_left = -23.0
+offset_top = -23.0
+offset_right = 23.0
+offset_bottom = 23.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i48ic")
