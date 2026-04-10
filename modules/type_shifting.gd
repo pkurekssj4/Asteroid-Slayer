@@ -18,6 +18,7 @@ func _ready() -> void:
 	for type in data_dict:
 		if data_dict[type].has("spawn") and type != "chromatic_asteroid": types_to_shift_through.append(type)
 	types_to_shift_through.shuffle()
+	parent.explosion_scene.collision_parameters.transform_asteroids_to_parent_type = types_to_shift_through[current_key]
 	last_shift_time = shift_duration
 	parent["audio_visual_effects"]["visuals_when_launched"][1]["scene"].modulate = data_dict[types_to_shift_through[current_key]]["composition_color"]
 	

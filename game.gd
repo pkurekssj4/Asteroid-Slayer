@@ -25,7 +25,7 @@ var debug: Dictionary = {
 	"keep_pressing_hotkey_to_spawn_asteroids": true,
 	"buildings_are_repaired": false,
 	"debug_values": true,
-	"day": 6,
+	"day": 16,
 	"basic_attack_damage": 200,
 	"basic_attack_reload_time": 1,
 	"basic_attack_rate_of_fire": 5,
@@ -354,12 +354,15 @@ func create_small_text_event(text: String, color_bbcode: String, size: String, s
 	new_label.global_position = display_position
 	$UILayer.add_child(new_label)
 
-func add_credits(receiver: Area2D, credits: int) -> void:
-	if is_player(receiver):
-		GlobalScript.current_data.resources.credits += credits
-		refresh_resource_credits_label()
-	else:
-		receiver.resource_credits += credits
+func add_credits(receiver: Area2D, credits: int, target_position: Vector2) -> void:
+	if is_instance_valid(receiver):
+		if is_player(receiver):
+			GlobalScript.current_data.resources.credits += credits
+			refresh_resource_credits_label()
+			play_new_score_animation("credits")
+			create_small_text_event("+" + str(credits), "green", "medium", "fast", target_position, "resource_credit")
+		else:
+			receiver.resource_credits += credits
 
 func play_new_score_animation(animation) -> void:
 	var new_animation_player = AnimationPlayer.new()
@@ -839,7 +842,6 @@ func update_durability_bar(structure: Area2D, data_dict: Dictionary, damage_take
 func is_player(object: Area2D) -> bool:
 	# W przypadku gracza źrodłem zawsze jest ktoraś ze struktur, więc to nie moze byc grac jesli obiekt nie istnieje.
 	# Inne obiekty np asteroidy same dla siebie są źródłami.
-	if !is_instance_valid(object.source): return false 
 	if object.source in structures_list: return true
 	else: return false
 
@@ -873,11 +875,12 @@ func add_new_object(add: bool, object: Variant) -> void:
 				$ObjectEventsHub.execute_fx("destroyed", object)
 				$ObjectEventsHub.explode_object(object)
 		"Explosions":
-			if !add:
-				if object.resource_credits > 0 and is_instance_valid(object.source):
-					add_credits(object.source, object.resource_credits)
-					play_new_score_animation("credits")
-					create_small_text_event("+" + str(object.resource_credits), "green", "medium", "fast", object.global_position, "resource_credit")
+			pass
+			#if !add:
+				#if object.resource_credits > 0 and is_instance_valid(object.source):
+					# add_credits(object.source, object.resource_credits)
+					# play_new_score_animation("credits")
+					# create_small_text_event("+" + str(object.resource_credits), "green", "medium", "fast", object.global_position, "resource_credit")
 		"VFX":
 			pass
 			

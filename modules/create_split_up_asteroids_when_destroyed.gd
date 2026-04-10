@@ -20,4 +20,5 @@ func _ready() -> void:
 			if multiplier == 2: multiplier = -1
 			destination[vector] = parent.position[vector] + ((100 + randi_range(100, 300)) * multiplier)
 		var new_asteroid: Area2D = fabricated_scenes_manager.get_asteroid_scene("split_up", 1, 0.1, speed, parent.position, destination, false, 0)
+		new_asteroid.source = parent.source
 		game.add_new_object(true, new_asteroid)

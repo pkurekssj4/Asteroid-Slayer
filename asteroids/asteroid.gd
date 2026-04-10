@@ -80,10 +80,11 @@ func calculate_speed_and_trajectory(delta) -> void:
 	
 func take_damage(damage: float, attacker: Area2D) -> bool:
 	if self.is_queued_for_deletion() or !entered_screen: return false
+	fever.progress(damage, attacker, self)
 	durability_points -= damage
 	if durability_points <= 0.0:
-		source = attacker
-		source.resource_credits += credits_reward
+		if is_instance_valid(attacker.source): source = attacker.source
+		game.add_credits(source, credits_reward, self.global_position)
 		emit_signal("ready_to_free")
 		game.add_new_object(false, self)
 		return true

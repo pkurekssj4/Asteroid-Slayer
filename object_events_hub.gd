@@ -12,7 +12,7 @@ func explode_object(object: Area2D) -> void:
 	# Exploded to zabezpieczneie przeciw wielu eksplozjom na tym samym obiekcie podczas wielu kolizji jednocześnie
 	# Obiekty zglaszaja kolizje tylko jesli ich exploded = false
 	if object.explosion_scene != null:
-		object.explosion_scene.source = object.source
+		if is_instance_valid(object.source): object.explosion_scene.source = object.source
 		object.explosion_scene.position = object.position
 		game.add_new_object(true, object.explosion_scene)
 		object.exploded = true
@@ -102,7 +102,7 @@ func resolve_collision(area_entered: bool, area_owner: Area2D, intruder: Area2D)
 				match parameter:
 					"damage": 
 						var damage: float = resolve_damage(area_owner, intruder)
-						damage_object(damage, area_owner, intruder)
+						intruder.take_damage(damage, area_owner)
 					"shockwave_force":
 						if intruder.has_method("apply_shockwave_force"):
 							intruder.apply_shockwave_force(area_owner.global_position, area_owner.collision_parameters.shockwave_force)
@@ -159,11 +159,3 @@ func resolve_damage(area_owner: Area2D, intruder: Area2D) -> float:
 			game.create_small_text_event(text, color_bbcode, size, speed, display_position, icon)
 			return critical_hit_damage
 	return area_owner.collision_parameters.damage
-
-func damage_object(damage: float, attacker: Area2D, victim: Area2D) -> void:
-	if game.is_player(attacker) and !game.is_player(victim):
-		var fever_progress: float
-		if victim.durability_points - damage <= 0.0: fever_progress = victim.durability_points
-		else: fever_progress = damage
-		fever.progress(fever_progress)
-	victim.take_damage(damage, attacker)

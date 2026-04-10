@@ -10,15 +10,15 @@ var destroy_threshold: float = 0.7
 @onready var fever: Node = get_node("/root/Game/Fever")
 
 func _ready():
-	durability_points = (scale.x - destroy_threshold) * 1000
+	durability_points = (scale.x - destroy_threshold) * 1000 * rarity
 	source = parent
 	
 func _process(_delta):
 	if is_instance_valid(parent): global_position = parent.global_position
 	else: queue_free()
 
-func take_damage(damage: float, _attacker: Area2D):
-	damage /= rarity
+func take_damage(damage: float, attacker: Area2D):
+	fever.progress(damage, attacker, self)
 	durability_points -= damage
 	if durability_points <= 0.0:
 		game.add_new_object(false, self)

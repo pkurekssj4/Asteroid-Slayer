@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 		fever_meter.material.set_shader_parameter("phase", shader_phase)
 	else:
 		current_damage -= ((current_damage_percent_decline_per_second / 100.0) * required_damage) * delta
-		progress(0.0)
+		update_progress()
 
 func _ready() -> void:
 	shader_material = ShaderMaterial.new()
@@ -35,12 +35,18 @@ func _ready() -> void:
 	add_child(timer)
 	timer.connect("timeout", Callable(self, "end_fever"))
 	
-func progress(damage: float) -> void:
-	if GlobalScript.current_data.fever.enabled: return
-	current_damage += damage
+func progress(damage: float, attacker: Area2D, damage_taker: Area2D) -> void:
+	if !is_instance_valid(attacker.source): return
+	if GlobalScript.current_data.fever.enabled or !game.is_player(attacker.source) or game.is_player(damage_taker.source): return
+	var fever_progress: float
+	if damage_taker.durability_points - damage <= 0.0: fever_progress = damage_taker.durability_points
+	else: fever_progress = damage
+	current_damage += fever_progress
 	if current_damage >= required_damage: start_fever()
-	fever_meter.value = (current_damage / required_damage) * 100.0
 
+func update_progress() -> void:
+	fever_meter.value = (current_damage / required_damage) * 100.0
+	
 func start_fever() -> void:
 	current_damage = required_damage
 	GlobalScript.current_data.fever.enabled = true
