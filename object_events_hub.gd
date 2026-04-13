@@ -6,17 +6,6 @@ var critical_chance_rngs: Dictionary = {}
 @onready var fever: Node = get_node("/root/Game/Fever")
 @onready var event_manager: Node = get_node("/root/Game/EventManager")
 
-func explode_object(object: Area2D) -> void:
-	# Zewnetrzna obsluga eksplozji pociskow i asteroid. Po ich stronie jest tylko wywolanie resolve_collision
-	# Tylko te 2 typy obiektów + eksplozje wykrywają kolizje w całej grze
-	# Exploded to zabezpieczneie przeciw wielu eksplozjom na tym samym obiekcie podczas wielu kolizji jednocześnie
-	# Obiekty zglaszaja kolizje tylko jesli ich exploded = false
-	if object.explosion_scene != null:
-		if is_instance_valid(object.source): object.explosion_scene.source = object.source
-		object.explosion_scene.position = object.position
-		game.add_new_object(true, object.explosion_scene)
-		object.exploded = true
-	
 func execute_fx(event_type: String, object: Area2D) -> void:
 	for category in object.audio_visual_effects:
 		if event_type == "launch":
@@ -82,19 +71,7 @@ func resolve_collision(area_entered: bool, area_owner: Area2D, intruder: Area2D)
 		return
 	elif area_owner.is_in_group("ghosts"):
 		return
-	elif intruder.is_in_group("shields") and area_owner.explosion_scene != null:
-		if area_owner.explosion_scene.collision_parameters.has("damage"):
-			area_owner.collision_parameters.damage = area_owner.explosion_scene.collision_parameters.damage
-		if area_owner.explosion_scene.collision_parameters.has("critical_hit_chance"):
-			area_owner.collision_parameters.critical_hit_chance = area_owner.explosion_scene.collision_parameters.critical_hit_chance
-			area_owner.collision_parameters.critical_hit_damage_thresholds = area_owner.explosion_scene.collision_parameters.critical_hit_damage_thresholds
-		area_owner.explosion_scene = null
-		for visual in area_owner.audio_visual_effects.visuals_when_destroyed:
-			area_owner.audio_visual_effects.visuals_when_destroyed[visual]["scene"].queue_free()
-		area_owner.audio_visual_effects.visuals_when_destroyed.clear()
-	# kolizje sa ustawione w inspektorze, wiec to musi byc pocisk jesli spotkal tarcze
-	# mozna przerobic na grupe absorb explosion i zastosowac do nowych obiektów
-	# podwojny warunek na wypadek gdy pocisk uderzy jednocześnie w wiele tarcz, tak samo jak przy eksplozji
+	elif intruder.is_in_group("shields") and area_owner.explosion_scene != null: neutralize_explosion(area_owner)
 	
 	for parameter in area_owner.collision_parameters:
 		if area_entered:
@@ -159,3 +136,30 @@ func resolve_damage(area_owner: Area2D, intruder: Area2D) -> float:
 			game.create_small_text_event(text, color_bbcode, size, speed, display_position, icon)
 			return critical_hit_damage
 	return area_owner.collision_parameters.damage
+
+func neutralize_explosion(object: Area2D) -> void:
+	if object.explosion_scene.collision_parameters.has("damage"):
+		object.collision_parameters.damage = object.explosion_scene.collision_parameters.damage
+	if object.explosion_scene.collision_parameters.has("critical_hit_chance"):
+		object.collision_parameters.critical_hit_chance = object.explosion_scene.collision_parameters.critical_hit_chance
+		object.collision_parameters.critical_hit_damage_thresholds = object.explosion_scene.collision_parameters.critical_hit_damage_thresholds
+	object.explosion_scene.queue_free()
+	object.explosion_scene = null
+	for visual in object.audio_visual_effects.visuals_when_destroyed:
+		object.audio_visual_effects.visuals_when_destroyed[visual]["scene"].queue_free()
+	object.audio_visual_effects.visuals_when_destroyed.clear()
+	object.audio_visual_effects.erase("sound_when_destroyed")
+	# kolizje sa ustawione w inspektorze, wiec to musi byc pocisk jesli spotkal tarcze
+	# mozna przerobic na grupe absorb explosion i zastosowac do nowych obiektów
+	# podwojny warunek na wypadek gdy pocisk uderzy jednocześnie w wiele tarcz, tak samo jak przy eksplozji
+
+func explode_object(object: Area2D) -> void:
+	# Zewnetrzna obsluga eksplozji pociskow i asteroid. Po ich stronie jest tylko wywolanie resolve_collision
+	# Tylko te 2 typy obiektów + eksplozje wykrywają kolizje w całej grze
+	# Exploded to zabezpieczneie przeciw wielu eksplozjom na tym samym obiekcie podczas wielu kolizji jednocześnie
+	# Obiekty zglaszaja kolizje tylko jesli ich exploded = false
+	if object.explosion_scene != null:
+		if is_instance_valid(object.source): object.explosion_scene.source = object.source
+		object.explosion_scene.position = object.position
+		game.add_new_object(true, object.explosion_scene)
+		object.exploded = true

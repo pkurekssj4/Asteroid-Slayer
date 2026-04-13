@@ -51,7 +51,7 @@ func change_specialisation() -> void:
 		$MainPanel/Inside/BonusLabel.text = "Increases Critical Hit Chance by " + str(GlobalScript.SPECIALISATION_BONUSES.executor.critical_hit_chance * 100.0) + "% of base value."
 		$MainPanel/Inside/BonusLabel.text += "\nIncreases Critical Hit Damage by " + str(GlobalScript.SPECIALISATION_BONUSES.executor.critical_hit_damage * 100.0) + "% of base value."
 	elif current_specialisation == "gunslinger":
-		$MainPanel/Inside/BonusLabel.text = "Increases Rate of Fire by " + str(GlobalScript.SPECIALISATION_BONUSES.gunslinger.rate_of_fire * 100.0) + "% of base value."
+		$MainPanel/Inside/BonusLabel.text = "Increases Attack Speed by " + str(GlobalScript.SPECIALISATION_BONUSES.gunslinger.attack_speed * 100.0) + "% of base value."
 		$MainPanel/Inside/BonusLabel.text += "\nIncreases Projectile Speed by " + str(GlobalScript.SPECIALISATION_BONUSES.gunslinger.projectile_speed * 100.0) + "% of base value."
 	elif current_specialisation == "strategist":
 		$MainPanel/Inside/BonusLabel.text = "Increases Duration of abilities, buffs and fever by " + str(GlobalScript.SPECIALISATION_BONUSES.strategist.abilities_buffs_and_fever_duration * 100.0) + "% of base values."

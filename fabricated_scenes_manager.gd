@@ -320,6 +320,7 @@ func grant_shield_scene(tier: int, asteroid: Area2D) -> void:
 	new_asteroid_shield.scale = Vector2(shield_scale, shield_scale)
 	new_asteroid_shield.parent = asteroid
 	new_asteroid_shield.z_index = game.get_display_index("asteroid_shields")
+	new_asteroid_shield.add_to_group("asteroid_shields")
 	if tier == 2: new_asteroid_shield.modulate = Color(0.5, 1, 0.5)
 	elif tier == 3: new_asteroid_shield.modulate = Color(0.5, 0.5, 1)
 	elif tier == 4: new_asteroid_shield.modulate = Color(1, 0.5, 0.5)
@@ -327,7 +328,7 @@ func grant_shield_scene(tier: int, asteroid: Area2D) -> void:
 	await asteroid.ready_to_process
 	new_asteroid_shield.global_position = asteroid.global_position
 	apply_audio_visual_effects(new_asteroid_shield,  GlobalScript.current_data.asteroids.shields, GlobalScript.current_data.asteroids.shields.audio_visual_effects, new_asteroid_shield.modulate)
-	get_parent().add_child(new_asteroid_shield)
+	game.add_new_object(true, new_asteroid_shield)
 	
 func apply_audio_visual_effects(scene: Area2D, data_dict: Dictionary, data_avfx: Dictionary, comp_color: Color) -> void:
 	var scene_avfx: Dictionary = scene["audio_visual_effects"]

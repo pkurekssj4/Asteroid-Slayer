@@ -5,4 +5,12 @@ res://shaders/gravity_well_waving.gdshader
 res://shaders/ending_text_waving.gdshader
 res://shaders/fever_progress_bar.gdshader
 res://shaders/main_menu_fractals_waving.gdshader
-res://asteroids/asteroid.gd
+res://structures/laser_turret/laser_turret.gd
+res://structures/pulse_barrier/pulse_barrier.gd
+res://upgrade_console/upgrade_console.gd
+res://upgrade_console/upgrade_console.tscn
+res://upgrade_console/upgrade.gd
+res://global_script.gd
+res://game.gd
+res://structures/cannon/cannon.gd
+res://upgrade_console/specialisations/specialisations.gd

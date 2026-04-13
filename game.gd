@@ -25,10 +25,10 @@ var debug: Dictionary = {
 	"keep_pressing_hotkey_to_spawn_asteroids": true,
 	"buildings_are_repaired": false,
 	"debug_values": true,
-	"day": 16,
+	"day": 25,
 	"basic_attack_damage": 200,
 	"basic_attack_reload_time": 1,
-	"basic_attack_rate_of_fire": 5,
+	"basic_attack_attack_speed": 5,
 	"basic_attack_capacity": 50,
 	"basic_attack_area_of_effect": 200,
 	"basic_attack_critical_hit_damage_thresholds": [1.2, 1.4],
@@ -424,7 +424,7 @@ func set_debug_values() -> void:
 	return
 	GlobalScript.current_data.structures.cannon.explosion.damage = debug.basic_attack_damage
 	GlobalScript.current_data.structures.cannon.reload_time = debug.basic_attack_reload_time
-	GlobalScript.current_data.structures.cannon.rate_of_fire = debug.basic_attack_rate_of_fire
+	GlobalScript.current_data.structures.cannon.attack_speed = debug.basic_attack_attack_speed
 	GlobalScript.current_data.structures.cannon.capacity = debug.basic_attack_capacity
 	GlobalScript.current_data.structures.cannon.projectile_speed = debug.projectile_speed
 	GlobalScript.current_data.structures.cannon.explosion.area_of_effect = debug.basic_attack_area_of_effect
@@ -503,9 +503,9 @@ func check_if_any_button_is_pressed() -> void:
 		save_config()
 	if game_ended || game_stopped: return
 	if debug.enabled:
-		var asteroid_1 = "electric"
-		var asteroid_2 = "chromatic"
-		var asteroid_3 = "plasma"
+		var asteroid_1 = "splitting"
+		var asteroid_2 = "electric"
+		var asteroid_3 = "chromatic"
 		if debug.keep_pressing_hotkey_to_spawn_asteroids:
 			if Input.is_action_just_pressed(&"spawn_asteroid"):
 				add_new_object(true, $FabricatedScenesManager.get_asteroid_scene(asteroid_1, 0, 0.15, 30, get_global_mouse_position(), Vector2.ZERO, false, 0))
@@ -572,17 +572,19 @@ func display_message_box(message: String) -> void:
 func stop_game(type: bool) -> void:
 	game_stopped = type
 
-func launch_special_asteroid_wave(type: String) -> void:
-	match type:
-		"day_5":
-			var sound_cfg: Dictionary = {
+func launch_special_asteroid_wave(day: int) -> void:
+	var soundtrack_path: String = $AudioBus.audio_path + "/soundtrack"
+	match day:
+		5:
+			var music_cfg: Dictionary = {
 				"pitch_percent_variation" = 0.0,
-				"volume_gain" = -11,
+				"volume_gain" = -9,
 				"name" = "day_5_soundtrack",
 				"pitch" = 1.0
 			}
-			$AudioBus.play_audio_from_dict(sound_cfg)
-			current_soundtrack = "day_5_soundtrack"
+			$AudioBus.add_new_player(soundtrack_path, music_cfg.name + ".mp3")
+			$AudioBus.play_audio_from_dict(music_cfg)
+			current_soundtrack = music_cfg.name
 			var asteroids_in_wave: int = 55
 			GlobalScript.current_data.asteroids.general.asteroids_total = asteroids_in_wave
 			GlobalScript.current_data.asteroids.general.asteroids_left = asteroids_in_wave
@@ -591,15 +593,16 @@ func launch_special_asteroid_wave(type: String) -> void:
 				if game_ended: break
 				await create_delay_timer(randf_range(1.6, 1.9))
 				add_new_object(true, $FabricatedScenesManager.get_asteroid_scene("common", 0, randf_range(0.20, 0.33), 0, Vector2.ZERO, Vector2.ZERO, false, 0))
-		"day_15":
-			var sound_cfg: Dictionary = {
+		15:
+			var music_cfg: Dictionary = {
 				"pitch_percent_variation" = 0.0,
-				"volume_gain" = -11,
+				"volume_gain" = -9,
 				"name" = "day_15_soundtrack",
 				"pitch" = 1.0
 			}
-			$AudioBus.play_audio_from_dict(sound_cfg)
-			current_soundtrack = "day_15_soundtrack"
+			$AudioBus.add_new_player(soundtrack_path, music_cfg.name + ".mp3")
+			$AudioBus.play_audio_from_dict(music_cfg)
+			current_soundtrack = music_cfg.name
 			var asteroids_in_wave: int = 75
 			GlobalScript.current_data.asteroids.general.asteroids_total = asteroids_in_wave
 			GlobalScript.current_data.asteroids.general.asteroids_left = asteroids_in_wave
@@ -609,7 +612,27 @@ func launch_special_asteroid_wave(type: String) -> void:
 				if game_ended: break
 				await create_delay_timer(randf_range(0.75, 1.20))
 				add_new_object(true, $FabricatedScenesManager.get_asteroid_scene(available_types.pick_random(), 0, randf_range(0.20, 0.27), 0, Vector2.ZERO, Vector2.ZERO, true, 0))
-
+		25:
+			var music_cfg: Dictionary = {
+			"pitch_percent_variation" = 0.0,
+			"volume_gain" = -9,
+			"name" = "A.K.K. - Unreleased 1",
+			"pitch" = 1.0
+			}
+			$AudioBus.add_new_player(soundtrack_path, music_cfg.name + ".mp3")
+			$AudioBus.play_audio_from_dict(music_cfg)
+			current_soundtrack = music_cfg.name
+			var asteroids_in_wave: int = 90
+			GlobalScript.current_data.asteroids.general.asteroids_total = asteroids_in_wave
+			GlobalScript.current_data.asteroids.general.asteroids_left = asteroids_in_wave
+			GlobalScript.current_data.asteroids.general.asteroids_alive = 0
+			var launch_delay: float = 1.8
+			for i in range (1, asteroids_in_wave + 1):
+				launch_delay -= 0.01
+				if game_ended: break
+				await create_delay_timer(launch_delay)
+				add_new_object(true, $FabricatedScenesManager.get_asteroid_scene("hyper_velocity", 0, randf_range(0.20, 0.27), 0, Vector2.ZERO, Vector2.ZERO, true, 0))
+			
 func trigger_game_over_sequence() -> void:
 	if (debug.enabled && debug.cant_lose) or game_ended: return
 	$Sounds/GameOver.play()
@@ -848,6 +871,7 @@ func is_player(object: Area2D) -> bool:
 func add_new_object(add: bool, object: Variant) -> void:
 	var group: String
 	if object.is_in_group("asteroids"): group = "Asteroids"
+	if object.is_in_group("asteroid_shields"): group = "AsteroidShields"
 	elif object.is_in_group("projectiles"): group = "Projectiles"
 	elif object.is_in_group("explosions"): group = "Explosions"
 	elif object.is_in_group("vfx"): group = "VFX"
@@ -867,6 +891,9 @@ func add_new_object(add: bool, object: Variant) -> void:
 			# jeśli splitting wybuchnie jako ostatnia to...
 			if GlobalScript.current_data.asteroids.general.asteroids_alive == 0 and GlobalScript.current_data.asteroids.general.asteroids_left == 0:
 				$EventManager.advance_game_state()
+		"AsteroidShields":
+			if !add:
+				$ObjectEventsHub.execute_fx("destroyed", object)
 		"Projectiles":
 			if add:
 				$ObjectEventsHub.execute_fx("launch", object)

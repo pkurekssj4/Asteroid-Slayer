@@ -137,7 +137,7 @@ func advance_game_state() -> void:
 		if GlobalScript.current_data.game.time[1] < 10: minute = "0" + minute
 		game.display_event_message("Day " + str(GlobalScript.current_data.game.day) + "\n" + GlobalScript.current_data.game.month_literally + " " + str(GlobalScript.current_data.game.month_day) + " \n" + str(GlobalScript.current_data.game.time[0]) + ":" + minute, 3, "nosound", 0, "white", "normal", "none", 0)
 		if GlobalScript.current_data.game.day % 5 == 0 and GlobalScript.current_data.game.day % 10 != 0:
-			game.launch_special_asteroid_wave("day_" + str(GlobalScript.current_data.game.day))
+			game.launch_special_asteroid_wave(GlobalScript.current_data.game.day)
 		else:
 			game.get_node("Timers/AsteroidSpawnDelay").start(0.5)
 		

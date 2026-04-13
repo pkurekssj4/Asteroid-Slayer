@@ -10,7 +10,8 @@ var destroy_threshold: float = 0.7
 @onready var fever: Node = get_node("/root/Game/Fever")
 
 func _ready():
-	durability_points = (scale.x - destroy_threshold) * 1000 * rarity
+	durability_points = (scale.x - destroy_threshold) * 1000
+	adjust_scale()
 	source = parent
 	
 func _process(_delta):
@@ -18,6 +19,7 @@ func _process(_delta):
 	else: queue_free()
 
 func take_damage(damage: float, attacker: Area2D):
+	damage /= rarity
 	fever.progress(damage, attacker, self)
 	durability_points -= damage
 	if durability_points <= 0.0:
@@ -25,5 +27,8 @@ func take_damage(damage: float, attacker: Area2D):
 		queue_free()
 		return
 	object_events_hub.execute_fx("damaged", self)
+	adjust_scale()
+	
+func adjust_scale() -> void:
 	var new_scale: float = destroy_threshold + (durability_points / 1000.0)
 	scale = Vector2(new_scale, new_scale)

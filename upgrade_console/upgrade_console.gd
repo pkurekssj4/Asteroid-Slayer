@@ -74,7 +74,7 @@ var trees_data: Dictionary = {
 							"value": 0.04,
 							"cost": {"credits": 600}
 						},
-						"rate_of_fire": {
+						"attack_speed": {
 							"value": 0.05,
 							"cost": {"credits": 600}
 						},
@@ -90,10 +90,6 @@ var trees_data: Dictionary = {
 						},
 						"capacity": {
 							"value": 0.2,
-							"cost": {"credits": 4000}
-						},
-						"cooldown": {
-							"value": 0.06,
 							"cost": {"credits": 4000}
 						},
 						"critical_hit_chance": {
@@ -112,7 +108,7 @@ var trees_data: Dictionary = {
 							"value": 0.08,
 							"cost": {"credits": 4000}
 						},
-						"rate_of_fire": {
+						"attack_speed": {
 							"value": 0.1,
 							"cost": {"credits": 4000}
 						},
@@ -214,7 +210,7 @@ var trees_data: Dictionary = {
 							"value": 0.16,
 							"cost": {"credits": 20000}
 						},
-						"rate_of_fire": {
+						"attack_speed": {
 							"value": 0.20,
 							"cost": {"credits": 20000}
 						},
@@ -487,7 +483,7 @@ var regular_upgrades_pascal_names = [
 	"ProjectileSpeed",
 	"Projectiles",
 	"Fragments",
-	"RateOfFire",
+	"AttackSpeed",
 	"ReloadTime",
 	"Slow"
 ]

@@ -30,21 +30,20 @@ func _ready():
 	
 func _process(delta):
 	if !cooldown_timer.is_stopped():
-		attack_readiness_bar.value = 100 * (last_cooldown - cooldown_timer.time_left) / last_cooldown
+		readiness = (last_cooldown - cooldown_timer.time_left) / last_cooldown
+		attack_readiness_bar.value = 100 * readiness
+		$PointLight2D.energy = readiness * 1.5
+		$PulseBarrierEye.modulate = Color(readiness, readiness, readiness, 1)
+	else:
+		ms_left_to_scan_sky -= delta * 1000
+		if ms_left_to_scan_sky <= 0:
+			ms_left_to_scan_sky = ms_to_scan_sky
+			scan_sky()
 	if !data.active:
 		set_process(false)
 		$PointLight2D.energy = 0.0
 		$PulseBarrierEye.modulate = Color(0, 0, 0)
 		attack_readiness_bar.value = 0.0
-	if cooldown_timer.is_stopped():
-		ms_left_to_scan_sky -= delta * 1000
-		if ms_left_to_scan_sky <= 0:
-			ms_left_to_scan_sky = ms_to_scan_sky
-			scan_sky()
-	else:
-		readiness = 0 + (1 - cooldown_timer.time_left / data.cooldown)
-		$PointLight2D.energy = readiness * 1.5
-		$PulseBarrierEye.modulate = Color(readiness, readiness, readiness, 1)
 
 func launch_wave() -> void:
 	var wave: Node2D = Node2D.new()
@@ -92,7 +91,7 @@ func scan_sky():
 			if is_instance_valid(targets[i]): targets[i].take_damage(data.damage, self)
 		audio_bus.play_audio("pulse_barrier_attack")
 		launch_wave()
-		last_cooldown = data.cooldown
+		last_cooldown = 1 / data.attack_speed
 		cooldown_timer.start(last_cooldown)
 		
 func take_damage(damage: float, _attacker: Area2D) -> void:

@@ -15,5 +15,6 @@ func _process(_delta) -> void:
 	global_position = parent.global_position + offset
 	global_rotation = 0
 	global_scale = Vector2(1, 1)
+	update_score(str(parent.resource_credits))
 
 	

@@ -239,7 +239,7 @@ func _on_mouse_entered() -> void:
 	
 func create_tooltip() -> void:
 	var description: String
-	if upgrade_type_snake_name in ["area_of_effect", "capacity", "cooldown", "critical_hit_chance", "critical_hit_damage", "damage", "duration", "pull_force", "projectile_speed", "rate_of_fire", "reload_time", "slow"]:
+	if upgrade_type_snake_name in ["area_of_effect", "capacity", "cooldown", "critical_hit_chance", "critical_hit_damage", "damage", "duration", "pull_force", "projectile_speed", "attack_speed", "reload_time", "slow"]:
 		var verb: String
 		if upgrade_type_snake_name in ["cooldown", "reload_time"]: verb = "Decreases"
 		else: verb = "Increases"
@@ -342,8 +342,8 @@ func add_statistic(add: bool) -> void:
 				stat_structure = ["explosion", "critical_hit_damage_thresholds"]
 			"projectile_speed":
 				stat_structure = ["projectile_speed"]
-			"rate_of_fire":
-				stat_structure = ["rate_of_fire"]
+			"attack_speed":
+				stat_structure = ["attack_speed"]
 			"projectiles":
 				stat_structure = ["projectiles"]
 			"duration":

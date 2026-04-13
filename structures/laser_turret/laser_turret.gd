@@ -112,7 +112,7 @@ func attack():
 	state = "attacking"
 	ms_left_to_change_target = ms_to_change_target
 	ms_left_to_turn_off_attacking_state = ms_to_turn_off_attacking_state
-	last_cooldown = data.cooldown
+	last_cooldown = 1 / data.attack_speed
 	$CooldownTimer.start(last_cooldown)
 	
 func _on_area_2d_mouse_entered() -> void:

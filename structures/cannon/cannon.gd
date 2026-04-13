@@ -82,7 +82,7 @@ func shoot():
 	capacity_at_the_moment -= 1
 	if capacity_at_the_moment == 0: reload() 
 	else:
-		last_shooting_delay = 1.0 / cannon_data.rate_of_fire
+		last_shooting_delay = 1.0 / cannon_data.attack_speed
 		$Timers/ShootDelay.start(last_shooting_delay)
 		update_rounds_left_label()
 
@@ -107,7 +107,7 @@ func _on_shoot_delay_timeout():
 
 func reload():
 	if capacity_at_the_moment == int(cannon_data.capacity):
-		audio_bus.play_audio("cannon_reload_finished")
+		audio_bus.play_audio("reload_finished")
 		return
 	game.change_cursor("reload")
 	$Timers/ReloadCountdown.start(cannon_data.reload_time)
@@ -119,7 +119,7 @@ func reload():
 
 func reload_finished() -> void:
 	game.change_cursor("default")
-	audio_bus.play_audio("cannon_reload_finished")
+	audio_bus.play_audio("reload_finished")
 	is_reloading = false
 	can_shoot = true
 	capacity_at_the_moment = int(cannon_data.capacity)

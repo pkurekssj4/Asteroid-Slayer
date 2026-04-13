@@ -28,7 +28,7 @@ const SPECIALISATION_BONUSES = {
 		"critical_hit_damage" = 0.1
 	},
 	"gunslinger": {
-		"rate_of_fire" = 0.2,
+		"attack_speed" = 0.2,
 		"projectile_speed" = 0.2,
 	},
 	"strategist": {
@@ -48,25 +48,25 @@ const SPECIALISATION_BONUSES = {
 const BLESSING_BONUSES: Dictionary = {
 	"cannon": {
 		"reload_time": 0.07,
-		"projectile_speed": 0.07,
-		"rate_of_fire": 0.07,
-		"capacity": 0.15,
+		"projectile_speed": 0.1,
+		"attack_speed": 0.20,
+		"capacity": 0.25,
 		"explosion": {
-			"area_of_effect": 0.1,
-			"damage": 0.15,
-			"critical_hit_chance": 0.5,
-			"critical_hit_damage_thresholds": 0.1
+			"area_of_effect": 0.12,
+			"damage": 0.25,
+			"critical_hit_chance": 1,
+			"critical_hit_damage_thresholds": 0.15
 		}
 	},
 	"laser_turret": {
-		"cooldown": 0.06,
-		"attack_range": 0.08,
-		"damage": 0.2,
+		"attack_speed": 0.25,
+		"attack_range": 0.15,
+		"damage": 0.25,
 	},
 	"pulse_barrier": {
-		"cooldown": 0.06,
-		"attack_range": 0.08,
-		"damage": 0.2,
+		"attack_speed": 0.25,
+		"attack_range": 0.15,
+		"damage": 0.25,
 	}
 }
 
@@ -119,7 +119,7 @@ const COMMON_STRUCTURE_DICTIONARY_RECEIVERS: Dictionary = {
 				"growth_rate": 2.5,
 				"receivers": ["cannon"],
 				"statistic_structures": [
-					["rate_of_fire"]
+					["attack_speed"]
 				]
 			}
 		}
@@ -208,7 +208,7 @@ const COMMON_STRUCTURE_DICTIONARY_RECEIVERS: Dictionary = {
 				"receivers": ["left_laser_turret", "left_pulse_barrier"],
 				"statistic_structures": [
 					["attack_range"],
-					["cooldown"],
+					["attack_speed"],
 					["damage"]
 				]
 			}
@@ -221,7 +221,7 @@ const COMMON_STRUCTURE_DICTIONARY_RECEIVERS: Dictionary = {
 				"receivers": ["right_laser_turret", "right_pulse_barrier"],
 				"statistic_structures": [
 					["attack_range"],
-					["cooldown"],
+					["attack_speed"],
 					["damage"]
 				]
 			}
@@ -478,9 +478,9 @@ var initial_data: Dictionary = {
 			"composition_color": Color(0.3, 1, 1),
 			"fever_composition_color": Color(1, 0.5, 0.4),
 			"capacity": 20,
-			"projectile_speed": 500,
+			"projectile_speed": 480,
 			"reload_time": 3.5,
-			"rate_of_fire": 0.65, # strzaly na sekunde
+			"attack_speed": 0.65, # strzaly na sekunde
 			"durability": {
 				"daily_percent_recovery_rate": 10,
 				"current_points": 200,
@@ -495,8 +495,8 @@ var initial_data: Dictionary = {
 				"shape": "round",
 				"area_of_effect": 60.0, # srednica / diameter 60
 				"damage": 30,
-				"critical_hit_chance": 0.02,
-				"critical_hit_damage_thresholds": [1.2, 1.4]
+				"critical_hit_chance": 0.04,
+				"critical_hit_damage_thresholds": [1.6, 1.9]
 			},
 			"projectile": {
 				"audio_visual_effects": {
@@ -522,8 +522,8 @@ var initial_data: Dictionary = {
 		"laser_turret": {
 			"active": true,
 			"prioritize_lowest_altitude_targets": false,
-			"cooldown": 4,
-			"damage": 20,
+			"attack_speed": 0.3,
+			"damage": 30,
 			"attack_range": 300,
 			"active_days": 0,
 			"durability": {
@@ -539,8 +539,8 @@ var initial_data: Dictionary = {
 		"pulse_barrier": {
 			"active": true,
 			"prioritize_lowest_altitude_targets": false,
-			"cooldown": 8,
-			"damage": 20,
+			"attack_speed": 0.2,
+			"damage": 50,
 			"minimum_number_of_targets": 3,
 			"maximum_number_of_targets": 3,
 			"attack_range": 350,
@@ -579,7 +579,7 @@ var initial_data: Dictionary = {
 				"rise_and_decay_time": [0.25, 0.25],
 				"shape": "round",
 				"alpha_channel": 0.8,
-				"area_of_effect": 60.0,
+				"area_of_effect": 120.0,
 				"damage": 30.0,
 			},
 			"projectile": {
@@ -625,7 +625,7 @@ var initial_data: Dictionary = {
 				"shape": "round",
 				"alpha_channel": 0.1,
 				"area_of_effect": 300.0,
-				"duration": 5.0,
+				"duration": 6.0,
 				"pull_force": 3.0,
 				"pull_slow": 10.0
 			},
@@ -768,9 +768,15 @@ var initial_data: Dictionary = {
 				"visuals_when_damaged": ["shield_damaged_particles"],
 				"visuals_when_destroyed": ["shield_destroyed_particles"],
 				"sound_when_damaged": {
-					"name": "shield_damaged",
+					"name": "asteroid_shield_damaged",
 					"volume_gain": 0.0,
 					"pitch": 1.3,
+					"pitch_percent_variation": 0.05
+				},
+				"sound_when_destroyed": {
+					"name": "asteroid_shield_destroyed",
+					"volume_gain": 0.5,
+					"pitch": 1.1,
 					"pitch_percent_variation": 0.05
 				},
 			}	
@@ -831,8 +837,8 @@ var initial_data: Dictionary = {
 				"shape": "round",
 				"rise_and_decay_time": [0.35, 0.35],
 				"alpha_channel": 0.8,
-				"area_of_effect": 280.0,
-				"damage": 40.0
+				"area_of_effect": 220.0,
+				"damage": 30.0
 			},
 			"spawn": {
 				"base_chance": 3.0,
@@ -924,8 +930,8 @@ var initial_data: Dictionary = {
 				"rise_and_decay_time": [0.15, 0.15],
 				"shape": "round",
 				"alpha_channel": 0.8,
-				"damage": 20,
-				"area_of_effect": 60.0
+				"damage": 15,
+				"area_of_effect": 70.0
 			},
 			"additive_statistics": {}
 		},
@@ -1002,8 +1008,8 @@ var initial_data: Dictionary = {
 				"rise_and_decay_time": [0.40, 0.40],
 				"shape": "cross",
 				"alpha_channel": 0.9,
-				"area_of_effect": 240.0,
-				"damage": 60
+				"area_of_effect": 270.0,
+				"damage": 45
 			},
 			"spawn": {
 				"base_chance": 1.7,
@@ -1235,7 +1241,7 @@ func clear_and_set_new_specialisation_bonuses() -> void:
 			current_data.structures.cannon.additive_statistics.specialisation.capacity = initial_data.structures.cannon.capacity * SPECIALISATION_BONUSES.engineer.capacity
 		"gunslinger":
 			current_data.structures.cannon.additive_statistics.specialisation = {}
-			current_data.structures.cannon.additive_statistics.specialisation.rate_of_fire = initial_data.structures.cannon.rate_of_fire * SPECIALISATION_BONUSES.gunslinger.rate_of_fire
+			current_data.structures.cannon.additive_statistics.specialisation.attack_speed = initial_data.structures.cannon.attack_speed * SPECIALISATION_BONUSES.gunslinger.attack_speed
 			current_data.structures.cannon.additive_statistics.specialisation.projectile_speed = initial_data.structures.cannon.projectile_speed * SPECIALISATION_BONUSES.gunslinger.projectile_speed
 		"strategist":
 			var receivers: Array[String] = ["fever", "gravity_well", "stasis_field"]
@@ -1265,7 +1271,7 @@ func clear_and_set_new_specialisation_bonuses() -> void:
 				current_data_dict = get_data_source_dictionary(receiver, "current")
 				initial_data_dict = get_data_source_dictionary(receiver, "initial")
 				current_data_dict.additive_statistics.specialisation = {}
-				current_data_dict.additive_statistics.specialisation.cooldown = initial_data_dict.cooldown * SPECIALISATION_BONUSES.sentinel.all_lasers_and_barriers_values
+				current_data_dict.additive_statistics.specialisation.attack_speed = initial_data_dict.attack_speed * SPECIALISATION_BONUSES.sentinel.all_lasers_and_barriers_values
 				current_data_dict.additive_statistics.specialisation.attack_range = initial_data_dict.attack_range * SPECIALISATION_BONUSES.sentinel.all_lasers_and_barriers_values
 				current_data_dict.additive_statistics.specialisation.damage = initial_data_dict.damage * SPECIALISATION_BONUSES.sentinel.all_lasers_and_barriers_values
 		"collectioner":
@@ -1301,9 +1307,18 @@ func clear_and_set_new_fever_bonuses_and_requirement() -> void:
 	var current_percent_bonus: int = current_data.fever.initial_percent_bonus + (current_data.fever.bonus_percent_increase_rate * data_adjust_occurences)
 	current_data.fever.current_percent_bonus = current_percent_bonus
 	current_data.structures.cannon.additive_statistics.fever = {}
-	current_data.structures.cannon.additive_statistics.fever.rate_of_fire = initial_data.structures.cannon.rate_of_fire * (current_percent_bonus / 100.0)
+	current_data.structures.left_laser_turret.additive_statistics.fever = {}
+	current_data.structures.right_laser_turret.additive_statistics.fever = {}
+	current_data.structures.left_pulse_barrier.additive_statistics.fever = {}
+	current_data.structures.right_pulse_barrier.additive_statistics.fever = {}
+	current_data.structures.cannon.additive_statistics.fever = {}
+	current_data.structures.cannon.additive_statistics.fever.attack_speed = initial_data.structures.cannon.attack_speed * (current_percent_bonus / 100.0)
 	current_data.structures.cannon.additive_statistics.fever.projectile_speed = initial_data.structures.cannon.projectile_speed * (current_percent_bonus / 100.0)
 	current_data.structures.cannon.additive_statistics.fever.reload_time = initial_data.structures.cannon.reload_time * (current_percent_bonus / 100.0)
+	current_data.structures.left_laser_turret.additive_statistics.fever.attack_speed = initial_data.structures.left_laser_turret.attack_speed * (current_percent_bonus / 100.0)
+	current_data.structures.right_laser_turret.additive_statistics.fever.attack_speed = initial_data.structures.right_laser_turret.attack_speed * (current_percent_bonus / 100.0)
+	current_data.structures.left_pulse_barrier.additive_statistics.fever.attack_speed = initial_data.structures.left_pulse_barrier.attack_speed * (current_percent_bonus / 100.0)
+	current_data.structures.right_pulse_barrier.additive_statistics.fever.attack_speed = initial_data.structures.right_pulse_barrier.attack_speed * (current_percent_bonus / 100.0)
 	var current_damage_requirement: int = current_data.fever.initial_damage_requirement
 	for i in range (1, data_adjust_occurences + 1): 
 		current_damage_requirement += int((current_data.fever.damage_percent_increase_rate / 100.0) * current_damage_requirement)

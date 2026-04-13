@@ -33,7 +33,7 @@
 [ext_resource type="AudioStream" uid="uid://bx3bfuvd1x063" path="res://audio/sounds/game_over.mp3" id="26_iu0sx"]
 [ext_resource type="AudioStream" uid="uid://bdd1udmj8jbfu" path="res://audio/sounds/ending_message.mp3" id="27_r62pu"]
 [ext_resource type="AudioStream" uid="uid://ixcovjilpw1d" path="res://audio/sounds/against_all_odds.mp3.mp3" id="28_l1i01"]
-[ext_resource type="AudioStream" uid="uid://ivd8ywx1uatf" path="res://audio/sounds/shield_damaged.mp3" id="28_w5i07"]
+[ext_resource type="AudioStream" uid="uid://dmwcahnkewn3o" path="res://audio/sounds/asteroid_shield_damaged.mp3" id="28_w5i07"]
 [ext_resource type="PackedScene" uid="uid://do7iqruutrp5s" path="res://structures/cannon/cannon.tscn" id="29_bteo4"]
 [ext_resource type="AudioStream" uid="uid://c0duwwf3s5k1" path="res://audio/sounds/intro_music.mp3" id="29_r62pu"]
 [ext_resource type="AudioStream" uid="uid://b5l8cbmo1755m" path="res://asteroids/new_shard.mp3" id="29_rok5h"]
@@ -630,6 +630,8 @@ script = ExtResource("4_mc3al")
 [node name="Clouds" type="Node" parent="ScenesContainer" unique_id=1957205742]
 
 [node name="Misc" type="Node" parent="ScenesContainer" unique_id=1336056155]
+
+[node name="AsteroidShields" type="Node" parent="ScenesContainer" unique_id=1547123811]
 
 [node name="Cosmos" type="ColorRect" parent="." unique_id=1815804411]
 offset_right = 1920.0

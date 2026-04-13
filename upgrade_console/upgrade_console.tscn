@@ -728,13 +728,13 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CannonSmallUpgrade0RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1720082072 instance=ExtResource("38_4l4m1")]
+[node name="CannonSmallUpgrade0AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=1720082072 instance=ExtResource("38_4l4m1")]
 position = Vector2(1024, 604)
 
-[node name="CannonSmallUpgrade1RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=23444226 instance=ExtResource("38_4l4m1")]
+[node name="CannonSmallUpgrade1AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=23444226 instance=ExtResource("38_4l4m1")]
 position = Vector2(1000, 652)
 
-[node name="CannonSmallUpgrade2RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1368122082 instance=ExtResource("38_4l4m1")]
+[node name="CannonSmallUpgrade2AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=1368122082 instance=ExtResource("38_4l4m1")]
 position = Vector2(1000, 700)
 
 [node name="CannonSmallUpgrade3ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=870693737 instance=ExtResource("52_fiuok")]
@@ -743,19 +743,19 @@ position = Vector2(1048, 652)
 [node name="CannonSmallUpgrade4ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=37212719 instance=ExtResource("52_fiuok")]
 position = Vector2(1048, 700)
 
-[node name="CannonSmallUpgrade5RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1698830296 instance=ExtResource("38_4l4m1")]
+[node name="CannonSmallUpgrade5AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=1698830296 instance=ExtResource("38_4l4m1")]
 position = Vector2(1024, 748)
 
-[node name="CannonSmallUpgrade6RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1065590025 instance=ExtResource("38_4l4m1")]
+[node name="CannonSmallUpgrade6AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=1065590025 instance=ExtResource("38_4l4m1")]
 position = Vector2(1024, 796)
 
 [node name="CannonMediumUpgrade7CriticalGambit" parent="UpgradeTrees/Cannon/Speed" unique_id=1399403857 instance=ExtResource("38_2qmec")]
 position = Vector2(968, 796)
 
-[node name="CannonSmallUpgrade8RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1893919616 instance=ExtResource("38_4l4m1")]
+[node name="CannonSmallUpgrade8AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=1893919616 instance=ExtResource("38_4l4m1")]
 position = Vector2(1072, 796)
 
-[node name="CannonMediumUpgrade9RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=578098195 instance=ExtResource("48_wvds4")]
+[node name="CannonMediumUpgrade9AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=578098195 instance=ExtResource("48_wvds4")]
 position = Vector2(1128, 748)
 
 [node name="CannonMediumUpgrade10FullerPurse" parent="UpgradeTrees/Cannon/Speed" unique_id=857586945 instance=ExtResource("43_lljwl")]
@@ -788,28 +788,28 @@ position = Vector2(1376, 732)
 [node name="CannonSmallUpgrade19ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=1125627833 instance=ExtResource("52_fiuok")]
 position = Vector2(1408, 764)
 
-[node name="CannonSmallUpgrade20RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1001405316 instance=ExtResource("38_4l4m1")]
+[node name="CannonSmallUpgrade20AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=1001405316 instance=ExtResource("38_4l4m1")]
 position = Vector2(1440, 796)
 
-[node name="CannonSmallUpgrade21RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=953342772 instance=ExtResource("38_4l4m1")]
+[node name="CannonSmallUpgrade21AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=953342772 instance=ExtResource("38_4l4m1")]
 position = Vector2(1264, 828)
 
-[node name="CannonSmallUpgrade22RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1534422126 instance=ExtResource("38_4l4m1")]
+[node name="CannonSmallUpgrade22AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=1534422126 instance=ExtResource("38_4l4m1")]
 position = Vector2(1296, 860)
 
-[node name="CannonMediumUpgrade23RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1134609068 instance=ExtResource("48_wvds4")]
+[node name="CannonMediumUpgrade23AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=1134609068 instance=ExtResource("48_wvds4")]
 position = Vector2(1336, 892)
 
 [node name="CannonMediumUpgrade24CriticalGambit" parent="UpgradeTrees/Cannon/Speed" unique_id=786607359 instance=ExtResource("38_2qmec")]
 position = Vector2(1336, 820)
 
-[node name="CannonSmallUpgrade25RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1861338165 instance=ExtResource("38_4l4m1")]
+[node name="CannonSmallUpgrade25AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=1861338165 instance=ExtResource("38_4l4m1")]
 position = Vector2(1376, 860)
 
-[node name="CannonSmallUpgrade26RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=1646969432 instance=ExtResource("38_4l4m1")]
+[node name="CannonSmallUpgrade26AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=1646969432 instance=ExtResource("38_4l4m1")]
 position = Vector2(1408, 828)
 
-[node name="CannonSmallUpgrade27RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=911141607 instance=ExtResource("38_4l4m1")]
+[node name="CannonSmallUpgrade27AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=911141607 instance=ExtResource("38_4l4m1")]
 position = Vector2(1488, 796)
 
 [node name="CannonSmallUpgrade28ProjectileSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=366901936 instance=ExtResource("52_fiuok")]
@@ -836,13 +836,13 @@ position = Vector2(1728, 756)
 [node name="CannonBigUpgrade35WideInnovation" parent="UpgradeTrees/Cannon/Speed" unique_id=1965208989 instance=ExtResource("52_ltgbh")]
 position = Vector2(1792, 764)
 
-[node name="CannonSmallUpgrade36RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=958435386 instance=ExtResource("38_4l4m1")]
+[node name="CannonSmallUpgrade36AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=958435386 instance=ExtResource("38_4l4m1")]
 position = Vector2(1536, 820)
 
-[node name="CannonSmallUpgrade37RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=2082168184 instance=ExtResource("38_4l4m1")]
+[node name="CannonSmallUpgrade37AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=2082168184 instance=ExtResource("38_4l4m1")]
 position = Vector2(1552, 868)
 
-[node name="CannonMediumUpgrade38RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=649999508 instance=ExtResource("48_wvds4")]
+[node name="CannonMediumUpgrade38AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=649999508 instance=ExtResource("48_wvds4")]
 position = Vector2(1608, 868)
 
 [node name="CannonMediumUpgrade39CriticalGambit" parent="UpgradeTrees/Cannon/Speed" unique_id=1772600522 instance=ExtResource("38_2qmec")]
@@ -851,10 +851,10 @@ position = Vector2(1584, 924)
 [node name="CannonMediumUpgrade40FullerPurse" parent="UpgradeTrees/Cannon/Speed" unique_id=1248724402 instance=ExtResource("43_lljwl")]
 position = Vector2(1632, 924)
 
-[node name="CannonMediumUpgrade41RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=134788322 instance=ExtResource("48_wvds4")]
+[node name="CannonMediumUpgrade41AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=134788322 instance=ExtResource("48_wvds4")]
 position = Vector2(1664, 852)
 
-[node name="CannonBigUpgrade42RateOfFire" parent="UpgradeTrees/Cannon/Speed" unique_id=953344028 instance=ExtResource("34_jcdrn")]
+[node name="CannonBigUpgrade42AttackSpeed" parent="UpgradeTrees/Cannon/Speed" unique_id=953344028 instance=ExtResource("34_jcdrn")]
 position = Vector2(1728, 836)
 
 [node name="CannonBigUpgrade43WideInnovation" parent="UpgradeTrees/Cannon/Speed" unique_id=656712165 instance=ExtResource("52_ltgbh")]
@@ -1593,7 +1593,7 @@ bbcode_enabled = true
 text = "Projectile Speed"
 fit_content = true
 
-[node name="RateOfFire" type="RichTextLabel" parent="Statistics/Cannon/Labels/Type" unique_id=1871327579]
+[node name="AttackSpeed" type="RichTextLabel" parent="Statistics/Cannon/Labels/Type" unique_id=1871327579]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 13
@@ -1673,7 +1673,7 @@ bbcode_enabled = true
 text = "-"
 fit_content = true
 
-[node name="RateOfFire" type="RichTextLabel" parent="Statistics/Cannon/Labels/Initial" unique_id=380015552]
+[node name="AttackSpeed" type="RichTextLabel" parent="Statistics/Cannon/Labels/Initial" unique_id=380015552]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 13
@@ -1753,7 +1753,7 @@ bbcode_enabled = true
 text = "-"
 fit_content = true
 
-[node name="RateOfFire" type="RichTextLabel" parent="Statistics/Cannon/Labels/Current" unique_id=472862682]
+[node name="AttackSpeed" type="RichTextLabel" parent="Statistics/Cannon/Labels/Current" unique_id=472862682]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 13
@@ -1833,7 +1833,7 @@ bbcode_enabled = true
 text = "-"
 fit_content = true
 
-[node name="RateOfFire" type="RichTextLabel" parent="Statistics/Cannon/Labels/Difference" unique_id=855364991]
+[node name="AttackSpeed" type="RichTextLabel" parent="Statistics/Cannon/Labels/Difference" unique_id=855364991]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 13

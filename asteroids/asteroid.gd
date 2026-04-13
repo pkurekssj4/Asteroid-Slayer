@@ -80,11 +80,12 @@ func calculate_speed_and_trajectory(delta) -> void:
 	
 func take_damage(damage: float, attacker: Area2D) -> bool:
 	if self.is_queued_for_deletion() or !entered_screen: return false
+	damage /= rarity
 	fever.progress(damage, attacker, self)
 	durability_points -= damage
 	if durability_points <= 0.0:
 		if is_instance_valid(attacker.source): source = attacker.source
-		game.add_credits(source, credits_reward, self.global_position)
+		game.add_credits(source, credits_reward + resource_credits, self.global_position)
 		emit_signal("ready_to_free")
 		game.add_new_object(false, self)
 		return true
@@ -225,4 +226,3 @@ func set_initial_durability_points() -> void:
 	durability_points = (scale.x - destroy_threshold) * 1000
 	if durability_points < 0.0: durability_points = 0.0
 	durability_points += scale.x * 50
-	durability_points *= rarity
