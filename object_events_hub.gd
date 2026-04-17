@@ -77,9 +77,17 @@ func resolve_collision(area_entered: bool, area_owner: Area2D, intruder: Area2D)
 		if area_entered:
 			if !intruder.is_in_group("ghosts"):
 				match parameter:
-					"damage": 
-						var damage: float = resolve_damage(area_owner, intruder)
-						intruder.take_damage(damage, area_owner)
+					"damage":
+						# Niektóre struktury mają ruchome obiekty które również są Area2D co doprowadza do double damage dlatego \/
+						var can_damage: bool = true
+						if area_owner.is_in_group("explosions"):
+							if intruder.source in area_owner.damaged_objects: 
+								can_damage = false
+							else:
+								area_owner.damaged_objects.append(intruder.source)
+						if can_damage:
+							var damage: float = resolve_damage(area_owner, intruder)
+							intruder.take_damage(damage, area_owner)
 					"shockwave_force":
 						if intruder.has_method("apply_shockwave_force"):
 							intruder.apply_shockwave_force(area_owner.global_position, area_owner.collision_parameters.shockwave_force)

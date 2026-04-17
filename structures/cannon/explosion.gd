@@ -2,6 +2,7 @@ extends Area2D
 var type: String
 var rise_and_decay_time: Array = []
 var collision_parameters: Dictionary = {}
+var damaged_objects: Array[Area2D] = []
 var duration: float
 var is_decaying: bool = false
 var current_scale: Vector2 = Vector2(0.01, 0.01)

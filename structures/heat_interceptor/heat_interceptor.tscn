@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bhdijx6ebyi66"]
 
-[ext_resource type="Script" uid="uid://7l3pbhfoc8nd" path="res://structures/regular_structure_script.gd" id="1_ealqd"]
+[ext_resource type="Script" uid="uid://7l3pbhfoc8nd" path="res://structures/regular_structure.gd" id="1_ealqd"]
 [ext_resource type="Texture2D" uid="uid://43cjvchbxi48" path="res://structures/heat_interceptor/base.png" id="1_qhaoq"]
 [ext_resource type="Texture2D" uid="uid://7rsb5ia4qnwo" path="res://structures/heat_interceptor/pipes.png" id="2_ealqd"]
 
