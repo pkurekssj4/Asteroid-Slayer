@@ -21,11 +21,11 @@ const SPECIALISATION_BONUSES = {
 	},
 	"engineer": {
 		"reload_time" = 0.2,
-		"capacity" = 0.4,
+		"capacity" = 0.6,
 	},
 	"executor": {
-		"critical_hit_chance" = 2.5,
-		"critical_hit_damage" = 0.1
+		"critical_hit_chance" = 3.0,
+		"critical_hit_damage" = 0.3
 	},
 	"gunslinger": {
 		"attack_speed" = 0.2,
@@ -395,7 +395,7 @@ var initial_config: Dictionary = {
 	"game_difficulty": ""
 }
 
-var initial_data: Dictionary = {
+const legacy_data: Dictionary = {
 	"game": {
 		"day": 1,
 		"difficulty": "",
@@ -496,7 +496,7 @@ var initial_data: Dictionary = {
 				"area_of_effect": 60.0, # srednica / diameter 60
 				"damage": 30,
 				"critical_hit_chance": 0.04,
-				"critical_hit_damage_thresholds": [1.6, 1.9]
+				"critical_hit_damage_thresholds": [1.5, 1.8]
 			},
 			"projectile": {
 				"audio_visual_effects": {
@@ -1054,6 +1054,7 @@ var initial_data: Dictionary = {
 	}
 }
 
+var initial_data: Dictionary = {}
 var current_data: Dictionary = {}
 
 var sub_dicts_with_additive_stats: Array[Dictionary]
@@ -1083,6 +1084,9 @@ func init() -> void:
 	include_additive_stats(true, "blessings")
 
 func prepare_for_new_game() -> void:
+	# Jeśli w tej samej sesji powstałoby kilka nowych zapisów to wszystkie działałyby na już zmodyfikowanym initial_data, dlatego \/
+	initial_data = {}
+	initial_data = legacy_data.duplicate(true)
 	for structure_type in initial_data.structures:
 		match structure_type:
 			"laser_turret":
@@ -1153,25 +1157,25 @@ func prepare_next_blessings_config() -> void:
 			bonus_value = 0.0
 			bonus_value = initial_stat_value * blessing_percent
 		current_data.next_blessings_config[cloud].statistic_value = bonus_value
-			
+		
 func set_values_according_to_difficulty() -> void:
 	var durability_points_multiplier: float
 	
 	if initial_config.game_difficulty == "easy":
-		initial_data.rewards.asteroid = 8
+		initial_data.rewards.regular_asteroid = 8
 		initial_data.asteroids.general.base_speed += 0.0
 		durability_points_multiplier = 1.0
 	elif initial_config.game_difficulty == "medium":
 		initial_data.asteroids.general.base_speed += 1.0
-		initial_data.rewards.asteroid = 7
+		initial_data.rewards.regular_asteroid = 7
 		durability_points_multiplier = 0.8
 	elif initial_config.game_difficulty == "hard":
 		initial_data.asteroids.general.base_speed += 1.5
-		initial_data.rewards.asteroid = 6
+		initial_data.rewards.regular_asteroid = 6
 		durability_points_multiplier = 0.6
 	elif initial_config.game_difficulty == "hardcore":
 		initial_data.asteroids.general.base_speed += 2.0
-		initial_data.rewards.asteroid = 5
+		initial_data.rewards.regular_asteroid = 5
 		durability_points_multiplier = 0.4
 		
 	for structure in initial_data.structures:
@@ -1355,13 +1359,19 @@ func get_data_source_dictionary(data_source: String, data_dict_to_check: String)
 	return dict_to_return
 
 func get_value_from_dict(stat_array: Array, dict_to_use: Dictionary) -> Variant:
+	var value_to_return: Variant
 	if stat_array.size() == 1: 
-		return dict_to_use[stat_array[0]]
+		value_to_return = dict_to_use[stat_array[0]]
 	else:
 		for i in range(0, stat_array.size()):
 			if dict_to_use[stat_array[i]] is Dictionary:
 				dict_to_use = dict_to_use[stat_array[i]]
-		return dict_to_use[stat_array[stat_array.size() - 1]]
+		value_to_return = dict_to_use[stat_array[stat_array.size() - 1]]
+	# podanie array z dict to referencja dlatego \/
+	if value_to_return is Array: 
+		return value_to_return.duplicate(true)
+	else:
+		return value_to_return
 
 func get_statistic_verb(stat: String) -> String:
 	var verb_to_return: String = "Increases"
@@ -1383,7 +1393,6 @@ func get_sub_dicts_with_additive_stats() -> Array[Dictionary]:
 	return array_to_return
 
 func add_stat_to_object(add: bool, stat_value: Variant, stat_structure: Array, data_dict: Dictionary) -> void:
-	# podanie array z dict to referencja dlatego \/
 	var stat_to_add: Variant
 	if stat_value is Array:
 		stat_to_add = stat_value.duplicate(true)

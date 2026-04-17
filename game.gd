@@ -118,6 +118,20 @@ func _ready():
 	if debug.enabled && debug.debug_values: set_debug_values()
 	GlobalScript.init()
 	$TimeAndWeather.init()
+	init_structures()
+	for key in rngs: rngs[key].randomize()
+	refresh_shards("all", Vector2.ZERO, false)
+	refresh_nano_cores_label()
+	refresh_resource_credits_label()
+	get_window().grab_focus()
+	assign_values_to_resources()
+	emit_signal("game_ready")
+	
+func _process(delta):
+	check_if_any_button_is_pressed()
+	progress_pending_highscore_ticks()
+
+func init_structures() -> void:
 	structures_list = get_structures_list()
 	disable_inactive_structures()
 	var bars_and_backgrounds: Node2D = Node2D.new()
@@ -132,18 +146,7 @@ func _ready():
 		if data_dict.active: buildings_data.active += 1
 	buildings_data.destroyed_count_threshold = 10 + floor(GlobalScript.current_data.game.day / 15)
 	update_buildings_label()
-	for key in rngs: rngs[key].randomize()
-	refresh_shards("all", Vector2.ZERO, false)
-	refresh_nano_cores_label()
-	refresh_resource_credits_label()
-	get_window().grab_focus()
-	assign_values_to_resources()
-	emit_signal("game_ready")
 	
-func _process(delta):
-	check_if_any_button_is_pressed()
-	progress_pending_highscore_ticks()
-
 func _on_asteroid_spawn_delay_timeout():
 	if debug.enabled and debug.asteroids_stopped: return
 	add_new_object(true, $FabricatedScenesManager.get_asteroid_scene("random", 0, 0.0, 0, Vector2.ZERO, Vector2.ZERO, true, 0))
@@ -395,7 +398,6 @@ func load_game() -> void:
 	print ("Loading game")
 	var file = FileAccess.open(GlobalScript.get_save_path("game"), FileAccess.READ)
 	GlobalScript.current_data = file.get_var()
-	GlobalScript.initial_data = {}
 	GlobalScript.initial_data = file.get_var()
 	GlobalScript.current_data.resources.credits_snapshot = GlobalScript.current_data.resources.credits
 	cannon_upgrades = file.get_var()

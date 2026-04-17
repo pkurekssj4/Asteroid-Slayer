@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bdigv1x1r4d5o"]
+[gd_scene format=3 uid="uid://bdigv1x1r4d5o"]
 
 [ext_resource type="Script" uid="uid://dylpesyb11f3b" path="res://upgrade_console/specialisations/specialisations.gd" id="1_1n0wu"]
 [ext_resource type="StyleBox" uid="uid://dr855ur533prw" path="res://ui/secondary_background.tres" id="2_1iv8x"]
@@ -13,6 +13,7 @@ shader_parameter/time_speed = 0.5
 shader_parameter/wave_freq = 3.0
 shader_parameter/wave_amp = 0.999999977648
 shader_parameter/alpha_channel = 1.0
+shader_parameter/phase = 0.0
 shader_parameter/color_light = Vector3(0.2, 0.7, 1)
 shader_parameter/color_mid = Vector3(0, 0.3, 0.7)
 shader_parameter/color_dark = Vector3(0, 0.1, 0.5)
@@ -40,17 +41,17 @@ hue_variation_max = -0.010000022
 turbulence_noise_strength = 20.0
 turbulence_noise_scale = 0.439
 
-[node name="Specialisations" type="Control"]
+[node name="Specialisations" type="Control" unique_id=1789857815]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_1n0wu")
 
-[node name="MainPanel" type="Control" parent="."]
+[node name="MainPanel" type="Control" parent="." unique_id=2126448733]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Borders" type="Panel" parent="MainPanel"]
+[node name="Borders" type="Panel" parent="MainPanel" unique_id=986810100]
 material = SubResource("ShaderMaterial_6oeup")
 layout_mode = 0
 offset_left = -6.0
@@ -60,14 +61,14 @@ offset_bottom = 279.0
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("2_1iv8x")
 
-[node name="Inside" type="Panel" parent="MainPanel"]
+[node name="Inside" type="Panel" parent="MainPanel" unique_id=1899185510]
 clip_contents = true
 layout_mode = 0
 offset_right = 483.0
 offset_bottom = 273.0
 theme_override_styles/panel = ExtResource("2_1qxk1")
 
-[node name="FirstSpecialisationLabel" type="Label" parent="MainPanel/Inside"]
+[node name="FirstSpecialisationLabel" type="Label" parent="MainPanel/Inside" unique_id=875580080]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 2.0
@@ -78,8 +79,7 @@ theme_override_font_sizes/font_size = 12
 text = "First specialisation is free of charge. The cost of change is 25000 Resource Credits."
 vertical_alignment = 1
 
-[node name="YourSpecialisationLabel" type="Label" parent="MainPanel/Inside"]
-visible = false
+[node name="YourSpecialisationLabel" type="Label" parent="MainPanel/Inside" unique_id=1656219512]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 18.0
@@ -90,7 +90,7 @@ theme_override_font_sizes/font_size = 12
 text = "Your specialisation: "
 vertical_alignment = 1
 
-[node name="Panel" type="Panel" parent="MainPanel/Inside"]
+[node name="Panel" type="Panel" parent="MainPanel/Inside" unique_id=981642966]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 135.0
@@ -98,7 +98,7 @@ offset_right = 477.0
 offset_bottom = 234.0
 theme_override_styles/panel = ExtResource("2_1iv8x")
 
-[node name="BonusLabel" type="Label" parent="MainPanel/Inside"]
+[node name="BonusLabel" type="Label" parent="MainPanel/Inside" unique_id=921498682]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 140.0
@@ -108,7 +108,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
 autowrap_mode = 2
 
-[node name="CloseButton" type="Button" parent="MainPanel/Inside"]
+[node name="CloseButton" type="Button" parent="MainPanel/Inside" unique_id=732774762]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 239.0
@@ -117,7 +117,7 @@ offset_bottom = 270.0
 theme = ExtResource("4_yc4lr")
 text = "Close panel"
 
-[node name="ConfirmButton" type="Button" parent="MainPanel/Inside"]
+[node name="ConfirmButton" type="Button" parent="MainPanel/Inside" unique_id=436223487]
 layout_mode = 0
 offset_left = 301.0
 offset_top = 239.0
@@ -126,65 +126,65 @@ offset_bottom = 270.0
 theme = ExtResource("4_yc4lr")
 text = "Change specialisation"
 
-[node name="SpecialisationsContainer1" type="HBoxContainer" parent="MainPanel/Inside"]
+[node name="SpecialisationsContainer1" type="HBoxContainer" parent="MainPanel/Inside" unique_id=715760737]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 57.0
 offset_right = 428.0
 offset_bottom = 88.0
 
-[node name="StrategistButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer1"]
+[node name="StrategistButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer1" unique_id=1147716621]
 layout_mode = 2
 theme = ExtResource("4_yc4lr")
 text = "Strategist"
 
-[node name="EngineerButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer1"]
+[node name="EngineerButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer1" unique_id=1613939366]
 layout_mode = 2
 theme = ExtResource("4_yc4lr")
 text = "Engineer"
 
-[node name="CollectionerButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer1"]
+[node name="CollectionerButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer1" unique_id=564321059]
 layout_mode = 2
 theme = ExtResource("4_yc4lr")
 text = "Collectioner"
 
-[node name="PyrotechnistButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer1"]
+[node name="PyrotechnistButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer1" unique_id=1639204053]
 layout_mode = 2
 theme = ExtResource("4_yc4lr")
 theme_override_font_sizes/font_size = 0
 text = "Pyrotechnist"
 
-[node name="SpecialisationsContainer2" type="HBoxContainer" parent="MainPanel/Inside"]
+[node name="SpecialisationsContainer2" type="HBoxContainer" parent="MainPanel/Inside" unique_id=798018218]
 layout_mode = 0
 offset_left = 109.0
 offset_top = 96.0
 offset_right = 371.0
 offset_bottom = 127.0
 
-[node name="ExecutorButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer2"]
+[node name="ExecutorButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer2" unique_id=1056614442]
 layout_mode = 2
 theme = ExtResource("4_yc4lr")
 text = "Executor
 "
 
-[node name="GunslingerButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer2"]
+[node name="GunslingerButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer2" unique_id=2101872055]
 layout_mode = 2
 theme = ExtResource("4_yc4lr")
 text = "Gunslinger"
 
-[node name="SentinelButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer2"]
+[node name="SentinelButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer2" unique_id=822604948]
 layout_mode = 2
 theme = ExtResource("4_yc4lr")
 text = "Sentinel
 "
 
-[node name="SecondaryPanel" type="Control" parent="."]
+[node name="SecondaryPanel" type="Control" parent="." unique_id=1728091952]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Borders" type="Panel" parent="SecondaryPanel"]
+[node name="Borders" type="Panel" parent="SecondaryPanel" unique_id=436554092]
 material = SubResource("ShaderMaterial_6oeup")
 layout_mode = 0
 offset_left = 25.0
@@ -194,7 +194,7 @@ offset_bottom = 202.0
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("2_1iv8x")
 
-[node name="Background" type="Panel" parent="SecondaryPanel"]
+[node name="Background" type="Panel" parent="SecondaryPanel" unique_id=2036034365]
 clip_contents = true
 layout_mode = 0
 offset_left = 30.0
@@ -203,7 +203,7 @@ offset_right = 451.0
 offset_bottom = 197.0
 theme_override_styles/panel = ExtResource("2_1qxk1")
 
-[node name="ConfirmationInside" type="Control" parent="SecondaryPanel"]
+[node name="ConfirmationInside" type="Control" parent="SecondaryPanel" unique_id=1803459421]
 visible = false
 anchors_preset = 0
 offset_left = 28.0
@@ -211,7 +211,7 @@ offset_top = 80.0
 offset_right = 68.0
 offset_bottom = 120.0
 
-[node name="Label1" type="Label" parent="SecondaryPanel/ConfirmationInside"]
+[node name="Label1" type="Label" parent="SecondaryPanel/ConfirmationInside" unique_id=696930652]
 layout_mode = 0
 offset_top = 2.0
 offset_right = 418.0
@@ -221,7 +221,7 @@ theme_override_font_sizes/font_size = 12
 text = "You want to change your specialisation to: "
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="SecondaryPanel/ConfirmationInside"]
+[node name="Label2" type="Label" parent="SecondaryPanel/ConfirmationInside" unique_id=1280290003]
 layout_mode = 0
 offset_left = -1.0
 offset_top = 17.0
@@ -232,7 +232,7 @@ theme_override_font_sizes/font_size = 12
 text = "The cost of the operation is: 0 Resource Credits"
 horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="SecondaryPanel/ConfirmationInside"]
+[node name="Label3" type="Label" parent="SecondaryPanel/ConfirmationInside" unique_id=151341226]
 layout_mode = 0
 offset_left = -1.0
 offset_top = 50.0
@@ -243,7 +243,7 @@ theme_override_font_sizes/font_size = 12
 text = "Are you absolutely sure about this decision?"
 horizontal_alignment = 1
 
-[node name="YesButton" type="Button" parent="SecondaryPanel/ConfirmationInside"]
+[node name="YesButton" type="Button" parent="SecondaryPanel/ConfirmationInside" unique_id=427833114]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 82.0
@@ -252,7 +252,7 @@ offset_bottom = 113.0
 theme = ExtResource("4_yc4lr")
 text = "Yes"
 
-[node name="NoButton" type="Button" parent="SecondaryPanel/ConfirmationInside"]
+[node name="NoButton" type="Button" parent="SecondaryPanel/ConfirmationInside" unique_id=2070528538]
 layout_mode = 0
 offset_left = 304.0
 offset_top = 81.0
@@ -262,7 +262,7 @@ theme = ExtResource("4_yc4lr")
 text = "No
 "
 
-[node name="ChangingSpecialisationInside" type="Control" parent="SecondaryPanel"]
+[node name="ChangingSpecialisationInside" type="Control" parent="SecondaryPanel" unique_id=1906811281]
 visible = false
 layout_mode = 1
 anchors_preset = 0
@@ -271,7 +271,7 @@ offset_top = 73.0
 offset_right = 72.0
 offset_bottom = 113.0
 
-[node name="ProgressBar" type="ProgressBar" parent="SecondaryPanel/ChangingSpecialisationInside"]
+[node name="ProgressBar" type="ProgressBar" parent="SecondaryPanel/ChangingSpecialisationInside" unique_id=2020174616]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 70.0
@@ -279,7 +279,7 @@ offset_right = 395.0
 offset_bottom = 97.0
 step = 0.1
 
-[node name="Label" type="Label" parent="SecondaryPanel/ChangingSpecialisationInside"]
+[node name="Label" type="Label" parent="SecondaryPanel/ChangingSpecialisationInside" unique_id=46192635]
 layout_mode = 0
 offset_left = -1.0
 offset_top = 25.0
@@ -291,7 +291,7 @@ text = "Rewiring neuro connections…
 "
 horizontal_alignment = 1
 
-[node name="SpecialisationChangedInside" type="Control" parent="SecondaryPanel"]
+[node name="SpecialisationChangedInside" type="Control" parent="SecondaryPanel" unique_id=78417324]
 visible = false
 anchors_preset = 0
 offset_left = 30.0
@@ -299,7 +299,7 @@ offset_top = 80.0
 offset_right = 70.0
 offset_bottom = 120.0
 
-[node name="Label1" type="Label" parent="SecondaryPanel/SpecialisationChangedInside"]
+[node name="Label1" type="Label" parent="SecondaryPanel/SpecialisationChangedInside" unique_id=1376974584]
 layout_mode = 0
 offset_left = -1.0
 offset_top = -8.0
@@ -311,7 +311,7 @@ text = "
 Congratulations! Your new specialisation is:"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="SecondaryPanel/SpecialisationChangedInside"]
+[node name="Label2" type="Label" parent="SecondaryPanel/SpecialisationChangedInside" unique_id=1800741054]
 layout_mode = 0
 offset_left = -1.0
 offset_top = 35.0
@@ -322,7 +322,7 @@ theme_override_font_sizes/font_size = 20
 text = "Specialisation"
 horizontal_alignment = 1
 
-[node name="ContinueButton" type="Button" parent="SecondaryPanel/SpecialisationChangedInside"]
+[node name="ContinueButton" type="Button" parent="SecondaryPanel/SpecialisationChangedInside" unique_id=993299381]
 visible = false
 layout_mode = 0
 offset_left = 159.0
@@ -332,10 +332,10 @@ offset_bottom = 106.0
 theme = ExtResource("4_yc4lr")
 text = "Continue"
 
-[node name="SpecialisationChangedSound" type="AudioStreamPlayer" parent="."]
+[node name="SpecialisationChangedSound" type="AudioStreamPlayer" parent="." unique_id=587191596]
 stream = ExtResource("2_rpvm0")
 
-[node name="SpecialisationChangedParticles" type="GPUParticles2D" parent="."]
+[node name="SpecialisationChangedParticles" type="GPUParticles2D" parent="." unique_id=1463747993]
 position = Vector2(239, 131)
 emitting = false
 amount = 3000

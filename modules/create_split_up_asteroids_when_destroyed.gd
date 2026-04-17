@@ -3,7 +3,7 @@ extends Node
 var parent: Area2D = null
 var number: int
 var base_speed: int = 10
-var speed_variation: Array[int] = [20, 70]
+var speed_variation: Array[int] = [25, 70]
 
 @onready var fabricated_scenes_manager = get_node("/root/Game/FabricatedScenesManager")
 @onready var game = get_node ("/root/Game")
