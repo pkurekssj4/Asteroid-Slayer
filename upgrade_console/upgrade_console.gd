@@ -518,9 +518,9 @@ var other_upgrades_pascal_names = [
 func _ready():
 	load_game()
 	GlobalScript.init()
-	#GlobalScript.current_data.game.day = 12
 	get_window().grab_focus()
 	intro()
+	# GlobalScript.current_data.game.day = 2
 	#player_specialisation = "none"
 	modulate_statistics_labels()
 	refresh_shards("all")
@@ -536,14 +536,13 @@ func _ready():
 	else: $UpgradeButtons/Blessings.hide()
 	await get_tree().create_timer(3).timeout
 	
-	if GlobalScript.current_data.game.day == 2: display_message_box("first visit")
-	elif GlobalScript.current_data.game.day == GlobalScript.specialisation_unlock_day: display_message_box("specialisation")
-	elif GlobalScript.current_data.game.day == 6:
-		$UpgradeButtons/BlessingsBlinkingAnimation.play("default")
-		display_message_box("blessings introduction to the console")
-	elif GlobalScript.asteroids_tree_unlock_day == GlobalScript.current_data.game.day: display_message_box("asteroids tree unlocked")
-	else:
-		activated = true
+	var day_string: String = "day_" + str(GlobalScript.current_data.game.day)
+	if GlobalScript.regular_messages.console.has(day_string):
+		var new_msg_box = GlobalScript.get_message_box("console", GlobalScript.regular_messages.console[day_string])
+		await display_message_box(new_msg_box)
+				
+	if GlobalScript.current_data.game.day == 6: $UpgradeButtons/BlessingsBlinkingAnimation.play("default")
+	activated = true
 
 func _process(_delta):
 	if grid_alpha_mask_is_fading:
@@ -700,14 +699,6 @@ func refresh_shards(Type) -> void:
 		$Score/AstralShardsCount.text = str(GlobalScript.current_data.resources.astral_shards)
 	if Type == "all" || Type == "ethereal":
 		$Score/EtherealShardsCount.text = str(GlobalScript.current_data.resources.ethereal_shards)
-
-func display_message_box(type: String) -> void:
-	activated = false
-	var new_message_box = MESSAGE_BOX.instantiate()
-	new_message_box.message = type
-	new_message_box.upgrade_console = self
-	add_child(new_message_box)
-	new_message_box.z_index = 3
 
 func _on_cannon_pressed() -> void:
 	show_upgrade_tree("Cannon", true)
@@ -877,3 +868,10 @@ func _on_add_resources_pressed() -> void:
 func _on_substract_resources_pressed() -> void:
 	add_resources("credits", 10000, false)
 	add_resources("nano_cores", 10, false)
+
+func display_message_box(new_message_box: Control) -> void:
+	activated = false
+	add_child(new_message_box)
+	new_message_box.z_index = 3
+	await new_message_box.ready_to_continue
+	activated = true

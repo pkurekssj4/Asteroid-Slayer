@@ -2,7 +2,6 @@ extends Node2D
 const DEFAULT_CURSOR = preload("res://cursor.png")
 const RELOAD_CURSOR = preload("res://cursor_reload.png")
 const EVENT_MESSAGE = preload("res://event_message.tscn")
-const MESSAGE_BOX = preload("res://ui/message_box/message_box.tscn")
 const TOOLTIP_SCENE = preload("res://tooltip_ingame.tscn")
 const FIREWORK = preload("res://firework.tscn")
 const STRUCTURE_BAR = preload("res://structures/structure_bar.tscn")
@@ -25,7 +24,7 @@ var debug: Dictionary = {
 	"keep_pressing_hotkey_to_spawn_asteroids": true,
 	"buildings_are_repaired": false,
 	"debug_values": true,
-	"day": 25,
+	"day": 5,
 	"basic_attack_damage": 200,
 	"basic_attack_reload_time": 1,
 	"basic_attack_attack_speed": 5,
@@ -563,13 +562,11 @@ func _on_against_all_odds_timer_timeout() -> void:
 		against_all_odds_reward_pending = false
 	against_all_odds_buildings_count = 0
 
-func display_message_box(message: String) -> void:
+func display_message_box(msg_box: Control, resume_game: bool) -> void:
 	stop_game(true)
-	var new_message_box: Control = MESSAGE_BOX.instantiate()
-	new_message_box.event_manager = $EventManager
-	new_message_box.game = self
-	new_message_box.message = message
-	add_child(new_message_box)
+	$UILayer.add_child(msg_box)
+	await msg_box.ready_to_continue
+	if resume_game: stop_game(false)
 
 func stop_game(type: bool) -> void:
 	game_stopped = type
@@ -699,7 +696,7 @@ func display_ending_ceremony_event() -> void:
 		new_firework.z_index = get_display_index("visual_effects")
 		add_child(new_firework)
 		await create_delay_timer(randf_range(0.05, 0.08))
-	await create_delay_timer(5.5)
+	await create_delay_timer(2.5)
 	event_message_1.fading_off = true
 	await create_delay_timer(2)
 	$EventManager.advance_game_state()

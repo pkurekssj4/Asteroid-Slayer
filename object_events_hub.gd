@@ -94,7 +94,7 @@ func resolve_collision(area_entered: bool, area_owner: Area2D, intruder: Area2D)
 					"transform_asteroids_to_parent_type":
 						if intruder.is_in_group("asteroids"):
 						# gdy rodzic zniknie to nie bedzie dostępu do typu dlatego zmienna w parametrach
-							intruder.change_type(area_owner.collision_parameters.transform_asteroids_to_parent_type)
+							if intruder.is_regular: intruder.change_type(area_owner.collision_parameters.transform_asteroids_to_parent_type)
 			if intruder.is_in_group("asteroids"): 
 				match parameter:
 					"pull_force":

@@ -27,7 +27,6 @@ func _ready() -> void:
 	if data.has("dish") and data.active: $AnimationPlayer.seek(randf_range(0.2, 2.8))
 
 func take_damage(damage: float, _attacker: Area2D):
-	print ("getting damage")
 	game.damage_structure(self, damage)
 
 func get_function(statistic: String) -> String:

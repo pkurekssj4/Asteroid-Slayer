@@ -3,6 +3,7 @@ extends Node
 var blessings_scene: Node2D
 var game_state: int = -1
 var delay: int = 0
+var day_string: String
 var events_schedule: Array[String]
 var current_schedule_slot: int = 0
 var previous_schedule_slot: int = 0
@@ -20,6 +21,17 @@ var events_data: Dictionary = {
 	"days_to_reduce_inactive_last_slots": 40,
 	
 	"events": {
+		"force_asteroid_type_spawn_on_initial_day": {
+			"initial_day": 2,
+			"occurences": 2,
+			"asteroids_number": 1,
+			"event_interval": 2
+		},
+		"asteroid_shower": {
+			"initial_day": 3,
+			"days_to_launch": [3, 7, 13, 15],
+			"duration_sec": 10,
+		},
 		"fast_spawn": {
 			"initial_day": 6,
 			"occurences": 1,
@@ -31,39 +43,28 @@ var events_data: Dictionary = {
 			"days_to_increase_asteroids_number": 15
 		},
 		"hyper_velocity_wave": {
-			"initial_day": 8,
+			"initial_day": 7,
 			"occurences": 1,
 			"occurences_increase_rate": 1,
 			"event_interval": 8,
 			"interval_decrease_rate": 2,
 			"days_to_increase_occurences_and_reduce_interval": 30,
 			"days_to_increase_asteroids_number": 25,
-			"asteroids_number": 3
+			"asteroids_number": 5
+		},
+		"huge_asteroid": {
+			"initial_day": 9,
+			"days_to_launch": [9, 11, 15],
 		},
 		"flash_wave": {
-			"initial_day": 12,
-			"occurences": 2,
+			"initial_day": 11,
+			"occurences": 1,
 			"occurences_increase_rate": 1,
 			"event_interval": 9,
 			"interval_decrease_rate": 2,
 			"days_to_increase_occurences_and_reduce_interval": 30,
 			"days_to_increase_asteroids_number": 8,
-			"asteroids_number": 5
-		},
-		"force_asteroid_type_spawn_on_initial_day": {
-			"initial_day": 2,
-			"occurences": 2,
-			"asteroids_number": 1,
-			"event_interval": 2
-		},
-		"meteor_shower": {
-			"days_to_launch": [3, 7, 13, 15],
-			"duration_sec": 10,
-			"initial_day": 3,
-		},
-		
-		"huge_asteroid": {
-			"initial_day": 101,
+			"asteroids_number": 7
 		},
 		"toxic_rain": {
 			"initial_day": 101,
@@ -86,9 +87,9 @@ var events_data: Dictionary = {
 @onready var audio_bus: Node = get_node("/root/Game/AudioBus")
 @onready var fabricated_scenes_manager: Node = get_node("/root/Game/FabricatedScenesManager")
 
-
 func _ready() -> void:
 	await game.game_ready
+	day_string = "day_" + str(GlobalScript.current_data.game.day)
 	prepare_events_schedule()
 	advance_game_state()
 
@@ -105,15 +106,11 @@ func advance_game_state() -> void:
 	game_state += 1
 		
 	if game_state == 0: #msg box przed akcją
-		if GlobalScript.current_data.game.day == 1: game.display_message_box("intro")
-		elif GlobalScript.current_data.game.day == 3: game.display_message_box("day_3")
-		elif GlobalScript.current_data.game.day == 5: game.display_message_box("day_5")
-		elif GlobalScript.current_data.game.day == 6: game.display_message_box("day_6")
-		elif GlobalScript.current_data.game.day == 8: game.display_message_box("hyper_velocity_alert")
-		elif GlobalScript.current_data.game.day == 15: game.display_message_box("day_15")
-		elif GlobalScript.current_data.game.day == 22: game.display_message_box("ufo_warning")
-		else:
-			advance_game_state()
+		if GlobalScript.regular_messages.game.has(day_string):
+			if GlobalScript.regular_messages.game[day_string].has("start"):
+				var new_msg_box = GlobalScript.get_message_box("game", GlobalScript.regular_messages.game[day_string]["start"])
+				await game.display_message_box(new_msg_box, true)
+		advance_game_state()
 		
 	elif game_state == 1:# intro
 		if GlobalScript.current_data.game.day == 1:
@@ -162,9 +159,9 @@ func advance_game_state() -> void:
 		
 	elif game_state == 5: #wyswietl msg box gdy oczy sie pojawily po raz pierwszy
 		if GlobalScript.current_data.game.day == 5:
-			game.display_message_box("first god encounter")
-		else:
-			advance_game_state()
+			var new_msg_box = GlobalScript.get_message_box("game", GlobalScript.irregular_messages.gods_eyes_appearance)
+			await game.display_message_box(new_msg_box, false)
+		advance_game_state()
 			
 	elif game_state == 6: #wyswietl blessingi
 		if GlobalScript.current_data.game.day % 5 == 0 and GlobalScript.current_data.game.day % 10 != 0:
@@ -174,12 +171,11 @@ func advance_game_state() -> void:
 		
 		
 	elif game_state == 7: #wyswietl msg box na koniec dnia
-		if GlobalScript.current_data.game.day == 5:
-			game.display_message_box("after god encounter")
-		elif GlobalScript.current_data.game.day == 1:
-			game.display_message_box("ending of day 1")
-		else:
-			advance_game_state()
+		if GlobalScript.regular_messages.game.has(day_string):
+			if GlobalScript.regular_messages.game[day_string].has("end"):
+				var new_msg_box = GlobalScript.get_message_box("game", GlobalScript.regular_messages.game[day_string]["end"])
+				await game.display_message_box(new_msg_box, false)
+		advance_game_state()
 			
 	elif game_state == 8: # koncowa ceremonia
 		await game.create_delay_timer(1)
@@ -245,7 +241,7 @@ func prepare_events_schedule() -> void:
 								slots_to_add = get_slots_to_add(events_data["events"]["force_asteroid_type_spawn_on_initial_day"]["occurences"], events_data["events"]["force_asteroid_type_spawn_on_initial_day"]["event_interval"])
 								for i in slots_to_add: events_schedule[i] = "force_spawn_" + asteroid
 								break
-				"meteor_shower":
+				"asteroid_shower", "huge_asteroid":
 					if GlobalScript.current_data.game.day in events_data["events"][event]["days_to_launch"]:
 						slots_to_add = get_slots_to_add(1, 1)
 						for i in slots_to_add: events_schedule[i] = event
@@ -321,21 +317,34 @@ func trigger_force_asteroid_type_spawn_event(event: String) -> void:
 		await game.create_delay_timer(randf_range(0.5, 1.0))
 	#print ("Launching asteroid: " + asteroid_type +" at slot: " + str(current_schedule_slot))
 
-func trigger_meteor_shower() -> void:
+func trigger_asteroid_shower() -> void:
 	var duration_timer: Timer = Timer.new()
 	duration_timer.one_shot = true
-	game.get_node("ProgressBarManager").create_progress_bar("Meteor shower", "red", events_data.events.meteor_shower.duration_sec)
+	game.get_node("ProgressBarManager").create_progress_bar("Asteroid shower", "red", events_data.events.asteroid_shower.duration_sec)
 	add_child(duration_timer)
-	duration_timer.start(events_data.events.meteor_shower.duration_sec)
+	duration_timer.start(events_data.events.asteroid_shower.duration_sec)
 	while !duration_timer.is_stopped():
-		var asteroid: Area2D = fabricated_scenes_manager.get_asteroid_scene("common", 0, 0.1, 160, Vector2.ZERO, Vector2.ZERO, false, 0)
-		asteroid.credits_reward = GlobalScript.current_data.rewards.meteor_shower_asteroid
+		var asteroid: Area2D = fabricated_scenes_manager.get_asteroid_scene("common", 0, 0.15, 160, Vector2.ZERO, Vector2.ZERO, false, 0)
+		asteroid.credits_reward = GlobalScript.current_data.rewards.shower_asteroid
 		asteroid.is_regular = false
 		game.add_new_object(true, asteroid)
 		var delay_time: float = randf_range(0.4, 0.7)
 		if delay_time > duration_timer.time_left: delay_time = duration_timer.time_left + 0.1
 		await game.create_delay_timer(delay_time)
 	duration_timer.queue_free()
+
+func launch_huge_asteroid() -> void:
+	audio_bus.play_audio("huge_asteroid_warning")
+	await game.create_delay_timer(randf_range(3.0, 6.0))
+	var size: float = 0.4 + (GlobalScript.current_data.game.day * 1.0) / 120.0
+	var speed: int = randi_range(148, 163)
+	var rarity: int = 0
+	if GlobalScript.current_data.game.day >= 80: rarity = 4
+	elif GlobalScript.current_data.game.day >= 60: rarity = 3
+	elif GlobalScript.current_data.game.day >= 40: rarity = 2
+	elif GlobalScript.current_data.game.day >= 20: rarity = 1
+	var asteroid: Area2D = fabricated_scenes_manager.get_asteroid_scene("common", rarity, size, speed, Vector2.ZERO, Vector2.ZERO, false, 0)
+	game.add_new_object(true, asteroid)
 	
 func supervise_event_schedule() -> void:
 	if current_schedule_slot == events_schedule.size() - 1 or game.game_ended:
@@ -353,6 +362,7 @@ func supervise_event_schedule() -> void:
 			if events_schedule[current_schedule_slot] == "fast_spawn": trigger_fast_spawn_event()
 			elif events_schedule[current_schedule_slot] == "hyper_velocity_wave": trigger_hyper_velocity_wave_event()
 			elif events_schedule[current_schedule_slot] == "flash_wave": trigger_flash_wave_event(true)
-			elif events_schedule[current_schedule_slot] == "meteor_shower": trigger_meteor_shower()
+			elif events_schedule[current_schedule_slot] == "asteroid_shower": trigger_asteroid_shower()
+			elif events_schedule[current_schedule_slot] == "huge_asteroid": launch_huge_asteroid()
 			elif events_schedule[current_schedule_slot].contains("force_spawn"): trigger_force_asteroid_type_spawn_event(events_schedule[current_schedule_slot])
 		events_schedule[current_schedule_slot] = ""

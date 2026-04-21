@@ -1,10 +1,11 @@
 extends Node
 # === config === 
-var skip_all_messages: bool = false
 var skip_intro: bool = true
 var specialisation_unlock_day: int = 5
 var asteroids_tree_unlock_day: int = 12
+const PLANET_NAME = "Oasis"
 var auto_pause_when_lost_focus: bool = true
+const MESSAGE_BOX = preload("res://ui/message_box/message_box.tscn")
 
 const COLOR_PALETTE: Dictionary = {
 	"object_color": "HOT_PINK",
@@ -442,7 +443,7 @@ const legacy_data: Dictionary = {
 
 	"rewards": {
 		"regular_asteroid": 8,
-		"meteor_shower_asteroid": 2, 
+		"shower_asteroid": 2, 
 		"accuracy_streak": 1,
 		"chain_reaction": 5,
 		"hyper_asteroid": 2,
@@ -1059,6 +1060,86 @@ var current_data: Dictionary = {}
 
 var sub_dicts_with_additive_stats: Array[Dictionary]
 
+const message_senders: Dictionary = {
+	"game": "Xanetti Corporation",
+	"console": "Livrenn Group"
+}
+
+const regular_messages: Dictionary = {
+	"game": {
+		"day_1": {
+			"start": {
+				"part_1": "Welcome to the Oasis – the last remaining stronghold on Earth, sheltering around a thousand survivors of our species. Once a symbol of hope, it is no longer safe. Scientists have calculated with grim certainty: for the next 100 days, relentless waves of asteroids will rain down upon the planet, threatening to annihilate what little is left of humanity.",
+				"part_2": "As our appointed commander, you carry the weight of survival on your shoulders. You will take charge of our defensive cannon, plan strategies, and make critical decisions to protect the Oasis from destruction. While you fight off the cosmic onslaught, a team of engineers and scientists will work tirelessly to prepare a rocket—a vessel that holds the fragile hope of escaping Earth and starting anew on Mars.",
+				"part_3": "Time is not on our side. The fate of humanity rests in your hands. Can you hold the line long enough to ensure our future among the stars? The countdown begins now."
+			},
+			"end": {
+				"part_1": "Well done Commander, thanks to you we've survived the first day of asteroids threats.\nBe advised: Along with our scientists and astereologists, we predict that each new day, a new type of asteroid will appear on the sky. We estimate there will be ten in total. Our data shows that each day, they’ll come slightly faster and bigger. We strongly advise you caution and proper preparation."
+			}
+		},
+		"day_3": {
+			"start": {
+				"part_1": "Commander – great work! You've made it to Day 3. Your aim and decisions are impressive. But stay sharp – the asteroid threat is growing. Our systems have just detected incoming small asteroids in significant batches."
+			}
+		},
+		"day_5": {
+			"start": {
+				"part_1": "Commander, this day is extraordinary. A wave of massive asteroids is on a collision course with the base. Their size make them especially dangerous. This will be a true test of your defenses and precision. Prepare your weapon systems and hold the line — the humanity survival depends on you."
+			},
+			"end": {
+				"part_1": "This is insane! We have detected a surge of power within the defensive infrastructure. We don't know how to explain it, but apparently God sees your efforts and decided to support you!\nBy the way – you managed to deal with those massive asteroids that posed a huge threat to our base and future. Glory to you, Commander. We are very grateful for your commitment."
+			}
+		},
+		"day_6": {
+			"start": {
+				"part_1": "Commander be advised, we have a new observation. Before asteroids appear in the sky, they occasionally collide with one another. These impacts cause them to shed dust, which then condenses into a protective shield forming at the asteroid’s core. Apparently, this will make destroying them more challenging."
+			}
+		},
+		"day_8": {
+			"start": {
+				"part_1": "Commander, be advised as danger raises. Our radars have detected a huge number of incoming hypervelocity asteroid waves. According to the data, their frequencies and numbers will increase over time. We estimate that waves will appear on the sky everyday. Stay cautious."
+			}
+		},
+		"day_9": {
+			"start": {
+				"part_1": "Our systems have detected incoming huge asteroids. Fortunately they move singularly. To help you prepare, we will emit warning sound before they arrive."
+			}
+		},
+		"day_15": {
+			"start": {
+				"part_1": "It's another day when we expect unusual wave of asteroids. This time they are only explosive, what makes them easier to destroy but in the same time it's huge threat to the infrastructure. Good luck Commander!"
+			}
+		}
+	},
+	
+	"console": {
+		"day_2": {
+			"part_1": "Commander, welcome to the Upgrade Console. This is a special place where all your upgrades will take shape. Plan your choices carefully — some decisions are difficult, or even impossible, to reverse. Take your time and choose wisely.",
+			"part_2": "Please note that upgrade trees and specialization network function through highly advanced computational structures, loosely inspired by the architecture of the human brain. These networks require immense energy input and a precise balance of various calculating components to operate. Because of this complexity, altering the configuration is no trivial task—it demands a substantial amount of Resource Credits, Nano Cores and Asteroid Shards to initiate and stabilize any changes.",
+			"part_3": "When it comes to resources, this is a short overview of them:\n\nResource Credits – a reward for destryoing asteroids provided by the Xanetti Corporation, which hired you. Used to improve the cannon and base infrastructure.",
+			"part_4": "Asteroid Shards - There’s a small chance they’ll drop from destroyed asteroids. Used to manipulate the properties and behavior of asteroids. \n\nNano Cores - Our scientists work tirelessly in laboratories to produce them. Since the process is slow and complex, you'll receive only one Nano Core at the end of each day. Used to implement and enhance cannon abilities."
+		},
+		"day_5": {
+			"part_1": "Commander, you’re no longer a newcomer — you’ve become a seasoned practitioner. You’ve proven your worth and successfully defended the base from destruction. This is a moment to celebrate. From now on, you have the opportunity to choose a specialisation and become even more effective. Take your time — each specialisation is unique and has its own benefits. Click the glowing circle in the upgrade menu to explore the available options."
+		},
+		"day_6": {
+			"part_1": "Dear Commander, Xanetti Corporation just informed us that power raised in base and it looks like this is a kind of permanent upgrade to your infrastructure. We have upgraded the Console and added a new tab. Thanks to this you will be able to have an eye on so called God's blessings."
+		},
+		"day_12": {
+			"part_1": "We have collected all available data regarding asteroids and closely examined behavior of their types. We have also deployed powerful sonds across vast universe distances that detected incoming new tiers from other galaxies.",
+			"part_2": "We expect these intergalactic asteroids to have far greater durability than common ones: they will be harder to destroy but their shards will be much more potent.",
+			"part_3": "Using the collected data, we designed an effective Asteroid Tree to manipulate both the appearance of asteroids in the sky and also their behavior. We believe that this will help you to plan new strategies and bring your commandement skills to higher level."
+		}
+	}
+}
+
+const irregular_messages: Dictionary = {
+	"gods_eyes_appearance": {
+		"part_1": "Wait! What is this?? Commander, do you see this? This world is extraordinary. We are regularly encountering asteroids, UFOs and they are serious threat to the humanity, but we see these eyes for the first time and we have no idea what is going to happen!",
+		"part_2": "This encounter is improbable and unpredictable. It looks like real entity of God is looking directly on us."
+	}
+}
+
 func load_scene(scene_to_load: String):
 	if scene_to_load == "upgrade console": scene_to_load = "res://upgrade_console/upgrade_console.tscn"
 	if scene_to_load == "game": scene_to_load = "res://game.tscn"
@@ -1459,3 +1540,20 @@ func include_additive_stats(include: bool, scope: String) -> void:
 func erase_additive_stats(group: String) -> void:
 	for dict in sub_dicts_with_additive_stats:
 		if dict["additive_statistics"].has(group): dict["additive_statistics"].erase(group)
+
+func get_message_box(send_from: String, message_source: Dictionary) -> Control:
+	var new_message_box: Control = MESSAGE_BOX.instantiate()
+	new_message_box.message_source = message_source
+	new_message_box.sender = message_senders[send_from]
+	new_message_box.place = get_place(send_from)
+	return new_message_box
+	
+func get_place(send_from: String) -> String:
+	var string_to_return: String
+	match send_from:
+		"console": 
+			string_to_return = "Upgrade Console"
+		"game":
+			if GlobalScript.current_data.game.day < 11: string_to_return = "Power Plant"
+	string_to_return = PLANET_NAME + ": " + string_to_return
+	return string_to_return
