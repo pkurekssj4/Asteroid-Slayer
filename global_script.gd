@@ -18,11 +18,11 @@ const COLOR_PALETTE: Dictionary = {
 const SPECIALISATION_BONUSES = {
 	"pyrotechnist": {
 		"area_of_effect_of_basic_attack_and_abilities" = 0.15,
-		"damage_of_basic_attack_and_abilities" = 0.4,
+		"damage_of_basic_attack_and_abilities" = 0.45,
 	},
 	"engineer": {
 		"reload_time" = 0.2,
-		"capacity" = 0.6,
+		"capacity" = 0.7,
 	},
 	"executor": {
 		"critical_hit_chance" = 3.0,
@@ -33,8 +33,8 @@ const SPECIALISATION_BONUSES = {
 		"projectile_speed" = 0.2,
 	},
 	"strategist": {
-		"abilities_buffs_and_fever_duration" = 0.3,
-		"ability_cooldowns" = 0.1,
+		"abilities_buffs_and_fever_duration" = 0.35,
+		"ability_cooldowns" = 0.15,
 	},
 	"collectioner": {
 		"extra_resource_credits_earned_that_day" = 0.05,
@@ -444,6 +444,7 @@ const legacy_data: Dictionary = {
 	"rewards": {
 		"regular_asteroid": 8,
 		"shower_asteroid": 2, 
+		"huge_asteroid": 50,
 		"accuracy_streak": 1,
 		"chain_reaction": 5,
 		"hyper_asteroid": 2,

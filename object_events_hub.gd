@@ -67,7 +67,8 @@ func adjust_visuals_to_scale_reference(object: Area2D, dict: Dictionary) -> void
 	
 func resolve_collision(area_entered: bool, area_owner: Area2D, intruder: Area2D) -> void:
 	if intruder.is_in_group("floor"):
-		if area_owner.is_in_group("explosive"): game.add_new_object(false, area_owner)
+		if area_owner.is_in_group("explosive"):
+			game.add_new_object(false, area_owner)
 		return
 	elif area_owner.is_in_group("ghosts"):
 		return
@@ -109,7 +110,8 @@ func resolve_collision(area_entered: bool, area_owner: Area2D, intruder: Area2D)
 					"slow_by_asteroid_power":
 						intruder.apply_slow_by_asteroid(false, 0.0, 0.0)
 	
-	if !intruder.is_in_group("ghosts") and area_owner.is_in_group("explosive"): game.add_new_object(false, area_owner)
+	if !intruder.is_in_group("ghosts") and area_owner.is_in_group("explosive"): 
+		game.add_new_object(false, area_owner)
 
 func resolve_damage(area_owner: Area2D, intruder: Area2D) -> float:
 	if area_owner.collision_parameters.has("critical_hit_chance"):

@@ -59,7 +59,7 @@ func calculate_speed_and_trajectory(delta) -> void:
 		stasis_field_slow_power = GlobalScript.current_data.abilities.stasis_field.slow_power / 100.0
 	else:
 		stasis_field_slow_power = 0.0
-	
+
 	speed_multiplier = 1.0 - (freezing_asteroids_actual_slow_power + stasis_field_slow_power + slow_power_during_pull) # -shockwave.force
 	target_speed = base_speed * speed_multiplier
 	if target_speed < 0.0: target_speed = 0.0
@@ -79,7 +79,7 @@ func calculate_speed_and_trajectory(delta) -> void:
 				is_on_initial_trajectory = true
 	
 func take_damage(damage: float, attacker: Area2D) -> bool:
-	if self.is_queued_for_deletion() or !entered_screen: return false
+	if durability_points <= 0.0 or !entered_screen: return false
 	damage /= rarity
 	fever.progress(damage, attacker, self)
 	durability_points -= damage
@@ -180,7 +180,7 @@ func start_flashing(time_sec: float) -> void:
 	set_process(true)
 
 func _on_area_entered(area: Area2D) -> void:
-	if !exploded: object_events_hub.resolve_collision(true, self, area)
+	object_events_hub.resolve_collision(true, self, area)
 	
 func adjust_collision_damage_to_scale() -> void:
 	if explosion_scene == null or !explosion_scene.collision_parameters.has("damage"):

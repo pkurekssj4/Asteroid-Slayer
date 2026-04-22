@@ -14,11 +14,11 @@ var events_data: Dictionary = {
 	"schedule_range_high": 25,
 	"event_trigger_percent_interval": 4,
 	"inactive_last_slots": 4,
-	"inactive_first_slots": 6,
+	"inactive_first_slots": 4,
 	"minimum_inactive_first_slots": 1,
 	"minimum_inactive_last_slots": 2,
-	"days_to_reduce_inactive_first_slots": 8,
-	"days_to_reduce_inactive_last_slots": 40,
+	"days_to_reduce_inactive_first_slots": 7,
+	"days_to_reduce_inactive_last_slots": 30,
 	
 	"events": {
 		"force_asteroid_type_spawn_on_initial_day": {
@@ -324,11 +324,11 @@ func trigger_asteroid_shower() -> void:
 	add_child(duration_timer)
 	duration_timer.start(events_data.events.asteroid_shower.duration_sec)
 	while !duration_timer.is_stopped():
-		var asteroid: Area2D = fabricated_scenes_manager.get_asteroid_scene("common", 0, 0.15, 160, Vector2.ZERO, Vector2.ZERO, false, 0)
+		var asteroid: Area2D = fabricated_scenes_manager.get_asteroid_scene("common", 0, 0.12, 160, Vector2.ZERO, Vector2.ZERO, false, 0)
 		asteroid.credits_reward = GlobalScript.current_data.rewards.shower_asteroid
 		asteroid.is_regular = false
 		game.add_new_object(true, asteroid)
-		var delay_time: float = randf_range(0.4, 0.7)
+		var delay_time: float = randf_range(0.2, 0.4)
 		if delay_time > duration_timer.time_left: delay_time = duration_timer.time_left + 0.1
 		await game.create_delay_timer(delay_time)
 	duration_timer.queue_free()
@@ -336,14 +336,16 @@ func trigger_asteroid_shower() -> void:
 func launch_huge_asteroid() -> void:
 	audio_bus.play_audio("huge_asteroid_warning")
 	await game.create_delay_timer(randf_range(3.0, 6.0))
-	var size: float = 0.4 + (GlobalScript.current_data.game.day * 1.0) / 120.0
-	var speed: int = randi_range(148, 163)
+	var size: float = 0.5 + (GlobalScript.current_data.game.day * 1.0) / 250
+	var speed: int = randi_range(155, 165)
 	var rarity: int = 0
 	if GlobalScript.current_data.game.day >= 80: rarity = 4
 	elif GlobalScript.current_data.game.day >= 60: rarity = 3
 	elif GlobalScript.current_data.game.day >= 40: rarity = 2
 	elif GlobalScript.current_data.game.day >= 20: rarity = 1
 	var asteroid: Area2D = fabricated_scenes_manager.get_asteroid_scene("common", rarity, size, speed, Vector2.ZERO, Vector2.ZERO, false, 0)
+	asteroid.is_regular = false
+	asteroid.credits_reward = GlobalScript.current_data.rewards.huge_asteroid
 	game.add_new_object(true, asteroid)
 	
 func supervise_event_schedule() -> void:

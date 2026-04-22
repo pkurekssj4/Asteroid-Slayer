@@ -24,7 +24,7 @@ var debug: Dictionary = {
 	"keep_pressing_hotkey_to_spawn_asteroids": true,
 	"buildings_are_repaired": false,
 	"debug_values": true,
-	"day": 5,
+	"day": 9,
 	"basic_attack_damage": 200,
 	"basic_attack_reload_time": 1,
 	"basic_attack_attack_speed": 5,
@@ -506,7 +506,7 @@ func check_if_any_button_is_pressed() -> void:
 	if debug.enabled:
 		var asteroid_1 = "splitting"
 		var asteroid_2 = "electric"
-		var asteroid_3 = "chromatic"
+		var asteroid_3 = "plasma"
 		if debug.keep_pressing_hotkey_to_spawn_asteroids:
 			if Input.is_action_just_pressed(&"spawn_asteroid"):
 				add_new_object(true, $FabricatedScenesManager.get_asteroid_scene(asteroid_1, 0, 0.15, 30, get_global_mouse_position(), Vector2.ZERO, false, 0))
@@ -538,8 +538,10 @@ func check_if_any_button_is_pressed() -> void:
 		elif Input.is_action_just_pressed(&"stop_asteroids"):
 			if debug.asteroids_stopped:
 				debug.asteroids_stopped = false
-				$Timers/AsteroidSpawnDelay.start(0.1)
-			else: debug.asteroids_stopped = true
+				$EventManager.set_process(true)
+			else: 
+				debug.asteroids_stopped = true
+				$EventManager.set_process(false)
 			display_event_message("asteroids stoppped: " + str(debug.asteroids_stopped), 2, "no_sound", 0, "white", "normal", "none", 0)
 		elif Input.is_action_just_pressed(&"instant_end"):
 			GlobalScript.current_data.asteroids.general.asteroids_left = 0
@@ -584,13 +586,13 @@ func launch_special_asteroid_wave(day: int) -> void:
 			$AudioBus.add_new_player(soundtrack_path, music_cfg.name + ".mp3")
 			$AudioBus.play_audio_from_dict(music_cfg)
 			current_soundtrack = music_cfg.name
-			var asteroids_in_wave: int = 55
+			var asteroids_in_wave: int = 59
 			GlobalScript.current_data.asteroids.general.asteroids_total = asteroids_in_wave
 			GlobalScript.current_data.asteroids.general.asteroids_left = asteroids_in_wave
 			GlobalScript.current_data.asteroids.general.asteroids_alive = 0
 			for i in range (1, asteroids_in_wave + 1):
 				if game_ended: break
-				await create_delay_timer(randf_range(1.6, 1.9))
+				await create_delay_timer(randf_range(1.5, 1.8))
 				add_new_object(true, $FabricatedScenesManager.get_asteroid_scene("common", 0, randf_range(0.20, 0.33), 0, Vector2.ZERO, Vector2.ZERO, false, 0))
 		15:
 			var music_cfg: Dictionary = {
@@ -868,6 +870,9 @@ func is_player(object: Area2D) -> bool:
 	else: return false
 
 func add_new_object(add: bool, object: Variant) -> void:
+	# Jeśli obiekt został zniszczony i ma odpalone queue_free() to zniknie dopiero w kolejnej klatce, ale jesli zostal zaatakowany dwukrotnie do zniszczenia
+	# to musi miec zabezpieczenie aby nie wykonywać dwukrotnie instrukcji zniszczenia \/
+	if object.is_queued_for_deletion(): return
 	var group: String
 	if object.is_in_group("asteroids"): group = "Asteroids"
 	if object.is_in_group("asteroid_shields"): group = "AsteroidShields"
@@ -900,15 +905,6 @@ func add_new_object(add: bool, object: Variant) -> void:
 			else:
 				$ObjectEventsHub.execute_fx("destroyed", object)
 				$ObjectEventsHub.explode_object(object)
-		"Explosions":
-			pass
-			#if !add:
-				#if object.resource_credits > 0 and is_instance_valid(object.source):
-					# add_credits(object.source, object.resource_credits)
-					# play_new_score_animation("credits")
-					# create_small_text_event("+" + str(object.resource_credits), "green", "medium", "fast", object.global_position, "resource_credit")
-		"VFX":
-			pass
 			
 	if add:
 		$ScenesContainer.get_node(group).call_deferred("add_child", object)
