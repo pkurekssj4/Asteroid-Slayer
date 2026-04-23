@@ -23,7 +23,7 @@ func _process(delta):
 	if is_decaying:
 		explosion_step = delta / (rise_and_decay_time[1])
 		current_scale -= Vector2(explosion_step, explosion_step)
-		if current_scale.x <= 0.01: game.add_new_object(false, self)
+		if current_scale.x <= 0.01: game.add_object(false, self)
 	else:
 		explosion_step = delta / (rise_and_decay_time[0])
 		current_scale += Vector2(explosion_step, explosion_step)

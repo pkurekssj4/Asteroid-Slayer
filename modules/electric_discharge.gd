@@ -7,7 +7,7 @@ var damage: float
 var attack_range: float
 var parent: Area2D = null
 var timer: Timer
-var ms_to_scan_sky: int = 50
+var ms_to_scan_sky: int = 200
 var ms_left_to_scan_sky: int = 0
 
 @onready var game = get_node("/root/Game")
@@ -41,17 +41,23 @@ func scan_for_targets():
 	query_params.shape = query_shape
 	query_params.transform = Transform2D(0, parent.global_position)
 		
-	var space_state = parent.get_world_2d().direct_space_state
-	var results = space_state.intersect_shape(query_params, 32)
-	var objects_attacked: int = 0
+	var space_state: PhysicsDirectSpaceState2D = parent.get_world_2d().direct_space_state
+	var results: Array[Dictionary] = space_state.intersect_shape(query_params, 32)
+	var attackable_objects: Array[Area2D]
+	# Kazda asteroida sklada sie z mniejszych masek kolizyjnych które są brane jak poszczególne obiekty dlatego selekcja \/
 	for result in results:
-		var target = result.collider
-		if target != parent and target.is_in_group("asteroids") and target.entered_screen and !target.is_in_group("ghosts"):
-			target.take_damage(damage, parent)
-			trigger_visual_effect(target.global_position)
-			timer.start(cooldown)
-			objects_attacked += 1
-			if objects_attacked == maximum_number_of_targets: break
+		var object: Area2D = result.collider
+		if object not in attackable_objects:
+			if object != parent and object.is_in_group("asteroids") and object.entered_screen and !object.is_in_group("ghosts"):
+				attackable_objects.append(object)
+
+	var objects_attacked: int = 0
+	for object in attackable_objects:
+		object.take_damage(damage, parent)
+		trigger_visual_effect(object.global_position)
+		objects_attacked += 1
+		if objects_attacked == maximum_number_of_targets: break
+	if objects_attacked > 0: timer.start(cooldown)
 
 func trigger_visual_effect(target_position: Vector2):
 	var new_electric_discharge_visual_effect: Node2D = Node2D.new()

@@ -18,7 +18,7 @@ func execute_fx(event_type: String, object: Area2D) -> void:
 					for effect in object.audio_visual_effects.visuals_when_launched:
 						# aby dostosowac modulacje zamiast usuwac w locie podczas transformacji
 						if !object.audio_visual_effects.visuals_when_launched[effect].has("added"):
-							game.add_new_object(true, object.audio_visual_effects.visuals_when_launched[effect]["scene"])
+							game.add_object(true, object.audio_visual_effects.visuals_when_launched[effect]["scene"])
 							object.audio_visual_effects.visuals_when_launched[effect]["added"] = true
 							object.audio_visual_effects.visuals_when_launched[effect]["scene"].global_position = object.global_position
 		elif event_type == "damaged":
@@ -31,7 +31,7 @@ func execute_fx(event_type: String, object: Area2D) -> void:
 					for visual in object.audio_visual_effects[category]:
 						var new_particles: GPUParticles2D = object.audio_visual_effects[category][visual]["scene"].duplicate()
 						new_particles.global_position = object.global_position
-						game.add_new_object(true, new_particles)
+						game.add_object(true, new_particles)
 		elif event_type == "destroyed":
 			match category:
 				"sound_when_destroyed":
@@ -41,7 +41,7 @@ func execute_fx(event_type: String, object: Area2D) -> void:
 					for visual in object.audio_visual_effects[category]:
 						object.audio_visual_effects[category][visual]["scene"].global_position = object.global_position
 						# print ("object destroyed: " + str(object.exploded) + " / new destroyed visual: " + str((object.audio_visual_effects[category][visual]["scene"])))
-						game.add_new_object(true, object.audio_visual_effects[category][visual]["scene"])
+						game.add_object(true, object.audio_visual_effects[category][visual]["scene"])
 	
 func add_applied_modules(object: Area2D) -> void:
 	# sprawdzenie czy object odpalił funkcje ready - jesli tak to jest dodany - potrzebne do zmiany typu w locie
@@ -68,7 +68,7 @@ func adjust_visuals_to_scale_reference(object: Area2D, dict: Dictionary) -> void
 func resolve_collision(area_entered: bool, area_owner: Area2D, intruder: Area2D) -> void:
 	if intruder.is_in_group("floor"):
 		if area_owner.is_in_group("explosive"):
-			game.add_new_object(false, area_owner)
+			game.add_object(false, area_owner)
 		return
 	elif area_owner.is_in_group("ghosts"):
 		return
@@ -111,7 +111,7 @@ func resolve_collision(area_entered: bool, area_owner: Area2D, intruder: Area2D)
 						intruder.apply_slow_by_asteroid(false, 0.0, 0.0)
 	
 	if !intruder.is_in_group("ghosts") and area_owner.is_in_group("explosive"): 
-		game.add_new_object(false, area_owner)
+		game.add_object(false, area_owner)
 
 func resolve_damage(area_owner: Area2D, intruder: Area2D) -> float:
 	if area_owner.collision_parameters.has("critical_hit_chance"):
@@ -171,5 +171,5 @@ func explode_object(object: Area2D) -> void:
 	if object.explosion_scene != null:
 		if is_instance_valid(object.source): object.explosion_scene.source = object.source
 		object.explosion_scene.position = object.position
-		game.add_new_object(true, object.explosion_scene)
+		game.add_object(true, object.explosion_scene)
 		object.exploded = true

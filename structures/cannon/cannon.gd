@@ -100,7 +100,7 @@ func launch_projectile(data_source: String) -> void:
 	var new_projectile: Area2D = fabricated_scenes_manager.get_projectile_scene(data_source, data_dict, pos, dest, rot, projectile_source)
 	barrel_pull_back()
 	create_muzzle(data_dict)
-	game.add_new_object(true, new_projectile)
+	game.add_object(true, new_projectile)
 
 func _on_shoot_delay_timeout():
 	if !is_reloading: can_shoot = true
@@ -133,7 +133,7 @@ func create_muzzle(data_dict: Dictionary):
 		scene.add_to_group("vfx")
 		scene.position = $BarrelPointer/Marker2D.global_position
 		scene.rotation = $BarrelPointer.rotation + PI / 2
-		game.add_new_object(true, scene)
+		game.add_object(true, scene)
 
 func create_overheat_particles():
 	var new_overheat_particles = OVERHEAT_PARTICLES_SCENE.instantiate()

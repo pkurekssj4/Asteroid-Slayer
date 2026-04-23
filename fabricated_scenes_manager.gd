@@ -328,7 +328,7 @@ func grant_shield_scene(tier: int, asteroid: Area2D) -> void:
 	await asteroid.ready_to_process
 	new_asteroid_shield.global_position = asteroid.global_position
 	apply_audio_visual_effects(new_asteroid_shield,  GlobalScript.current_data.asteroids.shields, GlobalScript.current_data.asteroids.shields.audio_visual_effects, new_asteroid_shield.modulate)
-	game.add_new_object(true, new_asteroid_shield)
+	game.add_object(true, new_asteroid_shield)
 	
 func apply_audio_visual_effects(scene: Area2D, data_dict: Dictionary, data_avfx: Dictionary, comp_color: Color) -> void:
 	var scene_avfx: Dictionary = scene["audio_visual_effects"]

@@ -43,7 +43,7 @@ var events_data: Dictionary = {
 			"days_to_increase_asteroids_number": 15
 		},
 		"hyper_velocity_wave": {
-			"initial_day": 7,
+			"initial_day": 8,
 			"occurences": 1,
 			"occurences_increase_rate": 1,
 			"event_interval": 8,
@@ -273,14 +273,14 @@ func slot_can_be_added(slots: Array, random_slot: int, interval: int):
 func trigger_fast_spawn_event() -> void:
 	var asteroids_number_to_spawn: int = events_data["events"]["fast_spawn"]["asteroids_number"] + floor(GlobalScript.current_data.game.day / events_data["events"]["fast_spawn"]["days_to_increase_asteroids_number"])
 	for i in range (1, asteroids_number_to_spawn + 1):
-		game.add_new_object(true, fabricated_scenes_manager.get_asteroid_scene("random", 0, 0.0, 0, Vector2.ZERO, Vector2.ZERO, false, 0))
+		game.add_object(true, fabricated_scenes_manager.get_asteroid_scene("random", 0, 0.0, 0, Vector2.ZERO, Vector2.ZERO, false, 0))
 		await game.create_delay_timer(randf_range(0.15, 0.25))
 
 func trigger_hyper_velocity_wave_event() -> void:
 	#print(current_schedule_slot)
 	var asteroids_number_to_spawn: int = events_data["events"]["hyper_velocity_wave"]["asteroids_number"] + floor(GlobalScript.current_data.game.day / events_data["events"]["hyper_velocity_wave"]["days_to_increase_asteroids_number"])
 	for i in range (1, asteroids_number_to_spawn + 1):
-		game.add_new_object(true, fabricated_scenes_manager.get_asteroid_scene("hyper_velocity", 0, 0.0, 0, Vector2.ZERO, Vector2.ZERO, false, 0))
+		game.add_object(true, fabricated_scenes_manager.get_asteroid_scene("hyper_velocity", 0, 0.0, 0, Vector2.ZERO, Vector2.ZERO, false, 0))
 		await game.create_delay_timer(randf_range(0.2, 0.6))
 		
 func trigger_flash_wave_event(real_trigger: bool) -> void:
@@ -300,7 +300,7 @@ func trigger_flash_wave_event(real_trigger: bool) -> void:
 		var new_asteroid: Area2D = fabricated_scenes_manager.get_asteroid_scene(asteroid_types_to_spawn.pick_random(), 0, 0.0, 0, Vector2(pos_x, pos_y), Vector2.ZERO, false, 0)
 		new_asteroid.is_flashing = true
 		new_asteroid.flashing_duration = flashing_time
-		game.add_new_object(true, new_asteroid)
+		game.add_object(true, new_asteroid)
 	audio_bus.play_audio("asteroids_flashing")
 	await game.create_delay_timer(flashing_time - 0.3)
 	audio_bus.play_audio("asteroids_finished_flashing")
@@ -313,7 +313,7 @@ func trigger_force_asteroid_type_spawn_event(event: String) -> void:
 			asteroid_type = case
 			break
 	for i in range (1, events_data["events"]["force_asteroid_type_spawn_on_initial_day"]["asteroids_number"] + 1):
-		game.add_new_object(true, fabricated_scenes_manager.get_asteroid_scene(asteroid_type, 0, 0.0, 0, Vector2.ZERO, Vector2.ZERO, false, 0))
+		game.add_object(true, fabricated_scenes_manager.get_asteroid_scene(asteroid_type, 0, 0.0, 0, Vector2.ZERO, Vector2.ZERO, false, 0))
 		await game.create_delay_timer(randf_range(0.5, 1.0))
 	#print ("Launching asteroid: " + asteroid_type +" at slot: " + str(current_schedule_slot))
 
@@ -327,7 +327,7 @@ func trigger_asteroid_shower() -> void:
 		var asteroid: Area2D = fabricated_scenes_manager.get_asteroid_scene("common", 0, 0.12, 160, Vector2.ZERO, Vector2.ZERO, false, 0)
 		asteroid.credits_reward = GlobalScript.current_data.rewards.shower_asteroid
 		asteroid.is_regular = false
-		game.add_new_object(true, asteroid)
+		game.add_object(true, asteroid)
 		var delay_time: float = randf_range(0.2, 0.4)
 		if delay_time > duration_timer.time_left: delay_time = duration_timer.time_left + 0.1
 		await game.create_delay_timer(delay_time)
@@ -346,7 +346,7 @@ func launch_huge_asteroid() -> void:
 	var asteroid: Area2D = fabricated_scenes_manager.get_asteroid_scene("common", rarity, size, speed, Vector2.ZERO, Vector2.ZERO, false, 0)
 	asteroid.is_regular = false
 	asteroid.credits_reward = GlobalScript.current_data.rewards.huge_asteroid
-	game.add_new_object(true, asteroid)
+	game.add_object(true, asteroid)
 	
 func supervise_event_schedule() -> void:
 	if current_schedule_slot == events_schedule.size() - 1 or game.game_ended:

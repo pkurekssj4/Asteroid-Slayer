@@ -49,9 +49,9 @@ const SPECIALISATION_BONUSES = {
 const BLESSING_BONUSES: Dictionary = {
 	"cannon": {
 		"reload_time": 0.07,
-		"projectile_speed": 0.1,
+		"projectile_speed": 0.2,
 		"attack_speed": 0.20,
-		"capacity": 0.25,
+		"capacity": 0.3,
 		"explosion": {
 			"area_of_effect": 0.12,
 			"damage": 0.25,

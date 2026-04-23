@@ -148,7 +148,7 @@ func init_structures() -> void:
 	
 func _on_asteroid_spawn_delay_timeout():
 	if debug.enabled and debug.asteroids_stopped: return
-	add_new_object(true, $FabricatedScenesManager.get_asteroid_scene("random", 0, 0.0, 0, Vector2.ZERO, Vector2.ZERO, true, 0))
+	add_object(true, $FabricatedScenesManager.get_asteroid_scene("random", 0, 0.0, 0, Vector2.ZERO, Vector2.ZERO, true, 0))
 	var spawn_delay_variation_multiplier: float = randf_range((1.0 - (GlobalScript.current_data.asteroids.general.spawn_delay_percent_variation / 2) / 100.0), 1.0 + ((GlobalScript.current_data.asteroids.general.spawn_delay_percent_variation / 2) / 100.0))
 	var spawn_delay: float = spawn_delay_variation_multiplier * GlobalScript.current_data.asteroids.general.spawn_delay
 	if GlobalScript.current_data.asteroids.general.asteroids_left > 0: $Timers/AsteroidSpawnDelay.start(spawn_delay)
@@ -364,6 +364,7 @@ func add_credits(receiver: Area2D, credits: int, target_position: Vector2) -> vo
 			play_new_score_animation("credits")
 			create_small_text_event("+" + str(credits), "green", "medium", "fast", target_position, "resource_credit")
 		else:
+			print ("adding " + str(credits) + " to " + str(receiver))
 			receiver.resource_credits += credits
 
 func play_new_score_animation(animation) -> void:
@@ -509,18 +510,18 @@ func check_if_any_button_is_pressed() -> void:
 		var asteroid_3 = "plasma"
 		if debug.keep_pressing_hotkey_to_spawn_asteroids:
 			if Input.is_action_just_pressed(&"spawn_asteroid"):
-				add_new_object(true, $FabricatedScenesManager.get_asteroid_scene(asteroid_1, 0, 0.15, 30, get_global_mouse_position(), Vector2.ZERO, false, 0))
+				add_object(true, $FabricatedScenesManager.get_asteroid_scene(asteroid_1, 0, 0.15, 1, get_global_mouse_position(), Vector2.ZERO, false, 0))
 			elif Input.is_action_just_pressed(&"spawn_asteroid_2"):
-				add_new_object(true, $FabricatedScenesManager.get_asteroid_scene(asteroid_2, 0, 0.25, 30, get_global_mouse_position(), Vector2.ZERO, false, 0))
+				add_object(true, $FabricatedScenesManager.get_asteroid_scene(asteroid_2, 0, 0.25, 1, get_global_mouse_position(), Vector2.ZERO, false, 0))
 			elif Input.is_action_just_pressed(&"spawn_asteroid_3"):
-				add_new_object(true, $FabricatedScenesManager.get_asteroid_scene(asteroid_3, 0, 0.35, 30, get_global_mouse_position(), Vector2.ZERO, false, 0))
+				add_object(true, $FabricatedScenesManager.get_asteroid_scene(asteroid_3, 0, 0.35, 1, get_global_mouse_position(), Vector2.ZERO, false, 0))
 		else:
 			if Input.is_action_pressed(&"spawn_asteroid"):
-				add_new_object(true, $FabricatedScenesManager.get_asteroid_scene(asteroid_1, 0, 0.15, 1, get_global_mouse_position(), Vector2.ZERO, false, 0))
+				add_object(true, $FabricatedScenesManager.get_asteroid_scene(asteroid_1, 0, 0.15, 1, get_global_mouse_position(), Vector2.ZERO, false, 0))
 			elif Input.is_action_pressed(&"spawn_asteroid_2"):
-				add_new_object(true, $FabricatedScenesManager.get_asteroid_scene(asteroid_2, 0, 0.15, 1, get_global_mouse_position(), Vector2.ZERO, false, 0))
+				add_object(true, $FabricatedScenesManager.get_asteroid_scene(asteroid_2, 0, 0.15, 1, get_global_mouse_position(), Vector2.ZERO, false, 0))
 			elif Input.is_action_pressed(&"spawn_asteroid_3"):
-				add_new_object(true, $FabricatedScenesManager.get_asteroid_scene(asteroid_3, 0, 0.35, 1, get_global_mouse_position(), Vector2.ZERO, false, 0))
+				add_object(true, $FabricatedScenesManager.get_asteroid_scene(asteroid_3, 0, 0.35, 1, get_global_mouse_position(), Vector2.ZERO, false, 0))
 				
 		if Input.is_action_just_pressed(&"do_anything"):
 			$EventManager.trigger_meteor_shower()
@@ -593,7 +594,7 @@ func launch_special_asteroid_wave(day: int) -> void:
 			for i in range (1, asteroids_in_wave + 1):
 				if game_ended: break
 				await create_delay_timer(randf_range(1.5, 1.8))
-				add_new_object(true, $FabricatedScenesManager.get_asteroid_scene("common", 0, randf_range(0.20, 0.33), 0, Vector2.ZERO, Vector2.ZERO, false, 0))
+				add_object(true, $FabricatedScenesManager.get_asteroid_scene("common", 0, randf_range(0.20, 0.33), 0, Vector2.ZERO, Vector2.ZERO, false, 0))
 		15:
 			var music_cfg: Dictionary = {
 				"pitch_percent_variation" = 0.0,
@@ -604,15 +605,15 @@ func launch_special_asteroid_wave(day: int) -> void:
 			$AudioBus.add_new_player(soundtrack_path, music_cfg.name + ".mp3")
 			$AudioBus.play_audio_from_dict(music_cfg)
 			current_soundtrack = music_cfg.name
-			var asteroids_in_wave: int = 75
+			var asteroids_in_wave: int = 85
 			GlobalScript.current_data.asteroids.general.asteroids_total = asteroids_in_wave
 			GlobalScript.current_data.asteroids.general.asteroids_left = asteroids_in_wave
 			GlobalScript.current_data.asteroids.general.asteroids_alive = 0
 			var available_types: Array[String] = ["toxic", "splitting"]
 			for i in range (1, asteroids_in_wave + 1):
 				if game_ended: break
-				await create_delay_timer(randf_range(0.75, 1.20))
-				add_new_object(true, $FabricatedScenesManager.get_asteroid_scene(available_types.pick_random(), 0, randf_range(0.20, 0.27), 0, Vector2.ZERO, Vector2.ZERO, true, 0))
+				await create_delay_timer(randf_range(0.70, 1.15))
+				add_object(true, $FabricatedScenesManager.get_asteroid_scene(available_types.pick_random(), 0, randf_range(0.23, 0.3), 0, Vector2.ZERO, Vector2.ZERO, true, 0))
 		25:
 			var music_cfg: Dictionary = {
 			"pitch_percent_variation" = 0.0,
@@ -632,7 +633,7 @@ func launch_special_asteroid_wave(day: int) -> void:
 				launch_delay -= 0.01
 				if game_ended: break
 				await create_delay_timer(launch_delay)
-				add_new_object(true, $FabricatedScenesManager.get_asteroid_scene("hyper_velocity", 0, randf_range(0.20, 0.27), 0, Vector2.ZERO, Vector2.ZERO, true, 0))
+				add_object(true, $FabricatedScenesManager.get_asteroid_scene("hyper_velocity", 0, randf_range(0.20, 0.27), 0, Vector2.ZERO, Vector2.ZERO, true, 0))
 			
 func trigger_game_over_sequence() -> void:
 	if (debug.enabled && debug.cant_lose) or game_ended: return
@@ -814,8 +815,7 @@ func damage_structure(structure: Area2D, damage: float) -> void:
 	var data_dict: Dictionary = GlobalScript.current_data.structures[structure.get_name().to_snake_case()]
 	if data_dict.active: data_dict.durability.current_points -= damage
 	else:
-		if data_dict.durability.current_repair_days != data_dict.durability.repair_days:
-			data_dict.durability.current_repair_days = data_dict.durability.repair_days
+		data_dict.durability.current_repair_days = data_dict.durability.repair_days
 		return
 	var damage_taken: bool = true
 	update_durability_bar(structure, data_dict, damage_taken)
@@ -869,10 +869,10 @@ func is_player(object: Area2D) -> bool:
 	if object.source in structures_list: return true
 	else: return false
 
-func add_new_object(add: bool, object: Variant) -> void:
+func add_object(add: bool, object: Variant) -> void:
 	# Jeśli obiekt został zniszczony i ma odpalone queue_free() to zniknie dopiero w kolejnej klatce, ale jesli zostal zaatakowany dwukrotnie do zniszczenia
 	# to musi miec zabezpieczenie aby nie wykonywać dwukrotnie instrukcji zniszczenia \/
-	if object.is_queued_for_deletion(): return
+	if !add: if object.is_queued_for_deletion(): return
 	var group: String
 	if object.is_in_group("asteroids"): group = "Asteroids"
 	if object.is_in_group("asteroid_shields"): group = "AsteroidShields"

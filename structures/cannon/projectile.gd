@@ -25,10 +25,10 @@ func _process(delta):
 	# delte trzeba uwzgledniac przy wszystkim co ma sie wykonac w jakims okreslonym czasie, albo ma sie poruszać w okreslonej predkosci na sekunde
 	position += transform.x * speed * delta
 	if destination.y >= position.y:
-		game.add_new_object(false, self)
+		game.add_object(false, self)
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	game.add_new_object(false, self)
+	game.add_object(false, self)
 
 func _on_area_entered(area: Area2D) -> void:
 	if !exploded: object_events_hub.resolve_collision(true, self, area)

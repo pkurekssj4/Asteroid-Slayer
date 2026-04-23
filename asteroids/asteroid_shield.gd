@@ -23,7 +23,7 @@ func take_damage(damage: float, attacker: Area2D):
 	fever.progress(damage, attacker, self)
 	durability_points -= damage
 	if durability_points <= 0.0:
-		game.add_new_object(false, self)
+		game.add_object(false, self)
 		queue_free()
 		return
 	object_events_hub.execute_fx("damaged", self)

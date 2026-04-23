@@ -13,7 +13,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if speed_is_rising:
 		if parent.base_speed > trigger_speed:
-			game.add_new_object(false, parent)
+			game.add_object(false, parent)
 	else:
 		if parent.base_speed < trigger_speed:
-			game.add_new_object(false, parent)
+			game.add_object(false, parent)
