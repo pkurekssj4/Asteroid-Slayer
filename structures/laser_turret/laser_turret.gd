@@ -14,9 +14,9 @@ var ms_to_change_target: int = 200
 var ms_left_to_change_target: int = 0
 var ms_to_turn_off_attacking_state: int = 300
 var ms_left_to_turn_off_attacking_state: int = 0
-var ms_to_wait_for_target_to_be_in_attack_range: int = 400
+var ms_to_wait_for_target_to_be_in_attack_range: int = 300
 var ms_left_to_wait_for_target_to_be_in_attack_range: int = 0
-var ms_to_scan_sky: int = 50
+var ms_to_scan_sky: int = 300
 var ms_left_to_scan_sky: int = 0
 var ray_starting_point: Vector2
 var ray_ending_point: Vector2

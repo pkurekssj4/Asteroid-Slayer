@@ -42,7 +42,11 @@ const PRELOADED_RESOURCES: Dictionary = {
 	"structure_destroyed_explosion_particles": preload("res://structures/structure_destroyed_explosion_particles.tscn"),
 	"shield_damaged_particles": preload("res://asteroids/shield_damaged_particles.tscn"),
 	"shield_destroyed_particles": preload("res://asteroids/shield_destroyed_particles.tscn"),
-	"resource_credit_icon": preload("res://resource_icons/resource_credit.png")
+	"resource_credit_icon": preload("res://resource_icons/resource_credit.png"),
+	"common_shard_icon": preload("res://resource_icons/common_shard.png"),
+	"celestial_shard_icon": preload("res://resource_icons/celestial_shard.png"),
+	"astral_shard_icon": preload("res://resource_icons/astral_shard.png"),
+	"divine_shard_icon": preload("res://resource_icons/divine_shard.png")
 }
 
 const PRELOADED_SHADERS: Dictionary[String, Shader] = {

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cas543d1pdn6s"
-path="res://.godot/imported/nano_core.png-509e450e96167464f6a08e73aed68eec.ctex"
+uid="uid://crr1ousc8qcbx"
+path="res://.godot/imported/divine_shard.png-e0ae593a29bd6822c77410b490675209.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resource_icons/nano_core.png"
-dest_files=["res://.godot/imported/nano_core.png-509e450e96167464f6a08e73aed68eec.ctex"]
+source_file="res://resource_icons/divine_shard.png"
+dest_files=["res://.godot/imported/divine_shard.png-e0ae593a29bd6822c77410b490675209.ctex"]
 
 [params]
 

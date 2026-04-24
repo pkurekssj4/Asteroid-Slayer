@@ -36,7 +36,7 @@
 [ext_resource type="AudioStream" uid="uid://dmwcahnkewn3o" path="res://audio/sounds/asteroid_shield_damaged.mp3" id="28_w5i07"]
 [ext_resource type="PackedScene" uid="uid://do7iqruutrp5s" path="res://structures/cannon/cannon.tscn" id="29_bteo4"]
 [ext_resource type="AudioStream" uid="uid://c0duwwf3s5k1" path="res://audio/sounds/intro_music.mp3" id="29_r62pu"]
-[ext_resource type="AudioStream" uid="uid://b5l8cbmo1755m" path="res://asteroids/new_shard.mp3" id="29_rok5h"]
+[ext_resource type="AudioStream" uid="uid://b5l8cbmo1755m" path="res://audio/sounds/shard_collected.mp3" id="29_rok5h"]
 [ext_resource type="PackedScene" uid="uid://bph73dswnrg0y" path="res://structures/laser_turret/laser_turret.tscn" id="30_amd6h"]
 [ext_resource type="AudioStream" uid="uid://b5uc43elnum4v" path="res://audio/sounds/new_highscore.mp3" id="30_klri6"]
 [ext_resource type="PackedScene" uid="uid://cs3enapswl74s" path="res://structures/pulse_barrier/pulse_barrier.tscn" id="31_kqf2j"]
@@ -45,11 +45,11 @@
 [ext_resource type="AudioStream" uid="uid://cx26jxiecpcxq" path="res://audio/sounds/cosmic_cleaner.mp3" id="36_0de7l"]
 [ext_resource type="Script" uid="uid://c7jvv10p4dkhr" path="res://event_manager.gd" id="38_4v2jo"]
 [ext_resource type="Texture2D" uid="uid://cala2plth3dcc" path="res://fever progress bar.png" id="38_xa2ro"]
-[ext_resource type="Texture2D" uid="uid://brist3esqc6q8" path="res://resource_icons/common_shard.png" id="40_7lm8q"]
-[ext_resource type="Texture2D" uid="uid://dcfthi00eostr" path="res://resource_icons/celestial_shard.png" id="41_2unnl"]
-[ext_resource type="Texture2D" uid="uid://ca5es1l3e44vq" path="res://resource_icons/nano_core.png" id="41_m28ev"]
-[ext_resource type="Texture2D" uid="uid://cufyy0uk2wlm1" path="res://resource_icons/astral_shard.png" id="42_vq6dd"]
-[ext_resource type="Texture2D" uid="uid://dllwkqxxak158" path="res://resource_icons/ethereal_shard.png" id="43_0uofd"]
+[ext_resource type="Texture2D" uid="uid://ffy72fxf0wlr" path="res://resource_icons/common_shard.png" id="40_7lm8q"]
+[ext_resource type="Texture2D" uid="uid://d1h7rwxjf255b" path="res://resource_icons/celestial_shard.png" id="41_2unnl"]
+[ext_resource type="Texture2D" uid="uid://cas543d1pdn6s" path="res://resource_icons/nano_core.png" id="41_m28ev"]
+[ext_resource type="Texture2D" uid="uid://csmou614u6nxn" path="res://resource_icons/astral_shard.png" id="42_vq6dd"]
+[ext_resource type="Texture2D" uid="uid://6y0mmbqxt73e" path="res://resource_icons/ethereal_shard.png" id="43_0uofd"]
 [ext_resource type="Texture2D" uid="uid://br2ehtg00h2sv" path="res://resource_icons/resource_credit.png" id="45_t46w6"]
 [ext_resource type="PackedScene" uid="uid://b3ptdqc63x3uj" path="res://structures/radar/radar.tscn" id="49_t2ssd"]
 [ext_resource type="PackedScene" uid="uid://bbeq1a53h80x0" path="res://structures/overlock_station/overclock_station.tscn" id="50_7noa1"]
@@ -67,6 +67,7 @@
 [ext_resource type="Texture2D" uid="uid://typps61g7e" path="res://abilities/gravity_well_square_icon.png" id="58_vuohh"]
 [ext_resource type="Texture2D" uid="uid://y6h3ghsjh8dm" path="res://abilities/orbital_strike_square_icon.png" id="59_3gvs5"]
 [ext_resource type="PackedScene" uid="uid://rcmnw51gyx45" path="res://structures/strike_prediction_center/strike_prediction_center.tscn" id="59_4mai8"]
+[ext_resource type="Texture2D" uid="uid://crr1ousc8qcbx" path="res://resource_icons/divine_shard.png" id="62_vyqle"]
 
 [sub_resource type="Shader" id="Shader_vyqle"]
 code = "shader_type canvas_item;
@@ -1204,12 +1205,12 @@ monitorable = false
 script = ExtResource("35_t46w6")
 
 [node name="Icon" type="Sprite2D" parent="GUI/Score/CommonShards" unique_id=1943440681]
-position = Vector2(-1, 0.98999)
+position = Vector2(0, 0.98999023)
 scale = Vector2(0.065, 0.065)
 texture = ExtResource("40_7lm8q")
 
 [node name="Mask" type="CollisionShape2D" parent="GUI/Score/CommonShards" unique_id=1743496928]
-position = Vector2(0.504999, 1.175)
+position = Vector2(0.50499916, 1.1750002)
 shape = SubResource("CircleShape2D_kq12w")
 
 [node name="Count" type="Label" parent="GUI/Score/CommonShards" unique_id=1171745000]
@@ -1231,12 +1232,11 @@ monitorable = false
 script = ExtResource("35_t46w6")
 
 [node name="Icon" type="Sprite2D" parent="GUI/Score/CelestialShards" unique_id=498801805]
-position = Vector2(-1, 0)
 scale = Vector2(0.065, 0.065)
 texture = ExtResource("41_2unnl")
 
 [node name="Mask" type="CollisionShape2D" parent="GUI/Score/CelestialShards" unique_id=795862251]
-position = Vector2(0.215, 0)
+position = Vector2(0.21500015, 0)
 shape = SubResource("CircleShape2D_kq12w")
 
 [node name="Count" type="Label" parent="GUI/Score/CelestialShards" unique_id=721998019]
@@ -1258,12 +1258,11 @@ monitorable = false
 script = ExtResource("35_t46w6")
 
 [node name="Icon" type="Sprite2D" parent="GUI/Score/AstralShards" unique_id=309657236]
-position = Vector2(-1, 0)
 scale = Vector2(0.065, 0.065)
 texture = ExtResource("42_vq6dd")
 
 [node name="Mask" type="CollisionShape2D" parent="GUI/Score/AstralShards" unique_id=1004490611]
-position = Vector2(0.0900002, 0)
+position = Vector2(0.09000015, 0)
 shape = SubResource("CircleShape2D_kq12w")
 
 [node name="Count" type="Label" parent="GUI/Score/AstralShards" unique_id=442690521]
@@ -1285,11 +1284,12 @@ monitorable = false
 script = ExtResource("35_t46w6")
 
 [node name="Icon" type="Sprite2D" parent="GUI/Score/EtherealShards" unique_id=1830027037]
+position = Vector2(1, 0)
 scale = Vector2(0.065, 0.065)
 texture = ExtResource("43_0uofd")
 
 [node name="Mask" type="CollisionShape2D" parent="GUI/Score/EtherealShards" unique_id=1195101515]
-position = Vector2(1.01, 0)
+position = Vector2(1.0100002, 0)
 shape = SubResource("CircleShape2D_kq12w")
 
 [node name="Count" type="Label" parent="GUI/Score/EtherealShards" unique_id=94807278]
@@ -1302,8 +1302,35 @@ theme_override_font_sizes/font_size = 19
 text = "0"
 horizontal_alignment = 2
 
+[node name="DivineShards" type="Area2D" parent="GUI/Score" unique_id=1573798965]
+position = Vector2(1892, 139)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("35_t46w6")
+
+[node name="Icon" type="Sprite2D" parent="GUI/Score/DivineShards" unique_id=1737457277]
+position = Vector2(1, 0)
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("62_vyqle")
+
+[node name="Mask" type="CollisionShape2D" parent="GUI/Score/DivineShards" unique_id=1621366442]
+position = Vector2(1.0100002, 0)
+shape = SubResource("CircleShape2D_kq12w")
+
+[node name="Count" type="Label" parent="GUI/Score/DivineShards" unique_id=409858500]
+offset_left = -274.0
+offset_top = -14.0
+offset_right = -14.0
+offset_bottom = 13.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
 [node name="NanoCores" type="Area2D" parent="GUI/Score" unique_id=2113125309]
-position = Vector2(1893, 139)
+position = Vector2(1893, 163)
 collision_layer = 0
 collision_mask = 0
 monitoring = false
@@ -1771,4 +1798,5 @@ color = Color(0, 0, 0, 1)
 [connection signal="mouse_entered" from="GUI/Score/CelestialShards" to="GUI/Score/CelestialShards" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="GUI/Score/AstralShards" to="GUI/Score/AstralShards" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="GUI/Score/EtherealShards" to="GUI/Score/EtherealShards" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="GUI/Score/DivineShards" to="GUI/Score/DivineShards" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="GUI/Score/NanoCores" to="GUI/Score/NanoCores" method="_on_mouse_entered"]

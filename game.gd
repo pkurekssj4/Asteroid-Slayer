@@ -119,7 +119,7 @@ func _ready():
 	$TimeAndWeather.init()
 	init_structures()
 	for key in rngs: rngs[key].randomize()
-	refresh_shards("all", Vector2.ZERO, false)
+	refresh_shards()
 	refresh_nano_cores_label()
 	refresh_resource_credits_label()
 	get_window().grab_focus()
@@ -320,33 +320,44 @@ func refresh_resource_credits_label() -> void:
 
 func refresh_nano_cores_label() -> void:
 	$GUI/Score/NanoCores/Count.text = str(GlobalScript.current_data.resources.nano_cores)
-	
-func create_small_text_event(text: String, color_bbcode: String, size: String, speed: String, display_position: Vector2, icon: String) -> void:
+
+func display_small_text_event(type: String, amount: int, display_position: Vector2) -> void:
 	var new_label: RichTextLabel = RichTextLabel.new()
 	new_label.set_script($ResourceLoader.get_scriptt("small_text_event"))
-	var font_size: int
-	var outline_size: String
-	if size == "small": 
-		font_size = 12
-		outline_size = "1"
-	elif size == "medium":
-		font_size = 13
-		outline_size = "1"
-	elif size == "big":
-		font_size = 14
-		outline_size = "2"
+	var font_size: int = 12
+	var outline_size: String = "1"
+	var color_bbcode: String
+	var text: String
+	var icon: String = ""
+	var icon_size: int = 15
+	var pixels_move_per_second: int = 15
+	var fading_out_duration: float = 1.0
+	var duration_time: float = 1.3
+	match type:
+		"resource_credits":
+			text = "+" + str(amount)
+			icon = "resource_credit_icon"
+			color_bbcode = "green"
+		"common_shard", "celestial_shard", "astral_shard", "etherel_shard", "divine_shard":
+			text = "+1"
+			pixels_move_per_second = 6
+			duration_time = 4.0
+			icon = type + "_icon"
+			color_bbcode = "white"
+		"weak_critical_hit", "medium_critical_hit", "strong_critical_hit":
+			text = "Critical Hit"
+			pixels_move_per_second = -8
+			color_bbcode = "crimson"
+			if type == "medium_critical_hit":
+				font_size = 13
+			if type == "strong_critical_hit":
+				font_size = 14
+				outline_size = "2"
 	new_label.add_theme_font_size_override("normal_font_size", font_size)
 	new_label.bbcode_enabled = true
 	new_label.text = "[color=" + color_bbcode + "][outline_size=" + outline_size + "][outline_color=" + color_bbcode + "]" + text + "[/outline_color][/outline_size][/color]"
+	if icon != "": new_label.add_image($ResourceLoader.get_resource(icon), icon_size)
 	new_label.size = Vector2(150, 30)
-	if icon == "resource_credit": new_label.add_image($ResourceLoader.get_resource("resource_credit_icon"), 15)
-	var pixels_move_per_second: int
-	var fading_out_duration: float
-	var duration_time: float
-	if speed == "fast":
-		pixels_move_per_second = 15
-		fading_out_duration = 1.0
-		duration_time = 0.5
 	new_label.pixels_move_per_second = pixels_move_per_second
 	new_label.fading_out_duration = fading_out_duration
 	new_label.duration_time = duration_time
@@ -362,9 +373,8 @@ func add_credits(receiver: Area2D, credits: int, target_position: Vector2) -> vo
 			GlobalScript.current_data.resources.credits += credits
 			refresh_resource_credits_label()
 			play_new_score_animation("credits")
-			create_small_text_event("+" + str(credits), "green", "medium", "fast", target_position, "resource_credit")
+			display_small_text_event("resource_credits", credits, target_position)
 		else:
-			print ("adding " + str(credits) + " to " + str(receiver))
 			receiver.resource_credits += credits
 
 func play_new_score_animation(animation) -> void:
@@ -449,42 +459,37 @@ func change_cursor(cursor: String) -> void:
 	if cursor == "default": Input.set_custom_mouse_cursor(DEFAULT_CURSOR, Input.CURSOR_ARROW, Vector2(20,20))
 	elif cursor == "reload": Input.set_custom_mouse_cursor(RELOAD_CURSOR, Input.CURSOR_ARROW, Vector2(20,20))
 	
-func refresh_shards(type: String, pos: Vector2, offset: float) -> void:
-	var pitch = 0.0
-	if type == "all" || type == "common":
-		$GUI/Score/CommonShards/Count.text = str(GlobalScript.current_data.resources.common_shards)
-		pitch = 0.9
-	if type == "all" || type == "celestial":
-		$GUI/Score/CelestialShards/Count.text = str(GlobalScript.current_data.resources.celestial_shards)
-		pitch = 1
-	if type == "all" || type == "astral":
-		$GUI/Score/AstralShards/Count.text = str(GlobalScript.current_data.resources.astral_shards)
-		pitch = 1.05
-	if type == "all" || type == "ethereal":
-		$GUI/Score/EtherealShards/Count.text = str(GlobalScript.current_data.resources.ethereal_shards)
-		pitch = 1.1
-	if type != "all": 
-		$Sounds/ShardCollected.pitch_scale = pitch
-		if !GlobalScript.current_data.game.muted: $Sounds/ShardCollected.play()
-		play_new_score_animation(type + "_shard")
-		#create_small_text_event(Type + "_shard", 1, pos, offset)
-		display_event_message("Collected " + type + " shard", 2, "no_sound", 0, "white", "normal", "none", 0)
+func refresh_shards() -> void:
+	$GUI/Score/CommonShards/Count.text = str(GlobalScript.current_data.resources.common_shards)
+	$GUI/Score/CelestialShards/Count.text = str(GlobalScript.current_data.resources.celestial_shards)
+	$GUI/Score/AstralShards/Count.text = str(GlobalScript.current_data.resources.astral_shards)
+	$GUI/Score/EtherealShards/Count.text = str(GlobalScript.current_data.resources.ethereal_shards)
+	$GUI/Score/DivineShards/Count.text = str(GlobalScript.current_data.resources.divine_shards)
 	
-func draw_shard(rarity: int, pos: Vector2, offset: float) -> void:
-	var shard: String = "none"
-	if rarity == 1 && rngs.common_shard.randi_range(1, 1000) <= GlobalScript.current_data.resources.shard_drop_chance:
-		shard = "common" 
-		GlobalScript.current_data.resources.common_shards += 1
-	elif rarity == 2 && rngs.celestial_shard.randi_range(1, 1000) <= GlobalScript.current_data.resources.shard_drop_chance:
-		shard = "celestial"
-		GlobalScript.current_data.resources.celestial_shards += 1
-	elif rarity == 3 && rngs.astral_shard.randi_range(1, 1000) <= GlobalScript.current_data.resources.shard_drop_chance:
-		shard = "astral"
-		GlobalScript.current_data.resources.astral_shards += 1
-	elif rarity == 4 && rngs.ethereal_shard.randi_range(1, 1000) <= GlobalScript.current_data.resources.shard_drop_chance:
-		shard = "ethereal"
-		GlobalScript.current_data.resources.ethereal_shards += 1
-	if shard != "none": refresh_shards(shard, pos, offset)
+func draw_shard(object: Area2D) -> void:
+	var shard: String
+	match object.rarity:
+		1: shard = "common"
+		2: shard = "celestial"
+		3: shard = "astral"
+		4: shard = "ethereal"
+		5: shard = "divine"
+	
+	var shard_string: String = shard + "_shard"
+	
+	if rngs[shard_string].randi_range(1, 1000) <= GlobalScript.current_data.resources.shard_drop_chance * 1000.0:
+		var pitch_scale: float = 0.9 + (object.rarity * 0.1)
+		var sound_cfg: Dictionary = {
+			"pitch_percent_variation" = 0.0,
+			"volume_gain" = 0.0,
+			"name" = "shard_collected",
+			"pitch" = pitch_scale
+		}
+		$AudioBus.play_audio_from_dict(sound_cfg)
+		play_new_score_animation(shard_string)
+		display_small_text_event(shard_string, 1, object.global_position)
+		refresh_shards()
+		GlobalScript.current_data.resources[shard_string + "s"] += 1
 
 func check_if_any_button_is_pressed() -> void:
 	#debugging
@@ -890,6 +895,7 @@ func add_object(add: bool, object: Variant) -> void:
 			else:
 				$ObjectEventsHub.execute_fx("destroyed", object)
 				$ObjectEventsHub.explode_object(object)
+				if object.is_regular: draw_shard(object)
 				GlobalScript.current_data.asteroids.general.asteroids_alive -= 1
 			get_node("GUI/AsteroidsLeftCount").text = str(GlobalScript.current_data.asteroids.general.asteroids_left)
 			# jeśli splitting wybuchnie jako ostatnia to...

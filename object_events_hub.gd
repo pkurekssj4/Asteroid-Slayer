@@ -132,18 +132,11 @@ func resolve_damage(area_owner: Area2D, intruder: Area2D) -> float:
 			#print ("Mnoznik kryta: " + str(critical_damage_multiplier) + " / Procentowa sila kryta: " + str(critical_damage_percent_power))
 			#print ("-------------------------")
 			audio_bus.play_audio("critical_hit")
-			var text: String = "Critical Hit"
-			var color_bbcode: String = "crimson"
-			var size: String
-			if critical_damage_percent_power < 0.33: size = "small"
-			elif critical_damage_percent_power < 0.66: size = "medium"
-			else: size = "big"
-			var speed: String = "fast"
-			var display_position: Vector2
-			if area_owner.is_in_group("explosions"): display_position = intruder.global_position
-			else: display_position = area_owner.global_position
-			var icon: String = "none"
-			game.create_small_text_event(text, color_bbcode, size, speed, display_position, icon)
+			var type: String
+			if critical_damage_percent_power < 0.33: type = "weak"
+			elif critical_damage_percent_power < 0.66: type = "medium"
+			else: type = "strong"
+			game.display_small_text_event(type + "_critical_hit", 0, intruder.global_position)
 			return critical_hit_damage
 	return area_owner.collision_parameters.damage
 

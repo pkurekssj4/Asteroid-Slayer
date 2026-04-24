@@ -7,7 +7,7 @@ var damage: float
 var attack_range: float
 var parent: Area2D = null
 var timer: Timer
-var ms_to_scan_sky: int = 200
+var ms_to_scan_sky: int = 300
 var ms_left_to_scan_sky: int = 0
 
 @onready var game = get_node("/root/Game")

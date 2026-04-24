@@ -8,7 +8,7 @@ var resource_credits: int = 0
 var data: Dictionary
 var snake_case_name: String
 var target_range: float
-var ms_to_scan_sky: int = 50
+var ms_to_scan_sky: int = 300
 var ms_left_to_scan_sky: int = 0
 var source: Area2D = self
 var cooldown_timer: Timer
