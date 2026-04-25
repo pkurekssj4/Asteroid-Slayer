@@ -5,7 +5,7 @@ var alpha_channel: float = 1.0
 var fading_out_duration: float
 var fading_out: bool = false
 var new_tween: Tween
-var raise_scale_factor: float = 2.0
+var raise_scale_factor: float = 1.5
 var scale_raise_time_sec: float = 0.25
 var scale_return_time_sec: float = 0.15
 

@@ -163,6 +163,10 @@ func explode_object(object: Area2D) -> void:
 	# Obiekty zglaszaja kolizje tylko jesli ich exploded = false
 	if object.explosion_scene != null:
 		if is_instance_valid(object.source): object.explosion_scene.source = object.source
-		object.explosion_scene.position = object.position
+		if object.is_in_group("projectiles"): 
+			# Pocisk jest w dynamicznym ruchu co przekręca destination.y o kilka pikseli dlatego \/ 
+			object.explosion_scene.position = object.destination
+		else:
+			object.explosion_scene.position = object.position
 		game.add_object(true, object.explosion_scene)
 		object.exploded = true

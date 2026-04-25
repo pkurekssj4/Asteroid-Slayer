@@ -23,8 +23,10 @@ func _process(delta):
 	# jesli fpsów jest mniej niż zakląda silnik (np 40) to wtedy delta podnosi się aby przykladowo pocisk z kazda klatka przemierzal wiecej
 	# ale w rzeczywistosci tyle same jakby lecial na 60 fps
 	# delte trzeba uwzgledniac przy wszystkim co ma sie wykonac w jakims okreslonym czasie, albo ma sie poruszać w okreslonej predkosci na sekunde
+	print (str(global_position.y) + " / " + str(destination.y))
 	position += transform.x * speed * delta
-	if destination.y >= position.y:
+	if global_position.y <= destination.y:
+	#if destination.y >= global_position.y:
 		game.add_object(false, self)
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

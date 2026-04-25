@@ -638,7 +638,7 @@ func launch_special_asteroid_wave(day: int) -> void:
 				launch_delay -= 0.01
 				if game_ended: break
 				await create_delay_timer(launch_delay)
-				add_object(true, $FabricatedScenesManager.get_asteroid_scene("hyper_velocity", 0, randf_range(0.20, 0.27), 0, Vector2.ZERO, Vector2.ZERO, true, 0))
+				add_object(true, $FabricatedScenesManager.get_asteroid_scene("hyper_velocity", 1, randf_range(0.20, 0.27), 0, Vector2.ZERO, Vector2.ZERO, false, 0))
 			
 func trigger_game_over_sequence() -> void:
 	if (debug.enabled && debug.cant_lose) or game_ended: return
