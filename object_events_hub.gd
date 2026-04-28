@@ -165,7 +165,9 @@ func explode_object(object: Area2D) -> void:
 		if is_instance_valid(object.source): object.explosion_scene.source = object.source
 		if object.is_in_group("projectiles"): 
 			# Pocisk jest w dynamicznym ruchu co przekręca destination.y o kilka pikseli dlatego \/ 
-			object.explosion_scene.position = object.destination
+			if object.global_position.y < object.destination.y: 
+				object.explosion_scene.position = object.destination
+			else: object.explosion_scene.position = object.global_position
 		else:
 			object.explosion_scene.position = object.position
 		game.add_object(true, object.explosion_scene)

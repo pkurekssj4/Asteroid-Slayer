@@ -563,6 +563,10 @@ func intro() -> void:
 	$OpeningHatch.show()
 	await get_tree().create_timer(1.5).timeout
 	if !GlobalScript.current_data.game.muted: $Sounds/HatchOpening.play()
+	var slow_opening_time_sec: float = 0.6
+	var fast_opening_time_sec: float = 0.9
+	while slow_opening_time_sec > 0.0:
+		slow_opening_time_sec -= delta
 	for i in range(1, 15):
 		await get_tree().create_timer(0.02).timeout
 		$OpeningHatch/Upper.global_position.y -= 1.5

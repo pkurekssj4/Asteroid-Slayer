@@ -5,8 +5,6 @@
 [ext_resource type="Shader" uid="uid://bcwjlvguwqjyd" path="res://shaders/message_box_border_animation.gdshader" id="2_refn7"]
 [ext_resource type="StyleBox" uid="uid://dvqcalwap7rp5" path="res://ui/background.tres" id="3_cudyh"]
 [ext_resource type="Texture2D" uid="uid://b7p0ji38a8vhg" path="res://ui/message_box/grid.png" id="3_nj3xn"]
-[ext_resource type="AudioStream" uid="uid://bm75a8mkx2xg4" path="res://ui/message_box/message_unveiling.wav" id="4_nj3xn"]
-[ext_resource type="AudioStream" uid="uid://bre421oqq6vqi" path="res://audio/sounds/message.mp3" id="4_tlipc"]
 [ext_resource type="Theme" uid="uid://d1icjuesk3qr0" path="res://ui/button.tres" id="5_7n41a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_refn7"]
@@ -158,13 +156,5 @@ theme_override_colors/font_color = Color(0.9160391, 0.94595236, 0.9459248, 1)
 theme_override_font_sizes/font_size = 13
 text = "Oasis: Power Plant"
 autowrap_mode = 3
-
-[node name="MessageSound" type="AudioStreamPlayer" parent="." unique_id=1999554804]
-stream = ExtResource("4_tlipc")
-volume_db = -4.0
-
-[node name="MessageUnveiling" type="AudioStreamPlayer" parent="." unique_id=2105883412]
-stream = ExtResource("4_nj3xn")
-pitch_scale = 2.25
 
 [connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]

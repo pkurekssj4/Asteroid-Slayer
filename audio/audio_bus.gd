@@ -1,9 +1,13 @@
 extends Node
 
 const FADE_LENGTH: float = 6.0
-var audio_path: String = "res://audio"
+var audio_path: String
 var audio_players: Dictionary = {}
-
+const pre_config: Dictionary = {
+	"rain": {
+		"volume_db" = -12
+	}
+}
 @onready var game = get_node("/root/Game")
 
 func _ready() -> void:
@@ -12,6 +16,12 @@ func _ready() -> void:
 	# distortion.mode = AudioEffectDistortion.MODE_LOFI
 	# var bus = AudioServer.get_bus_index("Master")
 	# AudioServer.add_bus_effect(bus, distortion)
+	var group: String
+	if get_parent().get_name() == "Game": 
+		group = "game"
+	else: 
+		group = "console"
+	audio_path = "res://audio/" + group
 	for element in ResourceLoader.list_directory(audio_path + "/sounds"): add_new_player(audio_path + "/sounds", element)
 		
 func play_audio(type: String) -> void:
@@ -42,5 +52,9 @@ func add_new_player(path: String, file_name: String) -> void:
 	var new_audio_stream: AudioStream = load(path + "/" + file_name)
 	var new_stream_player: AudioStreamPlayer = AudioStreamPlayer.new()
 	new_stream_player.stream = new_audio_stream
-	audio_players[file_name.get_basename()] = new_stream_player
+	var base_file_name: String = file_name.get_basename()
+	audio_players[base_file_name] = new_stream_player
+	if base_file_name in pre_config:
+		for parameter in pre_config[base_file_name]:
+			audio_players[base_file_name][parameter] = pre_config[base_file_name][parameter]
 	add_child(new_stream_player)

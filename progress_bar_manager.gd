@@ -18,6 +18,7 @@ func create_progress_bar(destination: String, color: String, time_sec: float):
 	var modulation: Color
 	if color == "orange": modulation = Color(1, 0.7, 0)
 	elif color == "red": modulation = Color(1, 0.2, 0.2)
+	elif color == "green": modulation = Color(0.5, 0.9, 0.2)
 	elif color == "fuchsia": modulation = Color(1, 0, 1, 1) 
 	elif color == "blue": modulation = Color(0.1, 0.4, 1)
 	elif color == "white": modulation = Color(1, 1 ,1)

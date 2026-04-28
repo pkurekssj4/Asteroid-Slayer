@@ -23,7 +23,7 @@ func _ready() -> void:
 	durability_points = data.durability.current_points
 	if data.has("bonuses_for_other_objects"): 
 		function = get_function(snake_case_name)
-		bonus_progress_bar.value = (data.bonuses_for_other_objects.total_growth_rate_multiplicator / data.bonuses_for_other_objects.max_growth_rate_multiplicator) * 100.0
+		bonus_progress_bar.value = (data.bonuses_for_other_objects.total_growth_rate_multiplier / data.bonuses_for_other_objects.max_growth_rate_multiplier) * 100.0
 	if data.has("dish") and data.active: $AnimationPlayer.seek(randf_range(0.2, 2.8))
 
 func take_damage(damage: float, _attacker: Area2D):

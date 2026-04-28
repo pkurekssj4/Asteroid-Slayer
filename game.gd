@@ -24,7 +24,7 @@ var debug: Dictionary = {
 	"keep_pressing_hotkey_to_spawn_asteroids": true,
 	"buildings_are_repaired": false,
 	"debug_values": true,
-	"day": 9,
+	"day": 13,
 	"basic_attack_damage": 200,
 	"basic_attack_reload_time": 1,
 	"basic_attack_attack_speed": 5,
@@ -388,10 +388,10 @@ func play_new_score_animation(animation) -> void:
 
 func save_game() -> void:
 	print ("Saving game")
+	$TimeAndWeather.set_config_for_next_day()
 	var file = FileAccess.open(GlobalScript.get_save_path("game"), FileAccess.WRITE)
 	if GlobalScript.initial_config.new_game: GlobalScript.initial_config.new_game = false
 	GlobalScript.current_data.game.last_save_date = GlobalScript.get_current_date()
-	$TimeAndWeather.set_config_for_next_day()
 	file.store_var(GlobalScript.current_data)
 	file.store_var(GlobalScript.initial_data)
 	file.store_var(cannon_upgrades)
@@ -722,7 +722,7 @@ func create_durability_bars() -> void:
 	var main_durability_bar: ProgressBar
 	
 	for object in structures_list:
-		for i in range (1, 3):
+		for i in range (1, 4):
 			var new_durability_bar = STRUCTURE_BAR.instantiate()
 			var tooltip_trigger_collision_shape: CollisionShape2D = object.get_node("TooltipTrigger/CollisionShape2D")
 			$StructureBarsAndBackgrounds.add_child(new_durability_bar)
@@ -735,7 +735,7 @@ func create_durability_bars() -> void:
 				$StructureBarsAndBackgrounds.add_child(background)
 				background.color = Color(0, 0, 0, 1)
 				background.size = new_durability_bar.size
-				background.z_index = durability_bar_z_index - 2
+				background.z_index = durability_bar_z_index - 3
 				background.global_position = new_durability_bar.global_position
 				object.durability_bar = new_durability_bar
 				main_durability_bar = new_durability_bar
@@ -745,11 +745,17 @@ func create_durability_bars() -> void:
 				new_durability_bar.set_script(null)
 				main_durability_bar.damage_taken_bar = new_durability_bar
 				new_durability_bar.z_index = durability_bar_z_index - 1
-			
-				
+			elif i == 3:
+				# ciemny czerwony (damage taken this day)
+				new_durability_bar.set_script(null)
+				new_durability_bar.modulate = Color(0.25, 0.25, 0.25)
+				main_durability_bar.damage_taken_this_day_bar = new_durability_bar
+				new_durability_bar.z_index = durability_bar_z_index - 2
+	
 		var data_dict: Dictionary = GlobalScript.current_data.structures[object.get_name().to_snake_case()]
 		var damage_taken: bool = false
 		update_durability_bar(object, data_dict, damage_taken)
+		main_durability_bar.damage_taken_this_day_bar.value = main_durability_bar.value
 
 func create_bonus_and_attack_readiness_bars() -> void:
 	var durability_bar_y_offset: int = 17
@@ -830,12 +836,22 @@ func damage_structure(structure: Area2D, damage: float) -> void:
 	else:
 		$ObjectEventsHub.execute_fx("damaged", structure)
 	
+func damage_structure_by_toxic_rain(structure: Area2D, damage: float) -> void:
+	var data_dict: Dictionary = GlobalScript.current_data.structures[structure.get_name().to_snake_case()]
+	if data_dict.active: data_dict.durability.current_points -= damage
+	else:
+		data_dict.durability.current_repair_days = data_dict.durability.repair_days
+		return
+	var damage_taken: bool = true
+	update_durability_bar(structure, data_dict, damage_taken)
+	if data_dict.durability.current_points <= 0: data_dict.durability.current_points = 0
+	
 func destroy_structure(structure: Area2D, data_dict: Dictionary) -> void:
 	if data_dict.has("bonuses_for_other_objects"):
 		data_dict.bonuses_for_other_objects.base_bonus = 0
 		data_dict.bonuses_for_other_objects.growth_rate_bonus = 0
 		data_dict.bonuses_for_other_objects.total_bonus = 0
-		data_dict.bonuses_for_other_objects.total_growth_rate_multiplicator = 0
+		data_dict.bonuses_for_other_objects.total_growth_rate_multiplier = 0
 		structure.bonus_progress_bar.value = 0.0
 	if data_dict.has("dish"):
 		data_dict.dish.rotation = structure.get_node("RadarDish").rotation
@@ -865,7 +881,7 @@ func disable_inactive_structures() -> void:
 		if !data_dict.active: disable_structure(structure, data_dict)
 
 func update_durability_bar(structure: Area2D, data_dict: Dictionary, damage_taken: bool) -> void:
-	var new_value: int = (data_dict.durability.current_points / data_dict.durability.max_points) * 100 # * 1.0 aby uniknac ostrzezenia ze po przecinku zostanie uciete
+	var new_value: int = (data_dict.durability.current_points / data_dict.durability.max_points) * 100
 	structure.durability_bar.update_value(new_value, damage_taken)
 
 func is_player(object: Area2D) -> bool:

@@ -7,7 +7,6 @@ const CLOUDS = [
 	preload("res://weather/clouds/cloud5.tscn"),
 	preload("res://weather/clouds/cloud6.tscn"),
 ]
-const RAIN = preload("res://weather/rain.tscn")
 var starting_month: int = 8
 var starting_day: int = 17
 var starting_hour: int = 20
@@ -46,6 +45,9 @@ var cloud_timer: Timer
 @onready var cloud_scenes_container: Node = get_node("/root/Game/ScenesContainer/Clouds")
 @onready var fractals: Sprite2D = get_node("/root/Game/Fractals")
 @onready var stars: Sprite2D = get_node("/root/Game/Stars")
+@onready var rain: GPUParticles2D = get_node("/root/Game/Rain")
+@onready var audio_bus: Node = get_node("/root/Game/AudioBus")
+@onready var event_manager: Node = get_node("/root/Game/EventManager")
 
 func _ready() -> void:
 	await game.game_ready
@@ -86,10 +88,11 @@ func init() -> void:
 		stars.queue_free()
 		
 	if GlobalScript.current_data.game.rain:
-		var new_rain = RAIN.instantiate()
-		add_child(new_rain)
-		if !GlobalScript.current_data.game.muted: game.get_node("Sounds/Rain").play()
-	else: if !GlobalScript.current_data.game.muted: game.get_node("Sounds/Ambient").play()
+		rain.preprocess = 10
+		rain.emitting = true
+		rain.modulate = Color(0.3, 0.8, 1.0, 0.8)
+		audio_bus.play_audio("rain")
+	else: audio_bus.play_audio("ambient")
 	
 	wind = randi_range(1,2)
 	if wind == 1: wind = randi_range(3,12)
@@ -103,7 +106,7 @@ func set_config_for_next_day():
 	set_sky_modulation()
 	if randi_range(1, 100) <= fractals_chance: GlobalScript.current_data.game.fractals = true
 	else: GlobalScript.current_data.game.fractals = false
-	if randi_range(1, 100) <= rain_chance: GlobalScript.current_data.game.rain = true
+	if randi_range(1, 100) <= rain_chance and GlobalScript.current_data.game.day not in event_manager.events_data.events.toxic_rain.days_to_launch: GlobalScript.current_data.game.rain = true
 	else: GlobalScript.current_data.game.rain = false
 	GlobalScript.current_data.game.cloud_spawn_chance = randi_range(cloud_spawn_chance_thresholds[0], cloud_spawn_chance_thresholds[1])
 

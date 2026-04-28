@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://csuaw6hrgoyq4"]
 
 [ext_resource type="Script" uid="uid://ccnmy5g3ra5wb" path="res://firework.gd" id="1_80ye1"]
-[ext_resource type="AudioStream" uid="uid://s518xojf23k2" path="res://audio/sounds/firework_explosion.mp3" id="2_80ye1"]
-[ext_resource type="AudioStream" uid="uid://d0y2oew6xnn3w" path="res://audio/sounds/firework_launch.wav" id="3_skfqf"]
+[ext_resource type="AudioStream" uid="uid://s518xojf23k2" path="res://audio/game/sounds/firework_explosion.mp3" id="2_80ye1"]
+[ext_resource type="AudioStream" uid="uid://d0y2oew6xnn3w" path="res://audio/game/sounds/firework_launch.wav" id="3_skfqf"]
 
 [sub_resource type="Gradient" id="Gradient_80ye1"]
 offsets = PackedFloat32Array(0, 0.115702, 0.297521, 0.471074)

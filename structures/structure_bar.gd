@@ -1,9 +1,12 @@
 extends ProgressBar
 var delay_timer: Timer
 var damage_taken_bar: ProgressBar
+var damage_taken_this_day_bar: ProgressBar
 var damage_taken_delay: float = 2.0
-var value_normalizing_per_frame: float = 1
-# interfejs nie należy do świata gry dlatego per frame
+var value_normalizing_per_sec: int = 40
+var damage_taken_bar_value: float
+# Value to integer 0-100, dlatego jeśli progress wyjdzie poniżej 1 to musi być liczony we float dla poprawnego wyświetlania w różnych FPS
+var value_float: float
 
 
 func _ready() -> void:
@@ -11,9 +14,12 @@ func _ready() -> void:
 	delay_timer.one_shot = true
 	add_child(delay_timer)
 	delay_timer.timeout.connect(_on_damage_taken_delay_timeout)
+	value_float = value
 
 func _process(delta: float) -> void:
-	if damage_taken_bar.value > value: damage_taken_bar.value -= value_normalizing_per_frame
+	var progress: float = value_normalizing_per_sec * delta
+	value_float -= progress
+	if damage_taken_bar.value > value: damage_taken_bar.value = floor(value_float)
 	else: set_process(false)
 	
 func update_value(new_value: int, damage_taken: bool) -> void:

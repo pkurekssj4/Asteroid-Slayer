@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bx7coqjvs6c4w"
+path="res://.godot/imported/A.K.K. - Unreleased 19.mp3-ff6ec3b9d684ba7e0577ef73d0fca919.mp3str"
+
+[deps]
+
+source_file="res://audio/game/soundtrack/A.K.K. - Unreleased 19.mp3"
+dest_files=["res://.godot/imported/A.K.K. - Unreleased 19.mp3-ff6ec3b9d684ba7e0577ef73d0fca919.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

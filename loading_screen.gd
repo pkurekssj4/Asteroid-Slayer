@@ -5,7 +5,7 @@ var scene_load_status: int
 var load_progress: Array = []
 var scene_loaded: bool = false
 var skew_decaying: bool = false
-var skew_progressing_per_sec: float = 13.0
+var skew_progressing_per_sec: float = 9.0
 
 func _ready() -> void:
 	ResourceLoader.load_threaded_request(scene_to_load)

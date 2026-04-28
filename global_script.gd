@@ -128,7 +128,7 @@ const COMMON_STRUCTURE_DICTIONARY_RECEIVERS: Dictionary = {
 	"projectile_accelerator": {
 		"extra_dictionaries": {
 			"bonuses_for_other_objects": {
-				"growth_rate": 2.5,
+				"growth_rate": 2.0,
 				"receivers": ["cannon"],
 				"statistic_structures": [
 					["projectile_speed"]
@@ -161,7 +161,7 @@ const COMMON_STRUCTURE_DICTIONARY_RECEIVERS: Dictionary = {
 	"power_generator": {
 		"extra_dictionaries": {
 			"bonuses_for_other_objects": {
-				"growth_rate": 3.0,
+				"growth_rate": 2.0,
 				"receivers": ["cannon"],
 				"statistic_structures": [
 					["explosion", "damage"]
@@ -172,7 +172,7 @@ const COMMON_STRUCTURE_DICTIONARY_RECEIVERS: Dictionary = {
 	"critical_power_generator": {
 		"extra_dictionaries": {
 			"bonuses_for_other_objects": {
-				"growth_rate": 3.0,
+				"growth_rate": 1.5,
 				"receivers": ["cannon"],
 				"statistic_structures": [
 					["explosion", "critical_hit_damage_thresholds"]
@@ -183,7 +183,7 @@ const COMMON_STRUCTURE_DICTIONARY_RECEIVERS: Dictionary = {
 	"explosion_amplifier": {
 		"extra_dictionaries": {
 			"bonuses_for_other_objects": {
-				"growth_rate": 2.5,
+				"growth_rate": 2.0,
 				"receivers": ["cannon"],
 				"statistic_structures": [
 					["explosion", "area_of_effect"]
@@ -194,7 +194,7 @@ const COMMON_STRUCTURE_DICTIONARY_RECEIVERS: Dictionary = {
 	"impact_prediction_center": {
 		"extra_dictionaries": {
 			"bonuses_for_other_objects": {
-				"growth_rate": 5.0,
+				"growth_rate": 4.5,
 				"receivers": ["cannon"],
 				"statistic_structures": [
 					["explosion", "critical_hit_chance"]
@@ -205,7 +205,7 @@ const COMMON_STRUCTURE_DICTIONARY_RECEIVERS: Dictionary = {
 	"left_ion_flux_turbine": {
 		"extra_dictionaries": {
 			"bonuses_for_other_objects": {
-				"growth_rate": 0.75,
+				"growth_rate": 1.0,
 				"receivers": ["left_laser_turret", "left_pulse_barrier"],
 				"statistic_structures": [
 					["attack_range"],
@@ -218,7 +218,7 @@ const COMMON_STRUCTURE_DICTIONARY_RECEIVERS: Dictionary = {
 	"right_ion_flux_turbine": {
 		"extra_dictionaries": {
 			"bonuses_for_other_objects": {
-				"growth_rate": 0.75,
+				"growth_rate": 1.0,
 				"receivers": ["right_laser_turret", "right_pulse_barrier"],
 				"statistic_structures": [
 					["attack_range"],
@@ -232,9 +232,9 @@ const COMMON_STRUCTURE_DICTIONARY_RECEIVERS: Dictionary = {
 
 const EXTRA_STRUCTURE_DICTIONARIES: Dictionary = {
 	"bonuses_for_other_objects": {
-		"max_growth_rate_multiplicator": 20.0,
-		"base_growth_rate_multiplicator": 5.0,
-		"total_growth_rate_multiplicator": 0.0,
+		"max_growth_rate_multiplier": 25.0,
+		"base_growth_rate_multiplier": 5.0,
+		"total_growth_rate_multiplier": 0.0,
 		"base_bonus": 0.0,
 		"growth_rate_bonus": 0.0,
 		"total_bonus": 0.0,
@@ -265,6 +265,9 @@ const VFX_DATA: Dictionary = {
 	},
 	
 	"structure_damaged_smoke_particles": {
+		"initial_amount_ratio_variation": 0.4,
+	},
+	"structure_damaged_particles": {
 		"initial_amount_ratio_variation": 0.4,
 	},
 	"structure_destroyed_fire_particles": {
@@ -470,7 +473,7 @@ const legacy_data: Dictionary = {
 					"pitch": 1.0,
 					"pitch_percent_variation": 0.03
 				},
-				"visuals_when_damaged": ["structure_damaged_smoke_particles"],
+				"visuals_when_damaged": ["structure_damaged_smoke_particles", "structure_damaged_particles"],
 				"visuals_when_destroyed": ["structure_destroyed_fire_particles", "structure_destroyed_explosion_particles"]
 			}
 		},
@@ -1368,10 +1371,10 @@ func clear_and_set_new_structure_bonuses() -> void:
 	erase_additive_stats("structures")
 	for structure in current_data.structures:
 		if current_data.structures[structure].has("bonuses_for_other_objects") and current_data.structures[structure].active:
-			current_data.structures[structure]["bonuses_for_other_objects"]["base_bonus"] = current_data.structures[structure]["bonuses_for_other_objects"]["growth_rate"] * current_data.structures[structure]["bonuses_for_other_objects"]["base_growth_rate_multiplicator"]
+			current_data.structures[structure]["bonuses_for_other_objects"]["base_bonus"] = current_data.structures[structure]["bonuses_for_other_objects"]["growth_rate"] * current_data.structures[structure]["bonuses_for_other_objects"]["base_growth_rate_multiplier"]
 			var growth_rate_multiplier: int = current_data.structures[structure].active_days
-			if current_data.structures[structure].active_days > current_data.structures[structure]["bonuses_for_other_objects"]["max_growth_rate_multiplicator"]: growth_rate_multiplier = current_data.structures[structure]["bonuses_for_other_objects"]["max_growth_rate_multiplicator"]
-			current_data.structures[structure]["bonuses_for_other_objects"]["total_growth_rate_multiplicator"] = current_data.structures[structure]["bonuses_for_other_objects"]["base_growth_rate_multiplicator"] + growth_rate_multiplier
+			if current_data.structures[structure].active_days > current_data.structures[structure]["bonuses_for_other_objects"]["max_growth_rate_multiplier"]: growth_rate_multiplier = current_data.structures[structure]["bonuses_for_other_objects"]["max_growth_rate_multiplier"]
+			current_data.structures[structure]["bonuses_for_other_objects"]["total_growth_rate_multiplier"] = current_data.structures[structure]["bonuses_for_other_objects"]["base_growth_rate_multiplier"] + growth_rate_multiplier
 			current_data.structures[structure]["bonuses_for_other_objects"]["growth_rate_bonus"] = current_data.structures[structure]["bonuses_for_other_objects"]["growth_rate"] * growth_rate_multiplier
 			current_data.structures[structure]["bonuses_for_other_objects"]["total_bonus"] = current_data.structures[structure]["bonuses_for_other_objects"]["base_bonus"] + current_data.structures[structure]["bonuses_for_other_objects"]["growth_rate_bonus"]
 			for receiver in current_data.structures[structure]["bonuses_for_other_objects"]["receivers"]:

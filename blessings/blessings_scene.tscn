@@ -123,7 +123,7 @@
 [ext_resource type="Texture2D" uid="uid://cxlu0bw8rm88h" path="res://blessings/eyes_animation_sprites/gods_eyes (120).png" id="121_suetm"]
 [ext_resource type="Texture2D" uid="uid://k3t480wfbhuo" path="res://weather/clouds/cloud6.png" id="122_0q84f"]
 [ext_resource type="AudioStream" uid="uid://cuxoqpdd4g2fr" path="res://blessings/blessing_highlight.mp3" id="123_dsyjg"]
-[ext_resource type="AudioStream" uid="uid://bwhm17do1vrcv" path="res://audio/sounds/god.mp3" id="123_q842a"]
+[ext_resource type="AudioStream" uid="uid://bwhm17do1vrcv" path="res://audio/game/sounds/god.mp3" id="123_q842a"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fgcpt"]
 animations = [{

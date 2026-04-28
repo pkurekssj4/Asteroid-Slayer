@@ -29,7 +29,7 @@ var events_data: Dictionary = {
 		},
 		"asteroid_shower": {
 			"initial_day": 3,
-			"days_to_launch": [3, 7, 13, 15],
+			"days_to_launch": [3, 7, 12, 15],
 			"duration_sec": 10,
 		},
 		"fast_spawn": {
@@ -67,7 +67,13 @@ var events_data: Dictionary = {
 			"asteroids_number": 7
 		},
 		"toxic_rain": {
-			"initial_day": 101,
+			"initial_day": 13,
+			"duration_sec": 15.0,
+			"damaging_interval_sec": 1.0,
+			"base_total_damage": 25.0,
+			"days_to_increase_damage": 10,
+			"damage_growth_rate": 3.0,
+			"days_to_launch": [13, 17, 23]
 		},
 		"intensified_cosmic_radiation": {
 			# zaklocenie celowania
@@ -86,6 +92,7 @@ var events_data: Dictionary = {
 @onready var game: Node2D = get_node("/root/Game")
 @onready var audio_bus: Node = get_node("/root/Game/AudioBus")
 @onready var fabricated_scenes_manager: Node = get_node("/root/Game/FabricatedScenesManager")
+@onready var rain: GPUParticles2D = get_node("/root/Game/Rain")
 
 func _ready() -> void:
 	await game.game_ready
@@ -241,7 +248,7 @@ func prepare_events_schedule() -> void:
 								slots_to_add = get_slots_to_add(events_data["events"]["force_asteroid_type_spawn_on_initial_day"]["occurences"], events_data["events"]["force_asteroid_type_spawn_on_initial_day"]["event_interval"])
 								for i in slots_to_add: events_schedule[i] = "force_spawn_" + asteroid
 								break
-				"asteroid_shower", "huge_asteroid":
+				"asteroid_shower", "huge_asteroid", "toxic_rain":
 					if GlobalScript.current_data.game.day in events_data["events"][event]["days_to_launch"]:
 						slots_to_add = get_slots_to_add(1, 1)
 						for i in slots_to_add: events_schedule[i] = event
@@ -348,6 +355,26 @@ func launch_huge_asteroid() -> void:
 	asteroid.credits_reward = GlobalScript.current_data.rewards.huge_asteroid
 	game.add_object(true, asteroid)
 	
+func trigger_toxic_rain() -> void:
+	rain.modulate = Color(0.6, 1.0, 0.5, 1.0)
+	rain.emitting = true
+	await game.create_delay_timer(4.0)
+	audio_bus.play_audio("rain")
+	var total_damage: float = events_data.events.toxic_rain.base_total_damage + (floor((GlobalScript.current_data.game.day / events_data.events.toxic_rain.days_to_increase_damage) * events_data.events.toxic_rain.damage_growth_rate))
+	var duration_timer: Timer = Timer.new()
+	duration_timer.one_shot = true
+	game.get_node("ProgressBarManager").create_progress_bar("Toxic rain", "green", events_data.events.toxic_rain.duration_sec)
+	add_child(duration_timer)
+	duration_timer.start(events_data.events.toxic_rain.duration_sec)
+	var damaging_times: int = events_data.events.toxic_rain.duration_sec / events_data.events.toxic_rain.damaging_interval_sec
+	var damage: float = total_damage / damaging_times
+	for i in range(1, damaging_times + 1):
+		await game.create_delay_timer(events_data.events.toxic_rain.damaging_interval_sec)
+		for structure in game.structures_list:
+			if (damaging_times - i) * events_data.events.toxic_rain.damaging_interval_sec < 3.5: 
+				rain.emitting = false
+			game.damage_structure_by_toxic_rain(structure, damage)
+	audio_bus.cancel("rain")
 func supervise_event_schedule() -> void:
 	if current_schedule_slot == events_schedule.size() - 1 or game.game_ended:
 		set_process(false)
@@ -366,5 +393,6 @@ func supervise_event_schedule() -> void:
 			elif events_schedule[current_schedule_slot] == "flash_wave": trigger_flash_wave_event(true)
 			elif events_schedule[current_schedule_slot] == "asteroid_shower": trigger_asteroid_shower()
 			elif events_schedule[current_schedule_slot] == "huge_asteroid": launch_huge_asteroid()
+			elif events_schedule[current_schedule_slot] == "toxic_rain": trigger_toxic_rain()
 			elif events_schedule[current_schedule_slot].contains("force_spawn"): trigger_force_asteroid_type_spawn_event(events_schedule[current_schedule_slot])
 		events_schedule[current_schedule_slot] = ""

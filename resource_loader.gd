@@ -38,6 +38,7 @@ const PRELOADED_RESOURCES: Dictionary = {
 	"gravity_well_projectile_following_particles": preload("res://structures/cannon/gravity_well_projectile_following_particles.tscn"),
 	"asteroid_destroyed_ring": preload("res://asteroids/asteroid_destroyed_ring.tscn"),
 	"structure_damaged_smoke_particles": preload("res://structures/structure_damaged_smoke_particles.tscn"),
+	"structure_damaged_particles": preload("res://structures/structure_damaged_particles.tscn"),
 	"structure_destroyed_fire_particles": preload("res://structures/structure_destroyed_fire_particles.tscn"),
 	"structure_destroyed_explosion_particles": preload("res://structures/structure_destroyed_explosion_particles.tscn"),
 	"shield_damaged_particles": preload("res://asteroids/shield_damaged_particles.tscn"),

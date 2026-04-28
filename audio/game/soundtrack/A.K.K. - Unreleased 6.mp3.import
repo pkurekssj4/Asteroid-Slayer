@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://de060i8r6m7av"
+path="res://.godot/imported/A.K.K. - Unreleased 6.mp3-c5c602646ea612033c29eb69cf146b7e.mp3str"
+
+[deps]
+
+source_file="res://audio/game/soundtrack/A.K.K. - Unreleased 6.mp3"
+dest_files=["res://.godot/imported/A.K.K. - Unreleased 6.mp3-c5c602646ea612033c29eb69cf146b7e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

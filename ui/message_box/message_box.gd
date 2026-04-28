@@ -1,23 +1,30 @@
 extends Control
 var current_part = 1
-var character_actual_unveil_ticks = 0
-var character_target_unveil_ticks = 1
 var fade_duration = 0.3
 var current_waving_phase: float = 0.0
 var shader_phase_thresholds: Array[int] = [195, 213]
 var waving_phase_per_sec: float = 2.0
 var waving_multiplier: float = 1.0
+# Do prawidlowego odtwarzania dzwieku niezaleznie od FPS. Np na 30 FPS dzwiek odpala sie z lagiem ale to naturalna kolejnosc rzeczy w tym przypadku.
+var unveiling_sound_playback_interval_sec: float = 0.015
+var time_left_to_play_unveiling_sound: float
 var sender: String
 var place: String
 var message_source: Dictionary
+var characters_unveiling_per_sec: int = 300
+var quick_characters_unveiling_per_sec: int = 900
+var unveiling_sound_cfg: Dictionary
 signal ready_to_continue
 
+@onready var audio_bus: Node = get_node("/root/Game/AudioBus")
+
 func _ready() -> void:
+	time_left_to_play_unveiling_sound = unveiling_sound_playback_interval_sec
+	audio_bus.play_audio("message")
 	$Place.text = place
 	$Sender.text = "Send from: " + sender
 	reset_box_to_new_message("part_1")
 	$Message.visible_ratio = 0
-	if !GlobalScript.current_data.game.muted: $MessageSound.play()
 	global_position = get_viewport_rect().size / 2
 	global_position -= $Borders.size / 2
 	current_waving_phase = shader_phase_thresholds[0]
@@ -26,6 +33,12 @@ func _ready() -> void:
 	set_process(false)
 	await fade_scene(1)
 	set_process(true)
+	unveiling_sound_cfg = {
+		"pitch_percent_variation" = 0.0,
+		"volume_gain" = 0,
+		"name" = "message_unveiling",
+		"pitch" = 1.0
+	}
 	
 func _process(delta: float) -> void:
 	if current_waving_phase >= shader_phase_thresholds[1]: waving_multiplier = -1.0
@@ -33,19 +46,20 @@ func _process(delta: float) -> void:
 	current_waving_phase += (waving_phase_per_sec * delta) * waving_multiplier
 	$Borders.material.set("shader_parameter/phase", current_waving_phase)
 	if $Message.visible_ratio < 1:
-		character_actual_unveil_ticks += 1
-		if character_actual_unveil_ticks != character_target_unveil_ticks:
-			return
-		character_actual_unveil_ticks = 0
+		var characters_to_unveil: int
 		if Input.is_action_pressed("fire"):
-			$Message.visible_characters += 15
-			$MessageUnveiling.pitch_scale = 5.5
+			characters_to_unveil = floor(quick_characters_unveiling_per_sec * delta)
+			unveiling_sound_cfg.pitch = 5.5
 		else:
-			$Message.visible_characters += 3
-			$MessageUnveiling.pitch_scale = 4
-		if !GlobalScript.current_data.game.muted: $MessageUnveiling.play()
-		if $Message.visible_ratio >= 1:
-			$ContinueButton.show()
+			characters_to_unveil = floor(characters_unveiling_per_sec * delta)
+			unveiling_sound_cfg.pitch = 4.0
+		if characters_to_unveil < 1: characters_to_unveil = 1
+		$Message.visible_characters += characters_to_unveil
+		time_left_to_play_unveiling_sound -= delta
+		if time_left_to_play_unveiling_sound < 0:
+			time_left_to_play_unveiling_sound = unveiling_sound_playback_interval_sec
+			audio_bus.play_audio_from_dict(unveiling_sound_cfg)
+		if $Message.visible_ratio >= 1: $ContinueButton.show()
 			
 func reset_box_to_new_message(part_string: String) -> void:
 	$ContinueButton.hide()
