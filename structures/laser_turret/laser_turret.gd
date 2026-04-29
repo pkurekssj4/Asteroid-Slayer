@@ -23,7 +23,6 @@ var ray_ending_point: Vector2
 var state: String = "idle"
 
 @onready var game: Node2D = get_node("/root/Game")
-@onready var audio_bus: Node = get_node("/root/Game/AudioBus")
 @onready var resource_loader: Node = get_node("/root/Game/ResourceLoader")
 
 func _ready():
@@ -107,7 +106,7 @@ func attack():
 	$AttackParticles.global_position = $Head/Marker2D.global_position
 	$LightEffect.global_position = $Head/Marker2D.global_position
 	$AnimationPlayer.play("light")
-	audio_bus.play_audio("laser_attack")
+	AudioBus.play("laser_attack")
 	if current_target.take_damage(data.damage, self): current_target = null
 	state = "attacking"
 	ms_left_to_change_target = ms_to_change_target

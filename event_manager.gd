@@ -73,7 +73,7 @@ var events_data: Dictionary = {
 			"base_total_damage": 25.0,
 			"days_to_increase_damage": 10,
 			"damage_growth_rate": 3.0,
-			"days_to_launch": [13, 17, 23]
+			"days_to_launch": [13, 19, 27]
 		},
 		"intensified_cosmic_radiation": {
 			# zaklocenie celowania
@@ -90,7 +90,6 @@ var events_data: Dictionary = {
 }
 
 @onready var game: Node2D = get_node("/root/Game")
-@onready var audio_bus: Node = get_node("/root/Game/AudioBus")
 @onready var fabricated_scenes_manager: Node = get_node("/root/Game/FabricatedScenesManager")
 @onready var rain: GPUParticles2D = get_node("/root/Game/Rain")
 
@@ -146,8 +145,7 @@ func advance_game_state() -> void:
 			game.get_node("Timers/AsteroidSpawnDelay").start(0.5)
 		
 	elif game_state == 3: # stop gdy nie ma wiecej akcji
-		if game.debug.enabled: get_tree().call_group("asteroids", "explode")
-		audio_bus.cancel(game.current_soundtrack)
+		if game.current_soundtrack != "none": AudioBus.cancel(game.current_soundtrack)
 		game.game_ended = true
 		game.stop_game(true)
 		await game.create_delay_timer(1)
@@ -308,9 +306,9 @@ func trigger_flash_wave_event(real_trigger: bool) -> void:
 		new_asteroid.is_flashing = true
 		new_asteroid.flashing_duration = flashing_time
 		game.add_object(true, new_asteroid)
-	audio_bus.play_audio("asteroids_flashing")
+	AudioBus.play("asteroids_flashing")
 	await game.create_delay_timer(flashing_time - 0.3)
-	audio_bus.play_audio("asteroids_finished_flashing")
+	AudioBus.play("asteroids_finished_flashing")
 	#print ("flash wave launched")
 	
 func trigger_force_asteroid_type_spawn_event(event: String) -> void:
@@ -341,7 +339,7 @@ func trigger_asteroid_shower() -> void:
 	duration_timer.queue_free()
 
 func launch_huge_asteroid() -> void:
-	audio_bus.play_audio("huge_asteroid_warning")
+	AudioBus.play("huge_asteroid_warning")
 	await game.create_delay_timer(randf_range(3.0, 6.0))
 	var size: float = 0.5 + (GlobalScript.current_data.game.day * 1.0) / 250
 	var speed: int = randi_range(155, 165)
@@ -359,7 +357,7 @@ func trigger_toxic_rain() -> void:
 	rain.modulate = Color(0.6, 1.0, 0.5, 1.0)
 	rain.emitting = true
 	await game.create_delay_timer(4.0)
-	audio_bus.play_audio("rain")
+	AudioBus.play("rain")
 	var total_damage: float = events_data.events.toxic_rain.base_total_damage + (floor((GlobalScript.current_data.game.day / events_data.events.toxic_rain.days_to_increase_damage) * events_data.events.toxic_rain.damage_growth_rate))
 	var duration_timer: Timer = Timer.new()
 	duration_timer.one_shot = true
@@ -374,7 +372,8 @@ func trigger_toxic_rain() -> void:
 			if (damaging_times - i) * events_data.events.toxic_rain.damaging_interval_sec < 3.5: 
 				rain.emitting = false
 			game.damage_structure_by_toxic_rain(structure, damage)
-	audio_bus.cancel("rain")
+	AudioBus.cancel("rain")
+	
 func supervise_event_schedule() -> void:
 	if current_schedule_slot == events_schedule.size() - 1 or game.game_ended:
 		set_process(false)

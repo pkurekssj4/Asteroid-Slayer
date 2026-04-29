@@ -16,11 +16,10 @@ var quick_characters_unveiling_per_sec: int = 900
 var unveiling_sound_cfg: Dictionary
 signal ready_to_continue
 
-@onready var audio_bus: Node = get_node("/root/Game/AudioBus")
 
 func _ready() -> void:
 	time_left_to_play_unveiling_sound = unveiling_sound_playback_interval_sec
-	audio_bus.play_audio("message")
+	AudioBus.play("message")
 	$Place.text = place
 	$Sender.text = "Send from: " + sender
 	reset_box_to_new_message("part_1")
@@ -58,7 +57,7 @@ func _process(delta: float) -> void:
 		time_left_to_play_unveiling_sound -= delta
 		if time_left_to_play_unveiling_sound < 0:
 			time_left_to_play_unveiling_sound = unveiling_sound_playback_interval_sec
-			audio_bus.play_audio_from_dict(unveiling_sound_cfg)
+			AudioBus.play_from_dict(unveiling_sound_cfg)
 		if $Message.visible_ratio >= 1: $ContinueButton.show()
 			
 func reset_box_to_new_message(part_string: String) -> void:

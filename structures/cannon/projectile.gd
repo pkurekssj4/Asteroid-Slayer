@@ -10,7 +10,6 @@ var type: String
 var exploded: bool = false
 
 @onready var game: Node2D = get_node("/root/Game")
-@onready var audio_bus: Node = get_node("/root/Game/AudioBus")
 @onready var object_events_hub: Node = get_node("/root/Game/ObjectEventsHub")
 
 signal ready_to_process

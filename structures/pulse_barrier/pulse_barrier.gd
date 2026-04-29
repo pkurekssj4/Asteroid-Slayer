@@ -14,7 +14,6 @@ var source: Area2D = self
 var cooldown_timer: Timer
 @onready var game: Node2D = get_node("/root/Game")
 @onready var vfx_scenes_container: Node = get_node("/root/Game/ScenesContainer/VFX")
-@onready var audio_bus: Node = get_node("/root/Game/AudioBus")
 @onready var resource_loader: Node = get_node("/root/Game/ResourceLoader")
 
 func _ready():
@@ -89,7 +88,7 @@ func scan_sky():
 				targets[key] = targets_to_be_sorted[key][0]
 		for i in targets.keys():
 			if is_instance_valid(targets[i]): targets[i].take_damage(data.damage, self)
-		audio_bus.play_audio("pulse_barrier_attack")
+		AudioBus.play("pulse_barrier_attack")
 		launch_wave()
 		last_cooldown = 1 / data.attack_speed
 		cooldown_timer.start(last_cooldown)

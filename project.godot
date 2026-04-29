@@ -22,6 +22,7 @@ run/max_fps=120
 [autoload]
 
 GlobalScript="*res://global_script.gd"
+AudioBus="*uid://3doraar5jkba"
 
 [display]
 

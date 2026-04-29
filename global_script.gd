@@ -7,6 +7,27 @@ const PLANET_NAME = "Oasis"
 var auto_pause_when_lost_focus: bool = true
 const MESSAGE_BOX = preload("res://ui/message_box/message_box.tscn")
 
+var settings: Dictionary = {
+	"game_muted": false,
+	"debug": {
+		"enabled": false,
+		"cant_lose": false,
+		"asteroids_stopped": false,
+		"all_cds_disabled": true,
+		"keep_pressing_hotkey_to_spawn_asteroids": true,
+		"debug_values": true,
+		"day": 13,
+		"basic_attack_damage": 200,
+		"basic_attack_reload_time": 1,
+		"basic_attack_attack_speed": 5,
+		"basic_attack_capacity": 50,
+		"basic_attack_area_of_effect": 200,
+		"basic_attack_critical_hit_damage_thresholds": [1.2, 1.4],
+		"basic_attack_critical_hit_chance": 0.1,
+		"projectile_speed": 700
+}
+}
+
 const COLOR_PALETTE: Dictionary = {
 	"object_color": "HOT_PINK",
 	"ability_name": "ORANGE",
@@ -1144,10 +1165,30 @@ const irregular_messages: Dictionary = {
 	}
 }
 
-func load_scene(scene_to_load: String):
-	if scene_to_load == "upgrade console": scene_to_load = "res://upgrade_console/upgrade_console.tscn"
-	if scene_to_load == "game": scene_to_load = "res://game.tscn"
+func _ready() -> void:
+	load_settings()
 	
+func load_settings() -> void:
+	if FileAccess.file_exists(get_save_path("config")):
+		var file = FileAccess.open(GlobalScript.get_save_path("config"), FileAccess.READ)
+		settings = file.get_var()
+		file.close()
+	else:
+		save_settings()
+		
+func save_settings() -> void:
+	var file = FileAccess.open(GlobalScript.get_save_path("config"), FileAccess.WRITE)
+	file.store_var(settings)
+	file.close()
+
+func load_scene(scene_to_load: String):
+	AudioBus.stop_all()
+	if scene_to_load == "menu":
+		# Szybkie ładowanie z praktyczne zerowym czasem oczekiwania
+		get_tree().change_scene_to_file("main_menu/menu.tscn")
+		return
+	elif scene_to_load == "console": scene_to_load = "res://upgrade_console/upgrade_console.tscn"
+	elif scene_to_load == "game": scene_to_load = "res://game.tscn"
 	var loading_screen = load("res://loading_screen.tscn").instantiate()
 	loading_screen.scene_to_load = scene_to_load
 	get_tree().root.add_child(loading_screen)

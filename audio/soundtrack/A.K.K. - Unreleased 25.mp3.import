@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://batcgj2xw3s2v"
+path="res://.godot/imported/A.K.K. - Unreleased 25.mp3-258a95ddcda5f2ea97cf17e8ac71f58d.mp3str"
+
+[deps]
+
+source_file="res://audio/soundtrack/A.K.K. - Unreleased 25.mp3"
+dest_files=["res://.godot/imported/A.K.K. - Unreleased 25.mp3-258a95ddcda5f2ea97cf17e8ac71f58d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

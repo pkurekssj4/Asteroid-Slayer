@@ -11,7 +11,6 @@ var config: Dictionary
 @onready var game = get_node("/root/Game")
 @onready var cannon = get_node("/root/Game/Cannon")
 @onready var vfx_scenes_container = get_node("/root/Game/ScenesContainer/VFX")
-@onready var audio_bus = game.get_node("AudioBus")
 @onready var progress_bar_manager = game.get_node("ProgressBarManager")
 @onready var event_manager = get_node("/root/Game/EventManager")
 
@@ -39,7 +38,7 @@ func present_upgrades() -> void:
 	game.game_pausable = false
 	$AnimationPlayer.play("gods_blessings_in")
 	await game.create_delay_timer(2)
-	audio_bus.play_audio("blessings_music")
+	AudioBus.play("blessings_music")
 	progress_bar = progress_bar_manager.create_progress_bar("God's patience", "blue", duration)
 	$Timer.start(duration)
 	can_pick_blessing = true
@@ -58,7 +57,7 @@ func finalize_blessings(blessing_number: String) -> void:
 		"volume_gain": 3.0,
 		"pitch": 1.0
 	}
-	audio_bus.cancel("blessings_music")
+	AudioBus.cancel("blessings_music")
 	if is_instance_valid(progress_bar): progress_bar.cancel(false)
 	var blessing_position = Vector2()
 	blessing_position = $Clouds.get_node("Cloud" + blessing_number).global_position
@@ -90,7 +89,7 @@ func finalize_blessings(blessing_number: String) -> void:
 		"volume_gain": 5.5,
 		"pitch": 1.35
 	}
-	audio_bus.play_audio_from_dict(sound_cfg)
+	AudioBus.play_from_dict(sound_cfg)
 	var current_modulation: Color = bonus_receiver.modulate
 	var new_modulation_raise_tween: Tween = create_tween()
 	new_modulation_raise_tween.tween_property(bonus_receiver, "modulate", Color(9, 9, 9), 5.0)

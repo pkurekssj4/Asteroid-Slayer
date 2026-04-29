@@ -18,7 +18,7 @@ func _ready() -> void:
 	$Particles.modulate = Color (0.2, 0.2, 2, 1)
 	$Panel.modulate = Color (0.3, 0.3, 2, 1)
 	selected_button = $Buttons/Restart
-	if GlobalScript.current_data.game.day == 1 and !game.debug.enabled: $Buttons/UpgradeConsole.hide()
+	if GlobalScript.current_data.game.day == 1 and GlobalScript.settings.debug.enabled: $Buttons/UpgradeConsole.hide()
 	
 func _process(_delta):
 	if GlobalScript.auto_pause_when_lost_focus and !get_window().has_focus() and game.game_pausable: pause_game()
@@ -82,6 +82,7 @@ func _on_restart_pressed() -> void:
 	get_tree().paused = false
 	if GlobalScript.initial_config.new_game: GlobalScript.initial_config.new_game = false
 	game.change_cursor("default")
+	AudioBus.stop_all()
 	get_tree().change_scene_to_file("res://game.tscn")
 
 # === MAIN MENU ===
@@ -97,7 +98,7 @@ func _on_main_menu_pressed() -> void:
 	get_tree().paused = false
 	if GlobalScript.initial_config.new_game: GlobalScript.initial_config.new_game = false
 	game.change_cursor("default")
-	get_tree().change_scene_to_file("main_menu/menu.tscn")
+	GlobalScript.load_scene("menu")
 
 # === UPGRADE MENU ===
 func _on_upgrade_console_mouse_entered() -> void:
@@ -111,7 +112,7 @@ func _on_upgrade_console_focus_entered() -> void:
 func _on_upgrade_console_pressed() -> void:
 	get_tree().paused = false
 	game.change_cursor("default")
-	GlobalScript.load_scene("upgrade console")
+	GlobalScript.load_scene("console")
 
 # === EXIT ===
 func _on_exit_mouse_entered() -> void:

@@ -26,7 +26,6 @@ var ability_3_icon_tween: Tween = null
 var ability_4_icon_tween: Tween = null
 
 @onready var game: Node2D = get_node("/root/Game")
-@onready var audio_bus: Node = get_node("/root/Game/AudioBus")
 @onready var progress_bar_manager: Node = get_node("/root/Game/ProgressBarManager")
 @onready var resource_loader: Node = get_node("/root/Game/ResourceLoader")
 @onready var fabricated_scenes_manager: Node = get_node("/root/Game/FabricatedScenesManager")
@@ -63,7 +62,7 @@ func _process(_delta):
 	check_if_any_button_is_pressed()
 	shooting_control += 1
 	if overheat_progress >= 100 && shooting_control > 25:
-		audio_bus.play_audio("barrel_cooldown")
+		AudioBus.play("barrel_cooldown")
 		create_overheat_particles()
 		overheat_progress = 0
 		shooting_control = 0
@@ -107,7 +106,7 @@ func _on_shoot_delay_timeout():
 
 func reload():
 	if capacity_at_the_moment == int(cannon_data.capacity):
-		audio_bus.play_audio("reload_finished")
+		AudioBus.play("reload_finished")
 		return
 	game.change_cursor("reload")
 	$Timers/ReloadCountdown.start(cannon_data.reload_time)
@@ -119,7 +118,7 @@ func reload():
 
 func reload_finished() -> void:
 	game.change_cursor("default")
-	audio_bus.play_audio("reload_finished")
+	AudioBus.play("reload_finished")
 	is_reloading = false
 	can_shoot = true
 	capacity_at_the_moment = int(cannon_data.capacity)
@@ -151,10 +150,10 @@ func _on_jam_timer_timeout():
 func unjamm():
 	if rng.randi_range(1, 100) < unjamm_chance && trigger_jamm_stage < 2:
 		trigger_jamm_stage = 0
-		if !GlobalScript.current_data.game.muted: audio_bus.play_audio("reload_finished")
+		if !GlobalScript.current_data.game.muted: AudioBus.play("reload_finished")
 	else:
 		if trigger_jamm_stage == 2: trigger_jamm_stage = 1
-		audio_bus.play_audio("trigger_jam")
+		AudioBus.play("trigger_jam")
 		game.display_event_message("Trigger jammed!", 1, "nosound", 0, "red", "normal", "none", 0)
 		unjamm_chance += 20
 
@@ -196,28 +195,28 @@ func check_if_any_button_is_pressed() -> void:
 			if trigger_jamm_stage == 0: shoot()
 			else: if trigger_jamm_stage == 2: unjamm()
 	elif Input.is_action_just_pressed(&"skill1"):
-		if (abilities_data.plasma_barrage.bought and $Timers/PlasmaBarrageCooldown.is_stopped()) or (game.debug.enabled && game.debug.all_cds_disabled):
+		if (abilities_data.plasma_barrage.bought and $Timers/PlasmaBarrageCooldown.is_stopped()) or (GlobalScript.settings.debug.enabled && GlobalScript.settings.debug.all_cds_disabled):
 			$Timers/PlasmaBarrageCooldown.start(abilities_data.plasma_barrage.cooldown)
 			if ability_1_icon_tween != null: ability_1_icon_tween.kill()
 			plasma_barrage_icon.modulate = Color(0.3, 0.3, 0.3, 1)
 			launch_plasma_barrage_projectiles()
 		else: return
 	elif Input.is_action_just_pressed(&"skill2"):
-		if (abilities_data.stasis_field.bought and $Timers/StasisFieldCooldown.is_stopped()) or (game.debug.enabled && game.debug.all_cds_disabled):
+		if (abilities_data.stasis_field.bought and $Timers/StasisFieldCooldown.is_stopped()) or (GlobalScript.settings.debug.enabled && GlobalScript.settings.debug.all_cds_disabled):
 			$Timers/StasisFieldCooldown.start(abilities_data.stasis_field.cooldown)
 			if ability_2_icon_tween != null: ability_2_icon_tween.kill()
 			stasis_field_icon.modulate = Color(0.3, 0.3, 0.3, 1)
 			enable_stasis_field()
 		else: return
 	elif Input.is_action_just_pressed(&"skill3"):
-		if (abilities_data.gravity_well.bought and $Timers/GravityWellCooldown.is_stopped()) or (game.debug.enabled && game.debug.all_cds_disabled):
+		if (abilities_data.gravity_well.bought and $Timers/GravityWellCooldown.is_stopped()) or (GlobalScript.settings.debug.enabled && GlobalScript.settings.debug.all_cds_disabled):
 			$Timers/GravityWellCooldown.start(abilities_data.gravity_well.cooldown)
 			if ability_3_icon_tween != null: ability_3_icon_tween.kill()
 			gravity_well_icon.modulate = Color(0.3, 0.3, 0.3, 1)
 			launch_projectile("gravity_well")
 		else: return
 	elif Input.is_action_just_pressed(&"skill4"):
-		if (abilities_data.orbital_strike.bought and $Timers/OrbitalStrikeCooldown.is_stopped()) or (game.debug.enabled && game.debug.all_cds_disabled):
+		if (abilities_data.orbital_strike.bought and $Timers/OrbitalStrikeCooldown.is_stopped()) or (GlobalScript.settings.debug.enabled && GlobalScript.settings.debug.all_cds_disabled):
 			$Timers/OrbitalStrikeCooldown.start(abilities_data.orbital_strike.cooldown)
 			if ability_4_icon_tween != null: ability_4_icon_tween.kill()
 			orbital_strike_icon.modulate = Color(0.3, 0.3, 0.3, 1)
@@ -229,7 +228,7 @@ func _on_plasma_barrage_cooldown_timeout() -> void:
 	plasma_barrage_icon.modulate = Color(10, 10, 10, 1)
 	if !game.game_ended:
 		game.display_event_message("Plasma Barrage is ready to use", 2, "none", 0, "white", "normal", "none", 0)
-		audio_bus.play_audio("ability_ready")
+		AudioBus.play("ability_ready")
 	ability_1_icon_tween = create_tween()
 	ability_1_icon_tween.tween_property(plasma_barrage_icon, "modulate", Color(1, 1, 1, 1), 0.4)
 	
@@ -238,7 +237,7 @@ func _on_stasis_field_cooldown_timeout() -> void:
 	stasis_field_icon.modulate = Color(10, 10, 10, 1)
 	if !game.game_ended:
 		game.display_event_message("Stasis Field is ready to use", 2, "none", 0, "white", "normal", "none", 0)
-		audio_bus.play_audio("ability_ready")
+		AudioBus.play("ability_ready")
 	ability_2_icon_tween = create_tween()
 	ability_2_icon_tween.tween_property(stasis_field_icon, "modulate", Color(1, 1, 1, 1), 0.4)
 
@@ -247,7 +246,7 @@ func _on_gravity_well_cooldown_timeout() -> void:
 	gravity_well_icon.modulate = Color(10, 10, 10, 1)
 	if !game.game_ended:
 		game.display_event_message("Gravity Well is ready to use", 2, "none", 0, "white", "normal", "none", 0)
-		audio_bus.play_audio("ability_ready")
+		AudioBus.play("ability_ready")
 	ability_3_icon_tween = create_tween()
 	ability_3_icon_tween.tween_property(gravity_well_icon, "modulate", Color(1, 1, 1, 1), 0.4)
 
@@ -256,7 +255,7 @@ func _on_orbital_strike_cooldown_timeout() -> void:
 	orbital_strike_icon.modulate = Color(10, 10, 10, 1)
 	if !game.game_ended:
 		game.display_event_message("Orbital Strike is ready to use", 2, "none", 0, "white", "normal", "none", 0)
-		audio_bus.play_audio("ability_ready")
+		AudioBus.play("ability_ready")
 	ability_4_icon_tween = create_tween()
 	ability_4_icon_tween.tween_property(orbital_strike_icon, "modulate", Color(1, 1, 1, 1), 0.4)
 

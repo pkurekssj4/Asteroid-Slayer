@@ -16,25 +16,6 @@ const DISPLAY_HIERARCHY: Dictionary = {
 	"gods_eyes": [13]
 }
 
-var debug: Dictionary = {
-	"enabled": false,
-	"cant_lose": false,
-	"asteroids_stopped": false,
-	"all_cds_disabled": true,
-	"keep_pressing_hotkey_to_spawn_asteroids": true,
-	"buildings_are_repaired": false,
-	"debug_values": true,
-	"day": 13,
-	"basic_attack_damage": 200,
-	"basic_attack_reload_time": 1,
-	"basic_attack_attack_speed": 5,
-	"basic_attack_capacity": 50,
-	"basic_attack_area_of_effect": 200,
-	"basic_attack_critical_hit_damage_thresholds": [1.2, 1.4],
-	"basic_attack_critical_hit_chance": 0.1,
-	"projectile_speed": 700
-}
-
 var statistics_data: Dictionary = {
 	"mass_destructions": {
 		"count": 0,
@@ -104,7 +85,7 @@ var hyper_cleaner_duration = 5 #seconds
 var event_message_1: RichTextLabel = null
 var event_message_2: RichTextLabel = null
 var event_message_3: RichTextLabel = null
-var current_soundtrack: String
+var current_soundtrack: String = "none"
 var game_pausable: bool = true
 signal game_ready
 
@@ -113,8 +94,7 @@ func _ready():
 		GlobalScript.prepare_for_new_game()
 		save_game()
 	load_game()
-	if FileAccess.file_exists(GlobalScript.get_save_path("config")): load_config()
-	if debug.enabled && debug.debug_values: set_debug_values()
+	if GlobalScript.settings.debug.enabled && GlobalScript.settings.debug.debug_values: set_debug_values()
 	GlobalScript.init()
 	$TimeAndWeather.init()
 	init_structures()
@@ -147,7 +127,7 @@ func init_structures() -> void:
 	update_buildings_label()
 	
 func _on_asteroid_spawn_delay_timeout():
-	if debug.enabled and debug.asteroids_stopped: return
+	if GlobalScript.settings.debug.enabled and GlobalScript.settings.debug.asteroids_stopped: return
 	add_object(true, $FabricatedScenesManager.get_asteroid_scene("random", 0, 0.0, 0, Vector2.ZERO, Vector2.ZERO, true, 0))
 	var spawn_delay_variation_multiplier: float = randf_range((1.0 - (GlobalScript.current_data.asteroids.general.spawn_delay_percent_variation / 2) / 100.0), 1.0 + ((GlobalScript.current_data.asteroids.general.spawn_delay_percent_variation / 2) / 100.0))
 	var spawn_delay: float = spawn_delay_variation_multiplier * GlobalScript.current_data.asteroids.general.spawn_delay
@@ -166,7 +146,7 @@ func end_game() -> void:
 	GlobalScript.current_data.game.day += 1
 	progress_all_structures()
 	save_game()
-	GlobalScript.load_scene("upgrade console")
+	GlobalScript.load_scene("console")
 
 func summary() -> void:
 	await create_delay_timer(1)
@@ -420,28 +400,18 @@ func load_game() -> void:
 	statistics_data.chain_reactions.highscore = file.get_var()
 	file.close()
 	
-func save_config() -> void:
-	var file = FileAccess.open(GlobalScript.get_save_path("config"), FileAccess.WRITE)
-	file.store_var(debug.enabled)
-	file.close()
-	
-func load_config() -> void:
-	var file = FileAccess.open(GlobalScript.get_save_path("config"), FileAccess.READ)
-	debug.enabled = file.get_var()
-	file.close()
-		
 func set_debug_values() -> void:
-	print ("Setting debug cannon values")
-	GlobalScript.current_data.game.day = debug.day
-	return
-	GlobalScript.current_data.structures.cannon.explosion.damage = debug.basic_attack_damage
-	GlobalScript.current_data.structures.cannon.reload_time = debug.basic_attack_reload_time
-	GlobalScript.current_data.structures.cannon.attack_speed = debug.basic_attack_attack_speed
-	GlobalScript.current_data.structures.cannon.capacity = debug.basic_attack_capacity
-	GlobalScript.current_data.structures.cannon.projectile_speed = debug.projectile_speed
-	GlobalScript.current_data.structures.cannon.explosion.area_of_effect = debug.basic_attack_area_of_effect
-	GlobalScript.current_data.structures.cannon.explosion.critical_hit_damage_thresholds = debug.basic_attack_critical_hit_damage_thresholds
-	GlobalScript.current_data.structures.cannon.explosion.critical_hit_chance = debug.basic_attack_critical_hit_chance
+	print ("Setting debug values")
+	GlobalScript.current_data.game.day = GlobalScript.settings.debug.day
+	if !GlobalScript.settings.debug.debug_values: return
+	GlobalScript.current_data.structures.cannon.explosion.damage = GlobalScript.settings.debug.basic_attack_damage
+	GlobalScript.current_data.structures.cannon.reload_time = GlobalScript.settings.debug.basic_attack_reload_time
+	GlobalScript.current_data.structures.cannon.attack_speed = GlobalScript.settings.debug.basic_attack_attack_speed
+	GlobalScript.current_data.structures.cannon.capacity = GlobalScript.settings.debug.basic_attack_capacity
+	GlobalScript.current_data.structures.cannon.projectile_speed = GlobalScript.settings.debug.projectile_speed
+	GlobalScript.current_data.structures.cannon.explosion.area_of_effect = GlobalScript.settings.debug.basic_attack_area_of_effect
+	GlobalScript.current_data.structures.cannon.explosion.critical_hit_damage_thresholds = GlobalScript.settings.debug.basic_attack_critical_hit_damage_thresholds
+	GlobalScript.current_data.structures.cannon.explosion.critical_hit_chance = GlobalScript.settings.debug.basic_attack_critical_hit_chance
 	
 func update_buildings_label() -> void:
 	$GUI/BuildingsThresholdCount.text = str(buildings_data.active) + "/" + str(buildings_data.destroyed_count_threshold)
@@ -485,7 +455,7 @@ func draw_shard(object: Area2D) -> void:
 			"name" = "shard_collected",
 			"pitch" = pitch_scale
 		}
-		$AudioBus.play_audio_from_dict(sound_cfg)
+		AudioBus.play_from_dict(sound_cfg)
 		play_new_score_animation(shard_string)
 		display_small_text_event(shard_string, 1, object.global_position)
 		refresh_shards()
@@ -494,26 +464,24 @@ func draw_shard(object: Area2D) -> void:
 func check_if_any_button_is_pressed() -> void:
 	#debugging
 	if Input.is_action_just_pressed(&"enable_debugging"):
-			if debug.enabled:
-				debug.enabled = false
+			if GlobalScript.settings.debug.enabled:
+				GlobalScript.settings.debug.enabled = false
 			else:
-				debug.enabled = true
-			display_event_message("debugging: " + str(debug.enabled), 2, "no_sound", 0, "white", "normal", "none", 0)
-			save_config()
+				GlobalScript.settings.debug.enabled = true
+			display_event_message("debugging: " + str(GlobalScript.settings.debug.enabled), 2, "no_sound", 0, "white", "normal", "none", 0)
+			GlobalScript.save_settings()
 	#mute
 	if Input.is_action_just_pressed(&"mute"):
-		if !GlobalScript.current_data.game.muted: 
-			GlobalScript.current_data.game.muted = true
-			$Sounds/Ambient.stop()
-			$Sounds/Rain.stop()
-		else: GlobalScript.current_data.game.muted = false
-		save_config()
+		if !GlobalScript.settings.game_muted: 
+			GlobalScript.settings.game_muted = true
+		else: GlobalScript.settings.game_muted = false
+		GlobalScript.save_settings()
 	if game_ended || game_stopped: return
-	if debug.enabled:
+	if GlobalScript.settings.debug.enabled:
 		var asteroid_1 = "splitting"
 		var asteroid_2 = "electric"
 		var asteroid_3 = "plasma"
-		if debug.keep_pressing_hotkey_to_spawn_asteroids:
+		if GlobalScript.settings.debug.keep_pressing_hotkey_to_spawn_asteroids:
 			if Input.is_action_just_pressed(&"spawn_asteroid"):
 				add_object(true, $FabricatedScenesManager.get_asteroid_scene(asteroid_1, 0, 0.15, 1, get_global_mouse_position(), Vector2.ZERO, false, 0))
 			elif Input.is_action_just_pressed(&"spawn_asteroid_2"):
@@ -536,29 +504,30 @@ func check_if_any_button_is_pressed() -> void:
 			display_event_message("game saved", 1, "no_sound", 1.0, "white", "normal", "no_icon", 0)
 			
 		elif Input.is_action_just_pressed(&"keep_pressing_hotkey_to_spawn_asteroids"):
-			if debug.keep_pressing_hotkey_to_spawn_asteroids:
-				debug.keep_pressing_hotkey_to_spawn_asteroids = false
-			else: debug.keep_pressing_hotkey_to_spawn_asteroids = true
-			display_event_message("keep_pressing_hotkey_to_spawn_asteroids: " + str(debug.keep_pressing_hotkey_to_spawn_asteroids), 2, "no_sound", 0, "white", "normal", "none", 0)
+			if GlobalScript.settings.debug.keep_pressing_hotkey_to_spawn_asteroids:
+				GlobalScript.settings.debug.keep_pressing_hotkey_to_spawn_asteroids = false
+			else: GlobalScript.settings.debug.keep_pressing_hotkey_to_spawn_asteroids = true
+			display_event_message("keep_pressing_hotkey_to_spawn_asteroids: " + str(GlobalScript.settings.debug.keep_pressing_hotkey_to_spawn_asteroids), 2, "no_sound", 0, "white", "normal", "none", 0)
 			
 		elif Input.is_action_just_pressed(&"stop_asteroids"):
-			if debug.asteroids_stopped:
-				debug.asteroids_stopped = false
+			if GlobalScript.settings.debug.asteroids_stopped:
+				GlobalScript.settings.debug.asteroids_stopped = false
 				$EventManager.set_process(true)
 			else: 
-				debug.asteroids_stopped = true
+				GlobalScript.settings.debug.asteroids_stopped = true
 				$EventManager.set_process(false)
-			display_event_message("asteroids stoppped: " + str(debug.asteroids_stopped), 2, "no_sound", 0, "white", "normal", "none", 0)
+			display_event_message("asteroids stoppped: " + str(GlobalScript.settings.debug.asteroids_stopped), 2, "no_sound", 0, "white", "normal", "none", 0)
 		elif Input.is_action_just_pressed(&"instant_end"):
 			GlobalScript.current_data.asteroids.general.asteroids_left = 0
 			GlobalScript.current_data.asteroids.general.asteroids_alive = 0
 			game_ended = true
 			$EventManager.advance_game_state()
 		elif Input.is_action_just_pressed(&"cant_lose"):
-			if debug.cant_lose:
-				debug.cant_lose = false
-			else: debug.cant_lose = true
-			display_event_message("cant lose: " + str(debug.cant_lose), 2, "no_sound", 0, "white", "normal", "none", 0)
+			if GlobalScript.settings.debug.cant_lose:
+				GlobalScript.settings.debug.cant_lose = false
+			else: GlobalScript.settings.debug.cant_lose = true
+			GlobalScript.save_settings()
+			display_event_message("cant lose: " + str(GlobalScript.settings.debug.cant_lose), 2, "no_sound", 0, "white", "normal", "none", 0)
 
 func _on_against_all_odds_timer_timeout() -> void:
 	if against_all_odds_buildings_count >= 3:
@@ -580,7 +549,7 @@ func stop_game(type: bool) -> void:
 	game_stopped = type
 
 func launch_special_asteroid_wave(day: int) -> void:
-	var soundtrack_path: String = $AudioBus.audio_path + "/soundtrack"
+	var soundtrack_path: String = AudioBus.audio_path + "/soundtrack"
 	match day:
 		5:
 			var music_cfg: Dictionary = {
@@ -589,8 +558,8 @@ func launch_special_asteroid_wave(day: int) -> void:
 				"name" = "day_5_soundtrack",
 				"pitch" = 1.0
 			}
-			$AudioBus.add_new_player(soundtrack_path, music_cfg.name + ".mp3")
-			$AudioBus.play_audio_from_dict(music_cfg)
+			AudioBus.add_new_player(soundtrack_path, music_cfg.name + ".mp3")
+			AudioBus.play_from_dict(music_cfg)
 			current_soundtrack = music_cfg.name
 			var asteroids_in_wave: int = 59
 			GlobalScript.current_data.asteroids.general.asteroids_total = asteroids_in_wave
@@ -607,8 +576,8 @@ func launch_special_asteroid_wave(day: int) -> void:
 				"name" = "day_15_soundtrack",
 				"pitch" = 1.0
 			}
-			$AudioBus.add_new_player(soundtrack_path, music_cfg.name + ".mp3")
-			$AudioBus.play_audio_from_dict(music_cfg)
+			AudioBus.add_new_player(soundtrack_path, music_cfg.name + ".mp3")
+			AudioBus.play_from_dict(music_cfg)
 			current_soundtrack = music_cfg.name
 			var asteroids_in_wave: int = 85
 			GlobalScript.current_data.asteroids.general.asteroids_total = asteroids_in_wave
@@ -617,8 +586,8 @@ func launch_special_asteroid_wave(day: int) -> void:
 			var available_types: Array[String] = ["toxic", "splitting"]
 			for i in range (1, asteroids_in_wave + 1):
 				if game_ended: break
-				await create_delay_timer(randf_range(0.70, 1.15))
-				add_object(true, $FabricatedScenesManager.get_asteroid_scene(available_types.pick_random(), 0, randf_range(0.23, 0.3), 0, Vector2.ZERO, Vector2.ZERO, true, 0))
+				await create_delay_timer(randf_range(0.90, 1.35))
+				add_object(true, $FabricatedScenesManager.get_asteroid_scene(available_types.pick_random(), 0, randf_range(0.23, 0.28), 0, Vector2.ZERO, Vector2.ZERO, true, 0))
 		25:
 			var music_cfg: Dictionary = {
 			"pitch_percent_variation" = 0.0,
@@ -626,8 +595,8 @@ func launch_special_asteroid_wave(day: int) -> void:
 			"name" = "A.K.K. - Unreleased 1",
 			"pitch" = 1.0
 			}
-			$AudioBus.add_new_player(soundtrack_path, music_cfg.name + ".mp3")
-			$AudioBus.play_audio_from_dict(music_cfg)
+			AudioBus.add_new_player(soundtrack_path, music_cfg.name + ".mp3")
+			AudioBus.play_from_dict(music_cfg)
 			current_soundtrack = music_cfg.name
 			var asteroids_in_wave: int = 90
 			GlobalScript.current_data.asteroids.general.asteroids_total = asteroids_in_wave
@@ -641,7 +610,7 @@ func launch_special_asteroid_wave(day: int) -> void:
 				add_object(true, $FabricatedScenesManager.get_asteroid_scene("hyper_velocity", 1, randf_range(0.20, 0.27), 0, Vector2.ZERO, Vector2.ZERO, false, 0))
 			
 func trigger_game_over_sequence() -> void:
-	if (debug.enabled && debug.cant_lose) or game_ended: return
+	if (GlobalScript.settings.debug.enabled && GlobalScript.settings.debug.cant_lose) or game_ended: return
 	$Sounds/GameOver.play()
 	game_ended = true
 	$PauseAndGameOverMenu.switch_to_game_over()
@@ -748,7 +717,7 @@ func create_durability_bars() -> void:
 			elif i == 3:
 				# ciemny czerwony (damage taken this day)
 				new_durability_bar.set_script(null)
-				new_durability_bar.modulate = Color(0.25, 0.25, 0.25)
+				new_durability_bar.modulate = Color(0.45, 0.15, 0.15)
 				main_durability_bar.damage_taken_this_day_bar = new_durability_bar
 				new_durability_bar.z_index = durability_bar_z_index - 2
 	

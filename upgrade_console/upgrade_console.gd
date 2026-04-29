@@ -519,7 +519,9 @@ func _ready():
 	load_game()
 	GlobalScript.init()
 	get_window().grab_focus()
-	intro()
+	await get_tree().create_timer(1.5).timeout
+	if !GlobalScript.current_data.game.muted: $Sounds/HatchOpening.play()
+	$AnimationPlayer.play("hatch_opening")
 	# GlobalScript.current_data.game.day = 2
 	#player_specialisation = "none"
 	modulate_statistics_labels()
@@ -534,7 +536,7 @@ func _ready():
 		assign_values_to_blessings() 
 		$UpgradeButtons/Blessings.show()
 	else: $UpgradeButtons/Blessings.hide()
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(1.8).timeout
 	
 	var day_string: String = "day_" + str(GlobalScript.current_data.game.day)
 	if GlobalScript.regular_messages.console.has(day_string):
@@ -544,7 +546,7 @@ func _ready():
 	if GlobalScript.current_data.game.day == 6: $UpgradeButtons/BlessingsBlinkingAnimation.play("default")
 	activated = true
 
-func _process(_delta):
+func _process(delta):
 	if grid_alpha_mask_is_fading:
 		$Background/GridAlphaMask.position.x += 6
 		if $Background/GridAlphaMask.position.x >= 2500:
@@ -558,24 +560,6 @@ func _process(_delta):
 			var blue: float = rng.randi_range(1, 100) / 100.0
 			var alpha = 0.5
 			tween.tween_property($Background/GridAlphaMask, "modulate", Color(red, green, blue, alpha), grid_alpha_mask_duration)
-
-func intro() -> void:
-	$OpeningHatch.show()
-	await get_tree().create_timer(1.5).timeout
-	if !GlobalScript.current_data.game.muted: $Sounds/HatchOpening.play()
-	var slow_opening_time_sec: float = 0.6
-	var fast_opening_time_sec: float = 0.9
-	while slow_opening_time_sec > 0.0:
-		slow_opening_time_sec -= delta
-	for i in range(1, 15):
-		await get_tree().create_timer(0.02).timeout
-		$OpeningHatch/Upper.global_position.y -= 1.5
-		$OpeningHatch/Lower.global_position.y += 1.5
-	for i in range(1, 40):
-		await get_tree().create_timer(0.02).timeout
-		$OpeningHatch/Upper.global_position.y -= 15
-		$OpeningHatch/Lower.global_position.y += 15
-	$OpeningHatch.queue_free()
 
 func load_game():
 	print("Loading")
@@ -677,8 +661,7 @@ func _on_done_pressed():
 	if $UpgradeTrees/Abilities/Ability2/StasisFieldBigUpgrade0Initial.IsBought: ability_2 = "Stasis Field"
 	if $UpgradeTrees/Abilities/Ability3/GravityWellBigUpgrade0Initial.IsBought: ability_3 = "Gravity Well"
 	if $UpgradeTrees/Abilities/Ability4/OrbitalStrikeBigUpgrade0Initial.IsBought: ability_4 = "Orbital Strike"
-	$fadeOffSolid.show()
-	$fadeOff.play("fade_off")
+	$AnimationPlayer.play("fade_off")
 	if !GlobalScript.current_data.game.muted: $Sounds/LaunchGame.play()
 	await get_tree().create_timer(2.0).timeout
 	save_game()

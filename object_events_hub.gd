@@ -2,7 +2,6 @@ extends Node
 var critical_chance_rngs: Dictionary = {}
 
 @onready var game: Node2D = get_node("/root/Game")
-@onready var audio_bus: Node = get_node("/root/Game/AudioBus")
 @onready var fever: Node = get_node("/root/Game/Fever")
 @onready var event_manager: Node = get_node("/root/Game/EventManager")
 
@@ -11,7 +10,7 @@ func execute_fx(event_type: String, object: Area2D) -> void:
 		if event_type == "launch":
 			match category:
 				"sound_when_launched":
-					audio_bus.play_audio_from_dict(object.audio_visual_effects[category])
+					AudioBus.play_from_dict(object.audio_visual_effects[category])
 				"visuals_when_launched":
 					await object.ready_to_process # <- swiezy start / ukonczenie flashowania / ukonczenie trasnformacji
 					adjust_visuals_to_scale_reference(object, object.audio_visual_effects.visuals_when_launched)
@@ -25,7 +24,7 @@ func execute_fx(event_type: String, object: Area2D) -> void:
 			if object.audio_visual_effects.has("visuals_when_launched"): adjust_visuals_to_scale_reference(object, object.audio_visual_effects.visuals_when_launched) # update followersow
 			match category:
 				"sound_when_damaged":
-					audio_bus.play_audio_from_dict(object.audio_visual_effects[category])
+					AudioBus.play_from_dict(object.audio_visual_effects[category])
 				"visuals_when_damaged":
 					adjust_visuals_to_scale_reference(object, object.audio_visual_effects.visuals_when_damaged)
 					for visual in object.audio_visual_effects[category]:
@@ -35,7 +34,7 @@ func execute_fx(event_type: String, object: Area2D) -> void:
 		elif event_type == "destroyed":
 			match category:
 				"sound_when_destroyed":
-					audio_bus.play_audio_from_dict(object.audio_visual_effects[category])
+					AudioBus.play_from_dict(object.audio_visual_effects[category])
 				"visuals_when_destroyed":
 					adjust_visuals_to_scale_reference(object, object.audio_visual_effects.visuals_when_destroyed)
 					for visual in object.audio_visual_effects[category]:
@@ -131,7 +130,7 @@ func resolve_damage(area_owner: Area2D, intruder: Area2D) -> float:
 			#print ("Zwykly damage: " + str(area_owner.collision_parameters.damage) + " / Critical Damage: " + str(critical_hit_damage))
 			#print ("Mnoznik kryta: " + str(critical_damage_multiplier) + " / Procentowa sila kryta: " + str(critical_damage_percent_power))
 			#print ("-------------------------")
-			audio_bus.play_audio("critical_hit")
+			AudioBus.play("critical_hit")
 			var type: String
 			if critical_damage_percent_power < 0.33: type = "weak"
 			elif critical_damage_percent_power < 0.66: type = "medium"

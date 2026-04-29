@@ -9,8 +9,6 @@ var shift_duration: float
 var last_shift_time: float = 0.0
 var alpha_channel: float
 @onready var game = get_node("/root/Game")
-@onready var audio_bus = get_node("/root/Game/AudioBus")
-
 func _ready() -> void:
 	parent = get_parent()
 	data_dict = GlobalScript.current_data.asteroids

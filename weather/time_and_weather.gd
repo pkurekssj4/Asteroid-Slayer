@@ -46,7 +46,6 @@ var cloud_timer: Timer
 @onready var fractals: Sprite2D = get_node("/root/Game/Fractals")
 @onready var stars: Sprite2D = get_node("/root/Game/Stars")
 @onready var rain: GPUParticles2D = get_node("/root/Game/Rain")
-@onready var audio_bus: Node = get_node("/root/Game/AudioBus")
 @onready var event_manager: Node = get_node("/root/Game/EventManager")
 
 func _ready() -> void:
@@ -91,8 +90,8 @@ func init() -> void:
 		rain.preprocess = 10
 		rain.emitting = true
 		rain.modulate = Color(0.3, 0.8, 1.0, 0.8)
-		audio_bus.play_audio("rain")
-	else: audio_bus.play_audio("ambient")
+		AudioBus.play("rain")
+	else: AudioBus.play("ambient")
 	
 	wind = randi_range(1,2)
 	if wind == 1: wind = randi_range(3,12)

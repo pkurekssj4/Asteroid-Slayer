@@ -12,7 +12,6 @@ var ms_left_to_scan_sky: int = 0
 
 @onready var game = get_node("/root/Game")
 @onready var vfx_scenes_container = get_node("/root/Game/ScenesContainer/VFX")
-@onready var audio_bus = get_node("/root/Game/AudioBus")
 @onready var resource_loader = get_node("/root/Game/ResourceLoader")
 
 func _ready() -> void:
@@ -67,5 +66,5 @@ func trigger_visual_effect(target_position: Vector2):
 	new_electric_discharge_visual_effect.init_position = parent.global_position
 	new_electric_discharge_visual_effect.parent = parent
 	new_electric_discharge_visual_effect.z_index = game.get_display_index("visual_effects")
-	audio_bus.play_audio("electric_discharge")
+	AudioBus.play("electric_discharge")
 	vfx_scenes_container.add_child(new_electric_discharge_visual_effect)

@@ -16,7 +16,7 @@ func _ready():
 	#get_tree().root.content_scale_size = Vector2i(1024, 768)
 	$MainMenuContainer.hide()
 	get_window().grab_focus()
-	$BackgroundMusic.play()
+	AudioBus.play("menu_background_music")
 	for child in get_children(): if child.get_name().contains("Container"): child.position = (get_viewport_rect().size / 2) - (child.size / 2)
 	load_main_menu()
 	$MainMenuContainer.show()
@@ -185,8 +185,8 @@ func _on_save_slot_3_pressed() -> void:
 			launch_game()
 		
 func launch_game() -> void:
-	$BackgroundMusic.stop()
-	$LaunchGameSound.play()
+	AudioBus.stop("menu_background_music")
+	AudioBus.play("launch_game")
 	$FadeOffSolid.show()
 	$FadeOffAnimation.play("fade_off")
 	await get_tree().create_timer(2.0).timeout

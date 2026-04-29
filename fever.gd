@@ -9,7 +9,6 @@ var shader_phase_raise_per_second: float = 0.5
 var current_damage_percent_decline_per_second: float = 1.0
 @onready var fever_meter: TextureProgressBar = get_node("/root/Game/GUI/Fever/ProgressBar")
 @onready var game: Node2D = get_node("/root/Game")
-@onready var audio_bus: Node = get_node("/root/Game/AudioBus")
 @onready var cannon: Node2D = get_node("/root/Game/Cannon")
 @onready var reloading_timer: Timer = get_node("/root/Game/Cannon/Timers/ReloadCountdown")
 @onready var resource_loader: Node = get_node("/root/Game/ResourceLoader")
@@ -51,7 +50,7 @@ func start_fever() -> void:
 	current_damage = required_damage
 	GlobalScript.current_data.fever.enabled = true
 	timer.start(GlobalScript.current_data.fever.duration)
-	audio_bus.play_audio("fever")
+	AudioBus.play("fever")
 	game.display_event_message("Fever!", 2, "none", 0.0, "fuchsia", "big", "none", 0)
 	GlobalScript.include_additive_stats(true, "fever")
 	fever_meter.material = shader_material
