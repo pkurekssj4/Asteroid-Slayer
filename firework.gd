@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 func _process(_delta: float) -> void:
 	if position.y <= destination_y:
 		set_process(false)
-		if !GlobalScript.current_data.game.muted: $ExplosionSound.play()
+		AudioBus.play("firework_explosion")
 		$TrailParticles.emitting = false
 		$ExplosionParticles.emitting = true
 		$ExplosionParticles.modulate = Color (randf_range(1, 3), randf_range(1, 3), randf_range(1, 3), 2)

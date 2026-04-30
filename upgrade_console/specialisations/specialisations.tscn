@@ -4,7 +4,6 @@
 [ext_resource type="StyleBox" uid="uid://dr855ur533prw" path="res://ui/secondary_background.tres" id="2_1iv8x"]
 [ext_resource type="StyleBox" uid="uid://dvqcalwap7rp5" path="res://ui/background.tres" id="2_1qxk1"]
 [ext_resource type="Shader" uid="uid://bcwjlvguwqjyd" path="res://shaders/message_box_border_animation.gdshader" id="2_h21no"]
-[ext_resource type="AudioStream" uid="uid://bhr50n3yl6324" path="res://upgrade_console/specialisations/new_specialisation.mp3" id="2_rpvm0"]
 [ext_resource type="Theme" uid="uid://d1icjuesk3qr0" path="res://ui/button.tres" id="4_yc4lr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6oeup"]
@@ -331,9 +330,6 @@ offset_right = 256.0
 offset_bottom = 106.0
 theme = ExtResource("4_yc4lr")
 text = "Continue"
-
-[node name="SpecialisationChangedSound" type="AudioStreamPlayer" parent="." unique_id=587191596]
-stream = ExtResource("2_rpvm0")
 
 [node name="SpecialisationChangedParticles" type="GPUParticles2D" parent="." unique_id=1463747993]
 position = Vector2(239, 131)

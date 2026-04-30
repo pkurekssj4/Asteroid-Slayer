@@ -11,8 +11,10 @@ var minute: int
 var initial_statistics_labels_already_adjusted = false
 var toolTip: int = 0
 var lastToolTipId: int = 0
-var grid_alpha_mask_is_fading: bool = true
-var grid_alpha_mask_duration: float = 6.0
+var light_sweep_is_moving: bool = false
+var light_sweep_moving_duration_sec: float = 13.0
+var light_sweep_delay_sec_when_finished: float = 6.0
+var light_sweep_color_change_tween: Tween
 
 #highscores
 var mass_destructions_highscore: int
@@ -520,7 +522,7 @@ func _ready():
 	GlobalScript.init()
 	get_window().grab_focus()
 	await get_tree().create_timer(1.5).timeout
-	if !GlobalScript.current_data.game.muted: $Sounds/HatchOpening.play()
+	AudioBus.play("console_hatch_opening")
 	$AnimationPlayer.play("hatch_opening")
 	# GlobalScript.current_data.game.day = 2
 	#player_specialisation = "none"
@@ -547,19 +549,22 @@ func _ready():
 	activated = true
 
 func _process(delta):
-	if grid_alpha_mask_is_fading:
-		$Background/GridAlphaMask.position.x += 6
+	if light_sweep_is_moving:
+		$Background/GridAlphaMask.position.x += (3500 / light_sweep_moving_duration_sec) * delta
 		if $Background/GridAlphaMask.position.x >= 2500:
 			$Background/GridAlphaMask.position.x = -1000
-			grid_alpha_mask_is_fading = false
-			await get_tree().create_timer(grid_alpha_mask_duration * 2).timeout
-			grid_alpha_mask_is_fading = true
-			var tween = get_tree().create_tween()
+			light_sweep_is_moving = false
 			var red: float = rng.randi_range(1, 100) / 100.0
 			var green: float = rng.randi_range(1, 100) / 100.0
 			var blue: float = rng.randi_range(1, 100) / 100.0
-			var alpha = 0.5
-			tween.tween_property($Background/GridAlphaMask, "modulate", Color(red, green, blue, alpha), grid_alpha_mask_duration)
+			var alpha: float = 0.65
+			light_sweep_color_change_tween = create_tween()
+			light_sweep_color_change_tween.tween_property($Background/GridAlphaMask, "modulate", Color(red, green, blue, alpha), light_sweep_moving_duration_sec)
+	else:
+		set_process(false)
+		await get_tree().create_timer(light_sweep_delay_sec_when_finished).timeout
+		light_sweep_is_moving = true
+		set_process(true)
 
 func load_game():
 	print("Loading")
@@ -662,7 +667,7 @@ func _on_done_pressed():
 	if $UpgradeTrees/Abilities/Ability3/GravityWellBigUpgrade0Initial.IsBought: ability_3 = "Gravity Well"
 	if $UpgradeTrees/Abilities/Ability4/OrbitalStrikeBigUpgrade0Initial.IsBought: ability_4 = "Orbital Strike"
 	$AnimationPlayer.play("fade_off")
-	if !GlobalScript.current_data.game.muted: $Sounds/LaunchGame.play()
+	AudioBus.play("launch_game")
 	await get_tree().create_timer(2.0).timeout
 	save_game()
 	GlobalScript.load_scene("game")
@@ -670,12 +675,6 @@ func _on_done_pressed():
 func _on_main_menu_pressed() -> void:
 	if !activated: return
 	get_tree().change_scene_to_file("res://main_menu/menu.tscn")
-
-func play_ok_sound():
-	if !GlobalScript.current_data.game.muted: $Sounds/Ok.play()
-
-func play_nok_sound():
-	if !GlobalScript.current_data.game.muted: $Sounds/Nok.play()
 
 func refresh_shards(Type) -> void:
 	if Type == "all" || Type == "common":
@@ -798,7 +797,7 @@ func show_upgrade_tree(tree_name_to_show: String, play_sound: bool) -> void:
 		$AsteroidsTreeDisabledPanel.hide()
 
 
-	if play_sound: $Sounds/TreeChange.play()
+	if play_sound: AudioBus.play("console_interaction")
 
 func add_resources(resource: String, amount: int, add: bool) -> void:
 	var resource_label = null # zmiana na Resource?

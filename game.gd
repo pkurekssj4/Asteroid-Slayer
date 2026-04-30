@@ -1,6 +1,4 @@
 extends Node2D
-const DEFAULT_CURSOR = preload("res://cursor.png")
-const RELOAD_CURSOR = preload("res://cursor_reload.png")
 const EVENT_MESSAGE = preload("res://event_message.tscn")
 const TOOLTIP_SCENE = preload("res://tooltip_ingame.tscn")
 const FIREWORK = preload("res://firework.tscn")
@@ -106,7 +104,7 @@ func _ready():
 	assign_values_to_resources()
 	emit_signal("game_ready")
 	
-func _process(delta):
+func _process(_delta):
 	check_if_any_button_is_pressed()
 	progress_pending_highscore_ticks()
 
@@ -158,12 +156,12 @@ func summary() -> void:
 	$Summary/DestroyedAsteroidsLabel.show()
 	$Summary/DestroyedAsteroidsCount.text = str(GlobalScript.current_data.asteroids.general.asteroids_destroyed) + "/" + str(GlobalScript.current_data.asteroids.general.asteroids_total)
 	$Summary/DestroyedAsteroidsCount.show()
-	if !GlobalScript.current_data.game.muted: $Sounds/Summary.play()
+	AudioBus.play("summary")
 	await create_delay_timer(delay)
 	$Summary/LostBuildingsLabel.show()
 	$Summary/LostBuildingsCount.text = str(buildings_data.destroyed_count_this_day)
 	$Summary/LostBuildingsCount.show()
-	if !GlobalScript.current_data.game.muted: $Sounds/Summary.play()
+	AudioBus.play("summary")
 	await create_delay_timer(delay)
 	$Summary/AccuracyLabel.show()
 	var accuracy_shots = statistics_data.basic_attack.shots_fired - statistics_data.basic_attack.shots_missed
@@ -171,29 +169,29 @@ func summary() -> void:
 	else: percent = 0
 	$Summary/AccuracyNumber.text = str(accuracy_shots) + "/" + str(statistics_data.basic_attack.shots_fired) + " (" + str(percent) + "%)"
 	$Summary/AccuracyNumber.show()
-	if !GlobalScript.current_data.game.muted: $Sounds/Summary.play()
+	AudioBus.play("summary")
 	await create_delay_timer(delay)
 	$Summary/HyperLabel.show()
 	if statistics_data.hyper_asteroids.count != 0: percent = floor(statistics_data.hyper_asteroids.destroyed_count * 100.0 / statistics_data.hyper_asteroids.count)
 	else: percent = 0
 	$Summary/HyperCount.text = str(statistics_data.hyper_asteroids.destroyed_count) + "/" + str(statistics_data.hyper_asteroids.count) + " (" + str(percent) +"%)"
 	$Summary/HyperCount.show()
-	if !GlobalScript.current_data.game.muted: $Sounds/Summary.play()
+	AudioBus.play("summary")
 	await create_delay_timer(delay)
 	$Summary/MassDestructionsLabel.show()
 	$Summary/MassDestructionsCount.text = str(statistics_data.mass_destructions.count) + " (" + str(statistics_data.mass_destructions.cumulated_rewards) + " Resource Credits)"
 	$Summary/MassDestructionsCount.show()
-	if !GlobalScript.current_data.game.muted: $Sounds/Summary.play()
+	AudioBus.play("summary")
 	await create_delay_timer(delay)
 	$Summary/ChainReactionsLabel.show()
 	$Summary/ChainReactionsCount.text = str(statistics_data.chain_reactions.count) + " (" + str(statistics_data.chain_reactions.cumulated_rewards) + " Resource Credits)"
 	$Summary/ChainReactionsCount.show()
-	if !GlobalScript.current_data.game.muted: $Sounds/Summary.play()
+	AudioBus.play("summary")
 	await create_delay_timer(delay)
 	$Summary/AccuracyStreaksLabel.show()
 	$Summary/AccuracyStreaksCount.text = str(statistics_data.accuracy_streaks.count) + " (" + str(statistics_data.accuracy_streaks.cumulated_rewards) + " Resource Credits)"
 	$Summary/AccuracyStreaksCount.show()
-	if !GlobalScript.current_data.game.muted: $Sounds/Summary.play()
+	AudioBus.play("summary")
 	await create_delay_timer(delay)
 	$Summary/ContinueButton.show()
 
@@ -260,21 +258,18 @@ func display_event_message(msg: String, time: int, sound: String, pitch: float, 
 	if sound == "mass destruction": 
 		if pitch >= 3: pitch = 3
 		$Sounds/MassDestruction.pitch_scale = pitch
-		if !GlobalScript.current_data.game.muted: $Sounds/MassDestruction.play()
+		AudioBus.play("mass_destruction")
 	elif sound == "accuracy streak": 
 		if pitch >= 2.7: pitch = 2.7
 		$Sounds/AccuracyStreak.pitch_scale = pitch
-		if !GlobalScript.current_data.game.muted: $Sounds/AccuracyStreak.play()
-	elif sound == "new highscore": $Sounds/NewHighscore.play()
-	elif sound == "accuracy streak failed": $Sounds/AccuracyStreakFailed.play()
-	elif sound == "building hit": $Sounds/BuildingHit.play()
-	elif sound == "fever": $Sounds/Fever.play() 
-	elif sound == "hyper": $Sounds/HyperDestroyed.play()
-	elif sound == "last stand": $Sounds/LastStand.play()
-	elif sound == "against all odds": $Sounds/AgainstAllOdds.play()
+		AudioBus.play("accuracy_streak")
+	elif sound == "new highscore": AudioBus.play("new_highscore")
+	elif sound == "accuracy streak failed": AudioBus.play("accuracy_streak_failed")
+	elif sound == "last stand": AudioBus.play("last_stand")
+	elif sound == "against all odds": AudioBus.play("against_all_odds")
 	elif sound == "ending message":
 		new_event_message.waving = true
-		if !GlobalScript.current_data.game.muted: $Sounds/EndingMessage.play()
+		AudioBus.play("victory")
 			
 	add_child(new_event_message)
 
@@ -425,10 +420,6 @@ func update_buildings_label() -> void:
 func _on_continue_button_button_down() -> void:
 	$EventManager.advance_game_state()
 
-func change_cursor(cursor: String) -> void:
-	if cursor == "default": Input.set_custom_mouse_cursor(DEFAULT_CURSOR, Input.CURSOR_ARROW, Vector2(20,20))
-	elif cursor == "reload": Input.set_custom_mouse_cursor(RELOAD_CURSOR, Input.CURSOR_ARROW, Vector2(20,20))
-	
 func refresh_shards() -> void:
 	$GUI/Score/CommonShards/Count.text = str(GlobalScript.current_data.resources.common_shards)
 	$GUI/Score/CelestialShards/Count.text = str(GlobalScript.current_data.resources.celestial_shards)
@@ -567,8 +558,8 @@ func launch_special_asteroid_wave(day: int) -> void:
 			GlobalScript.current_data.asteroids.general.asteroids_alive = 0
 			for i in range (1, asteroids_in_wave + 1):
 				if game_ended: break
-				await create_delay_timer(randf_range(1.5, 1.8))
-				add_object(true, $FabricatedScenesManager.get_asteroid_scene("common", 0, randf_range(0.20, 0.33), 0, Vector2.ZERO, Vector2.ZERO, false, 0))
+				await create_delay_timer(randf_range(1.4, 1.75))
+				add_object(true, $FabricatedScenesManager.get_asteroid_scene("common", 0, randf_range(0.21, 0.34), 0, Vector2.ZERO, Vector2.ZERO, false, 0))
 		15:
 			var music_cfg: Dictionary = {
 				"pitch_percent_variation" = 0.0,
@@ -611,7 +602,7 @@ func launch_special_asteroid_wave(day: int) -> void:
 			
 func trigger_game_over_sequence() -> void:
 	if (GlobalScript.settings.debug.enabled && GlobalScript.settings.debug.cant_lose) or game_ended: return
-	$Sounds/GameOver.play()
+	AudioBus.play("game_over")
 	game_ended = true
 	$PauseAndGameOverMenu.switch_to_game_over()
 	var duration: float = 5.1

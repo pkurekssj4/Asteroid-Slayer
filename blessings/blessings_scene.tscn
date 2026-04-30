@@ -122,8 +122,6 @@
 [ext_resource type="Texture2D" uid="uid://deymrg5h2p185" path="res://blessings/eyes_animation_sprites/gods_eyes (119).png" id="120_1bgda"]
 [ext_resource type="Texture2D" uid="uid://cxlu0bw8rm88h" path="res://blessings/eyes_animation_sprites/gods_eyes (120).png" id="121_suetm"]
 [ext_resource type="Texture2D" uid="uid://k3t480wfbhuo" path="res://weather/clouds/cloud6.png" id="122_0q84f"]
-[ext_resource type="AudioStream" uid="uid://cuxoqpdd4g2fr" path="res://blessings/blessing_highlight.mp3" id="123_dsyjg"]
-[ext_resource type="AudioStream" uid="uid://bwhm17do1vrcv" path="res://audio/sounds/god.mp3" id="123_q842a"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fgcpt"]
 animations = [{
@@ -610,13 +608,6 @@ modulate = Color(1, 1, 1, 0)
 sprite_frames = SubResource("SpriteFrames_fgcpt")
 autoplay = "default"
 frame_progress = 0.986672
-
-[node name="GodsEyesAppearingSound" type="AudioStreamPlayer" parent="." unique_id=1548646958]
-stream = ExtResource("123_q842a")
-
-[node name="BlessingHighlightSound" type="AudioStreamPlayer" parent="." unique_id=17689798]
-stream = ExtResource("123_dsyjg")
-volume_db = -3.0
 
 [node name="Clouds" type="Node2D" parent="." unique_id=1369263552]
 modulate = Color(1, 1, 1, 0)

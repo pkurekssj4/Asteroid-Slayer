@@ -1,14 +1,9 @@
 [gd_scene format=3 uid="uid://cu4ym8ir5d6ci"]
 
 [ext_resource type="Script" uid="uid://btv16bto3necn" path="res://upgrade_console/upgrade_console.gd" id="1_i62da"]
-[ext_resource type="AudioStream" uid="uid://cilhmcw7p6bos" path="res://upgrade_console/ok.mp3" id="2_sirxy"]
 [ext_resource type="Texture2D" uid="uid://dobya57pevlpv" path="res://upgrade_console/arrows.png" id="2_tt3g8"]
-[ext_resource type="AudioStream" uid="uid://bqjj68xjne2xn" path="res://upgrade_console/nok.mp3" id="3_je2i2"]
-[ext_resource type="AudioStream" uid="uid://b2r00smfl1ifs" path="res://upgrade_console/upgrade_console_ambient.mp3" id="5_wvds4"]
-[ext_resource type="AudioStream" uid="uid://pkn07tsa6mkp" path="res://upgrade_console/atmosphere.wav" id="6_wgcu2"]
 [ext_resource type="Texture2D" uid="uid://ns2g5msfgl6f" path="res://upgrade_console/grid_alpha_mask.png" id="7_5868r"]
 [ext_resource type="Texture2D" uid="uid://b7k62fevlnkip" path="res://upgrade_console/background_grid_alpha.png" id="7_h555c"]
-[ext_resource type="AudioStream" uid="uid://cuwxpdvct4um0" path="res://upgrade_console/tree_change.mp3" id="11_nqhre"]
 [ext_resource type="PackedScene" uid="uid://dodyn8owydtvb" path="res://upgrade_console/medium_damage_upgrade.tscn" id="14_fqao0"]
 [ext_resource type="PackedScene" uid="uid://dedqrhfafmjg5" path="res://upgrade_console/medium_area_of_effect_upgrade.tscn" id="15_yckb5"]
 [ext_resource type="PackedScene" uid="uid://3cdeu6o12muo" path="res://upgrade_console/big_area_of_effect_upgrade.tscn" id="17_jm1iu"]
@@ -17,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://cgpm2x7ehj3sp" path="res://upgrade_console/big_projectile_speed_upgrade.tscn" id="27_4ipy7"]
 [ext_resource type="PackedScene" uid="uid://3pygy86elxdt" path="res://upgrade_console/medium_reload_time_upgrade.tscn" id="30_fiuok"]
 [ext_resource type="PackedScene" uid="uid://dq6861eq8ba47" path="res://upgrade_console/medium_capacity_upgrade.tscn" id="31_kegdq"]
-[ext_resource type="AudioStream" uid="uid://k2pjpao6weit" path="res://upgrade_console/openhatch.mp3" id="34_1kwoy"]
 [ext_resource type="PackedScene" uid="uid://v80aebol7j4b" path="res://upgrade_console/big_rate_of_fire_upgrade.tscn" id="34_jcdrn"]
 [ext_resource type="Texture2D" uid="uid://cas543d1pdn6s" path="res://resource_icons/nano_core.png" id="36_64xfg"]
 [ext_resource type="Texture2D" uid="uid://ffy72fxf0wlr" path="res://resource_icons/common_shard.png" id="36_by5ii"]
@@ -31,7 +25,6 @@
 [ext_resource type="Texture2D" uid="uid://6y0mmbqxt73e" path="res://resource_icons/ethereal_shard.png" id="39_1t0gf"]
 [ext_resource type="PackedScene" uid="uid://rhqr43g4f800" path="res://upgrade_console/small_critical_hit_damage_upgrade.tscn" id="39_52vcs"]
 [ext_resource type="Texture2D" uid="uid://d3fvt1p2isj3u" path="res://upgrade_console/hatch_lower.png" id="39_64xfg"]
-[ext_resource type="AudioStream" uid="uid://cntrp2crutub0" path="res://audio/sounds/launch_game.wav" id="41_64xfg"]
 [ext_resource type="Script" uid="uid://cexw8g7u31igu" path="res://upgrade_console/specialisation_plus.gd" id="41_jm1iu"]
 [ext_resource type="Texture2D" uid="uid://dcvh684nee7ht" path="res://structures/cannon/basic_explosion_mask.png" id="42_8p46x"]
 [ext_resource type="PackedScene" uid="uid://c4qn031ghc348" path="res://upgrade_console/small_reload_time_upgrade.tscn" id="43_bk27f"]
@@ -1513,35 +1506,6 @@ text = "Statistic"
 autowrap_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Sounds" type="Control" parent="." unique_id=1421823466]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[node name="Ok" type="AudioStreamPlayer" parent="Sounds" unique_id=2054538428]
-stream = ExtResource("2_sirxy")
-volume_db = -2.229
-
-[node name="Nok" type="AudioStreamPlayer" parent="Sounds" unique_id=2001027793]
-stream = ExtResource("3_je2i2")
-
-[node name="LaunchGame" type="AudioStreamPlayer" parent="Sounds" unique_id=1669639425]
-stream = ExtResource("41_64xfg")
-
-[node name="Noise" type="AudioStreamPlayer" parent="Sounds" unique_id=56506434]
-stream = ExtResource("5_wvds4")
-
-[node name="Atmosphere" type="AudioStreamPlayer" parent="Sounds" unique_id=953041348]
-stream = ExtResource("6_wgcu2")
-
-[node name="HatchOpening" type="AudioStreamPlayer" parent="Sounds" unique_id=1026821851]
-stream = ExtResource("34_1kwoy")
-
-[node name="TreeChange" type="AudioStreamPlayer" parent="Sounds" unique_id=1124174107]
-stream = ExtResource("11_nqhre")
 
 [node name="Statistics" type="Control" parent="." unique_id=315839146]
 anchors_preset = 0

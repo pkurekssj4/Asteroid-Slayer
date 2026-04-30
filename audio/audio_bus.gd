@@ -33,7 +33,6 @@ func stop(type: String) -> void:
 
 func stop_all() -> void:
 	for player in audio_players: 
-		print ("stopping:" + player)
 		audio_players[player].stop()
 	
 func cancel(type: String) -> void:

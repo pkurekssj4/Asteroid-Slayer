@@ -108,16 +108,14 @@ func reload():
 	if capacity_at_the_moment == int(cannon_data.capacity):
 		AudioBus.play("reload_finished")
 		return
-	game.change_cursor("reload")
+	GlobalScript.change_cursor("reload")
 	$Timers/ReloadCountdown.start(cannon_data.reload_time)
 	is_reloading = true
 	can_shoot = false
-	# var force_cancel: bool = true
-	# if is_instance_valid(reloading_bar): reloading_bar.cancel(force_cancel)
 	reloading_bar = game.get_node("ProgressBarManager").create_progress_bar("Reloading...", "orange", cannon_data.reload_time)
 
 func reload_finished() -> void:
-	game.change_cursor("default")
+	GlobalScript.change_cursor("default")
 	AudioBus.play("reload_finished")
 	is_reloading = false
 	can_shoot = true
@@ -150,7 +148,7 @@ func _on_jam_timer_timeout():
 func unjamm():
 	if rng.randi_range(1, 100) < unjamm_chance && trigger_jamm_stage < 2:
 		trigger_jamm_stage = 0
-		if !GlobalScript.current_data.game.muted: AudioBus.play("reload_finished")
+		AudioBus.play("reload_finished")
 	else:
 		if trigger_jamm_stage == 2: trigger_jamm_stage = 1
 		AudioBus.play("trigger_jam")

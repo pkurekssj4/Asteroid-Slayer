@@ -29,7 +29,7 @@ func _ready():
 		
 func fade_gods_eyes_animation(type: String) -> void:
 	if type == "in":
-		if !GlobalScript.current_data.game.muted: $GodsEyesAppearingSound.play()
+		AudioBus.play("gods_eyes_appearing")
 		$AnimationPlayer.play("gods_eyes_in")
 	if type =="out":
 		$AnimationPlayer.play("gods_eyes_out")
@@ -48,7 +48,7 @@ func finalize_blessings(blessing_number: String) -> void:
 	if !blessing_picked:
 		blessing_picked = true
 	else: return
-	if !GlobalScript.current_data.game.muted: $BlessingHighlightSound.play()
+	AudioBus.play("blessing_picked")
 	$AnimationPlayer.play("gods_blessings_out")
 	if !$Timer.is_stopped(): $Timer.stop()
 	var sound_cfg: Dictionary = {

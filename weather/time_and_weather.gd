@@ -99,7 +99,7 @@ func init() -> void:
 	for i in range (1 * GlobalScript.current_data.game.cloud_spawn_chance, 5 * GlobalScript.current_data.game.cloud_spawn_chance):
 		spawn_cloud(true)
 
-func set_config_for_next_day():
+func set_config_for_next_day() -> void:
 	set_game_time()
 	set_game_date()
 	set_sky_modulation()
@@ -109,7 +109,7 @@ func set_config_for_next_day():
 	else: GlobalScript.current_data.game.rain = false
 	GlobalScript.current_data.game.cloud_spawn_chance = randi_range(cloud_spawn_chance_thresholds[0], cloud_spawn_chance_thresholds[1])
 
-func set_game_date():
+func set_game_date() -> void:
 	var days = GlobalScript.current_data.game.day
 	var month = starting_month
 	var month_day = starting_day
@@ -122,7 +122,7 @@ func set_game_date():
 	GlobalScript.current_data.game.month_literally = calendar[month].literally
 	GlobalScript.current_data.game.month_day = month_day
 
-func set_game_time():
+func set_game_time() -> void:
 	var hour: int
 	var minute: int
 	
@@ -167,7 +167,7 @@ func is_night() -> bool:
 	if GlobalScript.current_data.game.time[0] >= 20 || GlobalScript.current_data.game.time[0] <= 6: return true
 	else: return false
 
-func spawn_cloud(initial_spawn):
+func spawn_cloud(initial_spawn: bool):
 	var cloud_number = randi_range(1, 6)
 	var cloud_to_instantiate = CLOUDS[cloud_number - 1]
 	var cloud = cloud_to_instantiate.instantiate()

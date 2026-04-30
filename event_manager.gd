@@ -122,7 +122,6 @@ func advance_game_state() -> void:
 		if GlobalScript.current_data.game.day == 1:
 			var camera = game.get_node("Camera2D")
 			if !GlobalScript.skip_intro:
-				if !GlobalScript.current_data.game.muted: game.get_node("Sounds/IntroMusic").play()
 				var tween = get_tree().create_tween()
 				tween.set_ease(Tween.EASE_IN_OUT)
 				tween.set_trans(Tween.TRANS_QUAD)
@@ -187,7 +186,7 @@ func advance_game_state() -> void:
 		game.display_ending_ceremony_event()
 	
 	elif game_state == 9: # daj nano core
-		if !GlobalScript.current_data.game.muted: game.get_node("Sounds/NanoCore").play()
+		AudioBus.play("nano_core")
 		game.play_new_score_animation("nano_core")
 		game.display_event_message("You received 1 Nano Core", 1, "no_sound", 0, "white", "normal", "none", 0)
 		GlobalScript.current_data.resources.nano_cores += 1
@@ -199,7 +198,7 @@ func advance_game_state() -> void:
 		if GlobalScript.current_data.game.player_specialisation == "collectioner":
 			var extra_credits = int((GlobalScript.current_data.resources.credits - GlobalScript.current_data.resources.credits_snapshot) * GlobalScript.SPECIALISATION_BONUSES.collectioner.extra_resource_credits_earned_that_day)
 			if extra_credits >= 0:
-				if !GlobalScript.current_data.game.muted: game.get_node("Sounds/ExtraCredits").play()
+				AudioBus.play("extra_credits")
 				game.display_event_message("You earn extra " + str(int(GlobalScript.SPECIALISATION_BONUSES.collectioner.extra_resource_credits_earned_that_day * 100)) + "% (" + str(extra_credits) + ") Resource Credits because of your specialisation", 4, "none", 0, "white", "normal", "none", 0)
 				await game.create_delay_timer(5)
 				#game.update_resource_credits(extra_credits, game, game.cannon.global_position)

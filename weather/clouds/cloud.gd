@@ -1,7 +1,7 @@
 extends Node2D
 
-var speed
-var stage = 0
+var speed: float
+var stage: int = 0
 
 func _physics_process(delta):
 	position += transform.x * speed * delta

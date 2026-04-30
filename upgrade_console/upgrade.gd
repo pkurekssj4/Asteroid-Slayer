@@ -280,7 +280,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		if !upgrade_console.activated: return
 		
 		if !any_source_is_bought(): 
-			upgrade_console.get_node("Sounds/Nok").play()
+			AudioBus.play("console_nok")
 			return
 		
 		if !IsBought:
@@ -288,10 +288,10 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 				pay(true)
 				add_statistic(true)
 				IsBought = true
-				upgrade_console.get_node("Sounds/Ok").play()
+				AudioBus.play("console_ok")
 				instantiate_upgrade_selection_effect_partilces()
 			else:
-				upgrade_console.get_node("Sounds/Nok").play()
+				AudioBus.play("console_nok")
 		else:
 			if bought_receivers_have_more_sources():
 				pay(false)

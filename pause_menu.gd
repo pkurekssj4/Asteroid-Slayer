@@ -81,9 +81,7 @@ func _on_restart_focus_entered() -> void:
 func _on_restart_pressed() -> void:
 	get_tree().paused = false
 	if GlobalScript.initial_config.new_game: GlobalScript.initial_config.new_game = false
-	game.change_cursor("default")
-	AudioBus.stop_all()
-	get_tree().change_scene_to_file("res://game.tscn")
+	GlobalScript.load_scene("game")
 
 # === MAIN MENU ===
 func _on_main_menu_mouse_entered() -> void:
@@ -97,7 +95,6 @@ func _on_main_menu_focus_entered() -> void:
 func _on_main_menu_pressed() -> void:
 	get_tree().paused = false
 	if GlobalScript.initial_config.new_game: GlobalScript.initial_config.new_game = false
-	game.change_cursor("default")
 	GlobalScript.load_scene("menu")
 
 # === UPGRADE MENU ===
@@ -111,7 +108,6 @@ func _on_upgrade_console_focus_entered() -> void:
 
 func _on_upgrade_console_pressed() -> void:
 	get_tree().paused = false
-	game.change_cursor("default")
 	GlobalScript.load_scene("console")
 
 # === EXIT ===

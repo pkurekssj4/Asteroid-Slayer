@@ -20,7 +20,7 @@ func _process(_delta: float) -> void:
 			specialisation_change_in_progress = false
 			player_specialisation = current_specialisation
 			GlobalScript.current_data.game.player_specialisation = player_specialisation
-			$SpecialisationChangedSound.play()
+			AudioBus.play("new_specialisation_acquired")
 			$SecondaryPanel/ChangingSpecialisationInside.hide()
 			$SecondaryPanel/SpecialisationChangedInside.show()
 			$SecondaryPanel/SpecialisationChangedInside/Label2.text = player_specialisation
@@ -108,7 +108,6 @@ func _on_close_button_pressed() -> void:
 	queue_free()
 
 func _on_no_button_pressed() -> void:
-	print ("Yes")
 	$SecondaryPanel.hide()
 	$MainPanel.show()
 

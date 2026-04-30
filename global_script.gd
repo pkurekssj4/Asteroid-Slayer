@@ -5,7 +5,10 @@ var specialisation_unlock_day: int = 5
 var asteroids_tree_unlock_day: int = 12
 const PLANET_NAME = "Oasis"
 var auto_pause_when_lost_focus: bool = true
+var previous_scene: String = "menu"
 const MESSAGE_BOX = preload("res://ui/message_box/message_box.tscn")
+const DEFAULT_CURSOR = preload("res://cursor.png")
+const RELOAD_CURSOR = preload("res://cursor_reload.png")
 
 var settings: Dictionary = {
 	"game_muted": false,
@@ -50,7 +53,7 @@ const SPECIALISATION_BONUSES = {
 		"critical_hit_damage" = 0.3
 	},
 	"gunslinger": {
-		"attack_speed" = 0.2,
+		"attack_speed" = 0.35,
 		"projectile_speed" = 0.2,
 	},
 	"strategist": {
@@ -1165,6 +1168,10 @@ const irregular_messages: Dictionary = {
 	}
 }
 
+
+
+
+
 func _ready() -> void:
 	load_settings()
 	
@@ -1183,17 +1190,26 @@ func save_settings() -> void:
 
 func load_scene(scene_to_load: String):
 	AudioBus.stop_all()
-	if scene_to_load == "menu":
-		# Szybkie ładowanie z praktyczne zerowym czasem oczekiwania
-		get_tree().change_scene_to_file("main_menu/menu.tscn")
-		return
-	elif scene_to_load == "console": scene_to_load = "res://upgrade_console/upgrade_console.tscn"
-	elif scene_to_load == "game": scene_to_load = "res://game.tscn"
-	var loading_screen = load("res://loading_screen.tscn").instantiate()
-	loading_screen.scene_to_load = scene_to_load
-	get_tree().root.add_child(loading_screen)
-	get_tree().current_scene.queue_free()
-	get_tree().current_scene = loading_screen 
+	change_cursor("default")
+	var scene_path: String
+	match scene_to_load:
+		"menu": scene_path = "main_menu/menu.tscn"
+		"console": scene_path = "res://upgrade_console/upgrade_console.tscn"
+		"game": scene_path = "res://game.tscn"
+	if previous_scene == scene_to_load or scene_to_load == "menu":
+		# Szybkie ładowanie z praktycznie zerowym czasem oczekiwania
+		get_tree().change_scene_to_file(scene_path)
+	else:
+		var loading_screen = load("res://loading_screen.tscn").instantiate()
+		loading_screen.scene_to_load = scene_path
+		get_tree().root.add_child(loading_screen)
+		get_tree().current_scene.queue_free()
+		get_tree().current_scene = loading_screen 
+	previous_scene = scene_to_load
+
+func change_cursor(cursor: String) -> void:
+	if cursor == "default": Input.set_custom_mouse_cursor(DEFAULT_CURSOR, Input.CURSOR_ARROW, Vector2(20,20))
+	elif cursor == "reload": Input.set_custom_mouse_cursor(RELOAD_CURSOR, Input.CURSOR_ARROW, Vector2(20,20))
 
 func init() -> void:
 	set_asteroid_type_spawn_chance_thresholds()
