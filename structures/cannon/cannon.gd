@@ -58,7 +58,7 @@ func _process(_delta):
 		set_process(false)
 		attack_readiness_bar.value = 0.0
 	if game.game_stopped: return
-	$BarrelPointer.look_at(get_global_mouse_position())
+	$Barrel.look_at(get_destination())
 	check_if_any_button_is_pressed()
 	shooting_control += 1
 	if overheat_progress >= 100 && shooting_control > 25:
@@ -92,9 +92,10 @@ func launch_plasma_barrage_projectiles():
 
 func launch_projectile(data_source: String) -> void:
 	var data_dict: Dictionary = GlobalScript.get_data_source_dictionary(data_source, "current")
-	var pos: Vector2 = $BarrelPointer/Marker2D.global_position
-	var dest: Vector2 = get_global_mouse_position()
-	var rot: float = $BarrelPointer.rotation
+	var dest: Vector2 = get_destination()
+	var pos: Vector2 = $Barrel/Marker2D.global_position
+	if pos.y < dest.y: pos.y = dest.y
+	var rot: float = $Barrel.rotation
 	var projectile_source: Area2D = self
 	var new_projectile: Area2D = fabricated_scenes_manager.get_projectile_scene(data_source, data_dict, pos, dest, rot, projectile_source)
 	barrel_pull_back()
@@ -128,15 +129,15 @@ func create_muzzle(data_dict: Dictionary):
 	new_muzzle_flash_particles.modulate = GlobalScript.get_composition_color(data_dict)
 	for scene in [new_muzzle_flash, new_muzzle_flash_particles]:
 		scene.add_to_group("vfx")
-		scene.position = $BarrelPointer/Marker2D.global_position
-		scene.rotation = $BarrelPointer.rotation + PI / 2
+		scene.position = $Barrel/Marker2D.global_position
+		scene.rotation = $Barrel.rotation + PI / 2
 		game.add_object(true, scene)
 
 func create_overheat_particles():
 	var new_overheat_particles = OVERHEAT_PARTICLES_SCENE.instantiate()
-	new_overheat_particles.position = $BarrelPointer/Marker2D.global_position
+	new_overheat_particles.position = $Barrel/Marker2D.global_position
 	new_overheat_particles.follow_parent = true
-	new_overheat_particles.parent = $BarrelPointer/Marker2D
+	new_overheat_particles.parent = $Barrel/Marker2D
 	get_parent().call_deferred("add_child", new_overheat_particles)
 
 func _on_jam_timer_timeout():
@@ -289,3 +290,8 @@ func check_if_abilities_are_bought() -> void:
 
 func take_damage(damage: float, _attacker: Area2D) -> void:
 	game.damage_structure(self, damage)
+
+func get_destination() -> Vector2:
+	var position_to_look_at: Vector2 = get_global_mouse_position()
+	if position_to_look_at.y > $Barrel.global_position.y: position_to_look_at.y = $Barrel.global_position.y
+	return position_to_look_at

@@ -2,7 +2,12 @@
 
 [ext_resource type="Script" uid="uid://um3no3ymbjrm" path="res://structures/cannon/cannon.gd" id="1_4sfy2"]
 [ext_resource type="Texture2D" uid="uid://bsotdc3qhyuiu" path="res://structures/cannon/cannon.png" id="1_6tg14"]
+[ext_resource type="Script" uid="uid://ce7jtaurhyrw2" path="res://redirect_damage_to_parent.gd" id="2_16d1a"]
 [ext_resource type="Texture2D" uid="uid://dmyurfjojrqme" path="res://structures/cannon/barrel.png" id="2_405rl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4roi"]
+radius = 2.2222233
+height = 22.222223
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhldj"]
 size = Vector2(105, 30)
@@ -19,7 +24,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BarrelPointer/Barrel:position")
+tracks/0/path = NodePath("Barrel/Barrel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -34,7 +39,7 @@ resource_name = "barrel_pull_back"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BarrelPointer/Barrel:position")
+tracks/0/path = NodePath("Barrel/Barrel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -50,7 +55,7 @@ length = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BarrelPointer/Barrel:position")
+tracks/0/path = NodePath("Barrel/Barrel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -73,20 +78,28 @@ size = Vector2(105, 71)
 [node name="Cannon" type="Area2D" unique_id=351184390]
 collision_layer = 8
 collision_mask = 0
+monitoring = false
 script = ExtResource("1_4sfy2")
 
-[node name="BarrelPointer" type="Node2D" parent="." unique_id=988684040]
+[node name="Barrel" type="Area2D" parent="." unique_id=1570810491]
 position = Vector2(0, -20)
 scale = Vector2(0.9, 0.9)
+monitoring = false
+script = ExtResource("2_16d1a")
 
-[node name="Marker2D" type="Marker2D" parent="BarrelPointer" unique_id=611323421]
-position = Vector2(23, -9.53674e-07)
+[node name="Marker2D" type="Marker2D" parent="Barrel" unique_id=611323421]
+position = Vector2(21.805, 0.33)
 
-[node name="Barrel" type="Sprite2D" parent="BarrelPointer" unique_id=1352732705]
+[node name="Barrel" type="Sprite2D" parent="Barrel" unique_id=1352732705]
 position = Vector2(11, 0)
 rotation = 1.5708
 scale = Vector2(1, 0.428571)
 texture = ExtResource("2_405rl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrel" unique_id=1049666893]
+position = Vector2(10.716, 0.526)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_s4roi")
 
 [node name="Base" type="Sprite2D" parent="." unique_id=839343253]
 position = Vector2(-2, -33)

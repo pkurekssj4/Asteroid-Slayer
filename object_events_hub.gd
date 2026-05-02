@@ -108,9 +108,11 @@ func resolve_collision(area_entered: bool, area_owner: Area2D, intruder: Area2D)
 						intruder.reset_pull_force()
 					"slow_by_asteroid_power":
 						intruder.apply_slow_by_asteroid(false, 0.0, 0.0)
-	
-	if !intruder.is_in_group("ghosts") and area_owner.is_in_group("explosive"): 
-		game.add_object(false, area_owner)
+						
+	if !intruder.is_in_group("ghosts") and area_owner.is_in_group("explosive"):
+		# aby pocisk nie mogl wybuchnac podczas wylotu (dzialo, ufo, boss fights)
+		if area_owner.source != intruder.source:
+			game.add_object(false, area_owner)
 
 func resolve_damage(area_owner: Area2D, intruder: Area2D) -> float:
 	if area_owner.collision_parameters.has("critical_hit_chance"):
@@ -162,12 +164,12 @@ func explode_object(object: Area2D) -> void:
 	# Obiekty zglaszaja kolizje tylko jesli ich exploded = false
 	if object.explosion_scene != null:
 		if is_instance_valid(object.source): object.explosion_scene.source = object.source
-		if object.is_in_group("projectiles"): 
-			# Pocisk jest w dynamicznym ruchu co przekręca destination.y o kilka pikseli dlatego \/ 
-			if object.global_position.y < object.destination.y: 
-				object.explosion_scene.position = object.destination
-			else: object.explosion_scene.position = object.global_position
-		else:
-			object.explosion_scene.position = object.position
+		var explode_position: Vector2 = Vector2(0.0, 0.0)
+		if object.is_in_group("projectiles"):
+			# Pocisk jest w dynamicznym ruchu co przekręca destination o kilka pikseli zanim wybuchnie dlatego \/
+			if object.current_distance_to_destination > object.last_distance_to_destination:
+				explode_position = object.destination
+		if explode_position == Vector2(0.0, 0.0): explode_position = object.global_position
+		object.explosion_scene.position = explode_position 
 		game.add_object(true, object.explosion_scene)
 		object.exploded = true

@@ -8,6 +8,8 @@ var destination: Vector2
 var source: Area2D = null
 var type: String
 var exploded: bool = false
+var current_distance_to_destination: float = 0.0
+var last_distance_to_destination: float = 9999.0
 
 @onready var game: Node2D = get_node("/root/Game")
 @onready var object_events_hub: Node = get_node("/root/Game/ObjectEventsHub")
@@ -23,9 +25,13 @@ func _process(delta):
 	# ale w rzeczywistosci tyle same jakby lecial na 60 fps
 	# delte trzeba uwzgledniac przy wszystkim co ma sie wykonac w jakims okreslonym czasie, albo ma sie poruszać w okreslonej predkosci na sekunde
 	position += transform.x * speed * delta
-	if global_position.y <= destination.y:
-	#if destination.y >= global_position.y:
+	
+	# Pocisk eksploduje podczas klatki w której oddali się lub zrówna z odległoścą od przeznaczenia
+	current_distance_to_destination = global_position.distance_to(destination)
+	if current_distance_to_destination >= last_distance_to_destination:
 		game.add_object(false, self)
+	else:
+		last_distance_to_destination = current_distance_to_destination
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	game.add_object(false, self)
