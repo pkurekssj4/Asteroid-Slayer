@@ -630,7 +630,6 @@ const legacy_data: Dictionary = {
 				"modules": {
 					"trajectory_tweak": {"strength": 3},
 				},
-				"damage": 3.0,
 				"ghost": false,
 			},
 			"additive_statistics": {}

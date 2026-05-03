@@ -12,6 +12,6 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="PowerFluxLight" type="PointLight2D" unique_id=556863632]
-color = Color(0.9801682, 0.8326685, 1.353256, 1)
-energy = 1.4
+color = Color(0.9815948, 1.1072266, 1.353256, 1)
+energy = 3.5
 texture = SubResource("GradientTexture2D_mreji")

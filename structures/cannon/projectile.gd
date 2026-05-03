@@ -28,7 +28,7 @@ func _process(delta):
 	
 	# Pocisk eksploduje podczas klatki w której oddali się lub zrówna z odległoścą od przeznaczenia
 	current_distance_to_destination = global_position.distance_to(destination)
-	if current_distance_to_destination >= last_distance_to_destination:
+	if current_distance_to_destination > last_distance_to_destination:
 		game.add_object(false, self)
 	else:
 		last_distance_to_destination = current_distance_to_destination

@@ -30,14 +30,14 @@ var ability_4_icon_tween: Tween = null
 @onready var resource_loader: Node = get_node("/root/Game/ResourceLoader")
 @onready var fabricated_scenes_manager: Node = get_node("/root/Game/FabricatedScenesManager")
 @onready var stasis_field_particles: GPUParticles2D = get_node("/root/Game/StasisFieldParticles")
-@onready var plasma_barrage_icon: Sprite2D = get_node("/root/Game/GUI/Abilities/Ability1/PlasmaBarrageIcon")
-@onready var plasma_barrage_label: Label = get_node("/root/Game/GUI/Abilities/Ability1/Label")
-@onready var stasis_field_icon: Sprite2D = get_node("/root/Game/GUI/Abilities/Ability2/StasisFieldIcon")
-@onready var stasis_field_label: Label = get_node("/root/Game/GUI/Abilities/Ability2/Label")
-@onready var gravity_well_icon: Sprite2D = get_node("/root/Game/GUI/Abilities/Ability3/GravityWellIcon")
-@onready var gravity_well_label: Label = get_node("/root/Game/GUI/Abilities/Ability3/Label")
-@onready var orbital_strike_icon: Sprite2D = get_node("/root/Game/GUI/Abilities/Ability4/OrbitalStrikeIcon")
-@onready var orbital_strike_label: Label = get_node("/root/Game/GUI/Abilities/Ability4/Label")
+@onready var plasma_barrage_icon: Sprite2D = get_node("/root/Game/UILayer/Abilities/Ability1/PlasmaBarrageIcon")
+@onready var plasma_barrage_label: Label = get_node("/root/Game/UILayer/Abilities/Ability1/Label")
+@onready var stasis_field_icon: Sprite2D = get_node("/root/Game/UILayer/Abilities/Ability2/StasisFieldIcon")
+@onready var stasis_field_label: Label = get_node("/root/Game/UILayer/Abilities/Ability2/Label")
+@onready var gravity_well_icon: Sprite2D = get_node("/root/Game/UILayer/Abilities/Ability3/GravityWellIcon")
+@onready var gravity_well_label: Label = get_node("/root/Game/UILayer/Abilities/Ability3/Label")
+@onready var orbital_strike_icon: Sprite2D = get_node("/root/Game/UILayer/Abilities/Ability4/OrbitalStrikeIcon")
+@onready var orbital_strike_label: Label = get_node("/root/Game/UILayer/Abilities/Ability4/Label")
 
 func _ready():
 	await game.game_ready
@@ -166,7 +166,7 @@ func create_tooltip() -> void:
 	get_tree().root.add_child(new_tooltip)
 
 func update_rounds_left_label() -> void:
-	var rounds_left_label: Label = game.get_node("GUI/RoundsLeftCount")
+	var rounds_left_label: Label = game.get_node("UILayer/RoundsLeftCount")
 	var current_rounds_number: int
 	var actual_capacity_percent: float
 	

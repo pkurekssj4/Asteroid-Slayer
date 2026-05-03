@@ -138,7 +138,7 @@ func create_chain_reaction_counter():
 	return new_chain_reaction_counter
 
 func end_game() -> void:
-	$EndingBlackSolid.show()
+	$UILayer/EndingBlackSolid.show()
 	$AnimationPlayer.play("default/ending_fade_out")
 	await create_delay_timer(2.0)
 	GlobalScript.current_data.game.day += 1
@@ -148,52 +148,52 @@ func end_game() -> void:
 
 func summary() -> void:
 	await create_delay_timer(1)
-	$Summary.show()
+	$UILayer/Summary.show()
 	var percent
 	var delay = 0.15
-	$Summary/MainLabel.show()
+	$UILayer/Summary/MainLabel.show()
 	await create_delay_timer(delay)
-	$Summary/DestroyedAsteroidsLabel.show()
-	$Summary/DestroyedAsteroidsCount.text = str(GlobalScript.current_data.asteroids.general.asteroids_destroyed) + "/" + str(GlobalScript.current_data.asteroids.general.asteroids_total)
-	$Summary/DestroyedAsteroidsCount.show()
+	$UILayer/Summary/DestroyedAsteroidsLabel.show()
+	$UILayer/Summary/DestroyedAsteroidsCount.text = str(GlobalScript.current_data.asteroids.general.asteroids_destroyed) + "/" + str(GlobalScript.current_data.asteroids.general.asteroids_total)
+	$UILayer/Summary/DestroyedAsteroidsCount.show()
 	AudioBus.play("summary")
 	await create_delay_timer(delay)
-	$Summary/LostBuildingsLabel.show()
-	$Summary/LostBuildingsCount.text = str(buildings_data.destroyed_count_this_day)
-	$Summary/LostBuildingsCount.show()
+	$UILayer/Summary/LostBuildingsLabel.show()
+	$UILayer/Summary/LostBuildingsCount.text = str(buildings_data.destroyed_count_this_day)
+	$UILayer/Summary/LostBuildingsCount.show()
 	AudioBus.play("summary")
 	await create_delay_timer(delay)
-	$Summary/AccuracyLabel.show()
+	$UILayer/Summary/AccuracyLabel.show()
 	var accuracy_shots = statistics_data.basic_attack.shots_fired - statistics_data.basic_attack.shots_missed
 	if statistics_data.basic_attack.shots_fired != 0: percent = floor(accuracy_shots * 100.0 / statistics_data.basic_attack.shots_fired)
 	else: percent = 0
-	$Summary/AccuracyNumber.text = str(accuracy_shots) + "/" + str(statistics_data.basic_attack.shots_fired) + " (" + str(percent) + "%)"
-	$Summary/AccuracyNumber.show()
+	$UILayer/Summary/AccuracyNumber.text = str(accuracy_shots) + "/" + str(statistics_data.basic_attack.shots_fired) + " (" + str(percent) + "%)"
+	$UILayer/Summary/AccuracyNumber.show()
 	AudioBus.play("summary")
 	await create_delay_timer(delay)
-	$Summary/HyperLabel.show()
+	$UILayer/Summary/HyperLabel.show()
 	if statistics_data.hyper_asteroids.count != 0: percent = floor(statistics_data.hyper_asteroids.destroyed_count * 100.0 / statistics_data.hyper_asteroids.count)
 	else: percent = 0
-	$Summary/HyperCount.text = str(statistics_data.hyper_asteroids.destroyed_count) + "/" + str(statistics_data.hyper_asteroids.count) + " (" + str(percent) +"%)"
-	$Summary/HyperCount.show()
+	$UILayer/Summary/HyperCount.text = str(statistics_data.hyper_asteroids.destroyed_count) + "/" + str(statistics_data.hyper_asteroids.count) + " (" + str(percent) +"%)"
+	$UILayer/Summary/HyperCount.show()
 	AudioBus.play("summary")
 	await create_delay_timer(delay)
-	$Summary/MassDestructionsLabel.show()
-	$Summary/MassDestructionsCount.text = str(statistics_data.mass_destructions.count) + " (" + str(statistics_data.mass_destructions.cumulated_rewards) + " Resource Credits)"
-	$Summary/MassDestructionsCount.show()
+	$UILayer/Summary/MassDestructionsLabel.show()
+	$UILayer/Summary/MassDestructionsCount.text = str(statistics_data.mass_destructions.count) + " (" + str(statistics_data.mass_destructions.cumulated_rewards) + " Resource Credits)"
+	$UILayer/Summary/MassDestructionsCount.show()
 	AudioBus.play("summary")
 	await create_delay_timer(delay)
-	$Summary/ChainReactionsLabel.show()
-	$Summary/ChainReactionsCount.text = str(statistics_data.chain_reactions.count) + " (" + str(statistics_data.chain_reactions.cumulated_rewards) + " Resource Credits)"
-	$Summary/ChainReactionsCount.show()
+	$UILayer/Summary/ChainReactionsLabel.show()
+	$UILayer/Summary/ChainReactionsCount.text = str(statistics_data.chain_reactions.count) + " (" + str(statistics_data.chain_reactions.cumulated_rewards) + " Resource Credits)"
+	$UILayer/Summary/ChainReactionsCount.show()
 	AudioBus.play("summary")
 	await create_delay_timer(delay)
-	$Summary/AccuracyStreaksLabel.show()
-	$Summary/AccuracyStreaksCount.text = str(statistics_data.accuracy_streaks.count) + " (" + str(statistics_data.accuracy_streaks.cumulated_rewards) + " Resource Credits)"
-	$Summary/AccuracyStreaksCount.show()
+	$UILayer/Summary/AccuracyStreaksLabel.show()
+	$UILayer/Summary/AccuracyStreaksCount.text = str(statistics_data.accuracy_streaks.count) + " (" + str(statistics_data.accuracy_streaks.cumulated_rewards) + " Resource Credits)"
+	$UILayer/Summary/AccuracyStreaksCount.show()
 	AudioBus.play("summary")
 	await create_delay_timer(delay)
-	$Summary/ContinueButton.show()
+	$UILayer/Summary/ContinueButton.show()
 
 func progress_accuracy_streak(add: bool):
 	if add: statistics_data.accuracy_streaks.progress += 1
@@ -291,10 +291,10 @@ func _on_event_timer_timeout():
 	$EventText.hide()
 	
 func refresh_resource_credits_label() -> void:
-	$GUI/Score/ResourceCredits/Count.text = str(GlobalScript.current_data.resources.credits)
+	$UILayer/Score/ResourceCredits/Count.text = str(GlobalScript.current_data.resources.credits)
 
 func refresh_nano_cores_label() -> void:
-	$GUI/Score/NanoCores/Count.text = str(GlobalScript.current_data.resources.nano_cores)
+	$UILayer/Score/NanoCores/Count.text = str(GlobalScript.current_data.resources.nano_cores)
 
 func display_small_text_event(type: String, amount: int, display_position: Vector2) -> void:
 	var new_label: RichTextLabel = RichTextLabel.new()
@@ -409,23 +409,23 @@ func set_debug_values() -> void:
 	GlobalScript.current_data.structures.cannon.explosion.critical_hit_chance = GlobalScript.settings.debug.basic_attack_critical_hit_chance
 	
 func update_buildings_label() -> void:
-	$GUI/BuildingsThresholdCount.text = str(buildings_data.active) + "/" + str(buildings_data.destroyed_count_threshold)
+	$UILayer/BuildingsThresholdCount.text = str(buildings_data.active) + "/" + str(buildings_data.destroyed_count_threshold)
 	var structures_initial_number_that_can_be_destroyed: int = structures_list.size() - buildings_data.destroyed_count_threshold
 	var structures_current_number_that_can_be_destroyed: int = buildings_data.active - buildings_data.destroyed_count_threshold
 	var percent: float = (structures_current_number_that_can_be_destroyed * 1.0) / (structures_initial_number_that_can_be_destroyed * 1.0)
-	if percent > 0.70: $GUI/BuildingsThresholdCount.modulate = Color (0.3, 1, 0.3, 1)
-	elif percent > 0.35: $GUI/BuildingsThresholdCount.modulate = Color (0.8, 0.7, 0, 1)
-	else: $GUI/BuildingsThresholdCount.modulate = Color (1, 0.3, 0.3, 1)
+	if percent > 0.70: $UILayer/BuildingsThresholdCount.modulate = Color (0.3, 1, 0.3, 1)
+	elif percent > 0.35: $UILayer/BuildingsThresholdCount.modulate = Color (0.8, 0.7, 0, 1)
+	else: $UILayer/BuildingsThresholdCount.modulate = Color (1, 0.3, 0.3, 1)
 
 func _on_continue_button_button_down() -> void:
 	$EventManager.advance_game_state()
 
 func refresh_shards() -> void:
-	$GUI/Score/CommonShards/Count.text = str(GlobalScript.current_data.resources.common_shards)
-	$GUI/Score/CelestialShards/Count.text = str(GlobalScript.current_data.resources.celestial_shards)
-	$GUI/Score/AstralShards/Count.text = str(GlobalScript.current_data.resources.astral_shards)
-	$GUI/Score/EtherealShards/Count.text = str(GlobalScript.current_data.resources.ethereal_shards)
-	$GUI/Score/DivineShards/Count.text = str(GlobalScript.current_data.resources.divine_shards)
+	$UILayer/Score/CommonShards/Count.text = str(GlobalScript.current_data.resources.common_shards)
+	$UILayer/Score/CelestialShards/Count.text = str(GlobalScript.current_data.resources.celestial_shards)
+	$UILayer/Score/AstralShards/Count.text = str(GlobalScript.current_data.resources.astral_shards)
+	$UILayer/Score/EtherealShards/Count.text = str(GlobalScript.current_data.resources.ethereal_shards)
+	$UILayer/Score/DivineShards/Count.text = str(GlobalScript.current_data.resources.divine_shards)
 	
 func draw_shard(object: Area2D) -> void:
 	var shard: String
@@ -604,7 +604,7 @@ func trigger_game_over_sequence() -> void:
 	if (GlobalScript.settings.debug.enabled && GlobalScript.settings.debug.cant_lose) or game_ended: return
 	AudioBus.play("game_over")
 	game_ended = true
-	$PauseAndGameOverMenu.switch_to_game_over()
+	$UILayer/PauseAndGameOverMenu.switch_to_game_over()
 	var duration: float = 5.1
 	var new_timer: Timer = Timer.new()
 	new_timer.ignore_time_scale = true
@@ -617,28 +617,28 @@ func trigger_game_over_sequence() -> void:
 	await new_timer.timeout
 	new_timer.queue_free()
 	new_tween.kill()
-	$PauseAndGameOverMenu.show()
+	$UILayer/PauseAndGameOverMenu.show()
 	Engine.time_scale = 1
 	get_tree().paused = true
 
 func assign_values_to_resources() -> void:
-	$GUI/Score/ResourceCredits.object_name = "Resource Credits"
-	$GUI/Score/ResourceCredits.function = "Granted for destryoing asteroids. Used to change specialisation and upgrade cannon or base infrastructure."
+	$UILayer/Score/ResourceCredits.object_name = "Resource Credits"
+	$UILayer/Score/ResourceCredits.function = "Granted for destryoing asteroids. Used to change specialisation and upgrade cannon or base infrastructure."
 	var shards_function = "Occasionally found in asteroid remains. Used to change properties and behaviors of asteroids."
-	$GUI/Score/CommonShards.object_name = "Common Shards"
-	$GUI/Score/CommonShards.function = shards_function
-	$GUI/Score/CommonShards.drop_chance = GlobalScript.current_data.resources.shard_drop_chance
-	$GUI/Score/CelestialShards.object_name = "Celestial Shards"
-	$GUI/Score/CelestialShards.function = shards_function
-	$GUI/Score/CelestialShards.drop_chance = GlobalScript.current_data.resources.shard_drop_chance
-	$GUI/Score/AstralShards.object_name = "Astral Shards"
-	$GUI/Score/AstralShards.function = shards_function
-	$GUI/Score/AstralShards.drop_chance = GlobalScript.current_data.resources.shard_drop_chance
-	$GUI/Score/EtherealShards.object_name = "Ethereal Shards"
-	$GUI/Score/EtherealShards.function = shards_function
-	$GUI/Score/EtherealShards.drop_chance = GlobalScript.current_data.resources.shard_drop_chance
-	$GUI/Score/NanoCores.object_name = "Nano Cores"
-	$GUI/Score/NanoCores.function = "Produced by scientists in laboratories. Used to implement and enhance cannon abilities."
+	$UILayer/Score/CommonShards.object_name = "Common Shards"
+	$UILayer/Score/CommonShards.function = shards_function
+	$UILayer/Score/CommonShards.drop_chance = GlobalScript.current_data.resources.shard_drop_chance
+	$UILayer/Score/CelestialShards.object_name = "Celestial Shards"
+	$UILayer/Score/CelestialShards.function = shards_function
+	$UILayer/Score/CelestialShards.drop_chance = GlobalScript.current_data.resources.shard_drop_chance
+	$UILayer/Score/AstralShards.object_name = "Astral Shards"
+	$UILayer/Score/AstralShards.function = shards_function
+	$UILayer/Score/AstralShards.drop_chance = GlobalScript.current_data.resources.shard_drop_chance
+	$UILayer/Score/EtherealShards.object_name = "Ethereal Shards"
+	$UILayer/Score/EtherealShards.function = shards_function
+	$UILayer/Score/EtherealShards.drop_chance = GlobalScript.current_data.resources.shard_drop_chance
+	$UILayer/Score/NanoCores.object_name = "Nano Cores"
+	$UILayer/Score/NanoCores.function = "Produced by scientists in laboratories. Used to implement and enhance cannon abilities."
 
 func progress_hyper_cleaner() -> void:
 	hyper_cleaner_asteroids_count += 1
@@ -873,7 +873,7 @@ func add_object(add: bool, object: Variant) -> void:
 				$ObjectEventsHub.explode_object(object)
 				if object.is_regular: draw_shard(object)
 				GlobalScript.current_data.asteroids.general.asteroids_alive -= 1
-			get_node("GUI/AsteroidsLeftCount").text = str(GlobalScript.current_data.asteroids.general.asteroids_left)
+			get_node("UILayer/AsteroidsLeftCount").text = str(GlobalScript.current_data.asteroids.general.asteroids_left)
 			# jeśli splitting wybuchnie jako ostatnia to...
 			if GlobalScript.current_data.asteroids.general.asteroids_alive == 0 and GlobalScript.current_data.asteroids.general.asteroids_left == 0:
 				$EventManager.advance_game_state()

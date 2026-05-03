@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcgyeom0p4n5h"
-path="res://.godot/imported/rocket.png-5611c89355f0908c8e1a546d8e6e3414.ctex"
+uid="uid://y0in0e424ld4"
+path="res://.godot/imported/gas_mountain.png-07774269eec0afe58a50158faf80832f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://locations/1/rocket.png"
-dest_files=["res://.godot/imported/rocket.png-5611c89355f0908c8e1a546d8e6e3414.ctex"]
+source_file="res://locations/1/gas_mountain.png"
+dest_files=["res://.godot/imported/gas_mountain.png-07774269eec0afe58a50158faf80832f.ctex"]
 
 [params]
 

@@ -1,6 +1,4 @@
 extends Control
-
-var game: Node2D
 var red: float = 0.0
 var green: float = 0.001
 var green_decaying: bool = false
@@ -8,8 +6,9 @@ var blue: float = 0.2
 var game_ended: bool = false
 var selected_button: Button = null
 
+@onready var game: Node2D = get_node("/root/Game")
+
 func _ready() -> void:
-	game = get_parent()
 	await game.game_ready
 	$Buttons/Restart.modulate = Color(0.3, 0.3, 0.3, 1)
 	$Buttons/MainMenu.modulate = Color(0.3, 0.3, 0.3, 1)

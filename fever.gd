@@ -7,7 +7,7 @@ var shader_phase: float = 0.0
 var shader_material: ShaderMaterial
 var shader_phase_raise_per_second: float = 0.5
 var current_damage_percent_decline_per_second: float = 1.0
-@onready var fever_meter: TextureProgressBar = get_node("/root/Game/GUI/Fever/ProgressBar")
+@onready var fever_meter: TextureProgressBar = get_node("/root/Game/UILayer/Fever/ProgressBar")
 @onready var game: Node2D = get_node("/root/Game")
 @onready var cannon: Node2D = get_node("/root/Game/Cannon")
 @onready var reloading_timer: Timer = get_node("/root/Game/Cannon/Timers/ReloadCountdown")

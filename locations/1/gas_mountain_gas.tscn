@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dmpvf1m6w2ymx"]
+
+[ext_resource type="Texture2D" uid="uid://ddatmsohks8h0" path="res://gas_element.png" id="1_p0mr0"]
+
+[sub_resource type="Gradient" id="Gradient_p0mr0"]
+offsets = PackedFloat32Array(0.5152672, 0.99236643)
+colors = PackedColorArray(0, 0.6039216, 0, 0.28627452, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1g5de"]
+gradient = SubResource("Gradient_p0mr0")
+
+[sub_resource type="Curve" id="Curve_p0mr0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.041666664, 0.7226174), 0.0, 0.0, 0, 0, Vector2(0.1701389, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_1g5de"]
+curve = SubResource("Curve_p0mr0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yx8o2"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 10, 0)
+emission_shape_scale = Vector3(70, 15, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, -15, 0)
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_1g5de")
+color_ramp = SubResource("GradientTexture1D_1g5de")
+hue_variation_min = -0.18000002
+hue_variation_max = 0.20999998
+turbulence_enabled = true
+turbulence_noise_strength = 2.0
+turbulence_noise_speed = Vector3(0, -3, 0)
+
+[node name="GasMountainGas" type="GPUParticles2D" unique_id=606829136]
+amount = 100
+texture = ExtResource("1_p0mr0")
+lifetime = 13.0
+preprocess = 10.0
+process_material = SubResource("ParticleProcessMaterial_yx8o2")

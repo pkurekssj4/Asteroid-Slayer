@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bvfdfwwq6h3x6" path="res://weather/cosmos_sky_transition.png" id="3_tb2lt"]
 [ext_resource type="Texture2D" uid="uid://dbafcw2g4frs3" path="res://weather/sky_high.png" id="4_gh0px"]
 [ext_resource type="Script" uid="uid://c7joh1jcwo3n5" path="res://fever.gd" id="4_mc3al"]
-[ext_resource type="Texture2D" uid="uid://bcgyeom0p4n5h" path="res://locations/1/rocket.png" id="4_mljfx"]
+[ext_resource type="Texture2D" uid="uid://rqiisrjqmnki" path="res://locations/10/rocket.png" id="4_mljfx"]
 [ext_resource type="Script" uid="uid://cv04he521tu7a" path="res://pause_menu.gd" id="5_7fijq"]
 [ext_resource type="Script" uid="uid://bvk3ted4yjg6c" path="res://progress_bar_manager.gd" id="5_bqa6y"]
 [ext_resource type="Script" uid="uid://cqvg8pkijr3vj" path="res://object_events_hub.gd" id="5_wj41c"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://ckbfkddokrq6o" path="res://main_menu/stars.png" id="8_3xib3"]
 [ext_resource type="Texture2D" uid="uid://dwx1y0mtijr6i" path="res://main_menu/fractals.png" id="9_3xib3"]
 [ext_resource type="Theme" uid="uid://d1icjuesk3qr0" path="res://ui/button.tres" id="10_cfc7e"]
+[ext_resource type="Texture2D" uid="uid://y0in0e424ld4" path="res://locations/1/gas_mountain.png" id="14_m28ev"]
 [ext_resource type="PackedScene" uid="uid://do7iqruutrp5s" path="res://structures/cannon/cannon.tscn" id="29_bteo4"]
 [ext_resource type="PackedScene" uid="uid://bph73dswnrg0y" path="res://structures/laser_turret/laser_turret.tscn" id="30_amd6h"]
 [ext_resource type="PackedScene" uid="uid://cs3enapswl74s" path="res://structures/pulse_barrier/pulse_barrier.tscn" id="31_kqf2j"]
@@ -28,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://csmou614u6nxn" path="res://resource_icons/astral_shard.png" id="42_vq6dd"]
 [ext_resource type="Texture2D" uid="uid://6y0mmbqxt73e" path="res://resource_icons/ethereal_shard.png" id="43_0uofd"]
 [ext_resource type="Texture2D" uid="uid://br2ehtg00h2sv" path="res://resource_icons/resource_credit.png" id="45_t46w6"]
+[ext_resource type="PackedScene" uid="uid://dmpvf1m6w2ymx" path="res://locations/1/gas_mountain_gas.tscn" id="47_lwlx3"]
 [ext_resource type="PackedScene" uid="uid://b3ptdqc63x3uj" path="res://structures/radar/radar.tscn" id="49_t2ssd"]
 [ext_resource type="PackedScene" uid="uid://bbeq1a53h80x0" path="res://structures/overlock_station/overclock_station.tscn" id="50_7noa1"]
 [ext_resource type="PackedScene" uid="uid://c5ek2eyclc2a7" path="res://structures/cryo_silos/cryo_silos.tscn" id="51_3xib3"]
@@ -46,37 +48,17 @@
 [ext_resource type="PackedScene" uid="uid://rcmnw51gyx45" path="res://structures/strike_prediction_center/strike_prediction_center.tscn" id="59_4mai8"]
 [ext_resource type="Texture2D" uid="uid://crr1ousc8qcbx" path="res://resource_icons/divine_shard.png" id="62_vyqle"]
 
-[sub_resource type="Shader" id="Shader_vyqle"]
-code = "shader_type canvas_item;
+[sub_resource type="CircleShape2D" id="CircleShape2D_kq12w"]
+radius = 9.16595
 
-uniform float amplitude_x = 100.0;
-uniform float frequency_x = 20.0;
-uniform float speed_x = 0.1;
+[sub_resource type="CircleShape2D" id="CircleShape2D_lwlx3"]
+radius = 23.3079
 
-uniform float amplitude_y = 20.0;
-uniform float frequency_y = 10.0;
-uniform float speed_y = 0.2;
+[sub_resource type="Gradient" id="Gradient_0567k"]
+colors = PackedColorArray(1, 1, 1, 0.509804, 1, 1, 1, 0.509804)
 
-uniform float phase = 0.0;
-
-void fragment() {
-    float wave_x = sin(UV.y * frequency_x + phase * speed_x) * amplitude_x * TEXTURE_PIXEL_SIZE.x;
-    float wave_y = cos(UV.x * frequency_y + phase * speed_y) * amplitude_y * TEXTURE_PIXEL_SIZE.y;
-
-    vec2 uv = UV + vec2(wave_x, wave_y);
-    COLOR = texture(TEXTURE, uv);
-    COLOR.a *= 0.5; // ← przezroczystość 30%
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5628o"]
-shader = SubResource("Shader_vyqle")
-shader_parameter/amplitude_x = 100.0
-shader_parameter/frequency_x = 20.0
-shader_parameter/speed_x = 0.1
-shader_parameter/amplitude_y = 20.0
-shader_parameter/frequency_y = 10.0
-shader_parameter/speed_y = 0.2
-shader_parameter/phase = 0.0
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5ft5k"]
+gradient = SubResource("Gradient_0567k")
 
 [sub_resource type="Curve" id="Curve_aa0lp"]
 _limits = [0.0, 1.0, 0.114943, 1.0]
@@ -255,17 +237,37 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eu6ph"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kq12w"]
-radius = 9.16595
+[sub_resource type="Shader" id="Shader_vyqle"]
+code = "shader_type canvas_item;
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lwlx3"]
-radius = 23.3079
+uniform float amplitude_x = 100.0;
+uniform float frequency_x = 20.0;
+uniform float speed_x = 0.1;
 
-[sub_resource type="Gradient" id="Gradient_0567k"]
-colors = PackedColorArray(1, 1, 1, 0.509804, 1, 1, 1, 0.509804)
+uniform float amplitude_y = 20.0;
+uniform float frequency_y = 10.0;
+uniform float speed_y = 0.2;
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_5ft5k"]
-gradient = SubResource("Gradient_0567k")
+uniform float phase = 0.0;
+
+void fragment() {
+    float wave_x = sin(UV.y * frequency_x + phase * speed_x) * amplitude_x * TEXTURE_PIXEL_SIZE.x;
+    float wave_y = cos(UV.x * frequency_y + phase * speed_y) * amplitude_y * TEXTURE_PIXEL_SIZE.y;
+
+    vec2 uv = UV + vec2(wave_x, wave_y);
+    COLOR = texture(TEXTURE, uv);
+    COLOR.a *= 0.5; // ← przezroczystość 30%
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5628o"]
+shader = SubResource("Shader_vyqle")
+shader_parameter/amplitude_x = 100.0
+shader_parameter/frequency_x = 20.0
+shader_parameter/speed_x = 0.1
+shader_parameter/amplitude_y = 20.0
+shader_parameter/frequency_y = 10.0
+shader_parameter/speed_y = 0.2
+shader_parameter/phase = 0.0
 
 [sub_resource type="Curve2D" id="Curve2D_w6sye"]
 _data = {
@@ -301,7 +303,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("EndingBlackSolid:modulate")
+tracks/0/path = NodePath("UILayer/EndingBlackSolid:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -313,7 +315,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GUI/Score/ResourceCredits/Count:scale")
+tracks/1/path = NodePath("UILayer/Score/ResourceCredits/Count:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -325,7 +327,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("GUI/Score/ResourceCredits/Count:modulate")
+tracks/2/path = NodePath("UILayer/Score/ResourceCredits/Count:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -341,7 +343,7 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GUI/Score/AstralShards/Count:scale")
+tracks/0/path = NodePath("UILayer/Score/AstralShards/Count:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -353,7 +355,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GUI/Score/AstralShards/Count:modulate")
+tracks/1/path = NodePath("UILayer/Score/AstralShards/Count:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -369,7 +371,7 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GUI/Score/CelestialShards/Count:scale")
+tracks/0/path = NodePath("UILayer/Score/CelestialShards/Count:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -381,7 +383,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GUI/Score/CelestialShards/Count:modulate")
+tracks/1/path = NodePath("UILayer/Score/CelestialShards/Count:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -397,7 +399,7 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GUI/Score/CommonShards/Count:scale")
+tracks/0/path = NodePath("UILayer/Score/CommonShards/Count:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -409,7 +411,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GUI/Score/CommonShards/Count:modulate")
+tracks/1/path = NodePath("UILayer/Score/CommonShards/Count:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -425,7 +427,7 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GUI/Score/ResourceCredits/Count:scale")
+tracks/0/path = NodePath("UILayer/Score/ResourceCredits/Count:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -437,7 +439,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GUI/Score/ResourceCredits/Count:modulate")
+tracks/1/path = NodePath("UILayer/Score/ResourceCredits/Count:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -453,7 +455,7 @@ length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("EndingBlackSolid:modulate")
+tracks/0/path = NodePath("UILayer/EndingBlackSolid:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -469,7 +471,7 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GUI/Score/EtherealShards/Count:scale")
+tracks/0/path = NodePath("UILayer/Score/EtherealShards/Count:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -481,7 +483,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GUI/Score/EtherealShards/Count:modulate")
+tracks/1/path = NodePath("UILayer/Score/EtherealShards/Count:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -497,7 +499,7 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GUI/Score/NanoCores/Count:scale")
+tracks/0/path = NodePath("UILayer/Score/NanoCores/Count:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -509,7 +511,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GUI/Score/NanoCores/Count:modulate")
+tracks/1/path = NodePath("UILayer/Score/NanoCores/Count:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -585,6 +587,833 @@ metadata/_edit_lock_ = true
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=466238537]
 
+[node name="BackgroundBar" type="ColorRect" parent="UILayer" unique_id=331850618]
+offset_left = -2.0
+offset_top = 975.0
+offset_right = 1924.0
+offset_bottom = 1084.0
+mouse_filter = 2
+color = Color(0.04224, 0.0128, 0.16, 1)
+
+[node name="Score" type="Control" parent="UILayer" unique_id=2109958782]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ResourceCredits" type="Area2D" parent="UILayer/Score" unique_id=1327114085]
+position = Vector2(1893, 18)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("35_t46w6")
+
+[node name="Icon" type="Sprite2D" parent="UILayer/Score/ResourceCredits" unique_id=1003929018]
+texture_filter = 1
+position = Vector2(0.815, 0)
+scale = Vector2(0.405, 0.405)
+texture = ExtResource("45_t46w6")
+
+[node name="Mask" type="CollisionShape2D" parent="UILayer/Score/ResourceCredits" unique_id=193001139]
+position = Vector2(0.815, 0.47998)
+rotation = 1.1781
+shape = SubResource("CircleShape2D_kq12w")
+
+[node name="Count" type="Label" parent="UILayer/Score/ResourceCredits" unique_id=1110070109]
+offset_left = -252.0
+offset_top = -13.0
+offset_right = -15.0
+offset_bottom = 14.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="CommonShards" type="Area2D" parent="UILayer/Score" unique_id=736130766]
+position = Vector2(1893, 42)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("35_t46w6")
+
+[node name="Icon" type="Sprite2D" parent="UILayer/Score/CommonShards" unique_id=1943440681]
+position = Vector2(0, 0.98999023)
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("40_7lm8q")
+
+[node name="Mask" type="CollisionShape2D" parent="UILayer/Score/CommonShards" unique_id=1743496928]
+position = Vector2(0.50499916, 1.1750002)
+shape = SubResource("CircleShape2D_kq12w")
+
+[node name="Count" type="Label" parent="UILayer/Score/CommonShards" unique_id=1171745000]
+offset_left = -257.0
+offset_top = -13.0
+offset_right = -15.0
+offset_bottom = 14.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="CelestialShards" type="Area2D" parent="UILayer/Score" unique_id=1606873655]
+position = Vector2(1893, 67)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("35_t46w6")
+
+[node name="Icon" type="Sprite2D" parent="UILayer/Score/CelestialShards" unique_id=498801805]
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("41_2unnl")
+
+[node name="Mask" type="CollisionShape2D" parent="UILayer/Score/CelestialShards" unique_id=795862251]
+position = Vector2(0.21500015, 0)
+shape = SubResource("CircleShape2D_kq12w")
+
+[node name="Count" type="Label" parent="UILayer/Score/CelestialShards" unique_id=721998019]
+offset_left = -249.0
+offset_top = -14.0
+offset_right = -15.0
+offset_bottom = 13.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="AstralShards" type="Area2D" parent="UILayer/Score" unique_id=1656596600]
+position = Vector2(1893, 91)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("35_t46w6")
+
+[node name="Icon" type="Sprite2D" parent="UILayer/Score/AstralShards" unique_id=309657236]
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("42_vq6dd")
+
+[node name="Mask" type="CollisionShape2D" parent="UILayer/Score/AstralShards" unique_id=1004490611]
+position = Vector2(0.09000015, 0)
+shape = SubResource("CircleShape2D_kq12w")
+
+[node name="Count" type="Label" parent="UILayer/Score/AstralShards" unique_id=442690521]
+offset_left = -275.0
+offset_top = -14.0
+offset_right = -15.0
+offset_bottom = 13.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="EtherealShards" type="Area2D" parent="UILayer/Score" unique_id=1759106116]
+position = Vector2(1892, 115)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("35_t46w6")
+
+[node name="Icon" type="Sprite2D" parent="UILayer/Score/EtherealShards" unique_id=1830027037]
+position = Vector2(1, 0)
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("43_0uofd")
+
+[node name="Mask" type="CollisionShape2D" parent="UILayer/Score/EtherealShards" unique_id=1195101515]
+position = Vector2(1.0100002, 0)
+shape = SubResource("CircleShape2D_kq12w")
+
+[node name="Count" type="Label" parent="UILayer/Score/EtherealShards" unique_id=94807278]
+offset_left = -274.0
+offset_top = -14.0
+offset_right = -14.0
+offset_bottom = 13.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="DivineShards" type="Area2D" parent="UILayer/Score" unique_id=1573798965]
+position = Vector2(1892, 139)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("35_t46w6")
+
+[node name="Icon" type="Sprite2D" parent="UILayer/Score/DivineShards" unique_id=1737457277]
+position = Vector2(1, 0)
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("62_vyqle")
+
+[node name="Mask" type="CollisionShape2D" parent="UILayer/Score/DivineShards" unique_id=1621366442]
+position = Vector2(1.0100002, 0)
+shape = SubResource("CircleShape2D_kq12w")
+
+[node name="Count" type="Label" parent="UILayer/Score/DivineShards" unique_id=409858500]
+offset_left = -274.0
+offset_top = -14.0
+offset_right = -14.0
+offset_bottom = 13.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="NanoCores" type="Area2D" parent="UILayer/Score" unique_id=2113125309]
+position = Vector2(1893, 163)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("35_t46w6")
+
+[node name="Icon" type="Sprite2D" parent="UILayer/Score/NanoCores" unique_id=147458177]
+scale = Vector2(0.325, 0.325)
+texture = ExtResource("41_m28ev")
+
+[node name="Mask" type="CollisionShape2D" parent="UILayer/Score/NanoCores" unique_id=2108113873]
+scale = Vector2(0.325, 0.325)
+shape = SubResource("CircleShape2D_lwlx3")
+
+[node name="Count" type="Label" parent="UILayer/Score/NanoCores" unique_id=94658338]
+offset_left = -275.0
+offset_top = -14.0
+offset_right = -15.0
+offset_bottom = 13.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="Fever" type="Control" parent="UILayer" unique_id=827765764]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="RoundedBackground" type="Panel" parent="UILayer/Fever" unique_id=616018719]
+layout_mode = 0
+offset_left = 1572.0
+offset_top = 992.0
+offset_right = 1860.0
+offset_bottom = 1061.0
+
+[node name="Background" type="ColorRect" parent="UILayer/Fever" unique_id=1108734558]
+layout_mode = 0
+offset_left = 1579.0
+offset_top = 1023.0
+offset_right = 1854.0
+offset_bottom = 1053.0
+color = Color(0.158472, 0.158472, 0.158472, 1)
+
+[node name="Label" type="Label" parent="UILayer/Fever" unique_id=1778340765]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1580.0
+offset_top = 995.0
+offset_right = 1851.0
+offset_bottom = 1018.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Fever meter"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="TextureProgressBar" parent="UILayer/Fever" unique_id=51871705]
+layout_mode = 0
+offset_left = 1583.0
+offset_top = 1026.0
+offset_right = 1850.0
+offset_bottom = 1049.0
+step = 0.1
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture1D_5ft5k")
+texture_progress = ExtResource("38_xa2ro")
+
+[node name="TimeLeftLabel" type="Label" parent="UILayer/Fever" unique_id=1101035822]
+layout_mode = 0
+offset_left = 1579.0
+offset_top = 1025.0
+offset_right = 1853.0
+offset_bottom = 1050.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Abilities" type="Control" parent="UILayer" unique_id=1907989815]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -7.0
+offset_right = -7.0
+
+[node name="Background3" type="Panel" parent="UILayer/Abilities" unique_id=422365755]
+layout_mode = 0
+offset_left = 844.0
+offset_top = 987.0
+offset_right = 1097.0
+offset_bottom = 1068.0
+
+[node name="Background2" type="ColorRect" parent="UILayer/Abilities" unique_id=1406426775]
+layout_mode = 0
+offset_left = 857.0
+offset_top = 1000.0
+offset_right = 1192.0
+offset_bottom = 1082.0
+scale = Vector2(0.68, 0.68)
+color = Color(0.336403, 0.0681096, 0.0525427, 1)
+
+[node name="Background" type="ColorRect" parent="UILayer/Abilities" unique_id=1855653835]
+layout_mode = 0
+offset_left = 860.0
+offset_top = 1003.0
+offset_right = 1210.0
+offset_bottom = 1082.0
+scale = Vector2(0.635, 0.635)
+color = Color(0.180005, 0.180005, 0.180005, 1)
+
+[node name="Ability1" type="Area2D" parent="UILayer/Abilities" unique_id=1244549932]
+position = Vector2(9, 0)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="Outline" type="ColorRect" parent="UILayer/Abilities/Ability1" unique_id=1098221931]
+offset_left = 859.0
+offset_top = 1009.0
+offset_right = 897.0
+offset_bottom = 1047.0
+color = Color(0.344076, 0.344076, 0.344076, 1)
+
+[node name="PlasmaBarrageIcon" type="Sprite2D" parent="UILayer/Abilities/Ability1" unique_id=112272453]
+visible = false
+position = Vector2(878, 1028)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("56_3gvs5")
+
+[node name="Label" type="Label" parent="UILayer/Abilities/Ability1" unique_id=1124741140]
+offset_left = 860.0
+offset_top = 1010.0
+offset_right = 896.0
+offset_bottom = 1046.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Q"
+vertical_alignment = 2
+
+[node name="Ability2" type="Area2D" parent="UILayer/Abilities" unique_id=787490406]
+position = Vector2(65, 0)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="Outline" type="ColorRect" parent="UILayer/Abilities/Ability2" unique_id=1273800355]
+offset_left = 859.0
+offset_top = 1009.0
+offset_right = 897.0
+offset_bottom = 1047.0
+color = Color(0.344076, 0.344076, 0.344076, 1)
+
+[node name="StasisFieldIcon" type="Sprite2D" parent="UILayer/Abilities/Ability2" unique_id=1536564109]
+visible = false
+position = Vector2(878, 1028)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("57_ib7ph")
+
+[node name="Label" type="Label" parent="UILayer/Abilities/Ability2" unique_id=1853125782]
+offset_left = 860.0
+offset_top = 1010.0
+offset_right = 896.0
+offset_bottom = 1046.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "W"
+vertical_alignment = 2
+
+[node name="Ability3" type="Area2D" parent="UILayer/Abilities" unique_id=811121193]
+position = Vector2(9, 0)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="Outline" type="ColorRect" parent="UILayer/Abilities/Ability3" unique_id=1244507939]
+offset_left = 971.0
+offset_top = 1009.0
+offset_right = 1009.0
+offset_bottom = 1047.0
+color = Color(0.344076, 0.344076, 0.344076, 1)
+
+[node name="GravityWellIcon" type="Sprite2D" parent="UILayer/Abilities/Ability3" unique_id=746831951]
+visible = false
+position = Vector2(990, 1028)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("58_vuohh")
+
+[node name="Label" type="Label" parent="UILayer/Abilities/Ability3" unique_id=1913067714]
+offset_left = 972.0
+offset_top = 1010.0
+offset_right = 1008.0
+offset_bottom = 1046.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "E"
+vertical_alignment = 2
+
+[node name="Ability4" type="Area2D" parent="UILayer/Abilities" unique_id=689374733]
+position = Vector2(9, 0)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="Outline" type="ColorRect" parent="UILayer/Abilities/Ability4" unique_id=204862596]
+offset_left = 1027.0
+offset_top = 1009.0
+offset_right = 1065.0
+offset_bottom = 1047.0
+color = Color(0.344076, 0.344076, 0.344076, 1)
+
+[node name="OrbitalStrikeIcon" type="Sprite2D" parent="UILayer/Abilities/Ability4" unique_id=349132678]
+visible = false
+position = Vector2(1046, 1028)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("59_3gvs5")
+
+[node name="Label" type="Label" parent="UILayer/Abilities/Ability4" unique_id=724114147]
+offset_left = 1028.0
+offset_top = 1010.0
+offset_right = 1064.0
+offset_bottom = 1046.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "R"
+vertical_alignment = 2
+
+[node name="LabelsBackground" type="Panel" parent="UILayer" unique_id=1448658248]
+offset_left = 11.0
+offset_top = 992.0
+offset_right = 283.0
+offset_bottom = 1061.0
+
+[node name="RoundsLeftLabel" type="Label" parent="UILayer" unique_id=361286559]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -946.0
+offset_top = 463.0
+offset_right = -853.0
+offset_bottom = 490.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Rounds left:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RoundsLeftCount" type="Label" parent="UILayer" unique_id=237616982]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -850.0
+offset_top = 463.0
+offset_right = -794.0
+offset_bottom = 490.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "0"
+vertical_alignment = 1
+
+[node name="AsteroidsLeftLabel" type="Label" parent="UILayer" unique_id=597360327]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -821.5
+offset_top = 462.0
+offset_right = -713.5
+offset_bottom = 489.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Asteroids left:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AsteroidsLeftCount" type="Label" parent="UILayer" unique_id=1692201014]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -710.5
+offset_top = 462.0
+offset_right = -607.5
+offset_bottom = 489.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+vertical_alignment = 1
+
+[node name="BuildingsThresholdLabel" type="Label" parent="UILayer" unique_id=655225738]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -946.0
+offset_top = 490.0
+offset_right = -744.0
+offset_bottom = 513.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Buildings threshold:"
+vertical_alignment = 1
+
+[node name="BuildingsThresholdCount" type="Label" parent="UILayer" unique_id=1034882762]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -789.0
+offset_top = 490.0
+offset_right = -587.0
+offset_bottom = 513.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "15/15"
+vertical_alignment = 1
+
+[node name="PauseAndGameOverMenu" type="Control" parent="UILayer" unique_id=619193517]
+process_mode = 3
+visible = false
+z_index = 27
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("5_7fijq")
+
+[node name="Background" type="ColorRect" parent="UILayer/PauseAndGameOverMenu" unique_id=1883426190]
+layout_mode = 0
+offset_left = -72.0
+offset_top = -63.0
+offset_right = 2033.0
+offset_bottom = 1166.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0.921569)
+
+[node name="Particles" type="GPUParticles2D" parent="UILayer/PauseAndGameOverMenu" unique_id=380833467]
+position = Vector2(949, 520)
+amount = 60
+lifetime = 2.0
+trail_enabled = true
+trail_lifetime = 0.4
+trail_sections = 20
+process_material = SubResource("ParticleProcessMaterial_4v2jo")
+
+[node name="Panel" type="Panel" parent="UILayer/PauseAndGameOverMenu" unique_id=1002927027]
+layout_mode = 0
+offset_left = 884.0
+offset_top = 470.0
+offset_right = 1036.0
+offset_bottom = 615.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_edr7y")
+
+[node name="Label" type="Label" parent="UILayer/PauseAndGameOverMenu" unique_id=1004693770]
+layout_mode = 0
+offset_top = 111.0
+offset_right = 1919.0
+offset_bottom = 166.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Pause Menu"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="UILayer/PauseAndGameOverMenu" unique_id=763222367]
+layout_mode = 0
+offset_left = 884.0
+offset_top = 472.0
+offset_right = 1036.0
+offset_bottom = 628.0
+
+[node name="HighlightButtonAnimation" type="AnimationPlayer" parent="UILayer/PauseAndGameOverMenu/Buttons" unique_id=1129404403]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_4v2jo")
+
+[node name="Restart" type="Button" parent="UILayer/PauseAndGameOverMenu/Buttons" unique_id=1656600521]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_constants/outline_size = 2
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_iu0sx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aa0lp")
+text = "Restart"
+
+[node name="MainMenu" type="Button" parent="UILayer/PauseAndGameOverMenu/Buttons" unique_id=378635428]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_constants/outline_size = 2
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_l1i01")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4v2jo")
+text = "Main menu"
+
+[node name="UpgradeConsole" type="Button" parent="UILayer/PauseAndGameOverMenu/Buttons" unique_id=1454719347]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_constants/outline_size = 2
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_klri6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_r62pu")
+text = "Upgrade Console"
+
+[node name="Exit" type="Button" parent="UILayer/PauseAndGameOverMenu/Buttons" unique_id=958253755]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_constants/outline_size = 2
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_edr7y")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eu6ph")
+text = "Exit"
+
+[node name="Summary" type="Control" parent="UILayer" unique_id=1746625223]
+z_index = 23
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="MainLabel" type="Label" parent="UILayer/Summary" unique_id=1517374582]
+visible = false
+layout_mode = 0
+offset_left = 888.0
+offset_top = 295.0
+offset_right = 1015.0
+offset_bottom = 342.0
+theme_override_colors/font_color = Color(0.34, 0.758, 1, 1)
+theme_override_font_sizes/font_size = 25
+text = "SUMMARY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DestroyedAsteroidsLabel" type="Label" parent="UILayer/Summary" unique_id=3039809]
+visible = false
+layout_mode = 0
+offset_left = 724.0
+offset_top = 342.0
+offset_right = 924.0
+offset_bottom = 389.0
+theme_override_colors/font_color = Color(1, 0.838759, 0.648931, 1)
+theme_override_font_sizes/font_size = 20
+text = "Destroyed asteroids:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DestroyedAsteroidsCount" type="Label" parent="UILayer/Summary" unique_id=947384084]
+visible = false
+layout_mode = 0
+offset_left = 927.0
+offset_top = 342.0
+offset_right = 952.0
+offset_bottom = 389.0
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LostBuildingsLabel" type="Label" parent="UILayer/Summary" unique_id=2447476]
+visible = false
+layout_mode = 0
+offset_left = 784.0
+offset_top = 366.0
+offset_right = 924.0
+offset_bottom = 413.0
+theme_override_colors/font_color = Color(1, 0.838759, 0.648931, 1)
+theme_override_font_sizes/font_size = 20
+text = "Lost buildings:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LostBuildingsCount" type="Label" parent="UILayer/Summary" unique_id=1485006481]
+visible = false
+layout_mode = 0
+offset_left = 927.0
+offset_top = 366.0
+offset_right = 952.0
+offset_bottom = 413.0
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AccuracyLabel" type="Label" parent="UILayer/Summary" unique_id=1943216233]
+visible = false
+layout_mode = 0
+offset_left = 831.0
+offset_top = 391.0
+offset_right = 924.0
+offset_bottom = 438.0
+theme_override_colors/font_color = Color(1, 0.838759, 0.648931, 1)
+theme_override_font_sizes/font_size = 20
+text = "Accuracy:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AccuracyNumber" type="Label" parent="UILayer/Summary" unique_id=408295221]
+visible = false
+layout_mode = 0
+offset_left = 927.0
+offset_top = 390.0
+offset_right = 952.0
+offset_bottom = 437.0
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HyperLabel" type="Label" parent="UILayer/Summary" unique_id=429087076]
+visible = false
+layout_mode = 0
+offset_left = 648.0
+offset_top = 415.0
+offset_right = 935.0
+offset_bottom = 462.0
+theme_override_colors/font_color = Color(1, 0.838759, 0.648931, 1)
+theme_override_font_sizes/font_size = 20
+text = "Destroyed Hyper Asteroids:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HyperCount" type="Label" parent="UILayer/Summary" unique_id=1041752991]
+visible = false
+layout_mode = 0
+offset_left = 927.0
+offset_top = 414.0
+offset_right = 952.0
+offset_bottom = 461.0
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MassDestructionsLabel" type="Label" parent="UILayer/Summary" unique_id=6905681]
+visible = false
+layout_mode = 0
+offset_left = 739.0
+offset_top = 439.0
+offset_right = 928.0
+offset_bottom = 486.0
+theme_override_colors/font_color = Color(1, 0.838759, 0.648931, 1)
+theme_override_font_sizes/font_size = 20
+text = "Mass destructions:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MassDestructionsCount" type="Label" parent="UILayer/Summary" unique_id=1332318016]
+visible = false
+layout_mode = 0
+offset_left = 927.0
+offset_top = 438.0
+offset_right = 952.0
+offset_bottom = 485.0
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChainReactionsLabel" type="Label" parent="UILayer/Summary" unique_id=567994686]
+visible = false
+layout_mode = 0
+offset_left = 764.0
+offset_top = 463.0
+offset_right = 928.0
+offset_bottom = 510.0
+theme_override_colors/font_color = Color(1, 0.838759, 0.648931, 1)
+theme_override_font_sizes/font_size = 20
+text = "Chain reactions:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChainReactionsCount" type="Label" parent="UILayer/Summary" unique_id=148353614]
+visible = false
+layout_mode = 0
+offset_left = 927.0
+offset_top = 462.0
+offset_right = 952.0
+offset_bottom = 509.0
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AccuracyStreaksLabel" type="Label" parent="UILayer/Summary" unique_id=1019032600]
+visible = false
+layout_mode = 0
+offset_left = 750.0
+offset_top = 487.0
+offset_right = 929.0
+offset_bottom = 534.0
+theme_override_colors/font_color = Color(1, 0.838759, 0.648931, 1)
+theme_override_font_sizes/font_size = 20
+text = "Accuracy streaks:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AccuracyStreaksCount" type="Label" parent="UILayer/Summary" unique_id=479017920]
+visible = false
+layout_mode = 0
+offset_left = 927.0
+offset_top = 486.0
+offset_right = 952.0
+offset_bottom = 533.0
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="UILayer/Summary" unique_id=1765419666]
+visible = false
+layout_mode = 0
+offset_left = 905.0
+offset_top = 570.0
+offset_right = 1008.0
+offset_bottom = 601.0
+theme = ExtResource("10_cfc7e")
+text = "Continue"
+
+[node name="EndingBlackSolid" type="ColorRect" parent="UILayer" unique_id=195133614]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = -25.0
+offset_top = -15.0
+offset_right = 1940.0
+offset_bottom = 1099.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
 [node name="TimeAndWeather" type="Node" parent="." unique_id=1016696170]
 script = ExtResource("2_gh0px")
 
@@ -629,40 +1458,60 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
 [node name="CosmosSkyTransition" type="Sprite2D" parent="." unique_id=146035574]
 modulate = Color(0.0222609, 1.83498e-06, 0.179579, 1)
 position = Vector2(960, 540)
 texture = ExtResource("3_tb2lt")
+metadata/_edit_lock_ = true
 
 [node name="Stars" type="Sprite2D" parent="." unique_id=198898568]
 modulate = Color(18.892, 18.892, 18.892, 1)
 position = Vector2(960, 540)
 texture = ExtResource("8_3xib3")
+metadata/_edit_lock_ = true
 
 [node name="SkyHigh" type="Sprite2D" parent="." unique_id=1787894376]
 modulate = Color(0.0376666, 5.44359e-05, 0.42157, 1)
 position = Vector2(960, 540)
 texture = ExtResource("4_gh0px")
+metadata/_edit_lock_ = true
 
 [node name="Fractals" type="Sprite2D" parent="." unique_id=1067090876]
 material = SubResource("ShaderMaterial_5628o")
 position = Vector2(984, 556)
 texture = ExtResource("9_3xib3")
+metadata/_edit_lock_ = true
 
 [node name="SkyLow" type="Sprite2D" parent="." unique_id=1751305913]
 modulate = Color(0.1254, 0.2736, 0.57, 1)
 position = Vector2(960, 540)
 texture = ExtResource("3_cfc7e")
+metadata/_edit_lock_ = true
+
+[node name="GasMountain" type="Sprite2D" parent="." unique_id=1313049624]
+z_index = 7
+position = Vector2(241.99997, 635)
+scale = Vector2(0.685, 0.685)
+texture = ExtResource("14_m28ev")
+metadata/_edit_lock_ = true
+
+[node name="GasMountainGas" parent="." unique_id=606829136 instance=ExtResource("47_lwlx3")]
+z_index = 8
+position = Vector2(244, 531)
 
 [node name="Mountains" type="Sprite2D" parent="." unique_id=687510026]
+modulate = Color(1, 1, 1, 0.84313726)
 position = Vector2(9600, 540)
 texture = ExtResource("55_v33yl")
+metadata/_edit_lock_ = true
 
 [node name="Foreground" type="Sprite2D" parent="." unique_id=641110394]
 z_index = 2
 position = Vector2(9600, 540)
 texture = ExtResource("2_87ddb")
+metadata/_edit_lock_ = true
 
 [node name="Rocket" type="Sprite2D" parent="." unique_id=1571130926]
 z_index = 3
@@ -734,306 +1583,6 @@ position = Vector2(1759, 930.33325)
 [node name="RightRadar" parent="Structures" unique_id=1454624239 instance=ExtResource("49_t2ssd")]
 position = Vector2(1846.669, 951)
 
-[node name="PauseAndGameOverMenu" type="Control" parent="." unique_id=619193517]
-process_mode = 3
-visible = false
-z_index = 27
-layout_mode = 3
-anchors_preset = 0
-mouse_filter = 2
-script = ExtResource("5_7fijq")
-
-[node name="Background" type="ColorRect" parent="PauseAndGameOverMenu" unique_id=1883426190]
-layout_mode = 0
-offset_left = -72.0
-offset_top = -63.0
-offset_right = 2033.0
-offset_bottom = 1166.0
-mouse_filter = 2
-color = Color(1, 1, 1, 0.921569)
-
-[node name="Particles" type="GPUParticles2D" parent="PauseAndGameOverMenu" unique_id=380833467]
-position = Vector2(949, 520)
-amount = 60
-lifetime = 2.0
-trail_enabled = true
-trail_lifetime = 0.4
-trail_sections = 20
-process_material = SubResource("ParticleProcessMaterial_4v2jo")
-
-[node name="Panel" type="Panel" parent="PauseAndGameOverMenu" unique_id=1002927027]
-layout_mode = 0
-offset_left = 884.0
-offset_top = 470.0
-offset_right = 1036.0
-offset_bottom = 615.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_edr7y")
-
-[node name="Label" type="Label" parent="PauseAndGameOverMenu" unique_id=1004693770]
-layout_mode = 0
-offset_top = 111.0
-offset_right = 1919.0
-offset_bottom = 166.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-text = "Pause Menu"
-horizontal_alignment = 1
-
-[node name="Buttons" type="VBoxContainer" parent="PauseAndGameOverMenu" unique_id=763222367]
-layout_mode = 0
-offset_left = 884.0
-offset_top = 472.0
-offset_right = 1036.0
-offset_bottom = 628.0
-
-[node name="HighlightButtonAnimation" type="AnimationPlayer" parent="PauseAndGameOverMenu/Buttons" unique_id=1129404403]
-root_node = NodePath("../..")
-libraries/ = SubResource("AnimationLibrary_4v2jo")
-
-[node name="Restart" type="Button" parent="PauseAndGameOverMenu/Buttons" unique_id=1656600521]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
-layout_mode = 2
-theme_type_variation = &"FlatButton"
-theme_override_constants/outline_size = 2
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_iu0sx")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_aa0lp")
-text = "Restart"
-
-[node name="MainMenu" type="Button" parent="PauseAndGameOverMenu/Buttons" unique_id=378635428]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
-layout_mode = 2
-theme_type_variation = &"FlatButton"
-theme_override_constants/outline_size = 2
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_l1i01")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_4v2jo")
-text = "Main menu"
-
-[node name="UpgradeConsole" type="Button" parent="PauseAndGameOverMenu/Buttons" unique_id=1454719347]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
-layout_mode = 2
-theme_type_variation = &"FlatButton"
-theme_override_constants/outline_size = 2
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_klri6")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_r62pu")
-text = "Upgrade Console"
-
-[node name="Exit" type="Button" parent="PauseAndGameOverMenu/Buttons" unique_id=958253755]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
-layout_mode = 2
-theme_type_variation = &"FlatButton"
-theme_override_constants/outline_size = 2
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_edr7y")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_eu6ph")
-text = "Exit"
-
-[node name="Summary" type="Control" parent="." unique_id=1746625223]
-z_index = 23
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="MainLabel" type="Label" parent="Summary" unique_id=1517374582]
-visible = false
-layout_mode = 0
-offset_left = 888.0
-offset_top = 295.0
-offset_right = 1015.0
-offset_bottom = 342.0
-theme_override_colors/font_color = Color(0.34, 0.758, 1, 1)
-theme_override_font_sizes/font_size = 25
-text = "SUMMARY"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DestroyedAsteroidsLabel" type="Label" parent="Summary" unique_id=3039809]
-visible = false
-layout_mode = 0
-offset_left = 724.0
-offset_top = 342.0
-offset_right = 924.0
-offset_bottom = 389.0
-theme_override_colors/font_color = Color(1, 0.838759, 0.648931, 1)
-theme_override_font_sizes/font_size = 20
-text = "Destroyed asteroids:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DestroyedAsteroidsCount" type="Label" parent="Summary" unique_id=947384084]
-visible = false
-layout_mode = 0
-offset_left = 927.0
-offset_top = 342.0
-offset_right = 952.0
-offset_bottom = 389.0
-theme_override_font_sizes/font_size = 20
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LostBuildingsLabel" type="Label" parent="Summary" unique_id=2447476]
-visible = false
-layout_mode = 0
-offset_left = 784.0
-offset_top = 366.0
-offset_right = 924.0
-offset_bottom = 413.0
-theme_override_colors/font_color = Color(1, 0.838759, 0.648931, 1)
-theme_override_font_sizes/font_size = 20
-text = "Lost buildings:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LostBuildingsCount" type="Label" parent="Summary" unique_id=1485006481]
-visible = false
-layout_mode = 0
-offset_left = 927.0
-offset_top = 366.0
-offset_right = 952.0
-offset_bottom = 413.0
-theme_override_font_sizes/font_size = 20
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AccuracyLabel" type="Label" parent="Summary" unique_id=1943216233]
-visible = false
-layout_mode = 0
-offset_left = 831.0
-offset_top = 391.0
-offset_right = 924.0
-offset_bottom = 438.0
-theme_override_colors/font_color = Color(1, 0.838759, 0.648931, 1)
-theme_override_font_sizes/font_size = 20
-text = "Accuracy:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AccuracyNumber" type="Label" parent="Summary" unique_id=408295221]
-visible = false
-layout_mode = 0
-offset_left = 927.0
-offset_top = 390.0
-offset_right = 952.0
-offset_bottom = 437.0
-theme_override_font_sizes/font_size = 20
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HyperLabel" type="Label" parent="Summary" unique_id=429087076]
-visible = false
-layout_mode = 0
-offset_left = 648.0
-offset_top = 415.0
-offset_right = 935.0
-offset_bottom = 462.0
-theme_override_colors/font_color = Color(1, 0.838759, 0.648931, 1)
-theme_override_font_sizes/font_size = 20
-text = "Destroyed Hyper Asteroids:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HyperCount" type="Label" parent="Summary" unique_id=1041752991]
-visible = false
-layout_mode = 0
-offset_left = 927.0
-offset_top = 414.0
-offset_right = 952.0
-offset_bottom = 461.0
-theme_override_font_sizes/font_size = 20
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MassDestructionsLabel" type="Label" parent="Summary" unique_id=6905681]
-visible = false
-layout_mode = 0
-offset_left = 739.0
-offset_top = 439.0
-offset_right = 928.0
-offset_bottom = 486.0
-theme_override_colors/font_color = Color(1, 0.838759, 0.648931, 1)
-theme_override_font_sizes/font_size = 20
-text = "Mass destructions:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MassDestructionsCount" type="Label" parent="Summary" unique_id=1332318016]
-visible = false
-layout_mode = 0
-offset_left = 927.0
-offset_top = 438.0
-offset_right = 952.0
-offset_bottom = 485.0
-theme_override_font_sizes/font_size = 20
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ChainReactionsLabel" type="Label" parent="Summary" unique_id=567994686]
-visible = false
-layout_mode = 0
-offset_left = 764.0
-offset_top = 463.0
-offset_right = 928.0
-offset_bottom = 510.0
-theme_override_colors/font_color = Color(1, 0.838759, 0.648931, 1)
-theme_override_font_sizes/font_size = 20
-text = "Chain reactions:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ChainReactionsCount" type="Label" parent="Summary" unique_id=148353614]
-visible = false
-layout_mode = 0
-offset_left = 927.0
-offset_top = 462.0
-offset_right = 952.0
-offset_bottom = 509.0
-theme_override_font_sizes/font_size = 20
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AccuracyStreaksLabel" type="Label" parent="Summary" unique_id=1019032600]
-visible = false
-layout_mode = 0
-offset_left = 750.0
-offset_top = 487.0
-offset_right = 929.0
-offset_bottom = 534.0
-theme_override_colors/font_color = Color(1, 0.838759, 0.648931, 1)
-theme_override_font_sizes/font_size = 20
-text = "Accuracy streaks:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AccuracyStreaksCount" type="Label" parent="Summary" unique_id=479017920]
-visible = false
-layout_mode = 0
-offset_left = 927.0
-offset_top = 486.0
-offset_right = 952.0
-offset_bottom = 533.0
-theme_override_font_sizes/font_size = 20
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ContinueButton" type="Button" parent="Summary" unique_id=1765419666]
-visible = false
-layout_mode = 0
-offset_left = 905.0
-offset_top = 570.0
-offset_right = 1008.0
-offset_bottom = 601.0
-theme = ExtResource("10_cfc7e")
-text = "Continue"
-
 [node name="Timers" type="Control" parent="." unique_id=1938721696]
 layout_mode = 3
 anchors_preset = 0
@@ -1050,535 +1599,6 @@ one_shot = true
 [node name="HyperCleanerTimer" type="Timer" parent="Timers" unique_id=1517778135]
 wait_time = 3.0
 one_shot = true
-
-[node name="GUI" type="Control" parent="." unique_id=1732167695]
-z_index = 21
-layout_mode = 3
-anchors_preset = 0
-mouse_filter = 2
-
-[node name="BackgroundBar" type="ColorRect" parent="GUI" unique_id=331850618]
-layout_mode = 0
-offset_left = -2.0
-offset_top = 975.0
-offset_right = 1924.0
-offset_bottom = 1084.0
-mouse_filter = 2
-color = Color(0.04224, 0.0128, 0.16, 1)
-
-[node name="Score" type="Control" parent="GUI" unique_id=2109958782]
-anchors_preset = 0
-
-[node name="ResourceCredits" type="Area2D" parent="GUI/Score" unique_id=1327114085]
-position = Vector2(1893, 18)
-collision_layer = 0
-collision_mask = 0
-monitoring = false
-monitorable = false
-script = ExtResource("35_t46w6")
-
-[node name="Icon" type="Sprite2D" parent="GUI/Score/ResourceCredits" unique_id=1003929018]
-texture_filter = 1
-position = Vector2(0.815, 0)
-scale = Vector2(0.405, 0.405)
-texture = ExtResource("45_t46w6")
-
-[node name="Mask" type="CollisionShape2D" parent="GUI/Score/ResourceCredits" unique_id=193001139]
-position = Vector2(0.815, 0.47998)
-rotation = 1.1781
-shape = SubResource("CircleShape2D_kq12w")
-
-[node name="Count" type="Label" parent="GUI/Score/ResourceCredits" unique_id=1110070109]
-offset_left = -252.0
-offset_top = -13.0
-offset_right = -15.0
-offset_bottom = 14.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 19
-text = "0"
-horizontal_alignment = 2
-
-[node name="CommonShards" type="Area2D" parent="GUI/Score" unique_id=736130766]
-position = Vector2(1893, 42)
-collision_layer = 0
-collision_mask = 0
-monitoring = false
-monitorable = false
-script = ExtResource("35_t46w6")
-
-[node name="Icon" type="Sprite2D" parent="GUI/Score/CommonShards" unique_id=1943440681]
-position = Vector2(0, 0.98999023)
-scale = Vector2(0.065, 0.065)
-texture = ExtResource("40_7lm8q")
-
-[node name="Mask" type="CollisionShape2D" parent="GUI/Score/CommonShards" unique_id=1743496928]
-position = Vector2(0.50499916, 1.1750002)
-shape = SubResource("CircleShape2D_kq12w")
-
-[node name="Count" type="Label" parent="GUI/Score/CommonShards" unique_id=1171745000]
-offset_left = -257.0
-offset_top = -13.0
-offset_right = -15.0
-offset_bottom = 14.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 19
-text = "0"
-horizontal_alignment = 2
-
-[node name="CelestialShards" type="Area2D" parent="GUI/Score" unique_id=1606873655]
-position = Vector2(1893, 67)
-collision_layer = 0
-collision_mask = 0
-monitoring = false
-monitorable = false
-script = ExtResource("35_t46w6")
-
-[node name="Icon" type="Sprite2D" parent="GUI/Score/CelestialShards" unique_id=498801805]
-scale = Vector2(0.065, 0.065)
-texture = ExtResource("41_2unnl")
-
-[node name="Mask" type="CollisionShape2D" parent="GUI/Score/CelestialShards" unique_id=795862251]
-position = Vector2(0.21500015, 0)
-shape = SubResource("CircleShape2D_kq12w")
-
-[node name="Count" type="Label" parent="GUI/Score/CelestialShards" unique_id=721998019]
-offset_left = -249.0
-offset_top = -14.0
-offset_right = -15.0
-offset_bottom = 13.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 19
-text = "0"
-horizontal_alignment = 2
-
-[node name="AstralShards" type="Area2D" parent="GUI/Score" unique_id=1656596600]
-position = Vector2(1893, 91)
-collision_layer = 0
-collision_mask = 0
-monitoring = false
-monitorable = false
-script = ExtResource("35_t46w6")
-
-[node name="Icon" type="Sprite2D" parent="GUI/Score/AstralShards" unique_id=309657236]
-scale = Vector2(0.065, 0.065)
-texture = ExtResource("42_vq6dd")
-
-[node name="Mask" type="CollisionShape2D" parent="GUI/Score/AstralShards" unique_id=1004490611]
-position = Vector2(0.09000015, 0)
-shape = SubResource("CircleShape2D_kq12w")
-
-[node name="Count" type="Label" parent="GUI/Score/AstralShards" unique_id=442690521]
-offset_left = -275.0
-offset_top = -14.0
-offset_right = -15.0
-offset_bottom = 13.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 19
-text = "0"
-horizontal_alignment = 2
-
-[node name="EtherealShards" type="Area2D" parent="GUI/Score" unique_id=1759106116]
-position = Vector2(1892, 115)
-collision_layer = 0
-collision_mask = 0
-monitoring = false
-monitorable = false
-script = ExtResource("35_t46w6")
-
-[node name="Icon" type="Sprite2D" parent="GUI/Score/EtherealShards" unique_id=1830027037]
-position = Vector2(1, 0)
-scale = Vector2(0.065, 0.065)
-texture = ExtResource("43_0uofd")
-
-[node name="Mask" type="CollisionShape2D" parent="GUI/Score/EtherealShards" unique_id=1195101515]
-position = Vector2(1.0100002, 0)
-shape = SubResource("CircleShape2D_kq12w")
-
-[node name="Count" type="Label" parent="GUI/Score/EtherealShards" unique_id=94807278]
-offset_left = -274.0
-offset_top = -14.0
-offset_right = -14.0
-offset_bottom = 13.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 19
-text = "0"
-horizontal_alignment = 2
-
-[node name="DivineShards" type="Area2D" parent="GUI/Score" unique_id=1573798965]
-position = Vector2(1892, 139)
-collision_layer = 0
-collision_mask = 0
-monitoring = false
-monitorable = false
-script = ExtResource("35_t46w6")
-
-[node name="Icon" type="Sprite2D" parent="GUI/Score/DivineShards" unique_id=1737457277]
-position = Vector2(1, 0)
-scale = Vector2(0.065, 0.065)
-texture = ExtResource("62_vyqle")
-
-[node name="Mask" type="CollisionShape2D" parent="GUI/Score/DivineShards" unique_id=1621366442]
-position = Vector2(1.0100002, 0)
-shape = SubResource("CircleShape2D_kq12w")
-
-[node name="Count" type="Label" parent="GUI/Score/DivineShards" unique_id=409858500]
-offset_left = -274.0
-offset_top = -14.0
-offset_right = -14.0
-offset_bottom = 13.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 19
-text = "0"
-horizontal_alignment = 2
-
-[node name="NanoCores" type="Area2D" parent="GUI/Score" unique_id=2113125309]
-position = Vector2(1893, 163)
-collision_layer = 0
-collision_mask = 0
-monitoring = false
-monitorable = false
-script = ExtResource("35_t46w6")
-
-[node name="Icon" type="Sprite2D" parent="GUI/Score/NanoCores" unique_id=147458177]
-scale = Vector2(0.325, 0.325)
-texture = ExtResource("41_m28ev")
-
-[node name="Mask" type="CollisionShape2D" parent="GUI/Score/NanoCores" unique_id=2108113873]
-scale = Vector2(0.325, 0.325)
-shape = SubResource("CircleShape2D_lwlx3")
-
-[node name="Count" type="Label" parent="GUI/Score/NanoCores" unique_id=94658338]
-offset_left = -275.0
-offset_top = -14.0
-offset_right = -15.0
-offset_bottom = 13.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 19
-text = "0"
-horizontal_alignment = 2
-
-[node name="Fever" type="Control" parent="GUI" unique_id=827765764]
-anchors_preset = 0
-
-[node name="RoundedBackground" type="Panel" parent="GUI/Fever" unique_id=616018719]
-layout_mode = 0
-offset_left = 1572.0
-offset_top = 992.0
-offset_right = 1860.0
-offset_bottom = 1061.0
-
-[node name="Background" type="ColorRect" parent="GUI/Fever" unique_id=1108734558]
-layout_mode = 0
-offset_left = 1579.0
-offset_top = 1023.0
-offset_right = 1854.0
-offset_bottom = 1053.0
-color = Color(0.158472, 0.158472, 0.158472, 1)
-
-[node name="Label" type="Label" parent="GUI/Fever" unique_id=1778340765]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 1580.0
-offset_top = 995.0
-offset_right = 1851.0
-offset_bottom = 1018.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-text = "Fever meter"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ProgressBar" type="TextureProgressBar" parent="GUI/Fever" unique_id=51871705]
-layout_mode = 0
-offset_left = 1583.0
-offset_top = 1026.0
-offset_right = 1850.0
-offset_bottom = 1049.0
-step = 0.1
-nine_patch_stretch = true
-texture_under = SubResource("GradientTexture1D_5ft5k")
-texture_progress = ExtResource("38_xa2ro")
-
-[node name="TimeLeftLabel" type="Label" parent="GUI/Fever" unique_id=1101035822]
-layout_mode = 0
-offset_left = 1579.0
-offset_top = 1025.0
-offset_right = 1853.0
-offset_bottom = 1050.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 12
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Abilities" type="Control" parent="GUI" unique_id=1907989815]
-anchors_preset = 0
-offset_left = -7.0
-offset_right = -7.0
-
-[node name="Background3" type="Panel" parent="GUI/Abilities" unique_id=422365755]
-layout_mode = 0
-offset_left = 844.0
-offset_top = 987.0
-offset_right = 1097.0
-offset_bottom = 1068.0
-
-[node name="Background2" type="ColorRect" parent="GUI/Abilities" unique_id=1406426775]
-layout_mode = 0
-offset_left = 857.0
-offset_top = 1000.0
-offset_right = 1192.0
-offset_bottom = 1082.0
-scale = Vector2(0.68, 0.68)
-color = Color(0.336403, 0.0681096, 0.0525427, 1)
-
-[node name="Background" type="ColorRect" parent="GUI/Abilities" unique_id=1855653835]
-layout_mode = 0
-offset_left = 860.0
-offset_top = 1003.0
-offset_right = 1210.0
-offset_bottom = 1082.0
-scale = Vector2(0.635, 0.635)
-color = Color(0.180005, 0.180005, 0.180005, 1)
-
-[node name="Ability1" type="Area2D" parent="GUI/Abilities" unique_id=1244549932]
-position = Vector2(9, 0)
-collision_layer = 0
-collision_mask = 0
-monitoring = false
-monitorable = false
-
-[node name="Outline" type="ColorRect" parent="GUI/Abilities/Ability1" unique_id=1098221931]
-offset_left = 859.0
-offset_top = 1009.0
-offset_right = 897.0
-offset_bottom = 1047.0
-color = Color(0.344076, 0.344076, 0.344076, 1)
-
-[node name="PlasmaBarrageIcon" type="Sprite2D" parent="GUI/Abilities/Ability1" unique_id=112272453]
-visible = false
-position = Vector2(878, 1028)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("56_3gvs5")
-
-[node name="Label" type="Label" parent="GUI/Abilities/Ability1" unique_id=1124741140]
-offset_left = 860.0
-offset_top = 1010.0
-offset_right = 896.0
-offset_bottom = 1046.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 15
-text = "Q"
-vertical_alignment = 2
-
-[node name="Ability2" type="Area2D" parent="GUI/Abilities" unique_id=787490406]
-position = Vector2(65, 0)
-collision_layer = 0
-collision_mask = 0
-monitoring = false
-monitorable = false
-
-[node name="Outline" type="ColorRect" parent="GUI/Abilities/Ability2" unique_id=1273800355]
-offset_left = 859.0
-offset_top = 1009.0
-offset_right = 897.0
-offset_bottom = 1047.0
-color = Color(0.344076, 0.344076, 0.344076, 1)
-
-[node name="StasisFieldIcon" type="Sprite2D" parent="GUI/Abilities/Ability2" unique_id=1536564109]
-visible = false
-position = Vector2(878, 1028)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("57_ib7ph")
-
-[node name="Label" type="Label" parent="GUI/Abilities/Ability2" unique_id=1853125782]
-offset_left = 860.0
-offset_top = 1010.0
-offset_right = 896.0
-offset_bottom = 1046.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 15
-text = "W"
-vertical_alignment = 2
-
-[node name="Ability3" type="Area2D" parent="GUI/Abilities" unique_id=811121193]
-position = Vector2(9, 0)
-collision_layer = 0
-collision_mask = 0
-monitoring = false
-monitorable = false
-
-[node name="Outline" type="ColorRect" parent="GUI/Abilities/Ability3" unique_id=1244507939]
-offset_left = 971.0
-offset_top = 1009.0
-offset_right = 1009.0
-offset_bottom = 1047.0
-color = Color(0.344076, 0.344076, 0.344076, 1)
-
-[node name="GravityWellIcon" type="Sprite2D" parent="GUI/Abilities/Ability3" unique_id=746831951]
-visible = false
-position = Vector2(990, 1028)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("58_vuohh")
-
-[node name="Label" type="Label" parent="GUI/Abilities/Ability3" unique_id=1913067714]
-offset_left = 972.0
-offset_top = 1010.0
-offset_right = 1008.0
-offset_bottom = 1046.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 15
-text = "E"
-vertical_alignment = 2
-
-[node name="Ability4" type="Area2D" parent="GUI/Abilities" unique_id=689374733]
-position = Vector2(9, 0)
-collision_layer = 0
-collision_mask = 0
-monitoring = false
-monitorable = false
-
-[node name="Outline" type="ColorRect" parent="GUI/Abilities/Ability4" unique_id=204862596]
-offset_left = 1027.0
-offset_top = 1009.0
-offset_right = 1065.0
-offset_bottom = 1047.0
-color = Color(0.344076, 0.344076, 0.344076, 1)
-
-[node name="OrbitalStrikeIcon" type="Sprite2D" parent="GUI/Abilities/Ability4" unique_id=349132678]
-visible = false
-position = Vector2(1046, 1028)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("59_3gvs5")
-
-[node name="Label" type="Label" parent="GUI/Abilities/Ability4" unique_id=724114147]
-z_index = 1
-offset_left = 1028.0
-offset_top = 1010.0
-offset_right = 1064.0
-offset_bottom = 1046.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 15
-text = "R"
-vertical_alignment = 2
-
-[node name="LabelsBackground" type="Panel" parent="GUI" unique_id=1448658248]
-layout_mode = 0
-offset_left = 11.0
-offset_top = 992.0
-offset_right = 283.0
-offset_bottom = 1061.0
-
-[node name="RoundsLeftLabel" type="Label" parent="GUI" unique_id=361286559]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 14.0
-offset_top = 1003.0
-offset_right = 107.0
-offset_bottom = 1030.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-text = "Rounds left:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RoundsLeftCount" type="Label" parent="GUI" unique_id=237616982]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 110.0
-offset_top = 1003.0
-offset_right = 166.0
-offset_bottom = 1030.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-text = "0"
-vertical_alignment = 1
-
-[node name="AsteroidsLeftLabel" type="Label" parent="GUI" unique_id=597360327]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 138.5
-offset_top = 1002.0
-offset_right = 246.5
-offset_bottom = 1029.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-text = "Asteroids left:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AsteroidsLeftCount" type="Label" parent="GUI" unique_id=1692201014]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 249.5
-offset_top = 1002.0
-offset_right = 352.5
-offset_bottom = 1029.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-vertical_alignment = 1
-
-[node name="BuildingsThresholdLabel" type="Label" parent="GUI" unique_id=655225738]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 14.0
-offset_top = 1030.0
-offset_right = 216.0
-offset_bottom = 1053.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-text = "Buildings threshold:"
-vertical_alignment = 1
-
-[node name="BuildingsThresholdCount" type="Label" parent="GUI" unique_id=1034882762]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 171.0
-offset_top = 1030.0
-offset_right = 373.0
-offset_bottom = 1053.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-text = "15/15"
-vertical_alignment = 1
 
 [node name="LeftAsteroidSpawnPath" type="Path2D" parent="." unique_id=253160669]
 curve = SubResource("Curve2D_w6sye")
@@ -1680,37 +1700,26 @@ speed_scale = 3.27
 randomness = 0.99
 process_material = SubResource("ParticleProcessMaterial_p3ij2")
 
-[node name="EndingBlackSolid" type="ColorRect" parent="." unique_id=195133614]
-visible = false
-modulate = Color(0, 0, 0, 1)
-z_index = 25
-offset_left = -25.0
-offset_top = -15.0
-offset_right = 1940.0
-offset_bottom = 1099.0
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-
-[connection signal="focus_entered" from="PauseAndGameOverMenu/Buttons/Restart" to="PauseAndGameOverMenu" method="_on_restart_focus_entered"]
-[connection signal="mouse_entered" from="PauseAndGameOverMenu/Buttons/Restart" to="PauseAndGameOverMenu" method="_on_restart_mouse_entered"]
-[connection signal="pressed" from="PauseAndGameOverMenu/Buttons/Restart" to="PauseAndGameOverMenu" method="_on_restart_pressed"]
-[connection signal="focus_entered" from="PauseAndGameOverMenu/Buttons/MainMenu" to="PauseAndGameOverMenu" method="_on_main_menu_focus_entered"]
-[connection signal="mouse_entered" from="PauseAndGameOverMenu/Buttons/MainMenu" to="PauseAndGameOverMenu" method="_on_main_menu_mouse_entered"]
-[connection signal="pressed" from="PauseAndGameOverMenu/Buttons/MainMenu" to="PauseAndGameOverMenu" method="_on_main_menu_pressed"]
-[connection signal="focus_entered" from="PauseAndGameOverMenu/Buttons/UpgradeConsole" to="PauseAndGameOverMenu" method="_on_upgrade_console_focus_entered"]
-[connection signal="mouse_entered" from="PauseAndGameOverMenu/Buttons/UpgradeConsole" to="PauseAndGameOverMenu" method="_on_upgrade_console_mouse_entered"]
-[connection signal="pressed" from="PauseAndGameOverMenu/Buttons/UpgradeConsole" to="PauseAndGameOverMenu" method="_on_upgrade_console_pressed"]
-[connection signal="focus_entered" from="PauseAndGameOverMenu/Buttons/Exit" to="PauseAndGameOverMenu" method="_on_exit_focus_entered"]
-[connection signal="mouse_entered" from="PauseAndGameOverMenu/Buttons/Exit" to="PauseAndGameOverMenu" method="_on_exit_mouse_entered"]
-[connection signal="pressed" from="PauseAndGameOverMenu/Buttons/Exit" to="PauseAndGameOverMenu" method="_on_exit_pressed"]
-[connection signal="button_down" from="Summary/ContinueButton" to="." method="_on_continue_button_button_down"]
+[connection signal="mouse_entered" from="UILayer/Score/ResourceCredits" to="UILayer/Score/ResourceCredits" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="UILayer/Score/CommonShards" to="UILayer/Score/CommonShards" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="UILayer/Score/CelestialShards" to="UILayer/Score/CelestialShards" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="UILayer/Score/AstralShards" to="UILayer/Score/AstralShards" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="UILayer/Score/EtherealShards" to="UILayer/Score/EtherealShards" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="UILayer/Score/DivineShards" to="UILayer/Score/DivineShards" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="UILayer/Score/NanoCores" to="UILayer/Score/NanoCores" method="_on_mouse_entered"]
+[connection signal="focus_entered" from="UILayer/PauseAndGameOverMenu/Buttons/Restart" to="UILayer/PauseAndGameOverMenu" method="_on_restart_focus_entered"]
+[connection signal="mouse_entered" from="UILayer/PauseAndGameOverMenu/Buttons/Restart" to="UILayer/PauseAndGameOverMenu" method="_on_restart_mouse_entered"]
+[connection signal="pressed" from="UILayer/PauseAndGameOverMenu/Buttons/Restart" to="UILayer/PauseAndGameOverMenu" method="_on_restart_pressed"]
+[connection signal="focus_entered" from="UILayer/PauseAndGameOverMenu/Buttons/MainMenu" to="UILayer/PauseAndGameOverMenu" method="_on_main_menu_focus_entered"]
+[connection signal="mouse_entered" from="UILayer/PauseAndGameOverMenu/Buttons/MainMenu" to="UILayer/PauseAndGameOverMenu" method="_on_main_menu_mouse_entered"]
+[connection signal="pressed" from="UILayer/PauseAndGameOverMenu/Buttons/MainMenu" to="UILayer/PauseAndGameOverMenu" method="_on_main_menu_pressed"]
+[connection signal="focus_entered" from="UILayer/PauseAndGameOverMenu/Buttons/UpgradeConsole" to="UILayer/PauseAndGameOverMenu" method="_on_upgrade_console_focus_entered"]
+[connection signal="mouse_entered" from="UILayer/PauseAndGameOverMenu/Buttons/UpgradeConsole" to="UILayer/PauseAndGameOverMenu" method="_on_upgrade_console_mouse_entered"]
+[connection signal="pressed" from="UILayer/PauseAndGameOverMenu/Buttons/UpgradeConsole" to="UILayer/PauseAndGameOverMenu" method="_on_upgrade_console_pressed"]
+[connection signal="focus_entered" from="UILayer/PauseAndGameOverMenu/Buttons/Exit" to="UILayer/PauseAndGameOverMenu" method="_on_exit_focus_entered"]
+[connection signal="mouse_entered" from="UILayer/PauseAndGameOverMenu/Buttons/Exit" to="UILayer/PauseAndGameOverMenu" method="_on_exit_mouse_entered"]
+[connection signal="pressed" from="UILayer/PauseAndGameOverMenu/Buttons/Exit" to="UILayer/PauseAndGameOverMenu" method="_on_exit_pressed"]
+[connection signal="button_down" from="UILayer/Summary/ContinueButton" to="." method="_on_continue_button_button_down"]
 [connection signal="timeout" from="Timers/AsteroidSpawnDelay" to="." method="_on_asteroid_spawn_delay_timeout"]
 [connection signal="timeout" from="Timers/AgainstAllOddsTimer" to="." method="_on_against_all_odds_timer_timeout"]
 [connection signal="timeout" from="Timers/HyperCleanerTimer" to="." method="_on_hyper_cleaner_timer_timeout"]
-[connection signal="mouse_entered" from="GUI/Score/ResourceCredits" to="GUI/Score/ResourceCredits" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="GUI/Score/CommonShards" to="GUI/Score/CommonShards" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="GUI/Score/CelestialShards" to="GUI/Score/CelestialShards" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="GUI/Score/AstralShards" to="GUI/Score/AstralShards" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="GUI/Score/EtherealShards" to="GUI/Score/EtherealShards" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="GUI/Score/DivineShards" to="GUI/Score/DivineShards" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="GUI/Score/NanoCores" to="GUI/Score/NanoCores" method="_on_mouse_entered"]

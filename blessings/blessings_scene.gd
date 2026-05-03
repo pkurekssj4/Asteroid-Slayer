@@ -98,7 +98,7 @@ func finalize_blessings(blessing_number: String) -> void:
 	influx_light.scale = Vector2(0.0, 0.0)
 	vfx_scenes_container.add_child(influx_light)
 	var light_scale_tween: Tween = create_tween()
-	light_scale_tween.tween_property(influx_light, "scale", Vector2(7.0, 7.0), 3.5)
+	light_scale_tween.tween_property(influx_light, "scale", Vector2(11.5, 10.0), 3.5)
 	light_scale_tween.tween_property(influx_light, "scale", Vector2(0.0, 0.0), 5.5)
 	await game.create_delay_timer(5)
 	var new_modulation_normalize_tween: Tween = create_tween()
