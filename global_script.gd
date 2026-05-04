@@ -42,10 +42,10 @@ const COLOR_PALETTE: Dictionary = {
 const SPECIALISATION_BONUSES = {
 	"pyrotechnist": {
 		"area_of_effect_of_basic_attack_and_abilities" = 0.15,
-		"damage_of_basic_attack_and_abilities" = 0.40,
+		"damage_of_basic_attack_and_abilities" = 0.30,
 	},
 	"engineer": {
-		"reload_time" = 0.2,
+		"reload_time" = 0.3,
 		"capacity" = 1.0,
 	},
 	"executor": {
@@ -1194,7 +1194,7 @@ func save_settings() -> void:
 	file.close()
 
 func load_scene(scene_to_load: String):
-	AudioBus.stop_all()
+	AudioBus.reset_players()
 	change_cursor("default")
 	var scene_path: String
 	match scene_to_load:
@@ -1441,6 +1441,7 @@ func clear_and_set_new_specialisation_bonuses() -> void:
 			current_data.structures.cannon.additive_statistics.specialisation.explosion.critical_hit_damage_thresholds = [0.0, 0.0]
 			current_data.structures.cannon.additive_statistics.specialisation.explosion.critical_hit_damage_thresholds[0] = initial_data.structures.cannon.explosion.critical_hit_damage_thresholds[0] * SPECIALISATION_BONUSES.polymath.all_cannon_statistics
 			current_data.structures.cannon.additive_statistics.specialisation.explosion.critical_hit_damage_thresholds[1] = initial_data.structures.cannon.explosion.critical_hit_damage_thresholds[1] * SPECIALISATION_BONUSES.polymath.all_cannon_statistics
+			
 func clear_and_set_new_structure_bonuses() -> void:
 	erase_additive_stats("structures")
 	for structure in current_data.structures:

@@ -15,6 +15,7 @@ func _ready() -> void:
 	# var bus = AudioServer.get_bus_index("Master")
 	# AudioServer.add_bus_effect(bus, distortion)
 	for element in ResourceLoader.list_directory(audio_path + "/sounds"): add_new_player(audio_path + "/sounds", element)
+	reset_players()
 		
 func play(type: String) -> void:
 	if GlobalScript.settings.game_muted: return
@@ -31,21 +32,17 @@ func play_from_dict(dict: Dictionary) -> void:
 func stop(type: String) -> void:
 	audio_players[type].stop()
 
-func stop_all() -> void:
-	for player in audio_players: 
-		audio_players[player].stop()
-	
 func cancel(type: String) -> void:
 	# Liczniki muszą należeć do węzła który może zastopować grę, może to robić tylko Game.tscn
 	# AudioBus jest autoloadem więc nie może z góry podstawić Game pod zmienną
 	var game: Node2D = get_node("/root/Game")
 	var time_left: float = audio_players[type].stream.get_length() - audio_players[type].get_playback_position()
 	if time_left > 2:
-		var previous_volume_db: int = audio_players[type].volume_db
+		# var previous_volume_db: int = audio_players[type].volume_db
 		var new_fade = create_tween()
 		new_fade.tween_property(audio_players[type], "volume_db", -70, FADE_LENGTH)
 		await game.create_delay_timer(FADE_LENGTH)
-		audio_players[type].volume_db = previous_volume_db
+		# audio_players[type].volume_db = previous_volume_db
 	else:
 		await game.create_delay_timer(time_left)
 	audio_players[type].stop()
@@ -62,3 +59,14 @@ func add_new_player(path: String, file_name: String) -> void:
 			audio_players[base_file_name][parameter] = PRE_CONFIG[base_file_name][parameter]
 	new_stream_player.name = base_file_name
 	add_child(new_stream_player)
+
+func reset_players() -> void:
+	for player in audio_players:
+		var volume_db_gain: float = 0.0
+		var pitch_scale: float = 1.0
+		if player in PRE_CONFIG:
+			if PRE_CONFIG[player].has("volume_db"): volume_db_gain = PRE_CONFIG[player]["volume_db"]
+			if PRE_CONFIG[player].has("pitch_scale"): pitch_scale = PRE_CONFIG[player]["pitch_scale"]
+		audio_players[player].volume_db = volume_db_gain
+		audio_players[player].pitch_scale = pitch_scale
+		audio_players[player].stop()

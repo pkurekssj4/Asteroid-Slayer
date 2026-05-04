@@ -845,12 +845,13 @@ func update_durability_bar(structure: Area2D, data_dict: Dictionary, damage_take
 	var new_value: int = (data_dict.durability.current_points / data_dict.durability.max_points) * 100
 	structure.durability_bar.update_value(new_value, damage_taken)
 
-func is_player(object: Area2D) -> bool:
-	# W przypadku gracza źrodłem zawsze jest ktoraś ze struktur, więc to nie moze byc grac jesli obiekt nie istnieje.
+func is_player(object: Variant) -> bool:
+	# W przypadku gracza źrodłem zawsze jest ktoraś ze struktur, więc to nie moze byc gracz jesli obiekt nie istnieje.
 	# Inne obiekty np asteroidy same dla siebie są źródłami.
-	if object.source in structures_list: return true
-	else: return false
-
+	# Variant zamiast Area2D na wypadek gdyby obiekt był sprawdzany po zniszczeniu -> Object Freed != Area2D
+	if !is_instance_valid(object) or object.source not in structures_list: return false
+	return true
+	
 func add_object(add: bool, object: Variant) -> void:
 	# Jeśli obiekt został zniszczony i ma odpalone queue_free() to zniknie dopiero w kolejnej klatce, ale jesli zostal zaatakowany dwukrotnie do zniszczenia
 	# to musi miec zabezpieczenie aby nie wykonywać dwukrotnie instrukcji zniszczenia \/

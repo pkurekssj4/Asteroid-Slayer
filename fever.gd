@@ -35,7 +35,6 @@ func _ready() -> void:
 	timer.connect("timeout", Callable(self, "end_fever"))
 	
 func progress(damage: float, attacker: Area2D, damage_taker: Area2D) -> void:
-	if !is_instance_valid(attacker.source): return
 	if GlobalScript.current_data.fever.enabled or !game.is_player(attacker.source) or game.is_player(damage_taker.source): return
 	var fever_progress: float
 	if damage_taker.durability_points - damage <= 0.0: fever_progress = damage_taker.durability_points
