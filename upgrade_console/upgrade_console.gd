@@ -14,7 +14,9 @@ var lastToolTipId: int = 0
 var light_sweep_is_moving: bool = false
 var light_sweep_moving_duration_sec: float = 13.0
 var light_sweep_delay_sec_when_finished: float = 6.0
+var sec_left_to_resume_light_sweep: float = 0.0
 var light_sweep_color_change_tween: Tween
+var intro_ended: bool = false
 
 #highscores
 var mass_destructions_highscore: int
@@ -518,13 +520,21 @@ var other_upgrades_pascal_names = [
 ]
 
 func _ready():
+	$UILayer/OpeningHatch.show()
 	load_game()
 	GlobalScript.init()
 	get_window().grab_focus()
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(0.5).timeout
+	AudioBus.play("hatch_pressure")
+	await get_tree().create_timer(0.1).timeout
+	$UILayer/OpeningHatch/SmokeEmissionPath/PathFollow2D/GPUParticles2D.emitting = true
+	$UILayer/OpeningHatch/SmokeEmissionPath2/PathFollow2D/GPUParticles2D.emitting = true
+	$UILayer/OpeningHatch/SmokeEmissionPath3/PathFollow2D/GPUParticles2D.emitting = true
+	$UILayer/OpeningHatch/SmokeEmissionPath4/PathFollow2D/GPUParticles2D.emitting = true
+	await get_tree().create_timer(2.7).timeout
 	AudioBus.play("console_hatch_opening")
 	$AnimationPlayer.play("hatch_opening")
-	# GlobalScript.current_data.game.day = 2
+	#GlobalScript.current_data.game.day = 2
 	#player_specialisation = "none"
 	modulate_statistics_labels()
 	refresh_shards("all")
@@ -538,7 +548,7 @@ func _ready():
 		assign_values_to_blessings() 
 		$UpgradeButtons/Blessings.show()
 	else: $UpgradeButtons/Blessings.hide()
-	await get_tree().create_timer(1.8).timeout
+	await get_tree().create_timer(1.6).timeout
 	
 	var day_string: String = "day_" + str(GlobalScript.current_data.game.day)
 	if GlobalScript.regular_messages.console.has(day_string):
@@ -547,24 +557,31 @@ func _ready():
 				
 	if GlobalScript.current_data.game.day == 6: $UpgradeButtons/BlessingsBlinkingAnimation.play("default")
 	activated = true
+	intro_ended = true
 
 func _process(delta):
+	if !intro_ended:
+		$UILayer/OpeningHatch/SmokeEmissionPath/PathFollow2D.progress_ratio = randf_range(0.0, 1.0)
+		$UILayer/OpeningHatch/SmokeEmissionPath2/PathFollow2D.progress_ratio = randf_range(0.0, 1.0)
+		$UILayer/OpeningHatch/SmokeEmissionPath3/PathFollow2D.progress_ratio = randf_range(0.0, 1.0)
+		$UILayer/OpeningHatch/SmokeEmissionPath4/PathFollow2D.progress_ratio = randf_range(0.0, 1.0)
+		
 	if light_sweep_is_moving:
 		$Background/GridAlphaMask.position.x += (3500 / light_sweep_moving_duration_sec) * delta
 		if $Background/GridAlphaMask.position.x >= 2500:
 			$Background/GridAlphaMask.position.x = -1000
 			light_sweep_is_moving = false
+	else:
+		sec_left_to_resume_light_sweep -= delta
+		if sec_left_to_resume_light_sweep < 0.0:
+			sec_left_to_resume_light_sweep = light_sweep_delay_sec_when_finished
 			var red: float = rng.randi_range(1, 100) / 100.0
 			var green: float = rng.randi_range(1, 100) / 100.0
 			var blue: float = rng.randi_range(1, 100) / 100.0
 			var alpha: float = 0.65
 			light_sweep_color_change_tween = create_tween()
 			light_sweep_color_change_tween.tween_property($Background/GridAlphaMask, "modulate", Color(red, green, blue, alpha), light_sweep_moving_duration_sec)
-	else:
-		set_process(false)
-		await get_tree().create_timer(light_sweep_delay_sec_when_finished).timeout
-		light_sweep_is_moving = true
-		set_process(true)
+			light_sweep_is_moving = true
 
 func load_game():
 	print("Loading")
@@ -662,6 +679,7 @@ func update_nano_cores_label():
 
 func _on_done_pressed():
 	if !activated: return
+	activated = false
 	if $UpgradeTrees/Abilities/Ability1/PlasmaBarrageBigUpgrade0Initial.IsBought: ability_1 = "Plasma Barrage"
 	if $UpgradeTrees/Abilities/Ability2/StasisFieldBigUpgrade0Initial.IsBought: ability_2 = "Stasis Field"
 	if $UpgradeTrees/Abilities/Ability3/GravityWellBigUpgrade0Initial.IsBought: ability_3 = "Gravity Well"
@@ -857,7 +875,7 @@ func _on_substract_resources_pressed() -> void:
 
 func display_message_box(new_message_box: Control) -> void:
 	activated = false
-	add_child(new_message_box)
+	$UILayer.add_child(new_message_box)
 	new_message_box.z_index = 3
 	await new_message_box.ready_to_continue
 	activated = true

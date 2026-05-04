@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://btv16bto3necn" path="res://upgrade_console/upgrade_console.gd" id="1_i62da"]
 [ext_resource type="Texture2D" uid="uid://dobya57pevlpv" path="res://upgrade_console/arrows.png" id="2_tt3g8"]
-[ext_resource type="Texture2D" uid="uid://ddatmsohks8h0" path="res://gas_element.png" id="4_ic7wk"]
 [ext_resource type="Texture2D" uid="uid://ns2g5msfgl6f" path="res://upgrade_console/grid_alpha_mask.png" id="7_5868r"]
 [ext_resource type="Texture2D" uid="uid://b7k62fevlnkip" path="res://upgrade_console/background_grid_alpha.png" id="7_h555c"]
 [ext_resource type="PackedScene" uid="uid://dodyn8owydtvb" path="res://upgrade_console/medium_damage_upgrade.tscn" id="14_fqao0"]
@@ -49,36 +48,6 @@
 [ext_resource type="PackedScene" uid="uid://j45k4hddq1p7" path="res://upgrade_console/small_slow_upgrade.tscn" id="54_r7who"]
 [ext_resource type="PackedScene" uid="uid://0s15psjdy5rg" path="res://upgrade_console/big_reload_time_upgrade.tscn" id="55_ltgbh"]
 [ext_resource type="PackedScene" uid="uid://c28dn6d7u3m6g" path="res://upgrade_console/small_additional_projectile_or_capacity_upgrade.tscn" id="56_lr6ya"]
-
-[sub_resource type="Curve2D" id="Curve2D_q6jgo"]
-bake_interval = 1.0
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -3.97, 563, 0, 0, 0, 0, 936, 564, 0, 0, 0, 0, 985, 516, 0, 0, 0, 0, 1924.515, 517)
-}
-point_count = 4
-
-[sub_resource type="Gradient" id="Gradient_ic7wk"]
-colors = PackedColorArray(1.1065049, 1.4001771, 1.6197081, 0.18039216, 0.38019773, 0.38019773, 0.38019773, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_avipq"]
-gradient = SubResource("Gradient_ic7wk")
-
-[sub_resource type="Curve" id="Curve_dhxwm"]
-_data = [Vector2(0.0069444478, 0), 0.0, 0.0, 0, 0, Vector2(0.03125, 0.3250357), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_k0whh"]
-curve = SubResource("Curve_dhxwm")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_avipq"]
-lifetime_randomness = 1.0
-particle_flag_disable_z = true
-gravity = Vector3(0, -0.02, 0)
-scale_min = 0.19999999
-scale_max = 3.0
-scale_curve = SubResource("CurveTexture_k0whh")
-color = Color(1, 1, 1, 0.14509805)
-color_ramp = SubResource("GradientTexture1D_avipq")
 
 [sub_resource type="Environment" id="Environment_6d8u0"]
 background_mode = 3
@@ -234,18 +203,6 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(960, 540)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("UILayer/OpeningHatch/SmokeEmissionPath/PathFollow2D:progress")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [222.98096]
-}
 
 [sub_resource type="Animation" id="Animation_6p18r"]
 resource_name = "fade_off"
@@ -263,7 +220,7 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_ic7wk"]
+[sub_resource type="Animation" id="Animation_rpfqn"]
 resource_name = "hatch_opening"
 length = 1.7
 tracks/0/type = "value"
@@ -273,10 +230,10 @@ tracks/0/path = NodePath("UILayer/OpeningHatch/Upper:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.56666666, 1.7),
+"times": PackedFloat32Array(0, 0.56666666, 1.6666666),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(960, 540), Vector2(960, 530), Vector2(960, -40)]
+"values": [Vector2(960, 540), Vector2(960, 500), Vector2(960, -60)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -285,17 +242,17 @@ tracks/1/path = NodePath("UILayer/OpeningHatch/Lower:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.56666666, 1.7),
+"times": PackedFloat32Array(0, 0.56666666, 1.6666666),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(960, 540), Vector2(960, 550), Vector2(960, 1120)]
+"values": [Vector2(960, 540), Vector2(960, 580), Vector2(960, 1150)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4i26q"]
 _data = {
 &"RESET": SubResource("Animation_ccncu"),
 &"fade_off": SubResource("Animation_6p18r"),
-&"hatch_opening": SubResource("Animation_ic7wk")
+&"hatch_opening": SubResource("Animation_rpfqn")
 }
 
 [node name="UpgradeMenu" type="Control" unique_id=449593326]
@@ -307,7 +264,8 @@ script = ExtResource("1_i62da")
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=1490366428]
 
 [node name="OpeningHatch" type="Control" parent="UILayer" unique_id=1361587663]
-modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
+visible = false
+z_index = 4
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -315,88 +273,14 @@ offset_bottom = 40.0
 metadata/_edit_lock_ = true
 
 [node name="Upper" type="Sprite2D" parent="UILayer/OpeningHatch" unique_id=1878801491]
+z_index = 1
 position = Vector2(960, 540)
 texture = ExtResource("38_jm1iu")
 
 [node name="Lower" type="Sprite2D" parent="UILayer/OpeningHatch" unique_id=712723692]
+z_index = 1
 position = Vector2(960, 540)
 texture = ExtResource("39_64xfg")
-
-[node name="SmokeEmissionPath" type="Path2D" parent="UILayer/OpeningHatch" unique_id=1911605538]
-curve = SubResource("Curve2D_q6jgo")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="UILayer/OpeningHatch/SmokeEmissionPath" unique_id=1296707785]
-position = Vector2(219.01077, 563.23724)
-rotation = 0.0010638633
-progress = 222.98096
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="UILayer/OpeningHatch/SmokeEmissionPath/PathFollow2D" unique_id=1319956038]
-emitting = false
-amount = 5940
-texture = ExtResource("4_ic7wk")
-lifetime = 15.0
-one_shot = true
-speed_scale = 10.0
-explosiveness = 0.55
-randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_avipq")
-
-[node name="SmokeEmissionPath2" type="Path2D" parent="UILayer/OpeningHatch" unique_id=1876607859]
-curve = SubResource("Curve2D_q6jgo")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="UILayer/OpeningHatch/SmokeEmissionPath2" unique_id=1327457162]
-position = Vector2(219.01077, 563.23724)
-rotation = 0.0010638633
-progress = 222.98096
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="UILayer/OpeningHatch/SmokeEmissionPath2/PathFollow2D" unique_id=625756054]
-emitting = false
-amount = 5940
-texture = ExtResource("4_ic7wk")
-lifetime = 30.0
-one_shot = true
-speed_scale = 10.0
-explosiveness = 0.55
-randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_avipq")
-
-[node name="SmokeEmissionPath3" type="Path2D" parent="UILayer/OpeningHatch" unique_id=1968962360]
-curve = SubResource("Curve2D_q6jgo")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="UILayer/OpeningHatch/SmokeEmissionPath3" unique_id=923537633]
-position = Vector2(219.01077, 563.23724)
-rotation = 0.0010638633
-progress = 222.98096
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="UILayer/OpeningHatch/SmokeEmissionPath3/PathFollow2D" unique_id=426502218]
-emitting = false
-amount = 5940
-texture = ExtResource("4_ic7wk")
-lifetime = 25.0
-one_shot = true
-speed_scale = 10.0
-explosiveness = 0.55
-randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_avipq")
-
-[node name="SmokeEmissionPath4" type="Path2D" parent="UILayer/OpeningHatch" unique_id=839458498]
-curve = SubResource("Curve2D_q6jgo")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="UILayer/OpeningHatch/SmokeEmissionPath4" unique_id=909065836]
-position = Vector2(219.01077, 563.23724)
-rotation = 0.0010638633
-progress = 222.98096
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="UILayer/OpeningHatch/SmokeEmissionPath4/PathFollow2D" unique_id=223966936]
-emitting = false
-amount = 5940
-texture = ExtResource("4_ic7wk")
-lifetime = 30.0
-one_shot = true
-speed_scale = 10.0
-explosiveness = 0.4
-randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_avipq")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1934143882]
 environment = SubResource("Environment_6d8u0")
@@ -1498,7 +1382,7 @@ offset_top = 455.105
 offset_right = 1920.0
 offset_bottom = 525.1052
 theme_override_font_sizes/normal_font_size = 22
-text = "We are still gathering information about asteroids.
+text = " Dear Commander, we are still gathering information about asteroids. 
 The Tree should be ready to use in very near future."
 fit_content = true
 scroll_active = false

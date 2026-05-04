@@ -41,9 +41,11 @@ func cancel(type: String) -> void:
 	var game: Node2D = get_node("/root/Game")
 	var time_left: float = audio_players[type].stream.get_length() - audio_players[type].get_playback_position()
 	if time_left > 2:
+		var previous_volume_db: int = audio_players[type].volume_db
 		var new_fade = create_tween()
 		new_fade.tween_property(audio_players[type], "volume_db", -70, FADE_LENGTH)
 		await game.create_delay_timer(FADE_LENGTH)
+		audio_players[type].volume_db = previous_volume_db
 	else:
 		await game.create_delay_timer(time_left)
 	audio_players[type].stop()
@@ -58,4 +60,5 @@ func add_new_player(path: String, file_name: String) -> void:
 	if base_file_name in PRE_CONFIG:
 		for parameter in PRE_CONFIG[base_file_name]:
 			audio_players[base_file_name][parameter] = PRE_CONFIG[base_file_name][parameter]
+	new_stream_player.name = base_file_name
 	add_child(new_stream_player)

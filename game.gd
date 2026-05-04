@@ -466,6 +466,7 @@ func check_if_any_button_is_pressed() -> void:
 		if !GlobalScript.settings.game_muted: 
 			GlobalScript.settings.game_muted = true
 		else: GlobalScript.settings.game_muted = false
+		display_event_message("mute: " + str(GlobalScript.settings.game_muted), 2, "no_sound", 0, "white", "normal", "none", 0)
 		GlobalScript.save_settings()
 	if game_ended || game_stopped: return
 	if GlobalScript.settings.debug.enabled:
@@ -559,7 +560,7 @@ func launch_special_asteroid_wave(day: int) -> void:
 			for i in range (1, asteroids_in_wave + 1):
 				if game_ended: break
 				await create_delay_timer(randf_range(1.4, 1.75))
-				add_object(true, $FabricatedScenesManager.get_asteroid_scene("common", 0, randf_range(0.21, 0.34), 0, Vector2.ZERO, Vector2.ZERO, false, 0))
+				add_object(true, $FabricatedScenesManager.get_asteroid_scene("common", 0, randf_range(0.23, 0.37), 0, Vector2.ZERO, Vector2.ZERO, false, 0))
 		15:
 			var music_cfg: Dictionary = {
 				"pitch_percent_variation" = 0.0,

@@ -42,31 +42,34 @@ const COLOR_PALETTE: Dictionary = {
 const SPECIALISATION_BONUSES = {
 	"pyrotechnist": {
 		"area_of_effect_of_basic_attack_and_abilities" = 0.15,
-		"damage_of_basic_attack_and_abilities" = 0.45,
+		"damage_of_basic_attack_and_abilities" = 0.40,
 	},
 	"engineer": {
 		"reload_time" = 0.2,
-		"capacity" = 0.7,
+		"capacity" = 1.0,
 	},
 	"executor": {
-		"critical_hit_chance" = 3.0,
+		"critical_hit_chance" = 2.5,
 		"critical_hit_damage" = 0.3
 	},
 	"gunslinger": {
-		"attack_speed" = 0.35,
-		"projectile_speed" = 0.2,
+		"attack_speed" = 0.4,
+		"projectile_speed" = 0.5,
 	},
 	"strategist": {
-		"abilities_buffs_and_fever_duration" = 0.35,
+		"abilities_buffs_and_fever_duration" = 0.4,
 		"ability_cooldowns" = 0.15,
 	},
 	"collectioner": {
-		"extra_resource_credits_earned_that_day" = 0.05,
+		"extra_resource_credits_earned_that_day" = 0.06,
 		"shards_drop_chance" = 0.2,
 	},
 	"sentinel": {
 		"all_lasers_and_barriers_values" = 0.2,
 		"base_tree_upgrade_costs_reduction" = 0.05,
+	},
+	"polymath": {
+		"all_cannon_statistics" = 0.15
 	}
 }
 
@@ -1132,6 +1135,11 @@ const regular_messages: Dictionary = {
 				"part_1": "Our systems have detected incoming huge asteroids. Fortunately they move singularly. To help you prepare, we will emit warning sound before they arrive."
 			}
 		},
+		"day_13": {
+			"start": {
+				"part_1": "Commander, we have a bad news. A lot of toxic gas gets out from the undergrounds and we can not do anything about this. It slowly leads to toxic rainfall which as our meteorologists predict, will occur at least a few times a month. The good news is that it can damage a structure but can not destroy it.",
+			}
+		},
 		"day_15": {
 			"start": {
 				"part_1": "It's another day when we expect unusual wave of asteroids. This time they are only explosive, what makes them easier to destroy but in the same time it's huge threat to the infrastructure. Good luck Commander!"
@@ -1166,8 +1174,6 @@ const irregular_messages: Dictionary = {
 		"part_2": "This encounter is improbable and unpredictable. It looks like real entity of God is looking directly on us."
 	}
 }
-
-
 
 
 
@@ -1422,7 +1428,19 @@ func clear_and_set_new_specialisation_bonuses() -> void:
 		"collectioner":
 			current_data.resources.additive_statistics.specialisation = {}
 			current_data.resources.additive_statistics.specialisation.shard_drop_chance = initial_data.resources.shard_drop_chance * SPECIALISATION_BONUSES.collectioner.shards_drop_chance
-	
+		"polymath":
+			current_data.structures.cannon.additive_statistics.specialisation = {}
+			current_data.structures.cannon.additive_statistics.specialisation.projectile_speed = initial_data.structures.cannon.projectile_speed * SPECIALISATION_BONUSES.polymath.all_cannon_statistics
+			current_data.structures.cannon.additive_statistics.specialisation.attack_speed = initial_data.structures.cannon.attack_speed * SPECIALISATION_BONUSES.polymath.all_cannon_statistics
+			current_data.structures.cannon.additive_statistics.specialisation.capacity = initial_data.structures.cannon.capacity * SPECIALISATION_BONUSES.polymath.all_cannon_statistics
+			current_data.structures.cannon.additive_statistics.specialisation.reload_time = initial_data.structures.cannon.reload_time * SPECIALISATION_BONUSES.polymath.all_cannon_statistics
+			current_data.structures.cannon.additive_statistics.specialisation.explosion = {}
+			current_data.structures.cannon.additive_statistics.specialisation.explosion.area_of_effect = initial_data.structures.cannon.explosion.area_of_effect * SPECIALISATION_BONUSES.polymath.all_cannon_statistics
+			current_data.structures.cannon.additive_statistics.specialisation.explosion.damage = initial_data.structures.cannon.explosion.damage * SPECIALISATION_BONUSES.polymath.all_cannon_statistics
+			current_data.structures.cannon.additive_statistics.specialisation.explosion.critical_hit_chance = initial_data.structures.cannon.explosion.critical_hit_chance * SPECIALISATION_BONUSES.polymath.all_cannon_statistics
+			current_data.structures.cannon.additive_statistics.specialisation.explosion.critical_hit_damage_thresholds = [0.0, 0.0]
+			current_data.structures.cannon.additive_statistics.specialisation.explosion.critical_hit_damage_thresholds[0] = initial_data.structures.cannon.explosion.critical_hit_damage_thresholds[0] * SPECIALISATION_BONUSES.polymath.all_cannon_statistics
+			current_data.structures.cannon.additive_statistics.specialisation.explosion.critical_hit_damage_thresholds[1] = initial_data.structures.cannon.explosion.critical_hit_damage_thresholds[1] * SPECIALISATION_BONUSES.polymath.all_cannon_statistics
 func clear_and_set_new_structure_bonuses() -> void:
 	erase_additive_stats("structures")
 	for structure in current_data.structures:

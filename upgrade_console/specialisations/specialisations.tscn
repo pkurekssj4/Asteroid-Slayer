@@ -86,7 +86,7 @@ offset_right = 156.0
 offset_bottom = 41.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
-text = "Your specialisation: "
+text = "Your current specialisation: "
 vertical_alignment = 1
 
 [node name="Panel" type="Panel" parent="MainPanel/Inside" unique_id=981642966]
@@ -127,10 +127,10 @@ text = "Change specialisation"
 
 [node name="SpecialisationsContainer1" type="HBoxContainer" parent="MainPanel/Inside" unique_id=715760737]
 layout_mode = 0
-offset_left = 50.0
 offset_top = 57.0
-offset_right = 428.0
+offset_right = 483.0
 offset_bottom = 88.0
+alignment = 1
 
 [node name="StrategistButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer1" unique_id=1147716621]
 layout_mode = 2
@@ -155,10 +155,10 @@ text = "Pyrotechnist"
 
 [node name="SpecialisationsContainer2" type="HBoxContainer" parent="MainPanel/Inside" unique_id=798018218]
 layout_mode = 0
-offset_left = 109.0
 offset_top = 96.0
-offset_right = 371.0
+offset_right = 483.0
 offset_bottom = 127.0
+alignment = 1
 
 [node name="ExecutorButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer2" unique_id=1056614442]
 layout_mode = 2
@@ -175,6 +175,12 @@ text = "Gunslinger"
 layout_mode = 2
 theme = ExtResource("4_yc4lr")
 text = "Sentinel
+"
+
+[node name="PolymathButton" type="Button" parent="MainPanel/Inside/SpecialisationsContainer2" unique_id=359015379]
+layout_mode = 2
+theme = ExtResource("4_yc4lr")
+text = "Polymath
 "
 
 [node name="SecondaryPanel" type="Control" parent="." unique_id=1728091952]
@@ -347,6 +353,7 @@ process_material = SubResource("ParticleProcessMaterial_rpvm0")
 [connection signal="pressed" from="MainPanel/Inside/SpecialisationsContainer2/ExecutorButton" to="." method="_on_executor_button_pressed"]
 [connection signal="pressed" from="MainPanel/Inside/SpecialisationsContainer2/GunslingerButton" to="." method="_on_gunslinger_button_pressed"]
 [connection signal="pressed" from="MainPanel/Inside/SpecialisationsContainer2/SentinelButton" to="." method="_on_sentinel_button_pressed"]
+[connection signal="pressed" from="MainPanel/Inside/SpecialisationsContainer2/PolymathButton" to="." method="_on_polymath_button_pressed"]
 [connection signal="pressed" from="SecondaryPanel/ConfirmationInside/YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="SecondaryPanel/ConfirmationInside/NoButton" to="." method="_on_no_button_pressed"]
 [connection signal="pressed" from="SecondaryPanel/SpecialisationChangedInside/ContinueButton" to="." method="_on_continue_button_pressed"]

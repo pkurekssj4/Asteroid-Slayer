@@ -60,9 +60,11 @@ func change_specialisation() -> void:
 		$MainPanel/Inside/BonusLabel.text = "At the end of each day, grants an additional " + str(GlobalScript.SPECIALISATION_BONUSES.collectioner.extra_resource_credits_earned_that_day * 100.0) + "% Resource Credits earned that day."
 		$MainPanel/Inside/BonusLabel.text += "\nIncreases Drop Chance of Asteroids Shards by " + str(GlobalScript.SPECIALISATION_BONUSES.collectioner.shards_drop_chance * 100.0) + "% of base value."
 	elif current_specialisation == "sentinel":
-		$MainPanel/Inside/BonusLabel.text = "Increases All Statistics of all Lasers and Pulse Bariers by " + str(GlobalScript.SPECIALISATION_BONUSES.sentinel.all_lasers_and_barriers_values * 100.0) + "% of base values."
+		$MainPanel/Inside/BonusLabel.text = "Increases all statistics of all Lasers and Pulse Bariers by " + str(GlobalScript.SPECIALISATION_BONUSES.sentinel.all_lasers_and_barriers_values * 100.0) + "% of base values."
 		$MainPanel/Inside/BonusLabel.text += "\nReduces cost of all upgrades in Base upgrading tree by " + str(GlobalScript.SPECIALISATION_BONUSES.sentinel.base_tree_upgrade_costs_reduction * 100.0) + "%."
-			
+	elif current_specialisation == "polymath":
+		$MainPanel/Inside/BonusLabel.text = "Enhances all cannon statistics by " + str(GlobalScript.SPECIALISATION_BONUSES.polymath.all_cannon_statistics * 100.0) + "% of base values."
+		
 func _on_pyrotechnist_button_pressed() -> void:
 	current_specialisation = "pyrotechnist"
 	change_specialisation()
@@ -91,6 +93,10 @@ func _on_sentinel_button_pressed() -> void:
 	current_specialisation = "sentinel"
 	change_specialisation()
 
+func _on_polymath_button_pressed() -> void:
+	current_specialisation = "polymath"
+	change_specialisation()
+	
 func _on_confirm_button_pressed() -> void:
 	if current_specialisation == "none": return
 	if GlobalScript.current_data.game.player_specialisation == "none": actual_cost = 0

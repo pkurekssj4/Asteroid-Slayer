@@ -206,12 +206,13 @@ func advance_game_state() -> void:
 		else: advance_game_state()
 			
 	elif game_state == 11: # wyswietl last stand event
-		var actual_buildings = 13 - game.buildings_data.destroyed_count
-		if actual_buildings - game.buildings_data.destroyed_count_threshold == 1:
+		var structures_current_number_that_can_be_destroyed: int = game.buildings_data.active - game.buildings_data.destroyed_count_threshold
+		if structures_current_number_that_can_be_destroyed == 1:
 			await game.create_delay_timer(1)
 			game.display_event_message("You held on the brink of destruction, maintaining only a one-building advantage – you earn 50 Resource Credits for your remarkable perseverance!", 5, "last stand", 0, "white", "normal", "none", 0)
 			await game.create_delay_timer(6)
-			game.update_resource_credits(GlobalScript.current_data.rewards.last_stand, game, game.get_node("Cannon").global_position)
+			var cannon: Node2D = game.get_node("Cannon")
+			game.add_credits(cannon, 50, cannon.global_position)
 			advance_game_state()
 		else: advance_game_state()
 		
