@@ -1,5 +1,5 @@
 extends Node
-const PRELOADED_RESOURCES: Dictionary = {
+const PRELOADED_SCENES: Dictionary = {
 	"asteroid_1": preload("res://asteroids/asteroid1.tscn"),
 	"asteroid_2": preload("res://asteroids/asteroid2.tscn"),
 	"asteroid_3": preload("res://asteroids/asteroid3.tscn"),
@@ -43,6 +43,8 @@ const PRELOADED_RESOURCES: Dictionary = {
 	"structure_destroyed_explosion_particles": preload("res://structures/structure_destroyed_explosion_particles.tscn"),
 	"shield_damaged_particles": preload("res://asteroids/shield_damaged_particles.tscn"),
 	"shield_destroyed_particles": preload("res://asteroids/shield_destroyed_particles.tscn"),
+	"firework": preload("res://firework.tscn"),
+	"event_message": preload("res://event_message.tscn"),
 	"resource_credit_icon": preload("res://resource_icons/resource_credit.png"),
 	"common_shard_icon": preload("res://resource_icons/common_shard.png"),
 	"celestial_shard_icon": preload("res://resource_icons/celestial_shard.png"),
@@ -64,8 +66,8 @@ const PRELOADED_SCRIPTS: Dictionary[String, Script] = {
 	"small_text_event": preload("res://small_text_event.gd")
 }
 
-func get_resource(scene_name: String) -> Variant:
-	return PRELOADED_RESOURCES[scene_name]
+func get_scene(scene_name: String) -> Variant:
+	return PRELOADED_SCENES[scene_name]
 	
 func get_shader(shader_name: String) -> Shader:
 	return PRELOADED_SHADERS[shader_name]

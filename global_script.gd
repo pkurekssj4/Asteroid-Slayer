@@ -514,9 +514,9 @@ const legacy_data: Dictionary = {
 			"reload_time": 3.5,
 			"attack_speed": 0.65, # strzaly na sekunde
 			"durability": {
-				"daily_percent_recovery_rate": 10,
-				"current_points": 200,
-				"max_points": 200,
+				"daily_percent_recovery_rate": 10.0,
+				"current_points": 200.0,
+				"max_points": 200.0,
 				"repair_days": 3,
 				"current_repair_days": 0
 			},
@@ -559,9 +559,9 @@ const legacy_data: Dictionary = {
 			"attack_range": 300,
 			"active_days": 0,
 			"durability": {
-				"daily_percent_recovery_rate": 10,
-				"current_points": 200,
-				"max_points": 200,
+				"daily_percent_recovery_rate": 10.0,
+				"current_points": 200.0,
+				"max_points": 200.0,
 				"repair_days": 3,
 				"current_repair_days": 0
 			},
@@ -578,9 +578,9 @@ const legacy_data: Dictionary = {
 			"attack_range": 350,
 			"active_days": 0,
 			"durability": {
-				"daily_percent_recovery_rate": 10,
-				"current_points": 200,
-				"max_points": 200,
+				"daily_percent_recovery_rate": 10.0,
+				"current_points": 200.0,
+				"max_points": 200.0,
 				"repair_days": 3,
 				"current_repair_days": 0
 			},
@@ -591,9 +591,9 @@ const legacy_data: Dictionary = {
 			"active": true,
 			"active_days": 0,
 			"durability": {
-				"daily_percent_recovery_rate": 10,
-				"current_points": 100,
-				"max_points": 100,
+				"daily_percent_recovery_rate": 10.0,
+				"current_points": 100.0,
+				"max_points": 100.0,
 				"repair_days": 3,
 				"current_repair_days": 0
 			},

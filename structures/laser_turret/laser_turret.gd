@@ -23,7 +23,6 @@ var ray_ending_point: Vector2
 var state: String = "idle"
 
 @onready var game: Node2D = get_node("/root/Game")
-@onready var resource_loader: Node = get_node("/root/Game/ResourceLoader")
 
 func _ready():
 	await game.game_ready
@@ -33,7 +32,7 @@ func _ready():
 	target_range = data.attack_range + 50
 	ray_caster = Node2D.new()
 	ray_caster.name =  self_name + "RayCaster"
-	ray_caster.set_script(resource_loader.get_scriptt("laser_turrets_ray_caster"))
+	ray_caster.set_script(PreloadedResourcesHolder.get_scriptt("laser_turrets_ray_caster"))
 	ray_caster.z_index = game.get_display_index("visual_effects")
 	ray_caster.laser_turret = self
 	ray_caster.laser_head_marker = $Head/Marker2D

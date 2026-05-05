@@ -16,7 +16,7 @@ var changing_color: bool = false
 func _ready() -> void:
 	if waving:
 		var shader_material: ShaderMaterial = ShaderMaterial.new()
-		shader_material.shader = get_node("/root/Game/ResourceLoader").get_shader("ending_text_waving")
+		shader_material.shader = PreloadedResourcesHolder.get_shader("ending_text_waving")
 		self.material = shader_material
 	if font_size != 0: add_theme_font_size_override("normal_font_size", font_size)
 	$Timer.start(lasting_time)

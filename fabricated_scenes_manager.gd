@@ -32,7 +32,6 @@ var side_destination: Dictionary = {
 }
 
 @onready var object_events_hub: Node = get_node("/root/Game/ObjectEventsHub")
-@onready var resource_loader: Node = get_node("/root/Game/ResourceLoader")
 @onready var game: Node2D = get_node("/root/Game")
 @onready var left_asteroid_destination_path_follower: PathFollow2D = get_node("/root/Game/LeftAsteroidDestinationPath/PathFollower")
 @onready var middle_asteroid_destination_path_follower: PathFollow2D = get_node("/root/Game/MiddleAsteroidDestinationPath/PathFollower")
@@ -50,7 +49,7 @@ func _ready() -> void:
 	side_destination.percent_thresholds_from_total_number_of_asteroids[1] -= value_to_reduce_thresholds_by
 	
 func get_projectile_scene(data_source: String, data_dict: Dictionary, pos: Vector2, dest: Vector2, rot: float, projectile_source: Area2D) -> Area2D:
-	var new_projectile: Area2D = resource_loader.get_resource("projectile").instantiate()
+	var new_projectile: Area2D = PreloadedResourcesHolder.get_scene("projectile").instantiate()
 	var comp_color: Color = GlobalScript.get_composition_color(data_dict)
 	new_projectile.speed = GlobalScript.current_data.structures.cannon.projectile_speed
 	new_projectile.type = data_source
@@ -72,7 +71,7 @@ func get_projectile_scene(data_source: String, data_dict: Dictionary, pos: Vecto
 func get_explosion_scene(data_source: String, data_dict: Dictionary, comp_color: Color) -> Area2D:
 	# Source jest określany dopiero przy wybuchu gdy wiadomo co zniszczyło
 	# W domysle to ma być dla chain reaction counter i mass destruction
-	var new_explosion: Area2D = resource_loader.get_resource(data_dict.explosion.shape + "_explosion").instantiate()
+	var new_explosion: Area2D = PreloadedResourcesHolder.get_scene(data_dict.explosion.shape + "_explosion").instantiate()
 	new_explosion.modulate = comp_color
 	new_explosion.type = data_source
 	new_explosion.z_index = game.get_display_index("explosions")
@@ -183,7 +182,7 @@ func apply_modules(scene: Area2D, data_dict: Dictionary) -> void:
 				scene.modules[module]["scene"] = new_module
 
 func get_asteroid_scene(type: String, rarity: int, size: float, speed: float, pos: Vector2, destination: Vector2, can_have_shield: bool, shield_rarity: int) -> Area2D:
-	var new_asteroid: Area2D = resource_loader.get_resource("asteroid_" + str(randi_range(1,15))).instantiate()
+	var new_asteroid: Area2D = PreloadedResourcesHolder.get_scene("asteroid_" + str(randi_range(1,15))).instantiate()
 	if type == "random": type = get_asteroid_type()
 	if !type.contains("asteroid"): type += "_asteroid"
 	if size == 0: size = get_asteroid_size()
@@ -314,7 +313,7 @@ func test_shield_chance_and_get_tier() -> int:
 	return tier_to_return
 	
 func grant_shield_scene(tier: int, asteroid: Area2D) -> void:
-	var new_asteroid_shield: Area2D = resource_loader.get_resource("asteroid_shield").instantiate()
+	var new_asteroid_shield: Area2D = PreloadedResourcesHolder.get_scene("asteroid_shield").instantiate()
 	new_asteroid_shield.rarity = tier
 	var shield_scale: float = randf_range(0.75, 1.0)
 	new_asteroid_shield.scale = Vector2(shield_scale, shield_scale)
@@ -341,7 +340,7 @@ func apply_audio_visual_effects(scene: Area2D, data_dict: Dictionary, data_avfx:
 			"visuals_when_launched", "visuals_when_destroyed", "visuals_when_damaged":
 				for visual in data_avfx[category]: # <- array -> dictionary
 					var new_vfx_scene # celowo bez typu, dict i tak jest dynamiczny gdy sluzy jako wieksza baza danych
-					new_vfx_scene = resource_loader.get_resource(visual).instantiate()
+					new_vfx_scene = PreloadedResourcesHolder.get_scene(visual).instantiate()
 					new_vfx_scene.add_to_group("vfx")
 					new_vfx_scene.z_index = game.get_display_index("visual_effects")
 					vfx_data = GlobalScript.VFX_DATA[visual]

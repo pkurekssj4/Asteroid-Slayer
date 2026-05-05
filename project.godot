@@ -23,6 +23,7 @@ run/max_fps=120
 
 GlobalScript="*res://global_script.gd"
 AudioBus="*uid://3doraar5jkba"
+PreloadedResourcesHolder="*uid://dx6dbw8rvd85t"
 
 [display]
 

@@ -14,7 +14,6 @@ var source: Area2D = self
 var cooldown_timer: Timer
 @onready var game: Node2D = get_node("/root/Game")
 @onready var vfx_scenes_container: Node = get_node("/root/Game/ScenesContainer/VFX")
-@onready var resource_loader: Node = get_node("/root/Game/ResourceLoader")
 
 func _ready():
 	await game.game_ready
@@ -47,7 +46,7 @@ func _process(delta):
 func launch_wave() -> void:
 	var wave: Node2D = Node2D.new()
 	wave.name = get_name() + "Shockwave"
-	wave.set_script(resource_loader.get_scriptt("pulse_barriers_shockwave"))
+	wave.set_script(PreloadedResourcesHolder.get_scriptt("pulse_barriers_shockwave"))
 	wave.global_position = $WaveEpicenterMarker2D.global_position
 	wave.target_radius = data.attack_range + 5
 	wave.z_index = game.get_display_index("visual_effects")

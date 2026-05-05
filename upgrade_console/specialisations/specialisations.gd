@@ -118,9 +118,9 @@ func _on_no_button_pressed() -> void:
 	$MainPanel.show()
 
 func _on_yes_button_pressed() -> void:
-	#upgrade_console.add_resources("credits", actual_cost, false)
-	#upgrade_console.update_points(0)
-	#upgrade_console.update_upgrades(["Cannon", "Base"])
+	upgrade_console.add_resources("credits", actual_cost, false)
+	upgrade_console.update_points(0)
+	upgrade_console.update_upgrades(["Cannon", "Base"])
 	upgrade_console.get_node("SpecialisationPlus/BlinkingAnimation").stop()
 	$SecondaryPanel/ConfirmationInside.hide()
 	$SecondaryPanel/ChangingSpecialisationInside.show()

@@ -11,7 +11,6 @@ var current_damage_percent_decline_per_second: float = 1.0
 @onready var game: Node2D = get_node("/root/Game")
 @onready var cannon: Node2D = get_node("/root/Game/Cannon")
 @onready var reloading_timer: Timer = get_node("/root/Game/Cannon/Timers/ReloadCountdown")
-@onready var resource_loader: Node = get_node("/root/Game/ResourceLoader")
 @onready var progress_bar_manager: Node = get_node("/root/Game/ProgressBarManager")
 
 func _process(delta: float) -> void:
@@ -24,7 +23,7 @@ func _process(delta: float) -> void:
 
 func _ready() -> void:
 	shader_material = ShaderMaterial.new()
-	var new_shader: Shader = resource_loader.get_shader("fever_progress_bar")
+	var new_shader: Shader = PreloadedResourcesHolder.get_shader("fever_progress_bar")
 	shader_material.shader = new_shader
 	await game.game_ready
 	required_damage = GlobalScript.current_data.fever.current_damage_requirement

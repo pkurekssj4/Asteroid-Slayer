@@ -2,7 +2,7 @@ extends Node2D
 
 var destination_y: int
 var speed: float = 150.0
-var speed_decline_per_second: float = 21.0
+var speed_decline_per_second: float = 22.0
 
 func _ready() -> void:
 	$TrailParticles.emitting = true

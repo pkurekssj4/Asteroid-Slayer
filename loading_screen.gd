@@ -29,5 +29,5 @@ func _process(delta: float) -> void:
 func change_scene() -> void:
 	var new_scene = ResourceLoader.load_threaded_get(scene_to_load)
 	$UILayer/Sprite2D.queue_free()
-	await get_tree().create_timer(0.25).timeout
+	await get_tree().create_timer(0.2).timeout
 	get_tree().change_scene_to_packed(new_scene)

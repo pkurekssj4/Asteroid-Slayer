@@ -2,7 +2,7 @@ extends Area2D
 const TOOLTIP_SCENE = preload('res://tooltip_ingame.tscn')
 var object_name: String
 var function: String
-var drop_chance = 0.0
+var drop_chance: float = 0.0
 
 func _on_mouse_entered() -> void:
 	create_tooltip()

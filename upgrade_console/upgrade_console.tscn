@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://cu4ym8ir5d6ci"]
 
 [ext_resource type="Script" uid="uid://btv16bto3necn" path="res://upgrade_console/upgrade_console.gd" id="1_i62da"]
+[ext_resource type="Script" uid="uid://b8ev8cac7x6cb" path="res://resource.gd" id="2_dhxwm"]
 [ext_resource type="Texture2D" uid="uid://dobya57pevlpv" path="res://upgrade_console/arrows.png" id="2_tt3g8"]
 [ext_resource type="Texture2D" uid="uid://ddatmsohks8h0" path="res://gas_element.png" id="4_ic7wk"]
 [ext_resource type="Texture2D" uid="uid://ns2g5msfgl6f" path="res://upgrade_console/grid_alpha_mask.png" id="7_5868r"]
 [ext_resource type="Texture2D" uid="uid://b7k62fevlnkip" path="res://upgrade_console/background_grid_alpha.png" id="7_h555c"]
+[ext_resource type="Texture2D" uid="uid://crr1ousc8qcbx" path="res://resource_icons/divine_shard.png" id="9_k0whh"]
 [ext_resource type="PackedScene" uid="uid://dodyn8owydtvb" path="res://upgrade_console/medium_damage_upgrade.tscn" id="14_fqao0"]
 [ext_resource type="PackedScene" uid="uid://dedqrhfafmjg5" path="res://upgrade_console/medium_area_of_effect_upgrade.tscn" id="15_yckb5"]
 [ext_resource type="PackedScene" uid="uid://3cdeu6o12muo" path="res://upgrade_console/big_area_of_effect_upgrade.tscn" id="17_jm1iu"]
@@ -49,6 +51,12 @@
 [ext_resource type="PackedScene" uid="uid://j45k4hddq1p7" path="res://upgrade_console/small_slow_upgrade.tscn" id="54_r7who"]
 [ext_resource type="PackedScene" uid="uid://0s15psjdy5rg" path="res://upgrade_console/big_reload_time_upgrade.tscn" id="55_ltgbh"]
 [ext_resource type="PackedScene" uid="uid://c28dn6d7u3m6g" path="res://upgrade_console/small_additional_projectile_or_capacity_upgrade.tscn" id="56_lr6ya"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3id37"]
+radius = 9.16595
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sdlee"]
+radius = 23.3079
 
 [sub_resource type="Curve2D" id="Curve2D_q6jgo"]
 bake_interval = 1.0
@@ -201,7 +209,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("FadeOffSolid:modulate")
+tracks/0/path = NodePath("UILayer/FadeOffSolid:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -253,7 +261,7 @@ length = 1.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("FadeOffSolid:modulate")
+tracks/0/path = NodePath("UILayer/FadeOffSolid:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -305,6 +313,200 @@ mouse_filter = 2
 script = ExtResource("1_i62da")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=1490366428]
+
+[node name="Score" type="Control" parent="UILayer" unique_id=293650030]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ResourceCredits" type="Area2D" parent="UILayer/Score" unique_id=882642273]
+position = Vector2(1893, 18)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("2_dhxwm")
+
+[node name="Icon" type="Sprite2D" parent="UILayer/Score/ResourceCredits" unique_id=1734501602]
+texture_filter = 1
+position = Vector2(0.815, 0)
+scale = Vector2(0.405, 0.405)
+texture = ExtResource("36_yckb5")
+
+[node name="Mask" type="CollisionShape2D" parent="UILayer/Score/ResourceCredits" unique_id=2128252662]
+position = Vector2(0.815, 0.47998)
+rotation = 1.1781
+shape = SubResource("CircleShape2D_3id37")
+
+[node name="Count" type="Label" parent="UILayer/Score/ResourceCredits" unique_id=1468702561]
+offset_left = -252.0
+offset_top = -13.0
+offset_right = -15.0
+offset_bottom = 14.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="NanoCores" type="Area2D" parent="UILayer/Score" unique_id=465618901]
+position = Vector2(1893, 43)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("2_dhxwm")
+
+[node name="Icon" type="Sprite2D" parent="UILayer/Score/NanoCores" unique_id=429396013]
+position = Vector2(0.45, 0.025)
+scale = Vector2(0.325, 0.325)
+texture = ExtResource("36_64xfg")
+
+[node name="Mask" type="CollisionShape2D" parent="UILayer/Score/NanoCores" unique_id=1169051012]
+position = Vector2(0.45, 0.025)
+scale = Vector2(0.325, 0.325)
+shape = SubResource("CircleShape2D_sdlee")
+
+[node name="Count" type="Label" parent="UILayer/Score/NanoCores" unique_id=3104450]
+offset_left = -275.0
+offset_top = -14.0
+offset_right = -15.0
+offset_bottom = 13.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="CommonShards" type="Area2D" parent="UILayer/Score" unique_id=960705855]
+position = Vector2(1893, 66)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("2_dhxwm")
+
+[node name="Icon" type="Sprite2D" parent="UILayer/Score/CommonShards" unique_id=1846582803]
+position = Vector2(0, 0.98999023)
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("36_by5ii")
+
+[node name="Mask" type="CollisionShape2D" parent="UILayer/Score/CommonShards" unique_id=495401930]
+position = Vector2(0.50499916, 1.1750002)
+shape = SubResource("CircleShape2D_3id37")
+
+[node name="Count" type="Label" parent="UILayer/Score/CommonShards" unique_id=1346067152]
+offset_left = -257.0
+offset_top = -13.0
+offset_right = -15.0
+offset_bottom = 14.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="CelestialShards" type="Area2D" parent="UILayer/Score" unique_id=497548468]
+position = Vector2(1893, 91)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("2_dhxwm")
+
+[node name="Icon" type="Sprite2D" parent="UILayer/Score/CelestialShards" unique_id=2013722179]
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("37_os3sd")
+
+[node name="Mask" type="CollisionShape2D" parent="UILayer/Score/CelestialShards" unique_id=1885817814]
+position = Vector2(0.21500015, 0)
+shape = SubResource("CircleShape2D_3id37")
+
+[node name="Count" type="Label" parent="UILayer/Score/CelestialShards" unique_id=1694375420]
+offset_left = -249.0
+offset_top = -14.0
+offset_right = -15.0
+offset_bottom = 13.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="AstralShards" type="Area2D" parent="UILayer/Score" unique_id=1427471830]
+position = Vector2(1893, 115)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("2_dhxwm")
+
+[node name="Icon" type="Sprite2D" parent="UILayer/Score/AstralShards" unique_id=1324866517]
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("38_fc8vu")
+
+[node name="Mask" type="CollisionShape2D" parent="UILayer/Score/AstralShards" unique_id=1875002379]
+position = Vector2(0.09000015, 0)
+shape = SubResource("CircleShape2D_3id37")
+
+[node name="Count" type="Label" parent="UILayer/Score/AstralShards" unique_id=424276036]
+offset_left = -275.0
+offset_top = -14.0
+offset_right = -15.0
+offset_bottom = 13.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="EtherealShards" type="Area2D" parent="UILayer/Score" unique_id=921474234]
+position = Vector2(1892, 139)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("2_dhxwm")
+
+[node name="Icon" type="Sprite2D" parent="UILayer/Score/EtherealShards" unique_id=1974888854]
+position = Vector2(1, 0)
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("39_1t0gf")
+
+[node name="Mask" type="CollisionShape2D" parent="UILayer/Score/EtherealShards" unique_id=803844582]
+position = Vector2(1.0100002, 0)
+shape = SubResource("CircleShape2D_3id37")
+
+[node name="Count" type="Label" parent="UILayer/Score/EtherealShards" unique_id=884492790]
+offset_left = -274.0
+offset_top = -14.0
+offset_right = -14.0
+offset_bottom = 13.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
+
+[node name="DivineShards" type="Area2D" parent="UILayer/Score" unique_id=282113048]
+position = Vector2(1892, 163)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("2_dhxwm")
+
+[node name="Icon" type="Sprite2D" parent="UILayer/Score/DivineShards" unique_id=192868841]
+position = Vector2(1, 0)
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("9_k0whh")
+
+[node name="Mask" type="CollisionShape2D" parent="UILayer/Score/DivineShards" unique_id=306410301]
+position = Vector2(1.0100002, 0)
+shape = SubResource("CircleShape2D_3id37")
+
+[node name="Count" type="Label" parent="UILayer/Score/DivineShards" unique_id=589622203]
+offset_left = -274.0
+offset_top = -14.0
+offset_right = -14.0
+offset_bottom = 13.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 2
 
 [node name="OpeningHatch" type="Control" parent="UILayer" unique_id=1361587663]
 modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
@@ -397,6 +599,15 @@ speed_scale = 10.0
 explosiveness = 0.4
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_avipq")
+
+[node name="FadeOffSolid" type="ColorRect" parent="UILayer" unique_id=1249121462]
+modulate = Color(1, 1, 1, 0)
+z_index = 4
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1934143882]
 environment = SubResource("Environment_6d8u0")
@@ -3075,112 +3286,6 @@ offset_bottom = 1070.0
 theme_override_font_sizes/font_size = 13
 text = "Reset Trees"
 
-[node name="Score" type="Control" parent="." unique_id=1857027948]
-anchors_preset = 0
-offset_left = 639.0
-offset_top = -30.0
-offset_right = 679.0
-offset_bottom = 10.0
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[node name="ResourceCredit" type="Sprite2D" parent="Score" unique_id=433090552]
-texture_filter = 1
-position = Vector2(1252, 51)
-scale = Vector2(0.405, 0.405)
-texture = ExtResource("36_yckb5")
-
-[node name="ResourceCreditsCount" type="Label" parent="Score" unique_id=704436646]
-layout_mode = 0
-offset_left = 1000.0
-offset_top = 37.0
-offset_right = 1237.0
-offset_bottom = 64.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 19
-text = "0"
-horizontal_alignment = 2
-
-[node name="CommonShard" type="Sprite2D" parent="Score" unique_id=1788306942]
-position = Vector2(1251, 75)
-scale = Vector2(0.065, 0.065)
-texture = ExtResource("36_by5ii")
-
-[node name="CommonShardsCount" type="Label" parent="Score" unique_id=1994282195]
-layout_mode = 0
-offset_left = 995.0
-offset_top = 61.0
-offset_right = 1237.0
-offset_bottom = 88.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 19
-text = "0"
-horizontal_alignment = 2
-
-[node name="CelestialShard" type="Sprite2D" parent="Score" unique_id=719074193]
-position = Vector2(1251, 99)
-scale = Vector2(0.065, 0.065)
-texture = ExtResource("37_os3sd")
-
-[node name="CelestialShardsCount" type="Label" parent="Score" unique_id=1749447109]
-layout_mode = 0
-offset_left = 1003.0
-offset_top = 85.0
-offset_right = 1237.0
-offset_bottom = 112.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 19
-text = "0"
-horizontal_alignment = 2
-
-[node name="AstralShard" type="Sprite2D" parent="Score" unique_id=1973332290]
-position = Vector2(1251, 123)
-scale = Vector2(0.065, 0.065)
-texture = ExtResource("38_fc8vu")
-
-[node name="AstralShardsCount" type="Label" parent="Score" unique_id=1840700865]
-layout_mode = 0
-offset_left = 1099.0
-offset_top = 109.0
-offset_right = 1237.0
-offset_bottom = 136.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 19
-text = "0"
-horizontal_alignment = 2
-
-[node name="EtherealShard" type="Sprite2D" parent="Score" unique_id=746099218]
-position = Vector2(1251, 147)
-scale = Vector2(0.065, 0.065)
-texture = ExtResource("39_1t0gf")
-
-[node name="EtherealShardsCount" type="Label" parent="Score" unique_id=542016260]
-layout_mode = 0
-offset_left = 1144.0
-offset_top = 133.0
-offset_right = 1237.0
-offset_bottom = 160.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 19
-text = "0"
-horizontal_alignment = 2
-
-[node name="NanoCores" type="Sprite2D" parent="Score" unique_id=2141465061]
-position = Vector2(1252.42, 171)
-scale = Vector2(0.325, 0.325)
-texture = ExtResource("36_64xfg")
-
-[node name="NanoCoresCount" type="Label" parent="Score" unique_id=741167322]
-layout_mode = 0
-offset_left = 1175.0
-offset_top = 157.0
-offset_right = 1237.0
-offset_bottom = 184.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 19
-text = "0"
-horizontal_alignment = 2
-
 [node name="Center" type="Label" parent="." unique_id=1967960603]
 visible = false
 layout_mode = 0
@@ -3244,16 +3349,13 @@ color = Color(0, 0, 0, 0.156863)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1244969205]
 libraries/ = SubResource("AnimationLibrary_4i26q")
 
-[node name="FadeOffSolid" type="ColorRect" parent="." unique_id=1249121462]
-modulate = Color(1, 1, 1, 0)
-z_index = 4
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
+[connection signal="mouse_entered" from="UILayer/Score/ResourceCredits" to="UILayer/Score/ResourceCredits" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="UILayer/Score/NanoCores" to="UILayer/Score/NanoCores" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="UILayer/Score/CommonShards" to="UILayer/Score/CommonShards" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="UILayer/Score/CelestialShards" to="UILayer/Score/CelestialShards" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="UILayer/Score/AstralShards" to="UILayer/Score/AstralShards" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="UILayer/Score/EtherealShards" to="UILayer/Score/EtherealShards" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="UILayer/Score/DivineShards" to="UILayer/Score/DivineShards" method="_on_mouse_entered"]
 [connection signal="input_event" from="SpecialisationPlus" to="SpecialisationPlus" method="_on_input_event"]
 [connection signal="mouse_entered" from="SpecialisationPlus" to="SpecialisationPlus" method="_on_mouse_entered"]
 [connection signal="pressed" from="UpgradeButtons/Cannon" to="." method="_on_cannon_pressed"]

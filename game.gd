@@ -1,7 +1,4 @@
 extends Node2D
-const EVENT_MESSAGE = preload("res://event_message.tscn")
-const TOOLTIP_SCENE = preload("res://tooltip_ingame.tscn")
-const FIREWORK = preload("res://firework.tscn")
 const STRUCTURE_BAR = preload("res://structures/structure_bar.tscn")
 
 const DISPLAY_HIERARCHY: Dictionary = {
@@ -102,6 +99,11 @@ func _ready():
 	refresh_resource_credits_label()
 	get_window().grab_focus()
 	assign_values_to_resources()
+	if GlobalScript.current_data.game.day < GlobalScript.asteroids_tree_unlock_day:
+		$UILayer/Score/AstralShards.hide()
+		$UILayer/Score/EtherealShards.hide()
+		$UILayer/Score/CelestialShards.hide()
+		$UILayer/Score/DivineShards.hide()
 	emit_signal("game_ready")
 	
 func _process(_delta):
@@ -244,7 +246,7 @@ func progress_pending_highscore_ticks() -> void:
 	elif statistics_data.chain_reactions.display_new_highscore_ticks !=0: statistics_data.chain_reactions.display_new_highscore_ticks += 1
 	
 func display_event_message(msg: String, time: int, sound: String, pitch: float, color: String, font_size: String, icon: String, points: int):
-	var new_event_message = EVENT_MESSAGE.instantiate()
+	var new_event_message = PreloadedResourcesHolder.get_scene("event_message").instantiate()
 	new_event_message.color = color
 	new_event_message.message = msg
 	new_event_message.lasting_time = time
@@ -298,7 +300,7 @@ func refresh_nano_cores_label() -> void:
 
 func display_small_text_event(type: String, amount: int, display_position: Vector2) -> void:
 	var new_label: RichTextLabel = RichTextLabel.new()
-	new_label.set_script($ResourceLoader.get_scriptt("small_text_event"))
+	new_label.set_script(PreloadedResourcesHolder.get_scriptt("small_text_event"))
 	var font_size: int = 12
 	var outline_size: String = "1"
 	var color_bbcode: String
@@ -331,7 +333,7 @@ func display_small_text_event(type: String, amount: int, display_position: Vecto
 	new_label.add_theme_font_size_override("normal_font_size", font_size)
 	new_label.bbcode_enabled = true
 	new_label.text = "[color=" + color_bbcode + "][outline_size=" + outline_size + "][outline_color=" + color_bbcode + "]" + text + "[/outline_color][/outline_size][/color]"
-	if icon != "": new_label.add_image($ResourceLoader.get_resource(icon), icon_size)
+	if icon != "": new_label.add_image(PreloadedResourcesHolder.get_scene(icon), icon_size)
 	new_label.size = Vector2(150, 30)
 	new_label.pixels_move_per_second = pixels_move_per_second
 	new_label.fading_out_duration = fading_out_duration
@@ -658,7 +660,7 @@ func _on_hyper_cleaner_timer_timeout() -> void:
 func display_ending_ceremony_event() -> void:
 	display_event_message("Day " + str(GlobalScript.current_data.game.day) + " survived, congratulations!", 100, "ending message", 0, "white", "big", "none", 0)
 	for i in range(1, GlobalScript.current_data.game.day + 1):
-		var new_firework = FIREWORK.instantiate()
+		var new_firework = PreloadedResourcesHolder.get_scene("firework").instantiate()
 		new_firework.position.y = 958
 		new_firework.position.x = randi_range(200, 1800)
 		new_firework.destination_y = randi_range(600, 450)
@@ -780,7 +782,7 @@ func progress_all_structures() -> void:
 				disable_structure(structure, data_dict)
 		else:
 			data_dict.active_days += 1
-			data_dict.durability.current_points += int((data_dict.durability.daily_percent_recovery_rate / 100.0) * data_dict.durability.max_points)
+			data_dict.durability.current_points += (data_dict.durability.daily_percent_recovery_rate / 100.0) * data_dict.durability.max_points
 			if data_dict.durability.current_points > data_dict.durability.max_points: data_dict.durability.current_points = data_dict.durability.max_points
 
 func damage_structure(structure: Area2D, damage: float) -> void:
@@ -791,7 +793,7 @@ func damage_structure(structure: Area2D, damage: float) -> void:
 		return
 	var damage_taken: bool = true
 	update_durability_bar(structure, data_dict, damage_taken)
-	if data_dict.durability.current_points <= 0:
+	if data_dict.durability.current_points <= 0.0:
 		destroy_structure(structure, data_dict)
 		$ObjectEventsHub.execute_fx("destroyed", structure)
 	else:
@@ -817,7 +819,7 @@ func destroy_structure(structure: Area2D, data_dict: Dictionary) -> void:
 	if data_dict.has("dish"):
 		data_dict.dish.rotation = structure.get_node("RadarDish").rotation
 	data_dict.active_days = 0
-	data_dict.durability.current_points = 0
+	data_dict.durability.current_points = 0.0
 	data_dict.durability.current_repair_days = data_dict.durability.repair_days
 	GlobalScript.include_additive_stats(false, "structures")
 	disable_structure(structure, data_dict)

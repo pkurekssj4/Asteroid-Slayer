@@ -12,10 +12,9 @@ var ms_left_to_scan_sky: int = 0
 
 @onready var game = get_node("/root/Game")
 @onready var vfx_scenes_container = get_node("/root/Game/ScenesContainer/VFX")
-@onready var resource_loader = get_node("/root/Game/ResourceLoader")
 
 func _ready() -> void:
-	visual_effect_script = resource_loader.get_scriptt("electric_discharge_visual_effect")
+	visual_effect_script = PreloadedResourcesHolder.get_scriptt("electric_discharge_visual_effect")
 	timer = Timer.new()
 	timer.name = "ElectricDischargeCooldown"
 	timer.one_shot = true

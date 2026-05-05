@@ -34,7 +34,6 @@ var destroy_threshold: float = 0.15
 var exploded: bool = false
 
 @onready var object_events_hub: Node = get_node("/root/Game/ObjectEventsHub")
-@onready var resource_loader: Node = get_node("/root/Game/ResourceLoader")
 @onready var game: Node2D = get_node("/root/Game")
 @onready var fabricated_scenes_manager: Node = get_node("/root/Game/FabricatedScenesManager")
 @onready var fever: Node = get_node("/root/Game/Fever")
@@ -146,7 +145,7 @@ func start_flashing(time_sec: float) -> void:
 	add_to_group("ghosts")
 	set_process(false)
 	var new_shader_material: ShaderMaterial = ShaderMaterial.new()
-	var new_shader: Shader = resource_loader.get_shader("asteroid_flashing")
+	var new_shader: Shader = PreloadedResourcesHolder.get_shader("asteroid_flashing")
 	new_shader_material.shader = new_shader
 	$Asteroid.material = new_shader_material
 	speed = 0

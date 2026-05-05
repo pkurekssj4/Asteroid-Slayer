@@ -63,7 +63,7 @@ var trees_data: Dictionary = {
 							"cost": {"credits": 600}
 						},
 						"critical_hit_chance": {
-							"value": 0.3,
+							"value": 0.25,
 							"cost": {"credits": 600}
 						},
 						"critical_hit_damage": {
@@ -71,7 +71,7 @@ var trees_data: Dictionary = {
 							"cost": {"credits": 600}
 						},
 						"damage": {
-							"value": 0.08,
+							"value": 0.06,
 							"cost": {"credits": 600}
 						},
 						"projectile_speed": {
@@ -105,7 +105,7 @@ var trees_data: Dictionary = {
 							"cost": {"credits": 4000}
 						},
 						"damage": {
-							"value": 0.16,
+							"value": 0.12,
 							"cost": {"credits": 4000}
 						},
 						"projectile_speed": {
@@ -524,6 +524,11 @@ func _ready():
 	load_game()
 	GlobalScript.init()
 	get_window().grab_focus()
+	if GlobalScript.current_data.game.day < GlobalScript.asteroids_tree_unlock_day:
+		$UILayer/Score/AstralShards.hide()
+		$UILayer/Score/EtherealShards.hide()
+		$UILayer/Score/CelestialShards.hide()
+		$UILayer/Score/DivineShards.hide()
 	await get_tree().create_timer(0.5).timeout
 	AudioBus.play("hatch_pressure")
 	await get_tree().create_timer(0.1).timeout
@@ -534,7 +539,7 @@ func _ready():
 	await get_tree().create_timer(2.7).timeout
 	AudioBus.play("console_hatch_opening")
 	$AnimationPlayer.play("hatch_opening")
-	#GlobalScript.current_data.game.day = 2
+	#GlobalScript.current_data.game.day = 11
 	#player_specialisation = "none"
 	modulate_statistics_labels()
 	refresh_shards("all")
@@ -672,10 +677,10 @@ func save_game():
 
 func update_points(Points):
 	if Points != 0: GlobalScript.current_data.resources.credits -= Points
-	$Score/ResourceCreditsCount.text = str(GlobalScript.current_data.resources.credits)
+	$UILayer/Score/ResourceCredits/Count.text = str(GlobalScript.current_data.resources.credits)
 
 func update_nano_cores_label():
-	$Score/NanoCoresCount.text = str(GlobalScript.current_data.resources.nano_cores)
+	$UILayer/Score/NanoCores/Count.text = str(GlobalScript.current_data.resources.nano_cores)
 
 func _on_done_pressed():
 	if !activated: return
@@ -696,14 +701,16 @@ func _on_main_menu_pressed() -> void:
 
 func refresh_shards(Type) -> void:
 	if Type == "all" || Type == "common":
-		$Score/CommonShardsCount.text = str(GlobalScript.current_data.resources.common_shards)
+		$UILayer/Score/CommonShards/Count.text = str(GlobalScript.current_data.resources.common_shards)
 	if Type == "all" || Type == "celestial":
-		$Score/CelestialShardsCount.text = str(GlobalScript.current_data.resources.celestial_shards)
+		$UILayer/Score/CelestialShards/Count.text = str(GlobalScript.current_data.resources.celestial_shards)
 	if Type == "all" || Type == "astral":
-		$Score/AstralShardsCount.text = str(GlobalScript.current_data.resources.astral_shards)
+		$UILayer/Score/AstralShards/Count.text = str(GlobalScript.current_data.resources.astral_shards)
 	if Type == "all" || Type == "ethereal":
-		$Score/EtherealShardsCount.text = str(GlobalScript.current_data.resources.ethereal_shards)
-
+		$UILayer/Score/EtherealShards/Count.text = str(GlobalScript.current_data.resources.ethereal_shards)
+	if Type == "all" || Type == "ethereal":
+		$UILayer/Score/DivineShards/Count.text = str(GlobalScript.current_data.resources.divine_shards)
+		
 func _on_cannon_pressed() -> void:
 	show_upgrade_tree("Cannon", true)
 
@@ -820,8 +827,8 @@ func show_upgrade_tree(tree_name_to_show: String, play_sound: bool) -> void:
 func add_resources(resource: String, amount: int, add: bool) -> void:
 	var resource_label = null # zmiana na Resource?
 	if !add: amount *= -1
-	if resource == "credits" : resource_label = $Score/ResourceCreditsCount
-	elif resource == "nano_cores" : resource_label = $Score/NanoCoresCount
+	if resource == "credits" : resource_label = $UILayer/Score/ResourceCredits/Count
+	elif resource == "nano_cores" : resource_label = $UILayer/Score/NanoCores/Count
 	GlobalScript.current_data.resources[resource] += amount
 	resource_label.text = str(GlobalScript.current_data.resources[resource])
 

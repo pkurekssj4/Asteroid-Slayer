@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6k0wx3ovaehh"]
+[gd_scene format=3 uid="uid://b6k0wx3ovaehh"]
 
 [ext_resource type="Script" uid="uid://dyorg0xbp6q8k" path="res://loading_screen.gd" id="1_mggpi"]
 [ext_resource type="Gradient" uid="uid://ckecho77xjb7a" path="res://explosion_mask.tres" id="2_htrc2"]
@@ -13,23 +13,23 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mggpi"]
 bg_color = Color(0, 0.0770001, 0.77, 1)
 
-[node name="LoadingScreen" type="Node2D"]
+[node name="LoadingScreen" type="Node2D" unique_id=1589969489]
 script = ExtResource("1_mggpi")
 
-[node name="UILayer" type="CanvasLayer" parent="."]
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1815416541]
 
-[node name="ColorRect" type="ColorRect" parent="UILayer"]
+[node name="ColorRect" type="ColorRect" parent="UILayer" unique_id=1457851727]
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.00204499, 0, 0.109062, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="UILayer"]
+[node name="Sprite2D" type="Sprite2D" parent="UILayer" unique_id=1650074878]
 self_modulate = Color(1, 1, 1, 0.19607843)
 position = Vector2(952, 802)
 skew = -1.569051
 texture = SubResource("GradientTexture2D_weff3")
 
-[node name="ProgressBar" type="ProgressBar" parent="UILayer"]
+[node name="ProgressBar" type="ProgressBar" parent="UILayer" unique_id=621589425]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -44,7 +44,7 @@ grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_mggpi")
 step = 1.0
 
-[node name="Label" type="Label" parent="UILayer"]
+[node name="Label" type="Label" parent="UILayer" unique_id=1908484497]
 offset_left = 2.0
 offset_top = 495.0
 offset_right = 1920.0

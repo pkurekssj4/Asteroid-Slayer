@@ -3,13 +3,12 @@ var parent: Area2D
 var phase: float = 40.0
 var phase_progress_per_sec: float = 0.3
 var alpha_channel: float = 0.1
-@onready var resource_loader = get_node("/root/Game/ResourceLoader")
 
 func _ready() -> void:
 	emitting = true
 	get_node("/root/Game/ProgressBarManager").create_progress_bar("Gravity Well", "violet", GlobalScript.current_data.abilities.gravity_well.explosion.duration)
 	#var new_shader_material: ShaderMaterial = ShaderMaterial.new()
-	#var new_shader: Shader = resource_loader.get_shader("gravity_well_waving")
+	#var new_shader: Shader = PreloadedResourcesHolder.get_shader("gravity_well_waving")
 	#new_shader_material.shader = new_shader
 	#material = new_shader_material
 	#material.set_shader_parameter("alpha_channel", alpha_channel)

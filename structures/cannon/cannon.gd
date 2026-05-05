@@ -27,7 +27,6 @@ var ability_4_icon_tween: Tween = null
 
 @onready var game: Node2D = get_node("/root/Game")
 @onready var progress_bar_manager: Node = get_node("/root/Game/ProgressBarManager")
-@onready var resource_loader: Node = get_node("/root/Game/ResourceLoader")
 @onready var fabricated_scenes_manager: Node = get_node("/root/Game/FabricatedScenesManager")
 @onready var stasis_field_particles: GPUParticles2D = get_node("/root/Game/StasisFieldParticles")
 @onready var plasma_barrage_icon: Sprite2D = get_node("/root/Game/UILayer/Abilities/Ability1/PlasmaBarrageIcon")
@@ -124,8 +123,8 @@ func reload_finished() -> void:
 	update_rounds_left_label()
 
 func create_muzzle(data_dict: Dictionary):
-	var new_muzzle_flash: AnimatedSprite2D = resource_loader.get_resource("muzzle_flash").instantiate()
-	var new_muzzle_flash_particles: GPUParticles2D = resource_loader.get_resource("muzzle_flash_particles").instantiate()
+	var new_muzzle_flash: AnimatedSprite2D = PreloadedResourcesHolder.get_scene("muzzle_flash").instantiate()
+	var new_muzzle_flash_particles: GPUParticles2D = PreloadedResourcesHolder.get_scene("muzzle_flash_particles").instantiate()
 	new_muzzle_flash_particles.modulate = GlobalScript.get_composition_color(data_dict)
 	for scene in [new_muzzle_flash, new_muzzle_flash_particles]:
 		scene.add_to_group("vfx")
